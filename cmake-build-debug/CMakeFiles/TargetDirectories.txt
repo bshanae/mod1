@@ -1,0 +1,3 @@
+/Users/belchenkovova/workspace/21_mod1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/belchenkovova/workspace/21_mod1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/belchenkovova/workspace/21_mod1/cmake-build-debug/CMakeFiles/21_mod1.dir
