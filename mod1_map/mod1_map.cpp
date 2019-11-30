@@ -17,7 +17,7 @@ void								mod1_map::parse(const std::string &file)
 	stream.open(file);
 
 	if (!stream.is_open())
-		error.raise_error("Invalid file");
+		error.raise_error("Map : Invalid file");
 
 	while ((temp_char = stream.peek()) != EOF)
 		switch (temp_char)

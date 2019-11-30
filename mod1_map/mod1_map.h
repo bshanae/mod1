@@ -20,9 +20,10 @@ public :
 
 private :
 
+	const mod1_error				&error;
+
 	typedef std::vector<std::vector<int>> mod1_map_type;
 
-	const mod1_error				&error;
 	mod1_map_type					data;
 	int 							width;
 	int 							height;
