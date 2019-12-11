@@ -13,41 +13,39 @@ link_libraries(
 include_directories(
 	/usr/local/include/GL
 	/usr/local/include/GLFW
-	./mod1_error
+	/usr/local/include/glm
+	./mod1_main/mod1_error
 	./mod1_main
-	./mod1_map
-	./mod1_core
-	./mod1_shader
-	./mod1_program
-	./mod1_drawer)
-
-set(MOD1_ERROR
-	./mod1_error/mod1_error.cpp)
+	./mod1_main/mod1_main
+	./mod1_algorithm/mod1_map
+	./mod1_engine/mod1_core
+	./mod1_engine/mod1_shader
+	./mod1_engine/mod1_program
+	./mod1_engine/mod1_renderer
+	./mod1_engine/mod1_loader
+	./mod1_engine/mod1_model)
 
 set(MOD1_MAIN
-	mod1_main/main.cpp)
+	./mod1_main/mod1_error/mod1_error.cpp
+	./mod1_main/main.cpp
+	./mod1_main/mod1_main/mod1_main.cpp)
 
-set(MOD1_MAP
-	./mod1_map/mod1_map.cpp)
+set(MOD1_ALGORITHM
+	./mod1_algorithm/mod1_map/mod1_map.cpp)
 
-set(MOD1_CORE
-	./mod1_core/mod1_core.cpp)
-
-set(MOD1_SHADER
-	./mod1_shader/mod1_shader.cpp)
-
-set(MOD1_PROGRAM
-	./mod1_program/mod1_program.cpp)
-
-set(MOD1_DRAWER
-	mod1_drawer/mod1_drawer.cpp
-	)
+set(MOD1_ENGINE
+	./mod1_engine/mod1_core/mod1_core.cpp
+	./mod1_engine/mod1_shader/mod1_shader.cpp
+	./mod1_engine/mod1_renderer/mod1_renderer.cpp
+	./mod1_engine/mod1_program/mod1_program.cpp
+	./mod1_engine/mod1_model/mod1_model_data.cpp
+	./mod1_engine/mod1_model/mod1_model.cpp
+	./mod1_engine/mod1_loader/eab_x.cpp
+	./mod1_engine/mod1_loader/vao_x.cpp
+	./mod1_engine/mod1_loader/vbo_x.cpp
+	./mod1_engine/mod1_loader/mod1_loader.cpp)
 
 add_executable(21_mod1
-	${MOD1_ERROR}
 	${MOD1_MAIN}
-	${MOD1_MAP}
-	${MOD1_CORE}
-	${MOD1_SHADER}
-	${MOD1_PROGRAM}
-	${MOD1_DRAWER})
+	${MOD1_ENGINE}
+	${MOD1_ALGORITHM})

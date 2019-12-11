@@ -1,7 +1,6 @@
 #include "mod1_map.h"
 
-mod1_map::mod1_map(const mod1_error &error) :
-									error(error)
+									mod1_map::mod1_map()
 {
 	width = -1;
 	height = -1;
@@ -17,7 +16,7 @@ void								mod1_map::parse(const std::string &file)
 	stream.open(file);
 
 	if (!stream.is_open())
-		error.raise_error("Map : Invalid file");
+		global_error->raise_error("Map : Invalid file");
 
 	while ((temp_char = stream.peek()) != EOF)
 		switch (temp_char)
@@ -41,7 +40,7 @@ void								mod1_map::parse(const std::string &file)
 				continue ;
 			}
 			default :
-				error.raise_error("Unknown character [%c]", temp_char);
+				global_error->raise_error("Unknown character [%c]", temp_char);
 		}
 
 	stream.close();

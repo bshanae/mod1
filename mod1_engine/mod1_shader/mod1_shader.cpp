@@ -1,7 +1,6 @@
 #include "mod1_shader.h"
 
-mod1_shader::mod1_shader(const mod1_error& error, int type, const std::string &source) :
-						error(error)
+						mod1_shader::mod1_shader(int type, const std::string &source)
 {
 	std::string			string;
 	const char 			*ptr;
@@ -21,11 +20,11 @@ mod1_shader::mod1_shader(const mod1_error& error, int type, const std::string &s
 	{
 		glGetShaderInfoLog(object, 1024, nullptr, log);
 		printf("Log : \n%s\n", log);
-		error.raise_error("Shader : Can't compile shader");
+		global_error->raise_error("Shader : Can't compile shader");
 	}
 }
 
-mod1_shader::~mod1_shader()
+						mod1_shader::~mod1_shader()
 {
 	glDeleteShader(object);
 }
@@ -44,7 +43,7 @@ std::string				mod1_shader::shader_read_source(const std::string &path)
 	file.open(path);
 
 	if (!file.is_open())
-		error.raise_error("Invalid source file");
+		global_error->raise_error("Shade : Invalid source file");
 
 	stream << file.rdbuf();
 

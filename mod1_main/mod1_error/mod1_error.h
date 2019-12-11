@@ -27,3 +27,5 @@ private :
 
 	std::string		prefix = "Mod1";
 };
+
+extern mod1_error	*global_error;

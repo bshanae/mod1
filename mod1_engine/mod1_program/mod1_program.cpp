@@ -1,10 +1,9 @@
 #include "mod1_program.h"
 
-mod1_program::mod1_program(const mod1_error &error) :
-					error(error)
+					mod1_program::mod1_program()
 {
-	mod1_shader		shader_vertex(error, GL_VERTEX_SHADER, shader_vertex_source);
-	mod1_shader		shader_fragment(error, GL_FRAGMENT_SHADER, shader_fragment_source);
+	mod1_shader		shader_vertex(GL_VERTEX_SHADER, shader_vertex_source);
+	mod1_shader		shader_fragment(GL_FRAGMENT_SHADER, shader_fragment_source);
 
 	object = glCreateProgram();
 	glAttachShader(object, shader_vertex.get_object());
@@ -20,16 +19,21 @@ mod1_program::mod1_program(const mod1_error &error) :
 	{
 		glGetProgramInfoLog(object, 1024, nullptr, log);
 		printf("Log : \n%s\n", log);
-		error.raise_error("Program : Can't compile program");
+		global_error->raise_error("Program : Can't compile program");
 	}
 }
 
-mod1_program::~mod1_program()
+					mod1_program::~mod1_program()
 {
 	glDeleteProgram(object);
 }
 
-GLuint				mod1_program::get_object() const
+void				mod1_program::start()
 {
-	return (object);
+	glUseProgram(object);
+}
+
+void				mod1_program::stop()
+{
+	glUseProgram(0);
 }

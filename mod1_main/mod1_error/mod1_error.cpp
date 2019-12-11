@@ -3,7 +3,7 @@
 void 				mod1_error::print_error(const std::string message, va_list args) const
 {
 	printf("\033[0;31m");
-	printf("%s warning : ", prefix.c_str());
+	printf("%s Error : ", prefix.c_str());
 	vprintf(message.c_str(), args);
 	printf("\033[0m");
 }
@@ -11,7 +11,7 @@ void 				mod1_error::print_error(const std::string message, va_list args) const
 void 				mod1_error::print_warning(const std::string message, va_list args) const
 {
 	printf("\033[0;31m");
-	printf("%s warning : ", prefix.c_str());
+	printf("%s Warning : ", prefix.c_str());
 	vprintf(message.c_str(), args);
 	printf("\033[0m");
 }
