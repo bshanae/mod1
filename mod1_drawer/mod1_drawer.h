@@ -28,7 +28,8 @@ private :
 	const mod1_error	&error;
 	const mod1_core		core;
 	const mod1_program	program;
-	GLuint 				vbo;
 	GLuint 				vao;
+	GLuint 				ebo;
+	GLuint 				vbo;
 };
 
