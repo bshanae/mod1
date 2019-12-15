@@ -25,7 +25,7 @@ private :
 protected :
 
 	mod1_model_data	data;
-	int				vertex_number_value;
+	int				vertex_number_internal;
 };
 
 

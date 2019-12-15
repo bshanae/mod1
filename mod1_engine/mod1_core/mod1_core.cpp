@@ -14,7 +14,7 @@
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-	window = glfwCreateWindow(window_height, window_width, window_name.c_str(), nullptr, nullptr);
+	window = glfwCreateWindow(window_width_internal, window_height_internal, window_name.c_str(), nullptr, nullptr);
 	global_error->test_critical(window != nullptr, "Core : Can't create window");
 	glfwMakeContextCurrent(window);
 
@@ -26,6 +26,8 @@
 
 	glfwGetFramebufferSize(window, &width, &height);
 	glViewport(0, 0, width, height);
+
+	glEnable(GL_DEPTH_TEST);
 }
 
 					mod1_core::~mod1_core()
@@ -36,6 +38,16 @@
 bool				mod1_core::is_working()
 {
 	return (glfwWindowShouldClose(window));
+}
+
+int					mod1_core::window_width()
+{
+	return (window_width_internal);
+}
+
+int					mod1_core::window_height()
+{
+	return (window_height_internal);
 }
 
 void				mod1_core::update()

@@ -4,12 +4,13 @@
 {
 	vao = -1;
 	eab = -1;
-	vertex_number_value = -1;
+	vertex_number_internal = -1;
 }
 
 void				mod1_model::load(mod1_loader &loader)
 {
 	loader.load(data, vao, eab);
+	vertex_number_internal = data.index_array_length;
 }
 
 void				mod1_model::use()
@@ -19,5 +20,5 @@ void				mod1_model::use()
 
 int 				mod1_model::vertex_number()
 {
-	return (vertex_number_value);
+	return (vertex_number_internal);
 }

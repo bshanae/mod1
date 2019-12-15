@@ -20,7 +20,6 @@ void					mod1_loader::load(const mod1_model_data &data, GLuint &vao, GLuint &eab
 
 	vao_bind(vao);
 
-	eab_bind(eab);
 	eab_buffer(eab, data.index_array, (int)sizeof(int) * data.index_array_length);
 
 	eab_bind(eab);
