@@ -2,7 +2,9 @@
 
 layout (location = 0) in vec3 position;
 
+uniform mat4 transformation;
+
 void main()
 {
-    gl_Position = vec4(position, 1.0);
+    gl_Position = transformation * vec4(position, 1.0);
 }

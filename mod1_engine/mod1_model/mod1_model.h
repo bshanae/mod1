@@ -15,9 +15,9 @@ public :
 
 	void			load(mod1_loader &loader);
 	void			use();
-	int 			get_vertex_number();
+	int 			vertex_number();
 
-//private :
+private :
 
 	GLuint 			vao;
 	GLuint 			eab;
@@ -25,7 +25,7 @@ public :
 protected :
 
 	mod1_model_data	data;
-	int				vertex_number;
+	int				vertex_number_value;
 };
 
 

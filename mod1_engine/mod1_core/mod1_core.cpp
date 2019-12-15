@@ -38,6 +38,11 @@ bool				mod1_core::is_working()
 	return (glfwWindowShouldClose(window));
 }
 
+void				mod1_core::update()
+{
+	glfwPollEvents();
+}
+
 void				mod1_core::swap_buffers()
 {
 	glfwSwapBuffers(window);

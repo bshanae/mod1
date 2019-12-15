@@ -4,7 +4,7 @@
 {
 	vao = -1;
 	eab = -1;
-	vertex_number = -1;
+	vertex_number_value = -1;
 }
 
 void				mod1_model::load(mod1_loader &loader)
@@ -17,7 +17,7 @@ void				mod1_model::use()
 	mod1_loader::vao_bind(vao);
 }
 
-int 				mod1_model::get_vertex_number()
+int 				mod1_model::vertex_number()
 {
-	return (vertex_number);
+	return (vertex_number_value);
 }

@@ -21,9 +21,12 @@ public :
 
 	void						load_model(mod1_model *model);
 
-	void						prepare();
 	void						render();
 	void						loop();
+
+	glm::vec3					camera_position{};
+
+	const float					camera_step = 0.2f;
 
 private :
 
@@ -33,6 +36,12 @@ private :
 	mod1_program				program;
 	mod1_loader					loader;
 	std::vector<mod1_model *>	model_array;
-	bool						render_request = false;
+	bool						render_request = true;
+	glm::mat4					matrix_view{};
+	glm::mat4					matrix_projection{};
+	GLuint						uniform_transformation;
+
+	void						internal_prepare();
+	void						internal_render();
 };
 

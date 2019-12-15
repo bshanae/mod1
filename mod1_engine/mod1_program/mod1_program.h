@@ -15,9 +15,11 @@ public :
 	void				start();
 	void				stop();
 
+	GLuint				object();
+
 private :
 
-	GLuint 				object;
+	GLuint 				object_value;
 	const std::string	shader_vertex_source = "./mod1_engine/shaders/vertex.glsl";
 	const std::string	shader_fragment_source = "./mod1_engine/shaders/fragment.glsl";
 
