@@ -34,7 +34,7 @@ set(MOD1_MAIN
 set(MOD1_ALGORITHM
 	./mod1_algorithm/mod1_map/mod1_map.cpp
 	./mod1_algorithm/mod1_map/mod1_map_source_x.cpp
-	./mod1_algorithm/mod1_map/mod1_map_model_x.cpp)
+	./mod1_algorithm/mod1_map/mod1_map_model_x.cpp mod1_algorithm/mod1_map/exception_bad_coordinate.cpp)
 
 set(MOD1_ENGINE
 	./mod1_engine/mod1_point_x/mod1_point_x.cpp

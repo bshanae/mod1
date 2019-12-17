@@ -63,8 +63,9 @@ void						mod1_map::source_print()
 
 int							mod1_map::source_get_value(const mod1_point_2i &point)
 {
-	global_error->test_critical(point.x > -1 && point.x < source_width, "Map Source : Incorrect x value");
-	global_error->test_critical(point.y > -1 && point.y < source_height, "Map Source : Incorrect y value");
-
+	if (point.x < 0 || point.x >= source_width)
+		throw (mod1_map::exception_bad_coordinate());
+	if (point.y < 0 || point.y >= source_height)
+		throw (mod1_map::exception_bad_coordinate());
 	return (source_data.at(point.y).at(point.x));
 }

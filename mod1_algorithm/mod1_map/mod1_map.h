@@ -14,6 +14,11 @@ class							mod1_map : public mod1_model
 {
 public :
 
+	struct						exception_bad_coordinate : public std::exception
+	{
+		 const char *			what() const throw() override;
+	};
+
 								mod1_map();
 								~mod1_map() = default;
 

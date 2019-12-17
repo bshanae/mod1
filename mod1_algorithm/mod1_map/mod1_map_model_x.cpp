@@ -49,13 +49,17 @@ void						mod1_map::model_print()
 
 mod1_point_3f				*mod1_map::model_get_ptr(const mod1_point_2i &point)
 {
-	global_error->test_critical(point.x > -1 && point.x < model_width, "Map Model : Incorrect x value");
-	global_error->test_critical(point.y > -1 && point.y < model_height, "Map Model : Incorrect y value");
-
+	if (point.x < 0 || point.x >= model_width)
+		throw (mod1_map::exception_bad_coordinate());
+	if (point.y < 0 || point.y >= model_height)
+		throw (mod1_map::exception_bad_coordinate());
 	return (data.point_array + point.y * model_width + point.x);
 }
 
 bool						mod1_map::model_restore_point(const mod1_point_2i &point)
 {
+	int 					valid_count;
+	int 					valid_sum;
+
 
 }
