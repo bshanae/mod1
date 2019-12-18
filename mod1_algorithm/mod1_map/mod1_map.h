@@ -38,6 +38,8 @@ private :
 
 	int							source_get_value(const mod1_point_2i &point);
 
+	int							model_get_index(const mod1_point_2i &point);
 	mod1_point_3f				*model_get_ptr(const mod1_point_2i &point);
+	void						model_test_point(const mod1_point_2i &point, int &count_filled, int &count_valid, float &sum);
 	bool						model_restore_point(const mod1_point_2i &point);
 };
