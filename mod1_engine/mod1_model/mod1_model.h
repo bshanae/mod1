@@ -20,7 +20,6 @@ public :
 private :
 
 	GLuint 			vao;
-	GLuint 			eab;
 
 protected :
 

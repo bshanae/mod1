@@ -11,10 +11,9 @@ class							mod1_loader
 public :
 
 								mod1_loader() = default;
-
 								~mod1_loader();
 
-	void 						load(const mod1_model_data &data, GLuint &vao, GLuint &eab);
+	void 						load(const mod1_model_data &data, GLuint &vao);
 
 	GLuint						vbo_build();
 	static void					vbo_bind(GLuint vbo);

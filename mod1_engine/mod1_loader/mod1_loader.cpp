@@ -13,11 +13,11 @@
 		glDeleteBuffers(1, object);
 }
 
-void					mod1_loader::load(const mod1_model_data &data, GLuint &vao, GLuint &eab)
+void					mod1_loader::load(const mod1_model_data &data, GLuint &vao)
 {
-	eab = eab_build();
-	vao = vao_build();
+	GLuint 				eab = eab_build();
 
+	vao = vao_build();
 	vao_bind(vao);
 
 	eab_buffer(eab, data.index_array, (int)sizeof(int) * data.index_array_length);

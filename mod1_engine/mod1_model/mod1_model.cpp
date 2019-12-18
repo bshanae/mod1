@@ -3,14 +3,13 @@
 					mod1_model::mod1_model()
 {
 	vao = -1;
-	eab = -1;
 	vertex_number_internal = -1;
 }
 
 void				mod1_model::load(mod1_loader &loader)
 {
-	loader.load(data, vao, eab);
-	vertex_number_internal = data.index_array_length;
+	loader.load(data, vao);
+	vertex_number_internal = data.index_array_length * 3;
 }
 
 void				mod1_model::use()

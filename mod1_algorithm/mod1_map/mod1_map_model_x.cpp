@@ -19,7 +19,6 @@ void						mod1_map::model_build(int additional_points)
 			ptr_model->x = (float)iter_model.x;
 			ptr_model->y = (float)iter_model.y;
 			ptr_model->z = 0;
-
 		}
 
 //	for (iter_source.y = 0; iter_source.y < source_height; iter_source.y++)
@@ -46,8 +45,16 @@ void						mod1_map::model_build(int additional_points)
 	int						top_right;
 	int						bottom_left;
 	int						bottom_right;
-	int 					index_i = 0;
+	int 					index_i;
 
+	for (index_i = 0; index_i < data.index_array_length; index_i++)
+			data.index_array[index_i] = 0;
+
+	int						test = 0;
+
+#define LAST				5
+
+	index_i = 0;
 	for (iter_model.y = 0; iter_model.y < model_height - 1; iter_model.y++)
 		for (iter_model.x = 0; iter_model.x < model_width - 1; iter_model.x++)
 		{
@@ -60,9 +67,19 @@ void						mod1_map::model_build(int additional_points)
 			data.index_array[index_i++] = bottom_left;
 			data.index_array[index_i++] = top_right;
 
+			test++;
+
+			if (test == LAST)
+				return ;
+
 			data.index_array[index_i++] = top_right;
 			data.index_array[index_i++] = bottom_left;
 			data.index_array[index_i++] = bottom_right;
+
+			test++;
+
+			if (test == LAST)
+				return ;
 		}
 }
 
@@ -71,6 +88,21 @@ void						mod1_map::model_print()
 	mod1_point_2i			iter;
 
 	printf("Mod1 Map Model : \n");
+
+	printf("Raw points : \n");
+	int						width_count = 0;
+	for (int i = 0; i < data.point_array_length; i++)
+	{
+		printf("{%.2f, %.2f, %.2f} ", data.point_array[i].x, data.point_array[i].y, data.point_array[i].z);
+		if (width_count == model_width - 1)
+		{
+			width_count = 0;
+			printf("\n");
+		}
+		else
+			width_count++;
+	}
+
 	printf("Points : \n");
 	for (iter.y = 0; iter.y < model_width; iter.y++)
 	{
@@ -78,6 +110,7 @@ void						mod1_map::model_print()
 			printf("%-10.2f", model_get_ptr(iter)->z);
 		printf("\n");
 	}
+
 	printf("Points indices : \n");
 	for (iter.y = 0; iter.y < model_width; iter.y++)
 	{
@@ -85,6 +118,7 @@ void						mod1_map::model_print()
 			printf("%-4d", model_get_index(iter));
 		printf("\n");
 	}
+
 	printf("Polygons indices: \n");
 	for (int i = 0; i < data.index_array_length; i += 3)
 	{
