@@ -34,10 +34,10 @@ set(MOD1_MAIN
 set(MOD1_ALGORITHM
 	./mod1_algorithm/mod1_map/mod1_map.cpp
 	./mod1_algorithm/mod1_map/mod1_map_source_x.cpp
-	./mod1_algorithm/mod1_map/mod1_map_model_x.cpp mod1_algorithm/mod1_map/exception_bad_coordinate.cpp)
+	./mod1_algorithm/mod1_map/mod1_map_model_x.cpp mod1_algorithm/mod1_map/exception_x.cpp)
 
 set(MOD1_ENGINE
-	./mod1_engine/mod1_point_x/mod1_point_x.cpp
+	mod1_engine/mod1_point_x/mod1_point_2i.cpp
 	./mod1_engine/mod1_core/mod1_core.cpp
 	./mod1_engine/mod1_shader/mod1_shader.cpp
 	./mod1_engine/mod1_renderer/mod1_renderer.cpp

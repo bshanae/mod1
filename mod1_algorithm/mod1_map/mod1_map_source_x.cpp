@@ -1,39 +1,58 @@
 #include "mod1_map.h"
 
-void						mod1_map::source_parse(const std::string &file)
+float					mod1_map::source_read_float(std::ifstream &stream, bool get_space)
 {
-	std::ifstream			stream;
-	int 					temp_char;
-	int 					temp_int;
-	MOD1_MAP_DATA_TYPE_RI	map_iter;
+	float				temp;
+
+	if (get_space)
+		if (stream.get() != ' ')
+			global_error->raise_error("Map : Incorrect pattern");
+	stream >> temp;
+	return (temp);
+}
+
+void					mod1_map::source_update_min(const mod1_point_3f &test)
+{
+	if (test.x < source_min.x)
+		source_min.x = test.x;
+}
+
+void					mod1_map::source_update_max(const mod1_point_3f &test)
+{
+
+}
+
+void					mod1_map::source_parse(const std::string &file)
+{
+	std::ifstream		stream;
+	int 				temp_char;
+	float 				temp_float;
+	MOD1_MAP_VECTOR_RI	iter;
 
 	stream.open(file);
 
 	if (!stream.is_open())
 		global_error->raise_error("Map : Invalid file");
 
-	while ((temp_char = stream.peek()) != EOF)
+	while ((temp_char = stream.get()) != EOF)
 		switch (temp_char)
 		{
 			case ' ' : case ')' : case ',' : case '\n' :
-			{
-				stream.get();
 				continue ;
-			}
 			case '(' :
 			{
-				source_height++;
-				source_data.emplace_back(std::vector<int>());
-				map_iter = source_data.rbegin();
-				stream.get();
+				source_data.emplace_back();
+				iter = source_data.rbegin();
 				continue ;
 			}
 			case '0' ... '9' :
 			{
-				if (source_height == 1)
-					source_width++;
-				stream >> temp_int;
-				map_iter->push_back(temp_int);
+				stream.unget();
+				iter->x = source_read_float(stream, false);
+				iter->y = source_read_float(stream, true);
+				iter->z = source_read_float(stream, true);
+				source_update_min(*iter);
+				source_update_max(*iter);
 				continue ;
 			}
 			default :
