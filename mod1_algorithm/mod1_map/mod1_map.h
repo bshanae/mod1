@@ -25,8 +25,10 @@ public :
 	void						source_parse(const std::string &file);
 	void 						source_print();
 
-	void						model_build(int additional_points = 1);
-	void						model_print();
+	void						model_build(int additional_points = 1, float min = -50.f, float max = 50.f);
+	void						model_print(
+		bool print_raw = false, bool print_y = true,
+		bool print_index = false, bool print_polygon = false);
 
 private :
 
@@ -42,4 +44,5 @@ private :
 	mod1_point_3f				*model_get_ptr(const mod1_point_2i &point);
 	void						model_test_point(const mod1_point_2i &point, int &count_filled, int &count_valid, float &sum);
 	bool						model_restore_point(const mod1_point_2i &point);
+
 };

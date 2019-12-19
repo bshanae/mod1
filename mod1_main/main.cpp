@@ -8,7 +8,7 @@ int						main(int argc, char **argv)
 
 	main.map->source_parse(argv[1]);
 
-	main.map->model_build(1);
+	main.map->model_build(1, -10, 10);
 	main.map->model_print();
 
 	main.renderer->load_model(main.map);

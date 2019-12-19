@@ -3,7 +3,7 @@
 						mod1_renderer::mod1_renderer()
 {
 	core.set_callback(callback, this);
-	camera_position = glm::vec3(0.0f, 0.4f, 2.0f);
+	camera_position = glm::vec3(0.0f, 0.4f, 20.0f);
 	matrix_view = glm::mat4(1.0f);
 	matrix_projection = glm::perspective(
 		glm::radians(45.0f),
