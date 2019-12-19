@@ -1,7 +1,5 @@
 #pragma once
 
-#include "mod1_point_2i.h"
-
 class					mod1_model_data
 {
 

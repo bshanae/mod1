@@ -2,7 +2,7 @@
 
 #include "mod1_error.h"
 #include "mod1_model.h"
-#include "mod1_point_2i.h"
+#include "mod1_point_x.h"
 
 #include <fstream>
 #include <vector>
@@ -14,7 +14,7 @@ class						mod1_map : public mod1_model
 {
 public :
 
-							mod1_map();
+							mod1_map() = default;
 							~mod1_map() = default;
 
 	struct					exception_bad_coordinate : public std::exception
@@ -33,16 +33,16 @@ public :
 private :
 
 	MOD1_MAP_VECTOR			source_data;
-	mod1_point_3f			source_min;
-	mod1_point_3f			source_max;
+	mod1_point_3f			source_min = mod1_point_3f(INFINITY, INFINITY, INFINITY);
+	mod1_point_3f			source_max = mod1_point_3f(-INFINITY, -INFINITY, -INFINITY);
 
-	static float			source_read_float(std::ifstream &stream, bool get_space);
+	static float			source_read_float(std::ifstream &stream, bool eat_delimiter);
 	void					source_update_min(const mod1_point_3f &test);
 	void					source_update_max(const mod1_point_3f &test);
 	int						source_get_value(const mod1_point_2i &point);
 
-	int						model_width;
-	int						model_height;
+	int						model_width = -1;
+	int						model_height = -1;
 
 	int						model_get_index(const mod1_point_2i &point);
 	mod1_point_3f			*model_get_ptr(const mod1_point_2i &point);

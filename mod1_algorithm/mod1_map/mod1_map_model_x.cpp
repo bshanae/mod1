@@ -1,5 +1,6 @@
 #include "mod1_map.h"
 
+/*
 void						mod1_map::model_build(int additional_points, float min, float max)
 {
 	//						Setting new size of map
@@ -212,3 +213,4 @@ bool						mod1_map::model_restore_point(const mod1_point_2i &point)
 	}
 	return (false);
 }
+ */

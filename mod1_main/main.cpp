@@ -7,12 +7,13 @@ int						main(int argc, char **argv)
 	global_error->test_critical(argc > 1, "Invalid number of program arguments");
 
 	main.map->source_parse(argv[1]);
+	main.map->source_print();
 
-	main.map->model_build(1, -10, 10);
-	main.map->model_print();
-
-	main.renderer->load_model(main.map);
-	main.renderer->loop();
+//	main.map->model_build(1, -10, 10);
+//	main.map->model_print();
+//
+//	main.renderer->load_model(main.map);
+//	main.renderer->loop();
 
 	return 0;
 }

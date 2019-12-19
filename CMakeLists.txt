@@ -32,21 +32,29 @@ set(MOD1_MAIN
 	./mod1_main/mod1_main/mod1_main.cpp)
 
 set(MOD1_ALGORITHM
-	./mod1_algorithm/mod1_map/mod1_map.cpp
 	./mod1_algorithm/mod1_map/mod1_map_source_x.cpp
-	./mod1_algorithm/mod1_map/mod1_map_model_x.cpp mod1_algorithm/mod1_map/exception_x.cpp)
+	./mod1_algorithm/mod1_map/mod1_map_model_x.cpp
+	./mod1_algorithm/mod1_map/exception_x.cpp)
 
 set(MOD1_ENGINE
-	mod1_engine/mod1_point_x/mod1_point_2i.cpp
+	./mod1_engine/mod1_point_x/mod1_point_2i.cpp
+	./mod1_engine/mod1_point_x/mod1_point_3f.cpp
+
 	./mod1_engine/mod1_core/mod1_core.cpp
+
 	./mod1_engine/mod1_shader/mod1_shader.cpp
+
 	./mod1_engine/mod1_renderer/mod1_renderer.cpp
+
 	./mod1_engine/mod1_program/mod1_program.cpp
+
 	./mod1_engine/mod1_model/mod1_model_data.cpp
 	./mod1_engine/mod1_model/mod1_model.cpp
+
 	./mod1_engine/mod1_loader/eab_x.cpp
 	./mod1_engine/mod1_loader/vao_x.cpp
 	./mod1_engine/mod1_loader/vbo_x.cpp
+
 	./mod1_engine/mod1_loader/mod1_loader.cpp)
 
 add_executable(21_mod1
