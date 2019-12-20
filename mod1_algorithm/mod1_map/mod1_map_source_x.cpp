@@ -73,12 +73,3 @@ void						mod1_map::source_print()
 	printf("min = {%.2f, %.2f, %.2f}\n", source_min.x, source_min.y, source_min.z);
 	printf("max = {%.2f, %.2f, %.2f}\n", source_max.x, source_max.y, source_max.z);
 }
-
-int							mod1_map::source_get_value(const mod1_point_2i &point)
-{
-//	if (point.x < 0 || point.x >= source_width)
-//		throw (mod1_map::exception_bad_coordinate());
-//	if (point.y < 0 || point.y >= source_height)
-//		throw (mod1_map::exception_bad_coordinate());
-//	return (source_data.at(point.y).at(point.x));
-}

@@ -25,10 +25,7 @@ public :
 	void					source_parse(const std::string &file);
 	void 					source_print();
 
-	void					model_build(int additional_points = 1, float min = -50.f, float max = 50.f);
-	void					model_print(
-		bool print_raw = false, bool print_y = true,
-		bool print_index = false, bool print_polygon = false);
+	void					model_build();
 
 private :
 
@@ -39,14 +36,11 @@ private :
 	static float			source_read_float(std::ifstream &stream, bool eat_delimiter);
 	void					source_update_min(const mod1_point_3f &test);
 	void					source_update_max(const mod1_point_3f &test);
-	int						source_get_value(const mod1_point_2i &point);
 
-	int						model_width = -1;
-	int						model_height = -1;
+	mod1_point_2i			model_min;
+	mod1_point_2i			model_max;
+	int						model_delta;
 
-	int						model_get_index(const mod1_point_2i &point);
-	mod1_point_3f			*model_get_ptr(const mod1_point_2i &point);
-	void					model_test_point(const mod1_point_2i &point, int &count_filled, int &count_valid, float &sum);
-	bool					model_restore_point(const mod1_point_2i &point);
-
+	void					model_update_delta(const int &i, const int &j, const int &index);
+	void					model_prepare();
 };
