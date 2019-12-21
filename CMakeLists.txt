@@ -18,11 +18,12 @@ include_directories(
 	./mod1_main
 	./mod1_main/mod1_main
 	./mod1_algorithm/mod1_map
-	mod1_engine/mod1_point
+	./mod1_engine/mod1_point
 	./mod1_engine/mod1_core
 	./mod1_engine/mod1_shader
 	./mod1_engine/mod1_program
 	./mod1_engine/mod1_renderer
+	./mod1_engine/mod1_buffer
 	./mod1_engine/mod1_loader
 	./mod1_engine/mod1_model)
 
@@ -45,7 +46,8 @@ set(MOD1_ENGINE
 
 	./mod1_engine/mod1_program/mod1_program.cpp
 
-	./mod1_engine/mod1_model/mod1_model_data.cpp
+	./mod1_engine/mod1_buffer/mod1_buffer.h
+
 	./mod1_engine/mod1_model/mod1_model.cpp
 
 	./mod1_engine/mod1_loader/eab_x.cpp

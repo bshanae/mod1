@@ -28,7 +28,6 @@
 	glViewport(0, 0, width, height);
 
 	glEnable(GL_DEPTH_TEST);
-	glShadeModel(GL_SMOOTH);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 }
 

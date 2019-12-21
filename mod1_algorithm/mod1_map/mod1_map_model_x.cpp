@@ -88,15 +88,14 @@ int							mod1_map::model_get_index(const mod1_point2<int> &iter)
 
 float						*mod1_map::model_get_ptr(const mod1_point2<int> &iter)
 {
-	return (data.point_array + 3 * model_get_index(iter));
+	return (data.point_array.data() + 3 * model_get_index(iter));
 }
 
 void						mod1_map::model_build()
 {
 	model_prepare();
 
-	data.point_array_length = 3 * model_size.x * model_size.y;
-	data.point_array = new float[data.point_array_length];
+	data.point_array.allocate(3 * model_size.x * model_size.y);
 
 	mod1_point2<int>		iter;
 	float					*ptr;
@@ -114,9 +113,9 @@ void						mod1_map::model_build()
 			ptr[2] = (float)iter.y;
 		}
 
-	data.index_array_length = 6 * (model_size.x - 1) * (model_size.y - 1);
-	data.index_array = new int[data.index_array_length];
+	data.index_array.allocate(6 * (model_size.x - 1) * (model_size.y - 1));
 
+	int 			*index_ptr = data.index_array.data();
 	int				index_i = 0;
 
 	int				top_left;
@@ -133,13 +132,13 @@ void						mod1_map::model_build()
 			bottom_left = model_get_index(mod1_point2<int>(iter.x, iter.y + 1));
 			bottom_right = model_get_index(mod1_point2<int>(iter.x + 1, iter.y + 1));
 
-			data.index_array[index_i++] = top_left;
-			data.index_array[index_i++] = bottom_left;
-			data.index_array[index_i++] = top_right;
+			index_ptr[index_i++] = top_left;
+			index_ptr[index_i++] = bottom_left;
+			index_ptr[index_i++] = top_right;
 
-			data.index_array[index_i++] = top_right;
-			data.index_array[index_i++] = bottom_left;
-			data.index_array[index_i++] = bottom_right;
+			index_ptr[index_i++] = top_right;
+			index_ptr[index_i++] = bottom_left;
+			index_ptr[index_i++] = bottom_right;
 		}
 }
 
@@ -151,12 +150,12 @@ void						mod1_map::model_print(bool print_raw, bool print_polygon)
 	{
 		printf("Raw points : \n");
 		int					width_count = 0;
-		for (int i = 0; i < data.point_array_length; i += 3)
+		for (int i = 0; i < data.point_array.size(); i += 3)
 		{
 			printf("{%5.2f %5.2f %5.2f} ",
-				data.point_array[i],
-				data.point_array[i + 1],
-				data.point_array[i + 2]);
+				data.point_array.data()[i],
+				data.point_array.data()[i + 1],
+				data.point_array.data()[i + 2]);
 			if (width_count == model_size.x - 1)
 			{
 				width_count = 0;
@@ -169,12 +168,12 @@ void						mod1_map::model_print(bool print_raw, bool print_polygon)
 	if (print_polygon)
 	{
 		printf("Polygons : \n");
-		for (int i = 0; i < data.index_array_length; i += 3)
+		for (int i = 0; i < data.index_array.size(); i += 3)
 		{
 			printf("{%d, %d, %d}\n",
-				   data.index_array[i],
-				   data.index_array[i + 1],
-				   data.index_array[i + 2]);
+				   data.index_array.data()[i],
+				   data.index_array.data()[i + 1],
+				   data.index_array.data()[i + 2]);
 		}
 		printf("\n");
 	}

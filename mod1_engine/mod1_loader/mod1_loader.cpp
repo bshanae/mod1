@@ -20,11 +20,11 @@ void					mod1_loader::load(const mod1_model_data &data, GLuint &vao)
 	vao = vao_build();
 	vao_bind(vao);
 
-	eab_buffer(eab, data.index_array, (int)sizeof(int) * data.index_array_length);
+	eab_buffer(eab, data.index_array.data(), (int)sizeof(int) * data.index_array.size());
 
 	eab_bind(eab);
-	vao_edit_attribute(vao, 0, 3, GL_FLOAT, data.point_array, (int)sizeof(float) * data.point_array_length);
+	vao_edit_attribute(vao, 0, 3, GL_FLOAT, data.point_array.data(), (int)sizeof(float) * data.point_array.size());
+	mod1_loader::eab_unbind();
 
 	mod1_loader::vao_unbind();
-	mod1_loader::eab_unbind();
 }
