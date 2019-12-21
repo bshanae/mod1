@@ -70,6 +70,6 @@ void						mod1_map::source_print()
 	for (const auto &point : source_data)
 		printf("\t{%d, %d, %d}\n", point.x, point.y, point.z);
 	printf("}\n");
-	printf("min = {%d, %d, %d}\n", source_min.x, source_min.y, source_min.z);
-	printf("max = {%d, %d, %d}\n", source_max.x, source_max.y, source_max.z);
+	printf("Source min = {%d, %d, %d}\n", source_min.x, source_min.y, source_min.z);
+	printf("Source max = {%d, %d, %d}\n", source_max.x, source_max.y, source_max.z);
 }

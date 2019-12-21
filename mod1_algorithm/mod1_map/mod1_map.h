@@ -2,6 +2,7 @@
 
 #include "mod1_error.h"
 #include "mod1_model.h"
+#include "mod1_point2.h"
 #include "mod1_point3.h"
 
 #include <fstream>
@@ -9,6 +10,10 @@
 
 #define MOD1_MAP_VECTOR		std::vector<mod1_point3<int>>
 #define MOD1_MAP_VECTOR_RI	MOD1_MAP_VECTOR::reverse_iterator
+#define MOD1_MAP_DEF_DELTA	100
+#define MOD1_MAP_DEF_SIZE	mod1_point3<int>(1000)
+#define MOD1_MAP_INDENT		0.3
+#define MOD1_MAP_MIN_COUNT	10
 
 class						mod1_map : public mod1_model
 {
@@ -39,8 +44,9 @@ private :
 
 	mod1_point2<int>		model_min;
 	mod1_point2<int>		model_max;
-	int						model_delta;
+	int						model_delta = 0;
 
 	void					model_update_delta(const int &i, const int &j, const int &index);
+	void					model_optimize_delta(const mod1_point3<int> &size);
 	void					model_prepare();
 };
