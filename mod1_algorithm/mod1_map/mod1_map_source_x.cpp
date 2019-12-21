@@ -11,14 +11,14 @@ float					mod1_map::source_read_float(std::ifstream &stream, bool eat_delimiter)
 	return (temp);
 }
 
-void					mod1_map::source_update_min(const mod1_point_3f &test)
+void					mod1_map::source_update_min(const mod1_point3<int> &test)
 {
 	for (int i = 0; i < 3; i++)
 		if (test[i] < source_min[i])
 			source_min[i] = test[i];
 }
 
-void					mod1_map::source_update_max(const mod1_point_3f &test)
+void					mod1_map::source_update_max(const mod1_point3<int> &test)
 {
 	for (int i = 0; i < 3; i++)
 		if (test[i] > source_max[i])
@@ -68,8 +68,8 @@ void						mod1_map::source_print()
 {
 	printf("Mod1 Map :\n{\n");
 	for (const auto &point : source_data)
-		printf("\t{%.2f, %.2f, %.2f}\n", point.x, point.y, point.z);
+		printf("\t{%d, %d, %d}\n", point.x, point.y, point.z);
 	printf("}\n");
-	printf("min = {%.2f, %.2f, %.2f}\n", source_min.x, source_min.y, source_min.z);
-	printf("max = {%.2f, %.2f, %.2f}\n", source_max.x, source_max.y, source_max.z);
+	printf("min = {%d, %d, %d}\n", source_min.x, source_min.y, source_min.z);
+	printf("max = {%d, %d, %d}\n", source_max.x, source_max.y, source_max.z);
 }

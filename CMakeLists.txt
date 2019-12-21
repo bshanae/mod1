@@ -18,7 +18,7 @@ include_directories(
 	./mod1_main
 	./mod1_main/mod1_main
 	./mod1_algorithm/mod1_map
-	./mod1_engine/mod1_point_x
+	mod1_engine/mod1_point
 	./mod1_engine/mod1_core
 	./mod1_engine/mod1_shader
 	./mod1_engine/mod1_program
@@ -37,9 +37,6 @@ set(MOD1_ALGORITHM
 	./mod1_algorithm/mod1_map/exception_x.cpp)
 
 set(MOD1_ENGINE
-	./mod1_engine/mod1_point_x/mod1_point_2i.cpp
-	./mod1_engine/mod1_point_x/mod1_point_3f.cpp
-
 	./mod1_engine/mod1_core/mod1_core.cpp
 
 	./mod1_engine/mod1_shader/mod1_shader.cpp

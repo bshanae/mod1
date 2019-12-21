@@ -7,9 +7,9 @@ static int 					gcd(int a, int b)
 
 void 						mod1_map::model_update_delta(const int &i, const int &j, const int &index)
 {
-	float 					temp_delta;
+	int 					temp_delta;
 
-	temp_delta = fabsf(source_data[i][index] - source_data[j][index]);
+	temp_delta = abs(source_data[i][index] - source_data[j][index]);
 	model_delta = gcd(model_delta, (int)temp_delta);
 }
 
