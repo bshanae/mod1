@@ -10,30 +10,32 @@ public :
 					mod1_buffer() = default;
 					~mod1_buffer()
 	{
-		if (internal_size)
-			delete []internal_data;
+		if (size_internal)
+			delete []data_internal;
 	}
 
 	void 			allocate(int size)
 	{
-		internal_data = new type[size];
-		if (!internal_data)
-			global_error->raise_error("Buffer : Can't allocate memory");
-		this->internal_size = size;
+		if (data_internal)
+			global_error->raise_error("Buffer : Shouldn't allocate buffer more than once");
+		data_internal = new type[size];
+		if (!data_internal)
+			global_error->raise_error("Buffer : Can't allocate buffer");
+		this->size_internal = size;
 	}
 
 	type			*data() const
 	{
-		return (internal_data);
+		return (data_internal);
 	}
 
 	int 			size() const
 	{
-		return (internal_size);
+		return (size_internal);
 	}
 
 private :
 
-	type			*internal_data = nullptr;
-	int 			internal_size = 0;
+	type			*data_internal = nullptr;
+	int 			size_internal = 0;
 };

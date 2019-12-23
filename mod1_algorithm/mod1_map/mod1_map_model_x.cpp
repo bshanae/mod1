@@ -1,19 +1,19 @@
 #include "mod1_map.h"
 
-static int 					gcd(int a, int b)
+static int 				gcd(int a, int b)
 {
 	return (a ? gcd(b % a, a) : b);
 }
 
-void 						mod1_map::model_update_delta(const int &i, const int &j, const int &index)
+void 					mod1_map::model_update_delta(const int &i, const int &j, const int &index)
 {
-	int 					temp_delta;
+	int 				temp_delta;
 
 	temp_delta = abs(source_data[i][index] - source_data[j][index]);
 	model_delta = gcd(model_delta, (int)temp_delta);
 }
 
-static bool					reduce(int &value)
+static bool				reduce(int &value)
 {
 	for (int temp = 2; temp <= value; temp++)
 		if (value % temp == 0)
@@ -24,24 +24,24 @@ static bool					reduce(int &value)
 	return (false);
 }
 
-static bool					does_need_optimization(const mod1_point3<int> &diff, const int &delta)
+static bool				does_need_optimization(const mod1_point3<int> &diff, const int &delta)
 {
-	mod1_point2<int>		count;
+	mod1_point2<int>	count;
 
 	count = diff / delta;
 	return (count.x < MOD1_MAP_MIN_COUNT || count.y < MOD1_MAP_MIN_COUNT);
 }
 
-void 						mod1_map::model_optimize_delta(const mod1_point3<int> &diff)
+void 					mod1_map::model_optimize_delta(const mod1_point3<int> &diff)
 {
 	while (does_need_optimization(diff, model_delta))
 		if (!reduce(model_delta))
 			break ;
 }
 
-void						mod1_map::model_prepare()
+void					mod1_map::model_prepare()
 {
-	mod1_point3<int>		model_diff = source_max - source_min;
+	mod1_point3<int>	model_diff = source_max - source_min;
 
 	model_delta = 0;
 
@@ -77,7 +77,7 @@ void						mod1_map::model_prepare()
 	printf("model size = %d, %d\n", model_size.x, model_size.y);
 }
 
-int							mod1_map::model_get_index(const mod1_point2<int> &iter)
+int						mod1_map::model_get_index(const mod1_point2<int> &iter)
 {
 	if (iter.x < 0 || iter.x >= model_size.x)
 		throw (mod1_map::exception_bad_coordinate());
@@ -86,42 +86,53 @@ int							mod1_map::model_get_index(const mod1_point2<int> &iter)
 	return (iter.y * model_size.x + iter.x);
 }
 
-float						*mod1_map::model_get_ptr(const mod1_point2<int> &iter)
+float					*mod1_map::model_get_ptr(const mod1_point2<int> &iter, mod1_map_slot slot)
 {
-	return (data.point_array.data() + 3 * model_get_index(iter));
+	float				*ptr;
+
+	ptr = nullptr;
+	if (slot == mod1_map_slot_point)
+		ptr = data.point_array.data();
+	else if (slot == mod1_map_slot_normal)
+		ptr = data.normal_array.data();
+	else if (slot == mod1_map_slot_color)
+		ptr = data.color_array.data();
+	else
+		global_error->raise_error("Map : Incorrect slot");
+	return (ptr + 3 * model_get_index(iter));
 }
 
-void						mod1_map::model_build()
+void					mod1_map::model_build()
 {
 	model_prepare();
 
+	//					Points
+
 	data.point_array.allocate(3 * model_size.x * model_size.y);
 
-	mod1_point2<int>		iter;
-	float					*ptr;
-
-	int k = 23;
+	mod1_point2<int>	iter;
+	float				*ptr;
 
 	for (iter.y = 0; iter.y < model_size.y; iter.y++)
 		for (iter.x = 0; iter.x < model_size.x; iter.x++)
 		{
-			ptr = model_get_ptr(iter);
+			ptr = model_get_ptr(iter, mod1_map_slot_point);
 			ptr[0] = (float)iter.x;
 			ptr[1] = 0;
-			if (k-- == 0)
-				ptr[1] = 1;
 			ptr[2] = (float)iter.y;
 		}
 
+	//					Indices
+
 	data.index_array.allocate(6 * (model_size.x - 1) * (model_size.y - 1));
 
-	int 			*index_ptr = data.index_array.data();
-	int				index_i = 0;
+	int 				*index_ptr = data.index_array.data();
+	int					index_i = 0;
 
-	int				top_left;
-	int				top_right;
-	int				bottom_left;
-	int				bottom_right;
+	int					top_left;
+	int					top_right;
+	int					bottom_left;
+	int					bottom_right;
 
 	index_i = 0;
 	for (iter.y = 0; iter.y < model_size.y - 1; iter.y++)
@@ -140,15 +151,41 @@ void						mod1_map::model_build()
 			index_ptr[index_i++] = bottom_left;
 			index_ptr[index_i++] = bottom_right;
 		}
+
+	//					Normals
+
+	data.normal_array.allocate(6 * (model_size.x - 1) * (model_size.y - 1));
+
+	for (iter.y = 0; iter.y < model_size.y; iter.y++)
+		for (iter.x = 0; iter.x < model_size.x; iter.x++)
+		{
+			ptr = model_get_ptr(iter, mod1_map_slot_normal);
+			ptr[0] = 0;
+			ptr[1] = 1.;
+			ptr[2] = 0;
+		}
+
+	//					Colors
+
+	data.color_array.allocate(6 * (model_size.x - 1) * (model_size.y - 1));
+
+	for (iter.y = 0; iter.y < model_size.y; iter.y++)
+		for (iter.x = 0; iter.x < model_size.x; iter.x++)
+		{
+			ptr = model_get_ptr(iter, mod1_map_slot_color);
+			ptr[0] = 0.8;
+			ptr[1] = 0;
+			ptr[2] = 0;
+		}
 }
 
-void						mod1_map::model_print(bool print_raw, bool print_polygon)
+void					mod1_map::model_print(bool point, bool normal, bool polygon)
 {
 	printf("Mod1 Map Model : \n");
 
-	if(print_raw)
+	if(point)
 	{
-		printf("Raw points : \n");
+		printf("Points : \n");
 		int					width_count = 0;
 		for (int i = 0; i < data.point_array.size(); i += 3)
 		{
@@ -165,7 +202,26 @@ void						mod1_map::model_print(bool print_raw, bool print_polygon)
 		}
 	}
 
-	if (print_polygon)
+	if(normal)
+	{
+		printf("Normals : \n");
+		int					width_count = 0;
+		for (int i = 0; i < data.point_array.size(); i += 3)
+		{
+			printf("{%5.2f %5.2f %5.2f} ",
+				   data.normal_array.data()[i],
+				   data.normal_array.data()[i + 1],
+				   data.normal_array.data()[i + 2]);
+			if (width_count == model_size.x - 1)
+			{
+				width_count = 0;
+				printf("\n");
+			} else
+				width_count++;
+		}
+	}
+
+	if (polygon)
 	{
 		printf("Polygons : \n");
 		for (int i = 0; i < data.index_array.size(); i += 3)

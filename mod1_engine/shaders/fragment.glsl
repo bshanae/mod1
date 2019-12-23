@@ -1,8 +1,11 @@
 #version 400 core
 
-out vec4 color;
+in vec3             pass_color;
+in float			pass_light_intensity;
+
+out vec4			result_color;
 
 void main()
 {
-    color = vec4(1.0f, 0.5f, 0.2f, 1.0f);
+	result_color = vec4(pass_color * pass_light_intensity, 1.0f);
 }

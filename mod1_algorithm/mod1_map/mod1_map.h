@@ -31,7 +31,7 @@ public :
 	void 					source_print();
 
 	void					model_build();
-	void					model_print(bool print_raw = true, bool print_polygon = true);
+	void					model_print(bool point = true, bool normal = true, bool polygon = true);
 
 private :
 
@@ -43,6 +43,13 @@ private :
 	void					source_update_min(const mod1_point3<int> &test);
 	void					source_update_max(const mod1_point3<int> &test);
 
+	typedef enum
+	{
+		mod1_map_slot_point,
+		mod1_map_slot_normal,
+		mod1_map_slot_color
+	}						mod1_map_slot;
+
 	mod1_point2<int>		model_min;
 	mod1_point2<int>		model_max;
 	mod1_point2<int>		model_size;
@@ -52,5 +59,5 @@ private :
 	void					model_optimize_delta(const mod1_point3<int> &diff);
 	void					model_prepare();
 	int 					model_get_index(const mod1_point2<int> &iter);
-	float					*model_get_ptr(const mod1_point2<int> &iter);
+	float					*model_get_ptr(const mod1_point2<int> &iter, mod1_map_slot slot);
 };

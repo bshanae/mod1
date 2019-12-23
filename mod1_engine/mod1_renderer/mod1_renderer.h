@@ -25,6 +25,7 @@ public :
 	void						loop();
 
 	glm::vec3					camera_position{};
+	glm::vec3					light_position{};
 
 	const float					camera_step = 0.2f;
 
@@ -40,8 +41,9 @@ private :
 	glm::mat4					matrix_view{};
 	glm::mat4					matrix_projection{};
 	GLuint						uniform_transformation;
+	GLuint						uniform_light;
 
-	void						internal_prepare();
-	void						internal_render();
+	void						prepare_internal();
+	void						render_internal();
 };
 
