@@ -57,13 +57,17 @@ private :
 
 	void					model_update_delta(const int &i, const int &j, const int &index);
 	void					model_optimize_delta(const mod1_point3<int> &diff);
+
 	static float			model_interpolate_linear(int min, int max, float ratio);
 	static float			model_interpolate_cosine(int min, int max, float ratio);
 	static float			model_interpolate_smooth(int min, int max, float ratio);
+
+	bool					model_write_height(const mod1_point2<int> &iter, const float &height);
 	void					model_generate_hill(const mod1_point3<int> &summit);
-	void					model_prepare();
+
 	int 					model_get_index(const mod1_point2<int> &iter);
 	float					*model_get_ptr(const mod1_point2<int> &iter, mod1_map_slot slot);
 	mod1_point2<int>		model_find_ptr(const mod1_point3<int> &object);
 
+	void					model_prepare();
 };
