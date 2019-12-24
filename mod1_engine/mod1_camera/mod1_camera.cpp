@@ -8,7 +8,7 @@
 		glm::radians(45.0f),
 		(float)screen_width / (float)screen_height,
 		0.1f,
-		100.0f);
+		500.0f);
 	update_transformation();
 }
 

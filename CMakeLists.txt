@@ -34,9 +34,16 @@ set(MOD1_MAIN
 	./mod1_main/mod1_main/mod1_main.cpp)
 
 set(MOD1_ALGORITHM
-	./mod1_algorithm/mod1_map/mod1_map_source_x.cpp
-	./mod1_algorithm/mod1_map/mod1_map_model_x.cpp
-	./mod1_algorithm/mod1_map/exception_x.cpp)
+	./mod1_algorithm/mod1_map/source_x.cpp
+	./mod1_algorithm/mod1_map/model_build.cpp
+	./mod1_algorithm/mod1_map/model_generate_hill.cpp
+	./mod1_algorithm/mod1_map/model_get_index.cpp
+	./mod1_algorithm/mod1_map/model_prepare.cpp
+	./mod1_algorithm/mod1_map/model_print.cpp
+	./mod1_algorithm/mod1_map/model_x_delta.cpp
+	./mod1_algorithm/mod1_map/model_x_ptr.cpp
+	./mod1_algorithm/mod1_map/exception_x.cpp
+	mod1_algorithm/mod1_map/model_interpolate_x.cpp)
 
 set(MOD1_ENGINE
 	./mod1_engine/mod1_core/mod1_core.cpp
