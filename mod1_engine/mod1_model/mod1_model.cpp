@@ -9,7 +9,7 @@
 void				mod1_model::load(mod1_loader &loader)
 {
 	loader.load(data, vao);
-	vertex_number_internal = data.index_array.size() * 3;
+	vertex_number_internal = data.index_buffer.size() * 3;
 }
 
 void				mod1_model::use()

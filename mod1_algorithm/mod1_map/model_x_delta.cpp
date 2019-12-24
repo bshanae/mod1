@@ -26,15 +26,37 @@ static bool				reduce(int &value)
 
 static bool				does_need_optimization(const mod1_point3<int> &diff, const int &delta)
 {
-	mod1_point2<int>	count;
+	mod1_point3<int>	count;
 
 	count = diff / delta;
 	return (count.x < MOD1_MAP_MIN_COUNT || count.y < MOD1_MAP_MIN_COUNT);
 }
 
-void 					mod1_map::model_optimize_delta(const mod1_point3<int> &diff)
+void 					mod1_map::model_optimize_delta()
 {
-	while (does_need_optimization(diff, model_delta))
+	while (does_need_optimization(source_diff, model_delta))
 		if (!reduce(model_delta))
 			break ;
+}
+
+void 					mod1_map::model_compute_delta()
+{
+	source_diff = source_max - source_min;
+
+	model_delta = 0;
+
+	if (source_diff == mod1_point3<int>())
+	{
+		model_delta = MOD1_MAP_DEF_DELTA;
+		source_diff = MOD1_MAP_DEF_SIZE;
+	}
+	else
+		for (int i = 0; i < source_data.size(); i++)
+			for (int j = 0; j < source_data.size(); j++)
+			{
+				if (j == i)
+					continue ;
+				model_update_delta(i, j, 0);
+				model_update_delta(i, j, 1);
+			}
 }

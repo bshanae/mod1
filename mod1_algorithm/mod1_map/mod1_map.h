@@ -38,6 +38,7 @@ private :
 	MOD1_MAP_VECTOR			source_data;
 	mod1_point3<int>		source_min = mod1_point3<int>(INT_MAX, INT_MAX, INT_MAX);
 	mod1_point3<int>		source_max = mod1_point3<int>(-INT_MAX, -INT_MAX, -INT_MAX);
+	mod1_point3<int>		source_diff;
 
 	static float			source_read_float(std::ifstream &stream, bool eat_delimiter);
 	void					source_update_min(const mod1_point3<int> &test);
@@ -56,7 +57,8 @@ private :
 	int						model_delta = 0;
 
 	void					model_update_delta(const int &i, const int &j, const int &index);
-	void					model_optimize_delta(const mod1_point3<int> &diff);
+	void 					model_compute_delta();
+	void					model_optimize_delta();
 
 	static float			model_interpolate_linear(int min, int max, float ratio);
 	static float			model_interpolate_cosine(int min, int max, float ratio);

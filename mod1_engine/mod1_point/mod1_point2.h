@@ -1,6 +1,7 @@
 #pragma once
 
 #include "mod1_error.h"
+#include "mod1_min_max.h"
 
 template				<typename t1>
 class					mod1_point2
@@ -136,5 +137,15 @@ public :
 		if (this->y != other.y)
 			return (false);
 		return (true);
+	}
+
+	static mod1_point2<t1>	min (const mod1_point2<t1> &a, const mod1_point2<t1> &b)
+	{
+		return (mod1_point2<t1>(MOD1_MIN(a.x, b.x), MOD1_MIN(a.y, b.y)));
+	}
+
+	static mod1_point2<t1>	max (const mod1_point2<t1> &a, const mod1_point2<t1> &b)
+	{
+		return (mod1_point2<t1>(MOD1_MAX(a.x, b.x), MOD1_MAX(a.y, b.y)));
 	}
 };

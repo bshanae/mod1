@@ -3,6 +3,7 @@
 bool					mod1_map::model_write_height(const mod1_point2<int> &iter, const float &height)
 {
 	float				*ptr;
+
 	try
 	{
 		ptr = model_get_ptr(iter, mod1_map::mod1_map_slot_point) + 1;
@@ -11,8 +12,9 @@ bool					mod1_map::model_write_height(const mod1_point2<int> &iter, const float 
 		return (true);
 	}
 	catch (mod1_map::exception_bad_coordinate &exception)
-	{}
-	return (false);
+	{
+		return (false);
+	}
 }
 
 void					mod1_map::model_generate_hill(const mod1_point3<int> &summit)

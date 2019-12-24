@@ -6,7 +6,7 @@ void					mod1_map::model_build()
 
 	//					Points
 
-	data.point_array.allocate(3 * model_size.x * model_size.y);
+	data.point_buffer.allocate(3 * model_size.x * model_size.y);
 
 	mod1_point2<int>	iter;
 	float				*ptr;
@@ -22,9 +22,9 @@ void					mod1_map::model_build()
 
 	//					Indices
 
-	data.index_array.allocate(6 * (model_size.x - 1) * (model_size.y - 1));
+	data.index_buffer.allocate(6 * (model_size.x - 1) * (model_size.y - 1));
 
-	int 				*index_ptr = data.index_array.data();
+	int 				*index_ptr = data.index_buffer.data();
 	int					index_i = 0;
 
 	int					top_left;
@@ -52,7 +52,7 @@ void					mod1_map::model_build()
 
 	//					Normals
 
-	data.normal_array.allocate(6 * (model_size.x - 1) * (model_size.y - 1));
+	data.normal_buffer.allocate(6 * (model_size.x - 1) * (model_size.y - 1));
 
 	for (iter.y = 0; iter.y < model_size.y; iter.y++)
 		for (iter.x = 0; iter.x < model_size.x; iter.x++)
@@ -65,7 +65,7 @@ void					mod1_map::model_build()
 
 	//					Colors
 
-	data.color_array.allocate(6 * (model_size.x - 1) * (model_size.y - 1));
+	data.color_buffer.allocate(6 * (model_size.x - 1) * (model_size.y - 1));
 
 	for (iter.y = 0; iter.y < model_size.y; iter.y++)
 		for (iter.x = 0; iter.x < model_size.x; iter.x++)

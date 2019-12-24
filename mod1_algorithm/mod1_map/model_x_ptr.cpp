@@ -6,11 +6,11 @@ float					*mod1_map::model_get_ptr(const mod1_point2<int> &iter, mod1_map_slot s
 
 	ptr = nullptr;
 	if (slot == mod1_map_slot_point)
-		ptr = data.point_array.data();
+		ptr = data.point_buffer.data();
 	else if (slot == mod1_map_slot_normal)
-		ptr = data.normal_array.data();
+		ptr = data.normal_buffer.data();
 	else if (slot == mod1_map_slot_color)
-		ptr = data.color_array.data();
+		ptr = data.color_buffer.data();
 	else
 		global_error->raise_error("Map : Incorrect slot");
 	return (ptr + 3 * model_get_index(iter));

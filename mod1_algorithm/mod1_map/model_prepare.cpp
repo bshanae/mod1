@@ -2,34 +2,26 @@
 
 void					mod1_map::model_prepare()
 {
-	mod1_point3<int>	model_diff = source_max - source_min;
-
-	model_delta = 0;
-
-	if (model_diff == mod1_point3<int>())
-	{
-		model_delta = MOD1_MAP_DEF_DELTA;
-		model_diff = MOD1_MAP_DEF_SIZE;
-	}
-	else
-		for (int i = 0; i < source_data.size(); i++)
-			for (int j = 0; j < source_data.size(); j++)
-			{
-				if (j == i)
-					continue ;
-				model_update_delta(i, j, 0);
-				model_update_delta(i, j, 1);
-			}
-
-	model_optimize_delta(model_diff);
-
+	model_compute_delta();
+	model_optimize_delta();
 	printf("model delta = %d\n", model_delta);
 
-	model_min = source_min - model_diff * MOD1_MAP_INDENT;
-	model_max = source_max + model_diff * MOD1_MAP_INDENT;
+	model_min = source_min;
+	model_max = source_max;
 
-	model_min = (model_min / model_delta - mod1_point2<int>(1)) * model_delta;
-	model_max = (model_max / model_delta + mod1_point2<int>(1)) * model_delta;
+	mod1_point2<int>	test;
+
+	for (auto const &iter : source_data)
+	{
+		test = mod1_point2<int>(iter.x - iter.z, iter.y - iter.z);
+		model_min = mod1_point2<int>::min(model_min, test);
+		test = mod1_point2<int>(iter.x + iter.z, iter.y + iter.z);
+		model_max = mod1_point2<int>::max(model_max, test);
+	}
+
+	mod1_point2<int>	indent = (model_max - model_min) * MOD1_MAP_INDENT;
+	model_min -= indent;
+	model_max += indent;
 
 	model_size = (model_max - model_min) / model_delta + mod1_point2<int>(1);
 

@@ -63,7 +63,7 @@ set(MOD1_ENGINE
 	./mod1_engine/mod1_loader/vbo_x.cpp
 
 	./mod1_engine/mod1_loader/mod1_loader.cpp
-	./mod1_engine/mod1_camera/mod1_camera.cpp)
+	./mod1_engine/mod1_camera/mod1_camera.cpp mod1_engine/mod1_point/mod1_min_max.h)
 
 add_executable(21_mod1
 	${MOD1_MAIN}

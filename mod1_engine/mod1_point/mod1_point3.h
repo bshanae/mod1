@@ -151,4 +151,14 @@ public :
 			return (false);
 		return (true);
 	}
+
+	static mod1_point3<t1>	min (const mod1_point3<t1> &a, const mod1_point3<t1> &b)
+	{
+		return (mod1_point3<t1>(MOD1_MIN(a.x, b.x), MOD1_MIN(a.y, b.y), MOD1_MIN(a.z, b.z)));
+	}
+
+	static mod1_point3<t1>	max (const mod1_point3<t1> &a, const mod1_point3<t1> &b)
+	{
+		return (mod1_point2<t1>(MOD1_MAX(a.x, b.x), MOD1_MAX(a.y, b.y), MOD1_MAX(a.z, b.z)));
+	}
 };
