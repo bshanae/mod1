@@ -11,25 +11,11 @@ float					mod1_map::source_read_float(std::ifstream &stream, bool eat_delimiter)
 	return (temp);
 }
 
-void					mod1_map::source_update_min(const mod1_point3<int> &test)
-{
-	for (int i = 0; i < 3; i++)
-		if (test[i] < source_min[i])
-			source_min[i] = test[i];
-}
-
-void					mod1_map::source_update_max(const mod1_point3<int> &test)
-{
-	for (int i = 0; i < 3; i++)
-		if (test[i] > source_max[i])
-			source_max[i] = test[i];
-}
-
 void					mod1_map::source_parse(const std::string &file)
 {
 	std::ifstream		stream;
 	int 				temp_char;
-	MOD1_MAP_VECTOR_RI	iter;
+	MOD1_MAP_DATA_RI	iter;
 
 	stream.open(file);
 
@@ -53,8 +39,8 @@ void					mod1_map::source_parse(const std::string &file)
 				iter->x = source_read_float(stream, false);
 				iter->y = source_read_float(stream, true);
 				iter->z = source_read_float(stream, true);
-				source_update_min(*iter);
-				source_update_max(*iter);
+				source_min = mod1_point3<int>::min(source_min, *iter);
+				source_max = mod1_point3<int>::max(source_max, *iter);
 				continue ;
 			}
 			default :
@@ -62,6 +48,7 @@ void					mod1_map::source_parse(const std::string &file)
 		}
 
 	stream.close();
+	global_error->test_critical(source_data.size() < 50, "Map : Number of points is greater, than 50");
 }
 
 void						mod1_map::source_print()

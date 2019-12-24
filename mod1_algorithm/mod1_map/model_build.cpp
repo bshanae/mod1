@@ -20,6 +20,11 @@ void					mod1_map::model_build()
 			ptr[2] = (float)(model_min.y + model_delta * iter.y);
 		}
 
+	//					Hills
+
+	for (auto const &iter_source : source_data)
+		model_generate_hill(iter_source);
+
 	//					Indices
 
 	data.index_buffer.allocate(6 * (model_size.x - 1) * (model_size.y - 1));
@@ -65,19 +70,19 @@ void					mod1_map::model_build()
 
 	//					Colors
 
+	mod1_point3<float>	color;
+
 	data.color_buffer.allocate(6 * (model_size.x - 1) * (model_size.y - 1));
 
 	for (iter.y = 0; iter.y < model_size.y; iter.y++)
 		for (iter.x = 0; iter.x < model_size.x; iter.x++)
 		{
+			ptr = model_get_ptr(iter, mod1_map_slot_point);
+			color = model_get_color(ptr[1]);
 			ptr = model_get_ptr(iter, mod1_map_slot_color);
-			ptr[0] = 0.8;
-			ptr[1] = 0;
-			ptr[2] = 0;
+			ptr[0] = color.x;
+			ptr[1] = color.y;
+			ptr[2] = color.z;
 		}
 
-	//					Hills
-
-	for (auto const &iter_source : source_data)
-		model_generate_hill(iter_source);
 }

@@ -44,7 +44,8 @@ set(MOD1_ALGORITHM
 	./mod1_algorithm/mod1_map/model_x_ptr.cpp
 	./mod1_algorithm/mod1_map/exception_x.cpp
 	./mod1_algorithm/mod1_map/model_interpolate_x.cpp
-	./mod1_algorithm/mod1_map/model_write_height.cpp)
+	./mod1_algorithm/mod1_map/model_write_height.cpp
+	./mod1_algorithm/mod1_map/model_x_color.cpp)
 
 set(MOD1_ENGINE
 	./mod1_engine/mod1_core/mod1_core.cpp

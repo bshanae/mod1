@@ -49,8 +49,6 @@ void 					mod1_map::model_compute_delta()
 	{
 		model_delta = MOD1_MAP_DEF_DELTA;
 		source_diff = MOD1_MAP_DEF_SIZE;
-		source_min = source_data[0] - source_diff / 2;
-		source_max = source_data[0] + source_diff / 2;
 	}
 	else
 		for (int i = 0; i < source_data.size(); i++)
