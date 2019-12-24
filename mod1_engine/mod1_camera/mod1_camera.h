@@ -39,6 +39,10 @@ private :
 	const glm::vec4		up_const = glm::vec4(0, 1, 0, 1);
 	const glm::vec4		forward_const = glm::vec4(0, 0, -1, 1);
 
+	float				angle_x = 0;
+	float				angle_y = 0;
+	float				angle_z = 0;
+
 	glm::vec3			axis_x = glm::vec3(1, 0, 0);
 	glm::vec3			axis_z = glm::vec3(0, 0, 1);
 	glm::vec3			axis_y = glm::vec3(0, 1, 0);

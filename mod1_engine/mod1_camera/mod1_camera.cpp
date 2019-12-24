@@ -33,13 +33,14 @@ void				mod1_camera::move(mod1_axis axis, mod1_sign sign)
 void				mod1_camera::rotate(mod1_axis axis, mod1_sign sign)
 {
 	if (axis == mod1_axis_x)
-		matrix_rotation = glm::rotate(matrix_rotation, rotation_speed * (float)sign, axis_x_const);
+		angle_x += (float)sign * rotation_speed;
 	else if (axis == mod1_axis_y)
-		matrix_rotation = glm::rotate(matrix_rotation, rotation_speed * (float)sign, axis_y_const);
+		angle_y += (float)sign * rotation_speed;
 	else if (axis == mod1_axis_z)
-		matrix_rotation = glm::rotate(matrix_rotation, rotation_speed * (float)sign, axis_z_const);
+		angle_z += (float)sign * rotation_speed;
 	else
 		global_error->raise_warning("Camera : Unknown axis");
+	matrix_rotation = glm::eulerAngleYXZ(angle_y, angle_x, angle_z);
 	axis_x = glm::vec3(matrix_rotation * glm::vec4(axis_x_const, 1));
 	axis_y = glm::vec3(matrix_rotation * glm::vec4(axis_y_const, 1));
 	axis_z = glm::vec3(matrix_rotation * glm::vec4(axis_z_const, 1));

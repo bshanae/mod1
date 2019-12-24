@@ -119,7 +119,7 @@ mod1_point2<int>		mod1_map::model_find_ptr(const mod1_point3<int> &object)
 }
 
 
-void					mod1_map::model_create_hill(const mod1_point3<int> &summit)
+void					mod1_map::model_generate_hill(const mod1_point3<int> &summit)
 {
 	const auto			iter_const = model_find_ptr(summit);
 	mod1_point2<int>	iter;
@@ -127,6 +127,7 @@ void					mod1_map::model_create_hill(const mod1_point3<int> &summit)
 	int 				height;
 	bool 				at_least_one;
 
+	model_get_ptr(iter_const, mod1_map_slot_point)[1] = (float)summit.z;
 	for (int step = 1; ; step++)
 	{
 		height = summit.z - delta * step;
@@ -135,7 +136,7 @@ void					mod1_map::model_create_hill(const mod1_point3<int> &summit)
 
 		at_least_one = false;
 
-		for (iter.x = iter_const.x - step; iter.x < iter_const.x + step; iter.x++)
+		for (iter.x = iter_const.x - step; iter.x <= iter_const.x + step; iter.x++)
 		{
 			iter.y = iter_const.y - step;
 			try
@@ -153,7 +154,7 @@ void					mod1_map::model_create_hill(const mod1_point3<int> &summit)
 			}
 			catch (mod1_map::exception_bad_coordinate &exception) {}
 		}
-		for (iter.y = iter_const.y - step; iter.y < iter_const.y + step; iter.y++)
+		for (iter.y = iter_const.y - step; iter.y <= iter_const.y + step; iter.y++)
 		{
 			iter.x = iter_const.x - step;
 			try
@@ -255,7 +256,7 @@ void					mod1_map::model_build()
 	//					Hills
 
 	for (auto const &iter_source : source_data)
-		model_create_hill(iter_source);
+		model_generate_hill(iter_source);
 }
 
 void					mod1_map::model_print(bool point, bool normal, bool polygon)
