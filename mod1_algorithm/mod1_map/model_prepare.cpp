@@ -23,6 +23,9 @@ void					mod1_map::model_prepare()
 	model_min -= indent;
 	model_max += indent;
 
+	model_min = (model_min / model_delta - mod1_point2<int>(1)) * model_delta;
+	model_max = (model_max / model_delta + mod1_point2<int>(1)) * model_delta;
+
 	model_size = (model_max - model_min) / model_delta + mod1_point2<int>(1);
 
 	printf("Model min = %d, %d\n", model_min.x, model_min.y);

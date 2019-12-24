@@ -43,7 +43,8 @@ set(MOD1_ALGORITHM
 	./mod1_algorithm/mod1_map/model_x_delta.cpp
 	./mod1_algorithm/mod1_map/model_x_ptr.cpp
 	./mod1_algorithm/mod1_map/exception_x.cpp
-	mod1_algorithm/mod1_map/model_interpolate_x.cpp)
+	./mod1_algorithm/mod1_map/model_interpolate_x.cpp
+	./mod1_algorithm/mod1_map/model_write_height.cpp)
 
 set(MOD1_ENGINE
 	./mod1_engine/mod1_core/mod1_core.cpp
@@ -63,7 +64,7 @@ set(MOD1_ENGINE
 	./mod1_engine/mod1_loader/vbo_x.cpp
 
 	./mod1_engine/mod1_loader/mod1_loader.cpp
-	./mod1_engine/mod1_camera/mod1_camera.cpp mod1_engine/mod1_point/mod1_min_max.h)
+	./mod1_engine/mod1_camera/mod1_camera.cpp)
 
 add_executable(21_mod1
 	${MOD1_MAIN}

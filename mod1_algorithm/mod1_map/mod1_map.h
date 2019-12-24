@@ -13,7 +13,7 @@
 #define MOD1_MAP_DEF_DELTA	100
 #define MOD1_MAP_DEF_SIZE	mod1_point3<int>(1000)
 #define MOD1_MAP_INDENT		0.3
-#define MOD1_MAP_MIN_COUNT	100
+#define MOD1_MAP_MIN_COUNT	10
 
 class						mod1_map : public mod1_model
 {
