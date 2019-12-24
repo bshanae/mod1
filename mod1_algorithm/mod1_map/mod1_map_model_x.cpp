@@ -70,11 +70,11 @@ void					mod1_map::model_prepare()
 	model_min = (model_min / model_delta - mod1_point2<int>(1)) * model_delta;
 	model_max = (model_max / model_delta + mod1_point2<int>(1)) * model_delta;
 
-	model_size = model_diff / model_delta;
+	model_size = (model_max - model_min) / model_delta + mod1_point2<int>(1);
 
-	printf("model min = %d, %d\n", model_min.x, model_min.y);
-	printf("model max = %d, %d\n", model_max.x, model_max.y);
-	printf("model size = %d, %d\n", model_size.x, model_size.y);
+	printf("Model min = %d, %d\n", model_min.x, model_min.y);
+	printf("Model max = %d, %d\n", model_max.x, model_max.y);
+	printf("Model size = %d, %d\n", model_size.x, model_size.y);
 }
 
 int						mod1_map::model_get_index(const mod1_point2<int> &iter)
@@ -102,6 +102,80 @@ float					*mod1_map::model_get_ptr(const mod1_point2<int> &iter, mod1_map_slot s
 	return (ptr + 3 * model_get_index(iter));
 }
 
+mod1_point2<int>		mod1_map::model_find_ptr(const mod1_point3<int> &object)
+{
+	mod1_point2<int>	iter;
+	float 				*ptr;
+
+	for (iter.y = 0; iter.y < model_size.y; iter.y++)
+		for (iter.x = 0; iter.x < model_size.x; iter.x++)
+		{
+			ptr = model_get_ptr(iter, mod1_map_slot_point);
+			if ((int)ptr[0] == object.x && (int)ptr[2] == object.y)
+				return (iter);
+		}
+	global_error->raise_error("Map : Point (%d, %d) not found", object.x, object.y);
+	return (iter);
+}
+
+
+void					mod1_map::model_create_hill(const mod1_point3<int> &summit)
+{
+	const auto			iter_const = model_find_ptr(summit);
+	mod1_point2<int>	iter;
+	int 				delta = model_delta;
+	int 				height;
+	bool 				at_least_one;
+
+	for (int step = 1; ; step++)
+	{
+		height = summit.z - delta * step;
+		if (height < 0)
+			break ;
+
+		at_least_one = false;
+
+		for (iter.x = iter_const.x - step; iter.x < iter_const.x + step; iter.x++)
+		{
+			iter.y = iter_const.y - step;
+			try
+			{
+				model_get_ptr(iter, mod1_map_slot_point)[1] = (float)height;
+				at_least_one = true;
+			}
+			catch (mod1_map::exception_bad_coordinate &exception) {}
+
+			iter.y = iter_const.y + step;
+			try
+			{
+				model_get_ptr(iter, mod1_map_slot_point)[1] = (float)height;
+				at_least_one = true;
+			}
+			catch (mod1_map::exception_bad_coordinate &exception) {}
+		}
+		for (iter.y = iter_const.y - step; iter.y < iter_const.y + step; iter.y++)
+		{
+			iter.x = iter_const.x - step;
+			try
+			{
+				model_get_ptr(iter, mod1_map_slot_point)[1] = (float)height;
+				at_least_one = true;
+			}
+			catch (mod1_map::exception_bad_coordinate &exception) {}
+
+			iter.x = iter_const.x + step;
+			try
+			{
+				model_get_ptr(iter, mod1_map_slot_point)[1] = (float)height;
+				at_least_one = true;
+			}
+			catch (mod1_map::exception_bad_coordinate &exception) {}
+		}
+		if (!at_least_one)
+			break ;
+	}
+}
+
 void					mod1_map::model_build()
 {
 	model_prepare();
@@ -117,9 +191,9 @@ void					mod1_map::model_build()
 		for (iter.x = 0; iter.x < model_size.x; iter.x++)
 		{
 			ptr = model_get_ptr(iter, mod1_map_slot_point);
-			ptr[0] = (float)iter.x;
+			ptr[0] = (float)(model_min.x + iter.x);
 			ptr[1] = 0;
-			ptr[2] = (float)iter.y;
+			ptr[2] = (float)(model_min.y + iter.y);
 		}
 
 	//					Indices
@@ -177,6 +251,11 @@ void					mod1_map::model_build()
 			ptr[1] = 0;
 			ptr[2] = 0;
 		}
+
+	//					Hills
+
+	for (auto const &iter_source : source_data)
+		model_create_hill(iter_source);
 }
 
 void					mod1_map::model_print(bool point, bool normal, bool polygon)

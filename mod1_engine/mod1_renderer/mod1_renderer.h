@@ -6,6 +6,7 @@
 #include "mod1_program.h"
 #include "mod1_model.h"
 #include "mod1_loader.h"
+#include "mod1_camera.h"
 
 #include <fstream>
 #include <sstream>
@@ -24,26 +25,27 @@ public :
 	void						render();
 	void						loop();
 
-	glm::vec3					camera_position{};
-	glm::vec3					light_position{};
-
-	const float					camera_step = 0.2f;
+	const glm::vec3				camera_position = glm::vec3(5, 5, 20);
 
 private :
 
 	static void					callback(GLFWwindow* window, int key, int code, int action, int mode);
 
+	std::vector<mod1_model *>	model_array;
+	bool						render_request = true;
+
 	mod1_core					core;
 	mod1_program				program;
 	mod1_loader					loader;
-	std::vector<mod1_model *>	model_array;
-	bool						render_request = true;
-	glm::mat4					matrix_view{};
-	glm::mat4					matrix_projection{};
+	mod1_camera					camera;
+
+	glm::vec3					light_position;
+
 	GLuint						uniform_transformation;
 	GLuint						uniform_light;
 
 	void						prepare_internal();
 	void						render_internal();
+
 };
 

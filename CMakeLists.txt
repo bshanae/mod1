@@ -25,7 +25,8 @@ include_directories(
 	./mod1_engine/mod1_renderer
 	./mod1_engine/mod1_buffer
 	./mod1_engine/mod1_loader
-	./mod1_engine/mod1_model)
+	./mod1_engine/mod1_model
+	./mod1_engine/mod1_camera)
 
 set(MOD1_MAIN
 	./mod1_main/mod1_error/mod1_error.cpp
@@ -54,7 +55,8 @@ set(MOD1_ENGINE
 	./mod1_engine/mod1_loader/vao_x.cpp
 	./mod1_engine/mod1_loader/vbo_x.cpp
 
-	./mod1_engine/mod1_loader/mod1_loader.cpp)
+	./mod1_engine/mod1_loader/mod1_loader.cpp
+	./mod1_engine/mod1_camera/mod1_camera.cpp)
 
 add_executable(21_mod1
 	${MOD1_MAIN}

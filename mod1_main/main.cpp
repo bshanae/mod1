@@ -10,7 +10,7 @@ int						main(int argc, char **argv)
 	main.map->source_print();
 
 	main.map->model_build();
-	main.map->model_print(false, true, false);
+//	main.map->model_print(true, false, false);
 
 	main.renderer->load_model(main.map);
 	main.renderer->loop();

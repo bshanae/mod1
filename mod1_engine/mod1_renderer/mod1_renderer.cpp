@@ -1,18 +1,11 @@
 #include "mod1_renderer.h"
 
-						mod1_renderer::mod1_renderer()
+						mod1_renderer::mod1_renderer() :
+						camera(core.window_width(), core.window_height(), camera_position)
 {
 	core.set_callback(callback, this);
 
-	camera_position = glm::vec3(0.f, 0.4f, 20.f);
 	light_position = glm::vec3(0.f, 3.f, 0.f);
-
-	matrix_view = glm::mat4(1.0f);
-	matrix_projection = glm::perspective(
-		glm::radians(45.0f),
-		(float)core.window_width() / (float)core.window_height(),
-		0.1f,
-		100.0f);
 
 	uniform_transformation = glGetUniformLocation(program.object(), "transformation");
 	uniform_light = glGetUniformLocation(program.object(), "light_position");
@@ -29,17 +22,25 @@ void					mod1_renderer::callback(GLFWwindow* window, int key, int code, int acti
 		return ;
 	}
 	else if (key == GLFW_KEY_A)
-		renderer->camera_position.x -= renderer->camera_step;
+		renderer->camera.move(mod1_camera::mod1_axis_x,  mod1_camera::mod1_negative);
 	else if (key == GLFW_KEY_D)
-		renderer->camera_position.x += renderer->camera_step;
+		renderer->camera.move(mod1_camera::mod1_axis_x,  mod1_camera::mod1_positive);
 	else if (key == GLFW_KEY_W)
-		renderer->camera_position.z -= renderer->camera_step;
+		renderer->camera.move(mod1_camera::mod1_axis_z,  mod1_camera::mod1_negative);
 	else if (key == GLFW_KEY_S)
-		renderer->camera_position.z += renderer->camera_step;
+		renderer->camera.move(mod1_camera::mod1_axis_z,  mod1_camera::mod1_positive);
 	else if (key == GLFW_KEY_Q)
-		renderer->camera_position.y += renderer->camera_step;
+		renderer->camera.move(mod1_camera::mod1_axis_y,  mod1_camera::mod1_positive);
 	else if (key == GLFW_KEY_E)
-		renderer->camera_position.y -= renderer->camera_step;
+		renderer->camera.move(mod1_camera::mod1_axis_y,  mod1_camera::mod1_negative);
+	else if (key == GLFW_KEY_LEFT)
+		renderer->camera.rotate(mod1_camera::mod1_axis_y, mod1_camera::mod1_positive);
+	else if (key == GLFW_KEY_RIGHT)
+		renderer->camera.rotate(mod1_camera::mod1_axis_y, mod1_camera::mod1_negative);
+	else if (key == GLFW_KEY_UP)
+		renderer->camera.rotate(mod1_camera::mod1_axis_x, mod1_camera::mod1_positive);
+	else if (key == GLFW_KEY_DOWN)
+		renderer->camera.rotate(mod1_camera::mod1_axis_x, mod1_camera::mod1_negative);
 	else
 		return ;
 	renderer->render();
@@ -55,9 +56,7 @@ void 					mod1_renderer::prepare_internal()
 {
 	glClearColor(0.1f, 0.1f, 0.1f, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	matrix_view = glm::translate(glm::mat4(1.0f), camera_position * -1.f);
-	glm::mat4 temp = glm::translate(matrix_projection, camera_position);
-	glUniformMatrix4fv(uniform_transformation, 1, GL_FALSE, glm::value_ptr(matrix_projection * matrix_view));
+	glUniformMatrix4fv(uniform_transformation, 1, GL_FALSE, glm::value_ptr(camera.transformation()));
 	glUniform3f(uniform_light, light_position.x, light_position.y, light_position.z);
 }
 
