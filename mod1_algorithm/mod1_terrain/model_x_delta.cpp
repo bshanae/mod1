@@ -1,11 +1,11 @@
-#include "mod1_map.h"
+#include "mod1_terrain.h"
 
 static int 				gcd(int a, int b)
 {
 	return (a ? gcd(b % a, a) : b);
 }
 
-void 					mod1_map::model_update_delta(const int &i, const int &j, const int &index)
+void 					mod1_terrain::model_update_delta(const int &i, const int &j, const int &index)
 {
 	int 				temp_delta;
 
@@ -32,14 +32,14 @@ static bool				does_need_optimization(const mod1_point3<int> &diff, const int &d
 	return (count.x < MOD1_MAP_MIN_COUNT || count.y < MOD1_MAP_MIN_COUNT);
 }
 
-void 					mod1_map::model_optimize_delta()
+void 					mod1_terrain::model_optimize_delta()
 {
 	while (does_need_optimization(source_diff, model_delta))
 		if (!reduce(model_delta))
 			break ;
 }
 
-void 					mod1_map::model_compute_delta()
+void 					mod1_terrain::model_compute_delta()
 {
 	source_diff = source_max - source_min;
 

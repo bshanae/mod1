@@ -4,6 +4,7 @@
 #include "mod1_error.h"
 #include "mod1_model_data.h"
 #include "mod1_loader.h"
+#include "mod1_point2.h"
 
 class				mod1_model
 {
@@ -25,6 +26,8 @@ protected :
 
 	mod1_model_data	data;
 	int				vertex_number_internal;
+
+	void			*get_ptr(const int &index, const mod1_model_data::slot_type &slot);
 };
 
 

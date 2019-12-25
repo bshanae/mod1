@@ -21,3 +21,8 @@ int 				mod1_model::vertex_number()
 {
 	return (vertex_number_internal);
 }
+
+void				*mod1_model::get_ptr(const int &index, const mod1_model_data::slot_type &slot)
+{
+	return (data.get_ptr(index, slot));
+}

@@ -1,6 +1,6 @@
-#include "mod1_map.h"
+#include "mod1_terrain.h"
 
-void					mod1_map::model_print(bool point, bool normal, bool polygon)
+void					mod1_terrain::model_print(bool point, bool normal, bool polygon)
 {
 	printf("Mod1 Map Model : \n");
 

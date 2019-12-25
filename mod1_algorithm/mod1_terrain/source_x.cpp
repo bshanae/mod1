@@ -1,6 +1,6 @@
-#include "mod1_map.h"
+#include "mod1_terrain.h"
 
-float					mod1_map::source_read_float(std::ifstream &stream, bool eat_delimiter)
+float					mod1_terrain::source_read_float(std::ifstream &stream, bool eat_delimiter)
 {
 	float				temp;
 
@@ -11,7 +11,7 @@ float					mod1_map::source_read_float(std::ifstream &stream, bool eat_delimiter)
 	return (temp);
 }
 
-void					mod1_map::source_parse(const std::string &file)
+void					mod1_terrain::source_parse(const std::string &file)
 {
 	std::ifstream		stream;
 	int 				temp_char;
@@ -51,7 +51,7 @@ void					mod1_map::source_parse(const std::string &file)
 	global_error->test_critical(source_data.size() < 50, "Map : Number of points is greater, than 50");
 }
 
-void						mod1_map::source_print()
+void						mod1_terrain::source_print()
 {
 	printf("Mod1 Map :\n{\n");
 	for (const auto &point : source_data)

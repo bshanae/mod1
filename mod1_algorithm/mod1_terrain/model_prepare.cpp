@@ -1,6 +1,6 @@
-#include "mod1_map.h"
+#include "mod1_terrain.h"
 
-void					mod1_map::model_prepare()
+void					mod1_terrain::model_prepare()
 {
 	model_compute_delta();
 	model_optimize_delta();

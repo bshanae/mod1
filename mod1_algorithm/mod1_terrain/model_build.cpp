@@ -1,6 +1,6 @@
-#include "mod1_map.h"
+#include "mod1_terrain.h"
 
-void					mod1_map::model_build()
+void					mod1_terrain::model_build()
 {
 	model_prepare();
 
@@ -14,7 +14,7 @@ void					mod1_map::model_build()
 	for (iter.y = 0; iter.y < model_size.y; iter.y++)
 		for (iter.x = 0; iter.x < model_size.x; iter.x++)
 		{
-			ptr = model_get_ptr(iter, mod1_map_slot_point);
+			ptr = (float *)model_get_ptr(iter, mod1_model_data::slot_point);
 			ptr[0] = (float)(model_min.x + model_delta * iter.x);
 			ptr[1] = 0;
 			ptr[2] = (float)(model_min.y + model_delta * iter.y);
@@ -62,7 +62,7 @@ void					mod1_map::model_build()
 	for (iter.y = 0; iter.y < model_size.y; iter.y++)
 		for (iter.x = 0; iter.x < model_size.x; iter.x++)
 		{
-			ptr = model_get_ptr(iter, mod1_map_slot_normal);
+			ptr = (float *)model_get_ptr(iter, mod1_model_data::slot_normal);
 			ptr[0] = 0;
 			ptr[1] = 1.;
 			ptr[2] = 0;
@@ -77,9 +77,9 @@ void					mod1_map::model_build()
 	for (iter.y = 0; iter.y < model_size.y; iter.y++)
 		for (iter.x = 0; iter.x < model_size.x; iter.x++)
 		{
-			ptr = model_get_ptr(iter, mod1_map_slot_point);
+			ptr = (float *)model_get_ptr(iter, mod1_model_data::slot_point);
 			color = model_get_color(ptr[1]);
-			ptr = model_get_ptr(iter, mod1_map_slot_color);
+			ptr = (float *)model_get_ptr(iter, mod1_model_data::slot_color);
 			ptr[0] = color.x;
 			ptr[1] = color.y;
 			ptr[2] = color.z;

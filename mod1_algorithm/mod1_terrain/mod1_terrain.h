@@ -16,12 +16,11 @@
 #define MOD1_MAP_INDENT		0.3
 #define MOD1_MAP_MIN_COUNT	10
 
-class						mod1_map : public mod1_model
+class						mod1_terrain : public mod1_model
 {
 public :
-
-							mod1_map() = default;
-							~mod1_map() = default;
+							mod1_terrain() = default;
+							~mod1_terrain() = default;
 
 	struct					exception_bad_coordinate : public std::exception
 	{
@@ -37,6 +36,8 @@ public :
 	void					model_build();
 	void					model_print(bool point = true, bool normal = true, bool polygon = true);
 
+	friend class			mod1_water;
+
 private :
 
 	MOD1_MAP_DATA			source_data;
@@ -45,13 +46,6 @@ private :
 	mod1_point3<int>		source_diff;
 
 	static float			source_read_float(std::ifstream &stream, bool eat_delimiter);
-
-	typedef enum
-	{
-		mod1_map_slot_point,
-		mod1_map_slot_normal,
-		mod1_map_slot_color
-	}						mod1_map_slot;
 
 	MOD1_MAP_COLOR			color_data;
 
@@ -72,7 +66,7 @@ private :
 	void					model_generate_hill(const mod1_point3<int> &summit);
 
 	int 					model_get_index(const mod1_point2<int> &iter);
-	float					*model_get_ptr(const mod1_point2<int> &iter, mod1_map_slot slot);
+	void					*model_get_ptr(const mod1_point2<int> &iter, const mod1_model_data::slot_type &slot);
 	mod1_point2<int>		model_find_ptr(const mod1_point3<int> &object);
 
 	void					model_prepare();

@@ -6,7 +6,7 @@ mod1_error			*global_error;
 					mod1_main::mod1_main()
 {
 	global_error = &error;
-	map = new mod1_map;
+	map = new mod1_terrain;
 	renderer = new mod1_renderer;
 }
 

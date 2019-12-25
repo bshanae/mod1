@@ -1,6 +1,6 @@
-#include "mod1_map.h"
+#include "mod1_terrain.h"
 
-void					mod1_map::model_generate_hill(const mod1_point3<int> &summit)
+void					mod1_terrain::model_generate_hill(const mod1_point3<int> &summit)
 {
 	const auto			iter_const = model_find_ptr(summit);
 	mod1_point2<int>	iter;
