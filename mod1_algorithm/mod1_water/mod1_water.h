@@ -16,7 +16,6 @@ public :
 private :
 
 	mod1_terrain const	*terrain;
-	mod1_point2<int>	size;
 };
 
 

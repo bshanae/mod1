@@ -10,7 +10,7 @@ int						main(int argc, char **argv)
 
 
 	main.terrain->push_color(mod1_point3<float>(1, 0, 0));
-	main.terrain->push_color(mod1_point3<float>(0, 0, 1));
+	main.terrain->push_color(mod1_point3<float>(1, 1, 1));
 
 	main.terrain->parse(argv[1]);
 	main.terrain->build();
