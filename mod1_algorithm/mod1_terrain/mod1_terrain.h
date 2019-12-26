@@ -22,6 +22,9 @@ public :
 							mod1_terrain() = default;
 							~mod1_terrain() = default;
 
+	void					build()
+	{}
+
 	struct					exception_bad_coordinate : public std::exception
 	{
 		const char *		what() const throw() override;

@@ -47,7 +47,7 @@ void const			*mod1_model::get_ptr(const int &index, const mod1_model_data::slot_
 	return (data.get_ptr(index, slot));
 }
 
-void 				mod1_model::set_as_ready()
+void 				mod1_model::set_as_built()
 {
 	is_built = true;
 }

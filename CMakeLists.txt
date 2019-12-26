@@ -38,7 +38,12 @@ set(MOD1_MAIN
 	./mod1_main/mod1_main/mod1_main.cpp)
 
 set(MOD1_ALGORITHM
-	./mod1_algorithm/mod1_plane/mod1_plane.cpp
+
+	./mod1_algorithm/mod1_plane/exception_x.cpp
+	./mod1_algorithm/mod1_plane/get_index.cpp
+	./mod1_algorithm/mod1_plane/get_ptr.cpp
+	./mod1_algorithm/mod1_plane/set.cpp
+	./mod1_algorithm/mod1_plane/build.cpp
 
 	./mod1_algorithm/mod1_terrain/source_x.cpp
 	./mod1_algorithm/mod1_terrain/model_build.cpp

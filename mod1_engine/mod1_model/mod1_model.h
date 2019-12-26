@@ -43,7 +43,7 @@ protected :
 	void			*get_ptr(const int &index, const mod1_model_data::slot_type &slot);
 	void const		*get_ptr(const int &index, const mod1_model_data::slot_type &slot) const;
 
-	void			set_as_ready();
+	void			set_as_built();
 };
 
 
