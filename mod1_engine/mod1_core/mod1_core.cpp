@@ -5,7 +5,7 @@
 	static int 		count;
 
 	if (count++ > 0)
-		global_error->raise_error("Core : Can't initialize more than one object");
+		throw (exception_logic_object());
 
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -15,11 +15,13 @@
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
 	window = glfwCreateWindow(window_width_internal, window_height_internal, window_name.c_str(), nullptr, nullptr);
-	global_error->test_critical(window != nullptr, "Core : Can't create window");
+	if (!window)
+		throw (exception_window());
 	glfwMakeContextCurrent(window);
 
 	glewExperimental = GL_TRUE;
-	global_error->test_critical(glewInit() == GLEW_OK, "Core : Can't init GLEW");
+	if (glewInit() != GLEW_OK)
+		throw (exception_GLEW());
 
 	int				width;
 	int 			height;
@@ -68,8 +70,28 @@ void				mod1_core::set_callback(mod1_callback function, void *ptr)
 	static int 		count;
 
 	if (count++ > 0)
-		global_error->raise_error("Core : Can't have more than one callback");
+		throw (exception_logic_callback());
 
 	glfwSetWindowUserPointer(window, ptr);
 	glfwSetKeyCallback(window, function);
+}
+
+const char			*mod1_core::exception_logic_object::what() const noexcept
+{
+	return ("Mod1 Core : Can't create more than one core");
+}
+
+const char			*mod1_core::exception_logic_callback::what() const noexcept
+{
+	return ("Mod1 Core : Can't create more than one callback");
+}
+
+const char			*mod1_core::exception_window::what() const noexcept
+{
+	return ("Mod1 Core : Can't initialize window");
+}
+
+const char			*mod1_core::exception_GLEW::what() const noexcept
+{
+	return ("Mod1 Core : Can't initialize GLEW");
 }

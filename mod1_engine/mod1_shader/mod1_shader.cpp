@@ -20,7 +20,7 @@
 	{
 		glGetShaderInfoLog(object, 1024, nullptr, log);
 		printf("Log : \n%s\n", log);
-		global_error->raise_error("Shader : Can't compile shader");
+		throw (exception_compilation());
 	}
 }
 
@@ -43,7 +43,7 @@ std::string				mod1_shader::shader_read_source(const std::string &path)
 	file.open(path);
 
 	if (!file.is_open())
-		global_error->raise_error("Shade : Invalid source file");
+		throw (exception_source());
 
 	stream << file.rdbuf();
 
@@ -51,4 +51,14 @@ std::string				mod1_shader::shader_read_source(const std::string &path)
 	string = stream.str();
 
 	return (string);
+}
+
+const char			*mod1_shader::exception_source::what() const noexcept
+{
+	return ("Mod1 Shader : Invalid source file");
+}
+
+const char			*mod1_shader::exception_compilation::what() const noexcept
+{
+	return ("Mod1 Shader : Compilation error");
 }

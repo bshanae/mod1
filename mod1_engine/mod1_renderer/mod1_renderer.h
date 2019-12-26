@@ -1,7 +1,6 @@
 #pragma once
 
 #include "mod1_OpenGL.h"
-#include "mod1_error.h"
 #include "mod1_core.h"
 #include "mod1_program.h"
 #include "mod1_model.h"

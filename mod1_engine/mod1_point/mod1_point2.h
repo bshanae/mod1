@@ -1,12 +1,19 @@
 #pragma once
 
-#include "mod1_error.h"
 #include "mod1_min_max.h"
 
 template				<typename t1>
 class					mod1_point2
 {
 public :
+
+	struct				exception_bad_index : public std::exception
+	{
+		const char *	what() const noexcept override
+		{
+			return ("Mod1 Point2 : Bad index");
+		}
+	};
 
 	t1					x = 0;
 	t1					y = 0;
@@ -103,9 +110,8 @@ public :
 			case 1 :
 				return (y);
 			default :
-				global_error->raise_warning("Point2 : Incorrect index");
+				throw (exception_bad_index());
 		}
-		return (x);
 	}
 
 	const t1			&operator [] (int i) const
@@ -117,9 +123,8 @@ public :
 			case 1 :
 				return (y);
 			default :
-				global_error->raise_warning("Point2 : Incorrect index");
+				throw (exception_bad_index());
 		}
-		return (x);
 	}
 
 	template 			<class p3>

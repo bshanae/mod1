@@ -1,13 +1,34 @@
 #pragma once
 
 #include "mod1_OpenGL.h"
-#include "mod1_error.h"
 
+#include <string>
 
 class					mod1_core
 {
 
 public :
+
+	struct				exception_logic_object : public std::exception
+	{
+		const char		*what() const noexcept override;
+	};
+
+	struct				exception_logic_callback : public std::exception
+	{
+		const char		*what() const noexcept override;
+	};
+
+	struct				exception_window : public std::exception
+	{
+		const char		*what() const noexcept override;
+	};
+
+	struct				exception_GLEW : public std::exception
+	{
+		const char		*what() const noexcept override;
+	};
+
 
 	typedef void		(* mod1_callback)(GLFWwindow *, int, int, int, int);
 

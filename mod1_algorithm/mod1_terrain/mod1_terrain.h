@@ -1,6 +1,5 @@
 #pragma once
 
-#include "mod1_error.h"
 #include "mod1_plane.h"
 
 #include <fstream>
@@ -19,6 +18,26 @@ class							mod1_terrain : private mod1_plane
 public :
 								mod1_terrain() = default;
 								~mod1_terrain() = default;
+
+	struct						exception_source : public std::exception
+	{
+		const char				*what() const noexcept override;
+	};
+
+	struct						exception_pattern : public std::exception
+	{
+		const char				*what() const noexcept override;
+	};
+
+	struct						exception_search : public std::exception
+	{
+		const char				*what() const noexcept override;
+	};
+
+	struct						exception_color : public std::exception
+	{
+		const char				*what() const noexcept override;
+	};
 
 	void						parse(const std::string &file);
 	void						build() final;

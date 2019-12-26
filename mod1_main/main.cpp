@@ -1,26 +1,34 @@
 #include "mod1_main.h"
 
-#include "mod1_water.h"
+#include <iostream>
 
-int						main(int argc, char **argv)
+void						main_unsafe(int argc, char **argv)
 {
-	mod1_main			main;
-
-	global_error->test_critical(argc > 1, "Invalid number of program arguments");
-
+	mod1_main				main(argc, argv);
 
 	main.terrain->push_color(mod1_point3<float>(1, 0, 0));
 	main.terrain->push_color(mod1_point3<float>(1, 1, 1));
 
-	main.terrain->parse(argv[1]);
-	main.terrain->build();
+	main.build();
+
 	main.terrain->info();
 
-	main.water->build();
+	main.loop();
+}
 
-	main.renderer->load_model(main.terrain->model());
-	main.renderer->load_model(main.water->model());
-	main.renderer->loop();
-
-	return (0);
+int							main(int argc, char **argv)
+{
+	try
+	{
+		main_unsafe(argc, argv);
+		return (0);
+	}
+	catch (std::exception &exception)
+	{
+		printf("\n\033[0;31m");
+		printf("Mod1 : Exiting with uncaught exception\n");
+		printf("%s\n", exception.what());
+		printf("\033[0m\n");
+		return (1);
+	}
 }

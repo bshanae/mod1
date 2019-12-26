@@ -23,7 +23,6 @@ include_directories(
 	/Users/bshanae/.brew/Cellar/glfw/3.3/include/GLFW
 	/Users/bshanae/.brew/Cellar/glm/0.9.9.5/include/glm
 
-	./mod1_main/mod1_error
 	./mod1_main
 	./mod1_main/mod1_main
 
@@ -42,9 +41,10 @@ include_directories(
 	./mod1_algorithm/mod1_water)
 
 set(MOD1_MAIN
-	./mod1_main/mod1_error/mod1_error.cpp
 	./mod1_main/main.cpp
-	./mod1_main/mod1_main/mod1_main.cpp)
+
+	./mod1_main/mod1_main/mod1_main.cpp
+	./mod1_main/mod1_main/exception_x.cpp)
 
 set(MOD1_ALGORITHM
 	./mod1_algorithm/mod1_plane/exception_x.cpp
@@ -65,6 +65,7 @@ set(MOD1_ALGORITHM
 	./mod1_algorithm/mod1_terrain/write_height.cpp
 	./mod1_algorithm/mod1_terrain/x_color.cpp
 	./mod1_algorithm/mod1_terrain/model.cpp
+	./mod1_algorithm/mod1_terrain/exception_x.cpp
 
 	./mod1_algorithm/mod1_water/mod1_water.cpp
 	./mod1_algorithm/mod1_water/build.cpp

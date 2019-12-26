@@ -14,7 +14,7 @@ mod1_point3<float>		mod1_terrain::compute_color(const float &height) const
 	mod1_point3<float>	result;
 
 	if (data_color.size() < 2)
-		global_error->raise_error("Map : Too few colors defined");
+		throw (exception_color());
 	ratio = height / max_raw.z * (float)(data_color.size() - 1);
 
 	index_from = floor(ratio);

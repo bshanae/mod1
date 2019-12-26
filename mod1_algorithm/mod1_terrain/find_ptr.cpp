@@ -12,6 +12,6 @@ mod1_point2<int>		mod1_terrain::find_ptr(const mod1_point3<int> &object) const
 			if ((int)ptr[0] == object.x && (int)ptr[2] == object.y)
 				return (iter);
 		}
-	global_error->raise_error("Map : Point (%d, %d) not found", object.x, object.y);
+	throw (exception_search());
 	return (iter);
 }

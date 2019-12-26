@@ -19,7 +19,7 @@
 	{
 		glGetProgramInfoLog(object_internal, 1024, nullptr, log);
 		printf("Log : \n%s\n", log);
-		global_error->raise_error("Program : Can't compile program");
+		throw (exception_compilation());
 	}
 }
 
@@ -41,4 +41,9 @@ void				mod1_program::stop()
 GLuint				mod1_program::object()
 {
 	return (object_internal);
+}
+
+const char			*mod1_program::exception_compilation::what() const noexcept
+{
+	return ("Mod1 Program : Compilation error");
 }

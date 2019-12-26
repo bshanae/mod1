@@ -1,7 +1,8 @@
 #pragma once
 
 #include "mod1_OpenGL.h"
-#include "mod1_error.h"
+
+#include <exception>
 
 class					mod1_camera
 {
@@ -12,6 +13,11 @@ public :
 						int screen_height,
 						const glm::vec3 &position = glm::vec3(0, 0, 0));
 						~mod1_camera() = default;
+
+	struct				exception_bad_axis : public std::exception
+	{
+		const char		*what() const noexcept override;
+	};
 
 	typedef enum
 	{

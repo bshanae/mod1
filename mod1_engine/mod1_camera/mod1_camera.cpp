@@ -26,7 +26,7 @@ void				mod1_camera::move(mod1_axis axis, mod1_sign sign)
 	else if (axis == mod1_axis_z)
 		position += axis_z * movement_speed * (float)sign;
 	else
-		global_error->raise_warning("Camera : Unknown axis");
+		throw (exception_bad_axis());
 	update_transformation();
 }
 
@@ -39,7 +39,7 @@ void				mod1_camera::rotate(mod1_axis axis, mod1_sign sign)
 	else if (axis == mod1_axis_z)
 		angle_z += (float)sign * rotation_speed;
 	else
-		global_error->raise_warning("Camera : Unknown axis");
+		throw (exception_bad_axis());
 	matrix_rotation = glm::eulerAngleYXZ(angle_y, angle_x, angle_z);
 	axis_x = glm::vec3(matrix_rotation * glm::vec4(axis_x_const, 1));
 	axis_y = glm::vec3(matrix_rotation * glm::vec4(axis_y_const, 1));
@@ -56,4 +56,9 @@ void 				mod1_camera::update_transformation()
 	up = glm::vec3(matrix_rotation * up_const);
 	matrix_view = glm::lookAt(position, position + direction, up);
 	transformation_internal = matrix_projection * matrix_view;
+}
+
+const char			*mod1_camera::exception_bad_axis::what() const noexcept
+{
+	return ("Mod1 Camera : Unknown axis");
 }

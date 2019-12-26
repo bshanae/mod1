@@ -1,26 +1,26 @@
 #include "mod1_terrain.h"
 
-float					mod1_terrain::parse_coordinate(std::ifstream &stream, bool eat_delimiter)
+float						mod1_terrain::parse_coordinate(std::ifstream &stream, bool eat_delimiter)
 {
-	float				temp;
+	float					temp;
 
 	if (eat_delimiter)
 		if (stream.get() != ',')
-			global_error->raise_error("Map : Incorrect pattern");
+			throw (exception_pattern());
 	stream >> temp;
 	return (temp);
 }
 
-void					mod1_terrain::parse(const std::string &file)
+void						mod1_terrain::parse(const std::string &file)
 {
-	std::ifstream		stream;
-	int 				temp_char;
+	std::ifstream			stream;
+	int 					temp_char;
 	MOD1_MAP_RAW_DATA_RI	iter;
 
 	stream.open(file);
 
 	if (!stream.is_open())
-		global_error->raise_error("Map : Invalid file");
+		throw (exception_source());
 
 	while ((temp_char = stream.get()) != EOF)
 		switch (temp_char)
@@ -44,9 +44,10 @@ void					mod1_terrain::parse(const std::string &file)
 				continue ;
 			}
 			default :
-				global_error->raise_error("Map : Unknown character [%c]", temp_char);
+				throw (exception_pattern());
 		}
 
 	stream.close();
-	global_error->test_critical(data_raw.size() < 50, "Map : Number of points is greater, than 50");
+	if (data_raw.size() >= 50)
+		throw (exception_pattern());
 }

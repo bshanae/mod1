@@ -1,14 +1,13 @@
 #include "mod1_main.h"
 
-mod1_error			*global_error;
-
-
-					mod1_main::mod1_main()
+					mod1_main::mod1_main(int argc, char **argv)
 {
-	global_error = &error;
 	renderer = new mod1_renderer;
 	terrain = new mod1_terrain;
 	water = new mod1_water(terrain);
+	if (argc < 2)
+		throw (exception_invalid_arguments());
+	source = argv[1];
 }
 
 					mod1_main::~mod1_main()
@@ -16,4 +15,18 @@ mod1_error			*global_error;
 	delete renderer;
 	delete terrain;
 	delete water;
+}
+
+void				mod1_main::build()
+{
+	terrain->parse(source);
+	terrain->build();
+	water->build();
+}
+
+void				mod1_main::loop()
+{
+	renderer->load_model(terrain->model());
+	renderer->load_model(water->model());
+	renderer->loop();
 }

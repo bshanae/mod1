@@ -1,6 +1,6 @@
 #pragma once
 
-#include "mod1_error.h"
+#include <exception>
 
 template				<typename  type>
 class 					mod1_buffer
@@ -14,9 +14,25 @@ public :
 			delete []data_internal;
 	}
 
+	struct				exception_allocation : public std::exception
+	{
+		const char *	what() const noexcept override
+		{
+			return ("Mod1 Buffer : Can't allocate memory");
+		}
+	};
+
+	struct				exception_logic : public std::exception
+	{
+		const char *	what() const noexcept override
+		{
+			return ("Mod1 Buffer : Buffer shouldn't be allocated more than once");
+		}
+	};
+
 	struct				exception_bad_index : public std::exception
 	{
-		const char *	what() const throw() override
+		const char *	what() const noexcept override
 		{
 			return ("Mod1 Buffer : Bad index");
 		}
@@ -25,10 +41,10 @@ public :
 	void 				allocate(int size)
 	{
 		if (data_internal)
-			global_error->raise_error("Buffer : Shouldn't allocate buffer more than once");
+			throw (exception_allocation());
 		data_internal = new type[size];
 		if (!data_internal)
-			global_error->raise_error("Buffer : Can't allocate buffer");
+			throw (exception_allocation());
 		this->size_internal = size;
 	}
 
