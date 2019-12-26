@@ -29,6 +29,7 @@ public :
 	}					slot_type;
 
 	void 				*get_ptr(const int &index, const slot_type &slot);
+	void const			*get_ptr(const int &index, const slot_type &slot) const;
 };
 
 

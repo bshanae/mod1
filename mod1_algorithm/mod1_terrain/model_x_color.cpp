@@ -5,7 +5,7 @@ void					mod1_terrain::model_push_color(const mod1_point3<float> &color)
 	color_data.push_back(color);
 }
 
-mod1_point3<float>		mod1_terrain::model_get_color(const float &height)
+mod1_point3<float>		mod1_terrain::model_get_color(const float &height) const
 {
 	float				ratio;
 	int 				index_from;

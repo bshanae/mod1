@@ -1,11 +1,11 @@
 #include "mod1_terrain.h"
 
-void					*mod1_terrain::model_get_ptr(const mod1_point2<int> &iter, const mod1_model_data::slot_type &slot)
+void					*mod1_terrain::model_get_ptr(const mod1_point2<int> &iter, const mod1_model_data::slot_type &slot) const
 {
 	return (get_ptr(model_get_index(iter), slot));
 }
 
-mod1_point2<int>		mod1_terrain::model_find_ptr(const mod1_point3<int> &object)
+mod1_point2<int>		mod1_terrain::model_find_ptr(const mod1_point3<int> &object) const
 {
 	mod1_point2<int>	iter;
 	float 				*ptr;

@@ -51,7 +51,7 @@ void					mod1_terrain::source_parse(const std::string &file)
 	global_error->test_critical(source_data.size() < 50, "Map : Number of points is greater, than 50");
 }
 
-void						mod1_terrain::source_print()
+void						mod1_terrain::source_print() const
 {
 	printf("Mod1 Map :\n{\n");
 	for (const auto &point : source_data)

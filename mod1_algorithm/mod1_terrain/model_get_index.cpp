@@ -1,6 +1,6 @@
 #include "mod1_terrain.h"
 
-int						mod1_terrain::model_get_index(const mod1_point2<int> &iter)
+int						mod1_terrain::model_get_index(const mod1_point2<int> &iter) const
 {
 	if (iter.x < 0 || iter.x >= model_size.x)
 		throw (mod1_terrain::exception_bad_coordinate());

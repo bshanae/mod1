@@ -28,13 +28,13 @@ public :
 	};
 
 	void					source_parse(const std::string &file);
-	void 					source_print();
+	void 					source_print() const;
 
 	void					model_push_color(const mod1_point3<float> &color);
-	mod1_point3<float>		model_get_color(const float &height);
+	mod1_point3<float>		model_get_color(const float &height) const;
 
 	void					model_build();
-	void					model_print(bool point = true, bool normal = true, bool polygon = true);
+	void					model_print(bool point = true, bool normal = true, bool polygon = true) const;
 
 	friend class			mod1_water;
 
@@ -65,9 +65,9 @@ private :
 	bool					model_write_height(const mod1_point2<int> &iter, const float &height);
 	void					model_generate_hill(const mod1_point3<int> &summit);
 
-	int 					model_get_index(const mod1_point2<int> &iter);
-	void					*model_get_ptr(const mod1_point2<int> &iter, const mod1_model_data::slot_type &slot);
-	mod1_point2<int>		model_find_ptr(const mod1_point3<int> &object);
+	int 					model_get_index(const mod1_point2<int> &iter) const;
+	void					*model_get_ptr(const mod1_point2<int> &iter, const mod1_model_data::slot_type &slot) const;
+	mod1_point2<int>		model_find_ptr(const mod1_point3<int> &object) const;
 
 	void					model_prepare();
 };

@@ -6,17 +6,22 @@
 class					mod1_water : mod1_model
 {
 public :
-		 				mod1_water(const mod1_terrain &terrain);
+	explicit	 		mod1_water(const mod1_terrain &terrain);
 						~mod1_water() = default;
+
+	struct				exception_bad_coordinate : public std::exception
+	{
+		const char *	what() const throw() override;
+	};
 
 	void				build();
 
 private :
 
 	const mod1_terrain	&terrain;
+	mod1_point2<int>	size;
 
-	int 				get_index(const mod1_point2<int> iter);
-	int 				*get_ptr(const mod1_point2<int> iter);
+	void				*get_ptr(const mod1_point2<int> &iter, const mod1_model_data::slot_type &slot);
 };
 
 

@@ -14,10 +14,11 @@ include_directories(
 	/usr/local/include/GL
 	/usr/local/include/GLFW
 	/usr/local/include/glm
+
 	./mod1_main/mod1_error
 	./mod1_main
 	./mod1_main/mod1_main
-	mod1_algorithm/mod1_terrain
+
 	./mod1_engine/mod1_point
 	./mod1_engine/mod1_core
 	./mod1_engine/mod1_shader
@@ -26,7 +27,10 @@ include_directories(
 	./mod1_engine/mod1_buffer
 	./mod1_engine/mod1_loader
 	./mod1_engine/mod1_model
-	./mod1_engine/mod1_camera)
+	./mod1_engine/mod1_camera
+
+	./mod1_algorithm/mod1_plane
+	./mod1_algorithm/mod1_terrain)
 
 set(MOD1_MAIN
 	./mod1_main/mod1_error/mod1_error.cpp
@@ -34,18 +38,20 @@ set(MOD1_MAIN
 	./mod1_main/mod1_main/mod1_main.cpp)
 
 set(MOD1_ALGORITHM
-	mod1_algorithm/mod1_terrain/source_x.cpp
-	mod1_algorithm/mod1_terrain/model_build.cpp
-	mod1_algorithm/mod1_terrain/model_generate_hill.cpp
-	mod1_algorithm/mod1_terrain/model_get_index.cpp
-	mod1_algorithm/mod1_terrain/model_prepare.cpp
-	mod1_algorithm/mod1_terrain/model_print.cpp
-	mod1_algorithm/mod1_terrain/model_x_delta.cpp
-	mod1_algorithm/mod1_terrain/model_x_ptr.cpp
-	mod1_algorithm/mod1_terrain/exception_x.cpp
-	mod1_algorithm/mod1_terrain/model_interpolate_x.cpp
-	mod1_algorithm/mod1_terrain/model_write_height.cpp
-	mod1_algorithm/mod1_terrain/model_x_color.cpp)
+	./mod1_algorithm/mod1_plane/mod1_plane.cpp
+
+	./mod1_algorithm/mod1_terrain/source_x.cpp
+	./mod1_algorithm/mod1_terrain/model_build.cpp
+	./mod1_algorithm/mod1_terrain/model_generate_hill.cpp
+	./mod1_algorithm/mod1_terrain/model_get_index.cpp
+	./mod1_algorithm/mod1_terrain/model_prepare.cpp
+	./mod1_algorithm/mod1_terrain/model_print.cpp
+	./mod1_algorithm/mod1_terrain/model_x_delta.cpp
+	./mod1_algorithm/mod1_terrain/model_x_ptr.cpp
+	./mod1_algorithm/mod1_terrain/exception_x.cpp
+	./mod1_algorithm/mod1_terrain/model_interpolate_x.cpp
+	./mod1_algorithm/mod1_terrain/model_write_height.cpp
+	./mod1_algorithm/mod1_terrain/model_x_color.cpp)
 
 set(MOD1_ENGINE
 	./mod1_engine/mod1_core/mod1_core.cpp
