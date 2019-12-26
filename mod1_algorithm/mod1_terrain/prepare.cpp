@@ -4,7 +4,6 @@ void					mod1_terrain::prepare()
 {
 	compute_delta();
 	optimize_delta();
-	printf("model delta = %d\n", delta);
 
 	min = min_raw;
 	max = max_raw;
@@ -27,8 +26,4 @@ void					mod1_terrain::prepare()
 	max = (max / delta + mod1_point2<int>(1)) * delta;
 
 	size = (max - min) / delta + mod1_point2<int>(1);
-
-	printf("Model min = %d, %d\n", min.x, min.y);
-	printf("Model max = %d, %d\n", max.x, max.y);
-	printf("Model size = %d, %d\n", size.x, size.y);
 }

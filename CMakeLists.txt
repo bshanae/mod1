@@ -3,7 +3,11 @@ project(21_mod1)
 
 set(CMAKE_CXX_STANDARD 14)
 
-link_directories(/usr/local/lib)
+link_directories(
+	/usr/local/lib
+
+	/Users/bshanae/.brew/Cellar/glfw/3.3/lib
+	/Users/bshanae/.brew/Cellar/glew/2.1.0_1/lib)
 
 link_libraries(
 	"-framework OpenGL"
@@ -14,6 +18,10 @@ include_directories(
 	/usr/local/include/GL
 	/usr/local/include/GLFW
 	/usr/local/include/glm
+
+	/Users/bshanae/.brew/Cellar/glew/2.1.0_1/include/GL
+	/Users/bshanae/.brew/Cellar/glfw/3.3/include/GLFW
+	/Users/bshanae/.brew/Cellar/glm/0.9.9.5/include/glm
 
 	./mod1_main/mod1_error
 	./mod1_main

@@ -4,16 +4,15 @@ void						mod1_terrain::info(bool source, bool point, bool normal, bool polygon)
 {
 	int						width_count;
 
-	printf("Mod1 Map Model : \n");
+	printf("Mod1 Map : \n");
 
 	if (source)
 	{
-		printf("Mod1 Map :\n{\n");
 		for (const auto &iter : data_raw)
 			printf("\t{%d, %d, %d}\n", iter.x, iter.y, iter.z);
 		printf("}\n");
-		printf("Source min = {%d, %d, %d}\n", min_raw.x, min_raw.y, min_raw.z);
-		printf("Source max = {%d, %d, %d}\n", max_raw.x, max_raw.y, max_raw.z);
+		printf("Raw min = {%d, %d, %d}\n", min_raw.x, min_raw.y, min_raw.z);
+		printf("Raw max = {%d, %d, %d}\n", max_raw.x, max_raw.y, max_raw.z);
 	}
 
 	if(point)
