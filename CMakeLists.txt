@@ -38,7 +38,8 @@ include_directories(
 	./mod1_engine/mod1_camera
 
 	./mod1_algorithm/mod1_plane
-	./mod1_algorithm/mod1_terrain)
+	./mod1_algorithm/mod1_terrain
+	./mod1_algorithm/mod1_water)
 
 set(MOD1_MAIN
 	./mod1_main/mod1_error/mod1_error.cpp
@@ -53,7 +54,7 @@ set(MOD1_ALGORITHM
 	./mod1_algorithm/mod1_plane/build.cpp
 	./mod1_algorithm/mod1_plane/model.cpp
 
-	mod1_algorithm/mod1_terrain/parse_x.cpp
+	./mod1_algorithm/mod1_terrain/parse_x.cpp
 	./mod1_algorithm/mod1_terrain/build.cpp
 	./mod1_algorithm/mod1_terrain/generate_hill.cpp
 	./mod1_algorithm/mod1_terrain/prepare.cpp
@@ -64,7 +65,10 @@ set(MOD1_ALGORITHM
 	./mod1_algorithm/mod1_terrain/write_height.cpp
 	./mod1_algorithm/mod1_terrain/x_color.cpp
 	./mod1_algorithm/mod1_terrain/model.cpp
-	)
+
+	./mod1_algorithm/mod1_water/mod1_water.cpp
+	./mod1_algorithm/mod1_water/build.cpp
+	./mod1_algorithm/mod1_water/model.cpp)
 
 set(MOD1_ENGINE
 	./mod1_engine/mod1_core/mod1_core.cpp

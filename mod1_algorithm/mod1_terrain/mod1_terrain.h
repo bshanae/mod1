@@ -23,7 +23,7 @@ public :
 	void						parse(const std::string &file);
 	void						build() final;
 
-	mod1_model					*model() override;
+	mod1_model					*model() final;
 
 	void						info(
 								bool source = true,
