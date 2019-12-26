@@ -1,76 +1,66 @@
 #pragma once
 
 #include "mod1_error.h"
-#include "mod1_model.h"
-#include "mod1_point2.h"
-#include "mod1_point3.h"
+#include "mod1_plane.h"
 
 #include <fstream>
 #include <vector>
 
-#define MOD1_MAP_DATA		std::vector<mod1_point3<int>>
-#define MOD1_MAP_DATA_RI	MOD1_MAP_DATA::reverse_iterator
-#define MOD1_MAP_COLOR		std::vector<mod1_point3<float>>
-#define MOD1_MAP_DEF_DELTA	100
-#define MOD1_MAP_DEF_SIZE	mod1_point3<int>(1000)
-#define MOD1_MAP_INDENT		0.3
-#define MOD1_MAP_MIN_COUNT	10
+#define MOD1_MAP_RAW_DATA		std::vector<mod1_point3<int>>
+#define MOD1_MAP_RAW_DATA_RI	MOD1_MAP_RAW_DATA::reverse_iterator
+#define MOD1_MAP_COLOR_DATA		std::vector<mod1_point3<float>>
+#define MOD1_MAP_DEFAULT_DELTA	100
+#define MOD1_MAP_DEFAULT_SIZE	mod1_point3<int>(1000)
+#define MOD1_MAP_INDENT			0.3
+#define MOD1_MAP_MIN_SIZE		10
 
-class						mod1_terrain : public mod1_model
+class							mod1_terrain : private mod1_plane
 {
 public :
-							mod1_terrain() = default;
-							~mod1_terrain() = default;
+								mod1_terrain() = default;
+								~mod1_terrain() = default;
 
-	void					build()
-	{}
+	void						parse(const std::string &file);
+	void						build() final;
 
-	struct					exception_bad_coordinate : public std::exception
-	{
-		const char *		what() const throw() override;
-	};
+	mod1_model					*model() override;
 
-	void					source_parse(const std::string &file);
-	void 					source_print() const;
+	void						info(
+								bool source = true,
+								bool point = false,
+								bool normal = false,
+								bool polygon = false)
+								const;
 
-	void					model_push_color(const mod1_point3<float> &color);
-	mod1_point3<float>		model_get_color(const float &height) const;
+	void						push_color(const mod1_point3<float> &color);
 
-	void					model_build();
-	void					model_print(bool point = true, bool normal = true, bool polygon = true) const;
-
-	friend class			mod1_water;
+	static float				interpolate_linear(float min, float max, float ratio);
+	static float				interpolate_cosine(float min, float max, float ratio);
+	static float				interpolate_smooth(float min, float max, float ratio);
 
 private :
 
-	MOD1_MAP_DATA			source_data;
-	mod1_point3<int>		source_min = mod1_point3<int>(INT_MAX, INT_MAX, INT_MAX);
-	mod1_point3<int>		source_max = mod1_point3<int>(-INT_MAX, -INT_MAX, -INT_MAX);
-	mod1_point3<int>		source_diff;
+	MOD1_MAP_RAW_DATA			data_raw;
+	mod1_point3<int>			min_raw = mod1_point3<int>(INT_MAX, INT_MAX, INT_MAX);
+	mod1_point3<int>			max_raw = mod1_point3<int>(-INT_MAX, -INT_MAX, -INT_MAX);
+	mod1_point3<int>			diff_raw;
 
-	static float			source_read_float(std::ifstream &stream, bool eat_delimiter);
+	static float				parse_coordinate(std::ifstream &stream, bool eat_delimiter);
 
-	MOD1_MAP_COLOR			color_data;
+	MOD1_MAP_COLOR_DATA			data_color;
 
-	mod1_point2<int>		model_min;
-	mod1_point2<int>		model_max;
-	mod1_point2<int>		model_size;
-	int						model_delta = 0;
+	mod1_point3<float>			compute_color(const float &height) const;
 
-	void					model_update_delta(const int &i, const int &j, const int &index);
-	void 					model_compute_delta();
-	void					model_optimize_delta();
+	void						prepare();
 
-	static float			model_interpolate_linear(float min, float max, float ratio);
-	static float			model_interpolate_cosine(float min, float max, float ratio);
-	static float			model_interpolate_smooth(float min, float max, float ratio);
+	void						update_delta(const int &i, const int &j, const int &index);
+	void 						compute_delta();
+	void						optimize_delta();
 
-	bool					model_write_height(const mod1_point2<int> &iter, const float &height);
-	void					model_generate_hill(const mod1_point3<int> &summit);
+	bool						write_height(const mod1_point2<int> &iter, const float &height);
+	void						generate_hill(const mod1_point3<int> &summit);
 
-	int 					model_get_index(const mod1_point2<int> &iter) const;
-	void					*model_get_ptr(const mod1_point2<int> &iter, const mod1_model_data::slot_type &slot) const;
-	mod1_point2<int>		model_find_ptr(const mod1_point3<int> &object) const;
+	mod1_point2<int>			find_ptr(const mod1_point3<int> &object) const;
 
-	void					model_prepare();
+	friend class				mod1_water;
 };

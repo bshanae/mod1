@@ -38,25 +38,25 @@ set(MOD1_MAIN
 	./mod1_main/mod1_main/mod1_main.cpp)
 
 set(MOD1_ALGORITHM
-
 	./mod1_algorithm/mod1_plane/exception_x.cpp
 	./mod1_algorithm/mod1_plane/get_index.cpp
 	./mod1_algorithm/mod1_plane/get_ptr.cpp
 	./mod1_algorithm/mod1_plane/set.cpp
 	./mod1_algorithm/mod1_plane/build.cpp
+	./mod1_algorithm/mod1_plane/model.cpp
 
-	./mod1_algorithm/mod1_terrain/source_x.cpp
-	./mod1_algorithm/mod1_terrain/model_build.cpp
-	./mod1_algorithm/mod1_terrain/model_generate_hill.cpp
-	./mod1_algorithm/mod1_terrain/model_get_index.cpp
-	./mod1_algorithm/mod1_terrain/model_prepare.cpp
-	./mod1_algorithm/mod1_terrain/model_print.cpp
-	./mod1_algorithm/mod1_terrain/model_x_delta.cpp
-	./mod1_algorithm/mod1_terrain/model_x_ptr.cpp
-	./mod1_algorithm/mod1_terrain/exception_x.cpp
-	./mod1_algorithm/mod1_terrain/model_interpolate_x.cpp
-	./mod1_algorithm/mod1_terrain/model_write_height.cpp
-	./mod1_algorithm/mod1_terrain/model_x_color.cpp)
+	mod1_algorithm/mod1_terrain/parse_x.cpp
+	./mod1_algorithm/mod1_terrain/build.cpp
+	./mod1_algorithm/mod1_terrain/generate_hill.cpp
+	./mod1_algorithm/mod1_terrain/prepare.cpp
+	./mod1_algorithm/mod1_terrain/info.cpp
+	./mod1_algorithm/mod1_terrain/x_delta.cpp
+	./mod1_algorithm/mod1_terrain/find_ptr.cpp
+	./mod1_algorithm/mod1_terrain/interpolate_x.cpp
+	./mod1_algorithm/mod1_terrain/write_height.cpp
+	./mod1_algorithm/mod1_terrain/x_color.cpp
+	./mod1_algorithm/mod1_terrain/model.cpp
+	)
 
 set(MOD1_ENGINE
 	./mod1_engine/mod1_core/mod1_core.cpp

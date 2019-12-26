@@ -12,7 +12,7 @@ public :
 					mod1_main();
 					~mod1_main();
 
-	mod1_terrain		*map;
+	mod1_terrain	*terrain;
 	mod1_renderer	*renderer;
 
 private :

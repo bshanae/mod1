@@ -4,7 +4,7 @@
 #include "mod1_point2.h"
 #include "mod1_point3.h"
 
-class					mod1_plane : public mod1_model
+class					mod1_plane : protected mod1_model
 {
 public :
 						mod1_plane() = default;
@@ -24,7 +24,9 @@ public :
 						const mod1_point2<int> &min,
 						const mod1_point2<int> &max,
 						const int &delta);
-	void				build() final;
+	void				build() override;
+
+	virtual mod1_model	*model();
 
 protected :
 

@@ -8,24 +8,16 @@ int						main(int argc, char **argv)
 
 	global_error->test_critical(argc > 1, "Invalid number of program arguments");
 
-	main.map->source_parse(argv[1]);
-	main.map->source_print();
+	main.terrain->parse(argv[1]);
 
-//	main.map->model_push_color(mod1_point3<float>(1, 0, 0));
-//	main.map->model_push_color(mod1_point3<float>(0, 0, 1));
-//
-//	main.map->model_build();
+	main.terrain->push_color(mod1_point3<float>(1, 0, 0));
+	main.terrain->push_color(mod1_point3<float>(0, 0, 1));
 
-	mod1_plane			plane;
+	main.terrain->build();
 
-	auto				min = mod1_point2<int>(-100, -100);
-	auto				max = mod1_point2<int>(100, 100);
-	int					delta = 5;
+	main.terrain->info();
 
-	plane.set(min, max, delta);
-	plane.build();
-
-	main.renderer->load_model(&plane);
+	main.renderer->load_model(main.terrain->model());
 	main.renderer->loop();
 
 	return (0);
