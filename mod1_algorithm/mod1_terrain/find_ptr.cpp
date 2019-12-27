@@ -13,5 +13,4 @@ mod1_point2<int>		mod1_terrain::find_ptr(const mod1_point3<int> &object) const
 				return (iter);
 		}
 	throw (exception_search());
-	return (iter);
 }

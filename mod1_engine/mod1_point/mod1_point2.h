@@ -101,7 +101,7 @@ public :
 		this->y /= other;
 	}
 
-	t1				&operator [] (int i)
+	t1					&operator [] (int i)
 	{
 		switch (i)
 		{
@@ -125,6 +125,12 @@ public :
 			default :
 				throw (exception_bad_index());
 		}
+	}
+
+	template 			<typename t2>
+	explicit			operator mod1_point2<t2> () const
+	{
+		return (mod1_point2<t2>(this->x, this->y));
 	}
 
 	template 			<class p3>

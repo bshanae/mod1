@@ -21,9 +21,9 @@ public :
 	};
 
 	void				set(
-						const mod1_point2<int> &min,
-						const mod1_point2<int> &max,
-						const int &delta);
+						const mod1_point2<float> &min,
+						const mod1_point2<float> &max,
+						const float &delta);
 	void				build() override;
 
 	virtual mod1_model	*model();
@@ -31,9 +31,9 @@ public :
 protected :
 
 	mod1_point2<int>	size;
-	mod1_point2<int>	min;
-	mod1_point2<int>	max;
-	int					delta = 0;
+	mod1_point2<float>	min;
+	mod1_point2<float>	max;
+	float				delta = 0;
 
 	int 				get_index(const mod1_point2<int> &iter) const;
 

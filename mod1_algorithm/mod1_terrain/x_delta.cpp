@@ -10,7 +10,7 @@ void 					mod1_terrain::update_delta(const int &i, const int &j, const int &inde
 	int 				temp_delta;
 
 	temp_delta = abs(data_raw[i][index] - data_raw[j][index]);
-	delta = gcd(delta, (int)temp_delta);
+	delta_i = gcd(delta_i, (int)temp_delta);
 }
 
 static bool				reduce(int &value)
@@ -24,18 +24,18 @@ static bool				reduce(int &value)
 	return (false);
 }
 
-static bool				does_need_optimization(const mod1_point3<int> &diff, const int &delta)
+static bool				does_need_optimization(const mod1_point3<int> &diff, const int &delta_i)
 {
 	mod1_point3<int>	count;
 
-	count = diff / delta;
+	count = diff / delta_i;
 	return (count.x < MOD1_MAP_MIN_SIZE || count.y < MOD1_MAP_MIN_SIZE);
 }
 
 void 					mod1_terrain::optimize_delta()
 {
-	while (does_need_optimization(diff_raw, delta))
-		if (!reduce(delta))
+	while (does_need_optimization(diff_raw, delta_i))
+		if (!reduce(delta_i))
 			break ;
 }
 
@@ -43,11 +43,9 @@ void 					mod1_terrain::compute_delta()
 {
 	diff_raw = max_raw - min_raw;
 
-	delta = 0;
-
 	if (diff_raw == mod1_point3<int>())
 	{
-		delta = MOD1_MAP_DEFAULT_DELTA;
+		delta_i = MOD1_MAP_DEFAULT_DELTA;
 		diff_raw = MOD1_MAP_DEFAULT_SIZE;
 	}
 	else

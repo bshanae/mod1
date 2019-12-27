@@ -138,6 +138,13 @@ public :
 		}
 	}
 
+
+	template 			<typename t2>
+	explicit			operator mod1_point3<t2> () const
+	{
+		return (mod1_point3<t2>(this->x, this->y, this->z));
+	}
+
 	template 			<class p2>
 	mod1_point3<t1>		&operator = (const p2 &point2)
 	{

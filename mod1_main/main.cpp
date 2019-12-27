@@ -18,6 +18,8 @@ void						main_unsafe(int argc, char **argv)
 
 int							main(int argc, char **argv)
 {
+	main_unsafe(argc, argv);
+	return (0);
 	try
 	{
 		main_unsafe(argc, argv);

@@ -4,7 +4,7 @@ void					mod1_terrain::build()
 {
 	prepare();
 
-	set(min, max, delta);
+	set((mod1_point2<float>)min_i, (mod1_point2<float>)max_i, (float)delta_i);
 	mod1_plane::build();
 
 	//					Hills

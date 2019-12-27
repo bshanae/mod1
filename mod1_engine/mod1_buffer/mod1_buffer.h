@@ -14,9 +14,17 @@ public :
 			delete []data_internal;
 	}
 
-	struct				exception_allocation : public std::exception
+	struct				exception_not_allocated : public std::exception
 	{
-		const char *	what() const noexcept override
+		const char		*what() const noexcept override
+		{
+			return ("Mod1 Buffer : Buffer isn't allocated");
+		}
+	};
+
+	struct				exception_cant_allocate : public std::exception
+	{
+		const char		*what() const noexcept override
 		{
 			return ("Mod1 Buffer : Can't allocate memory");
 		}
@@ -24,15 +32,23 @@ public :
 
 	struct				exception_logic : public std::exception
 	{
-		const char *	what() const noexcept override
+		const char		*what() const noexcept override
 		{
 			return ("Mod1 Buffer : Buffer shouldn't be allocated more than once");
 		}
 	};
 
+	struct				exception_bad_size : public std::exception
+	{
+		const char		*what() const noexcept override
+		{
+			return ("Mod1 Buffer : Bad size");
+		}
+	};
+
 	struct				exception_bad_index : public std::exception
 	{
-		const char *	what() const noexcept override
+		const char		*what() const noexcept override
 		{
 			return ("Mod1 Buffer : Bad index");
 		}
@@ -41,10 +57,12 @@ public :
 	void 				allocate(int size)
 	{
 		if (data_internal)
-			throw (exception_allocation());
+			throw (exception_logic());
+		if (size < 1)
+			throw (exception_bad_size());
 		data_internal = new type[size];
 		if (!data_internal)
-			throw (exception_allocation());
+			throw (exception_cant_allocate());
 		this->size_internal = size;
 	}
 
@@ -56,6 +74,14 @@ public :
 	int 				size() const
 	{
 		return (size_internal);
+	}
+
+	void 				set(const type &value)
+	{
+		if (!size_internal)
+			throw (exception_not_allocated());
+		for (int i = 0; i < size_internal; i++)
+			data_internal[i] = value;
 	}
 
 	type				&operator [] (int index)

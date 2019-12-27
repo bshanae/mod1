@@ -60,7 +60,7 @@ private :
 
 	glm::vec3			position;
 
-	const float			movement_speed = 10.;
+	const float			movement_speed = 2.;
 	const float			rotation_speed = 0.035;
 
 	void 				update_transformation();

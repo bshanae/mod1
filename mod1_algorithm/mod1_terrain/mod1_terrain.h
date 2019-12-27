@@ -13,6 +13,13 @@
 #define MOD1_MAP_INDENT			0.3
 #define MOD1_MAP_MIN_SIZE		10
 
+#define MOD1_MAP_INFO_RAW		0x000001u
+#define MOD1_MAP_INFO_MODEL		0x000010u
+#define MOD1_MAP_INFO_POINT		0x000100u
+#define MOD1_MAP_INFO_NORMAL	0x001000u
+#define MOD1_MAP_INFO_COLOR		0x010000u
+#define MOD1_MAP_INFO_POLYGON	0x100000u
+
 class							mod1_terrain : private mod1_plane
 {
 public :
@@ -44,12 +51,7 @@ public :
 
 	mod1_model					*model() final;
 
-	void						info(
-								bool source = true,
-								bool point = false,
-								bool normal = false,
-								bool polygon = false)
-								const;
+	void						info(unsigned int flags = MOD1_MAP_INFO_RAW | MOD1_MAP_INFO_MODEL) const;
 
 	void						push_color(const mod1_point3<float> &color);
 
@@ -69,6 +71,10 @@ private :
 	MOD1_MAP_COLOR_DATA			data_color;
 
 	mod1_point3<float>			compute_color(const float &height) const;
+
+	mod1_point2<int>			min_i;
+	mod1_point2<int>			max_i;
+	int							delta_i = 0;
 
 	void						prepare();
 
