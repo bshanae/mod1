@@ -4,11 +4,18 @@
 						terrain(terrain)
 {}
 
-void 					mod1_water::callback(int key, void *ptr)
+bool 					mod1_water::callback(int key, void *ptr)
 {
 	auto				water = (mod1_water *)ptr;
 
 	if (key == GLFW_KEY_1)
-		printf("hi %f\n", water->water_drop_height);
+		water->add_water(mod1_point2<int>(2, 2));
+	else if (key == GLFW_KEY_2)
+		water->gravity();
+	else
+		return (false);
+	water->update_height();
+	water->upload_buffer(mod1_model_data::slot_point);
+	return (true);
 }
 

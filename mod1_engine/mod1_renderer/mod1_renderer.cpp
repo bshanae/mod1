@@ -16,11 +16,9 @@ void					mod1_renderer::glfw_callback(GLFWwindow* window, int key, int code, int
 	mod1_renderer		*renderer;
 
 	renderer = (mod1_renderer *)glfwGetWindowUserPointer(window);
-	if (action == GLFW_PRESS)
-	{
-		for (const auto &callback : renderer->callback_array)
-			callback.run(key);
-	}
+	for (const auto &callback : renderer->callback_array)
+		if (callback.run(key))
+			renderer->render();
 	if (key == GLFW_KEY_ESCAPE)
 	{
 		glfwSetWindowShouldClose(window, GL_TRUE);
@@ -46,6 +44,10 @@ void					mod1_renderer::glfw_callback(GLFWwindow* window, int key, int code, int
 		renderer->camera.rotate(mod1_camera::mod1_axis_x, mod1_camera::mod1_positive);
 	else if (key == GLFW_KEY_DOWN)
 		renderer->camera.rotate(mod1_camera::mod1_axis_x, mod1_camera::mod1_negative);
+	else if (key == GLFW_KEY_L)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	else if (key == GLFW_KEY_F)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	else
 		return ;
 	renderer->render();

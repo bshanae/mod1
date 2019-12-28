@@ -1,11 +1,14 @@
 #include "mod1_water.h"
 
-void					mod1_water::remove_water(const mod1_point2<int> &iter)
+void				mod1_water::replace_water(const mod1_point2<int> &from, const mod1_point2<int> &to)
 {
-	water_level[iter.x][iter.y]--;
+	if (!water_level[from.x][from.y])
+		throw (exception_no_water());
+	water_level[from.x][from.y]--;
+	water_level[to.x][to.y]++;
 }
 
-void					mod1_water::add_water(const mod1_point2<int> &iter)
+void				mod1_water::add_water(const mod1_point2<int> &iter)
 {
 	water_level[iter.x][iter.y]++;
 }

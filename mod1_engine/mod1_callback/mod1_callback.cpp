@@ -6,7 +6,7 @@
 	this->ptr = ptr;
 }
 
-void				mod1_callback::run(int key) const
+bool				mod1_callback::run(int key) const
 {
-	functor(key, ptr);
+	return (functor(key, ptr));
 }

@@ -8,13 +8,19 @@
 class						mod1_water : private mod1_plane
 {
 public :
+
+	struct					exception_no_water : public std::exception
+	{
+		const char			*what() const noexcept override;
+	};
+
 	explicit	 			mod1_water(mod1_terrain const *terrain);
 							~mod1_water() = default;
 
 	void					build() final;
 	mod1_model				*model() final;
 
-	static void 			callback(int key, void *ptr);
+	static bool				callback(int key, void *ptr);
 
 private :
 
@@ -26,16 +32,16 @@ private :
 	int						get_water(const mod1_point2<int> &iter);
 	float					get_pressure(const mod1_point2<int> &iter);
 
-	void					remove_water(const mod1_point2<int> &iter);
 	void					add_water(const mod1_point2<int> &iter);
+	void					replace_water(const mod1_point2<int> &from, const mod1_point2<int> &to);
 
-	void					update_height(const mod1_point2<int> &iter);
-	void					update_height_one(const mod1_point2<int> &iter, const float &new_height);
+	void					update_height_helper(const mod1_point2<int> &iter, const float &new_height);
+	void					update_height_iter(const mod1_point2<int> &iter);
+	void					update_height();
 
+	void					gravity_helper_a(const mod1_point2<int> &iter);
+	void					gravity_helper_b(const mod1_point2<int> &from, const mod1_point2<int> &to);
 	void					gravity();
-	void					gravity_one(const mod1_point2<int> &iter);
-	void					gravity_two(const mod1_point2<int> &from, const mod1_point2<int> &to);
-
 };
 
 
