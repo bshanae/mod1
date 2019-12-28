@@ -26,6 +26,8 @@ void				mod1_main::build()
 
 void				mod1_main::loop()
 {
+	renderer->add_callback(mod1_water::callback, water);
+
 	renderer->load_model(terrain->model());
 	renderer->load_model(water->model());
 	renderer->loop();

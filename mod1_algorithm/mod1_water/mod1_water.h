@@ -14,6 +14,8 @@ public :
 	void					build() final;
 	mod1_model				*model() final;
 
+	static void 			callback(int key, void *ptr);
+
 private :
 
 	mod1_terrain const		*terrain;

@@ -6,6 +6,7 @@
 #include "mod1_model.h"
 #include "mod1_loader.h"
 #include "mod1_camera.h"
+#include "mod1_callback.h"
 
 #include <fstream>
 #include <sstream>
@@ -19,6 +20,8 @@ public :
 								mod1_renderer();
 								~mod1_renderer() = default;
 
+	void						add_callback(mod1_callback::functor_type functor, void *ptr);
+
 	void						load_model(mod1_model *model);
 
 	void						render();
@@ -28,9 +31,10 @@ public :
 
 private :
 
-	static void					callback(GLFWwindow* window, int key, int code, int action, int mode);
+	static void					glfw_callback(GLFWwindow* window, int key, int code, int action, int mode);
 
 	std::vector<mod1_model *>	model_array;
+	std::vector<mod1_callback>	callback_array;
 	bool						render_request = true;
 
 	mod1_core					core;

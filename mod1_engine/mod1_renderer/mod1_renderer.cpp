@@ -3,7 +3,7 @@
 						mod1_renderer::mod1_renderer() :
 						camera(core.window_width(), core.window_height(), camera_position)
 {
-	core.set_callback(callback, this);
+	core.set_callback(glfw_callback, this);
 
 	light_position = glm::vec3(0.f, 3.f, 0.f);
 
@@ -11,11 +11,16 @@
 	uniform_light = glGetUniformLocation(program.object(), "light_position");
 }
 
-void					mod1_renderer::callback(GLFWwindow* window, int key, int code, int action, int mode)
+void					mod1_renderer::glfw_callback(GLFWwindow* window, int key, int code, int action, int mode)
 {
 	mod1_renderer		*renderer;
 
 	renderer = (mod1_renderer *)glfwGetWindowUserPointer(window);
+	if (action == GLFW_PRESS)
+	{
+		for (const auto &callback : renderer->callback_array)
+			callback.run(key);
+	}
 	if (key == GLFW_KEY_ESCAPE)
 	{
 		glfwSetWindowShouldClose(window, GL_TRUE);
@@ -44,6 +49,11 @@ void					mod1_renderer::callback(GLFWwindow* window, int key, int code, int acti
 	else
 		return ;
 	renderer->render();
+}
+
+void					mod1_renderer::add_callback(mod1_callback::functor_type functor, void *ptr)
+{
+	callback_array.emplace_back(mod1_callback(functor, ptr));
 }
 
 void					mod1_renderer::load_model(mod1_model *model)

@@ -35,6 +35,7 @@ include_directories(
 	./mod1_engine/mod1_loader
 	./mod1_engine/mod1_model
 	./mod1_engine/mod1_camera
+	./mod1_engine/mod1_callback
 
 	./mod1_algorithm/mod1_plane
 	./mod1_algorithm/mod1_terrain
@@ -93,7 +94,9 @@ set(MOD1_ENGINE
 	./mod1_engine/mod1_loader/vbo_x.cpp
 
 	./mod1_engine/mod1_loader/mod1_loader.cpp
-	./mod1_engine/mod1_camera/mod1_camera.cpp)
+	./mod1_engine/mod1_camera/mod1_camera.cpp
+
+	./mod1_engine/mod1_callback/mod1_callback.cpp)
 
 add_executable(21_mod1
 	${MOD1_MAIN}
