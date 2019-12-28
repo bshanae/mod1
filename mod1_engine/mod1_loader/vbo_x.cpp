@@ -17,10 +17,3 @@ void					mod1_loader::vbo_unbind()
 {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
-
-void 					mod1_loader::vbo_buffer(GLuint vbo, const void *data, int data_size)
-{
-	vbo_bind(vbo);
-	glBufferData(GL_ARRAY_BUFFER, data_size, data, GL_STATIC_DRAW);
-	vbo_unbind();
-}

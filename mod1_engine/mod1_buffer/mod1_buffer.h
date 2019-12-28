@@ -76,6 +76,11 @@ public :
 		return (size_internal);
 	}
 
+	int 				size_in_bytes() const
+	{
+		return (size_internal * sizeof(type));
+	}
+
 	void 				set(const type &value)
 	{
 		if (!size_internal)

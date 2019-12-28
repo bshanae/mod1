@@ -1,15 +1,9 @@
 #include "mod1_model.h"
 
-					mod1_model::mod1_model()
-{
-	vao = -1;
-	vertex_number_internal = -1;
-}
-
 void				mod1_model::load(mod1_loader &loader)
 {
 	is_loaded = true;
-	loader.load(data, vao);
+	loader.load(data);
 	vertex_number_internal = data.index_buffer.size() * 3;
 }
 
@@ -29,7 +23,7 @@ void				mod1_model::use()
 		throw (exception_not_built());
 	if (!is_loaded)
 		throw (exception_not_loaded());
-	mod1_loader::vao_bind(vao);
+	mod1_loader::vao_bind(data.vao);
 }
 
 int 				mod1_model::vertex_number()

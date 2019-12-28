@@ -13,22 +13,22 @@
 		glDeleteBuffers(1, object);
 }
 
-void					mod1_loader::load(const mod1_model_data &data, GLuint &vao)
+void					mod1_loader::load(mod1_model_data &data)
 {
 	GLuint 				eab = eab_build();
 
-	vao = vao_build();
+	data.vao = vao_build();
 
-	vao_bind(vao);
+	vao_bind(data.vao);
 	eab_bind(eab);
-	vao_edit_attribute(vao, 0, 3, GL_FLOAT, data.point_buffer.data(), (int)sizeof(float) * data.point_buffer.size());
 
-	eab_buffer(eab, data.index_buffer.data(), (int)sizeof(int) * data.index_buffer.size());
+	data.vbo_point = vao_edit_attribute(data.vao, 0, 3, GL_FLOAT, data.point_buffer);
+
+	eab_buffer(eab, data.index_buffer);
 	mod1_loader::eab_unbind();
 
-	vao_edit_attribute(vao, 1, 3, GL_FLOAT, data.normal_buffer.data(), (int)sizeof(float) * data.normal_buffer.size());
-
-	vao_edit_attribute(vao, 2, 3, GL_FLOAT, data.color_buffer.data(), (int)sizeof(float) * data.color_buffer.size());
+	data.vbo_normal = vao_edit_attribute(data.vao, 1, 3, GL_FLOAT, data.normal_buffer);
+	data.vbo_color = vao_edit_attribute(data.vao, 2, 3, GL_FLOAT, data.color_buffer);
 
 	mod1_loader::vao_unbind();
 }

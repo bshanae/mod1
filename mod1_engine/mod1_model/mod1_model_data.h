@@ -1,5 +1,6 @@
 #pragma once
 
+#include "mod1_OpenGL.h"
 #include "mod1_buffer.h"
 
 class					mod1_model_data
@@ -15,9 +16,14 @@ public :
 	mod1_buffer<float>	normal_buffer;
 	mod1_buffer<float>	color_buffer;
 
+	GLuint				vao = 0;
+	GLuint				vbo_point = 0;
+	GLuint				vbo_normal = 0;
+	GLuint				vbo_color = 0;
+
 	struct				exception_unknown_slot : public std::exception
 	{
-		const char *	what() const throw() override;
+		const char *	what() const noexcept override;
 	};
 
 	typedef enum

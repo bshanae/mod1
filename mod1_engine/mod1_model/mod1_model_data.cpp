@@ -1,6 +1,6 @@
 #include "mod1_model_data.h"
 
-const char *		mod1_model_data::exception_unknown_slot::what() const throw()
+const char *		mod1_model_data::exception_unknown_slot::what() const noexcept 
 {
 	return ("Mod1 Model Data : Unknown slot");
 }

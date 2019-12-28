@@ -10,7 +10,7 @@ class				mod1_model
 
 public :
 
-					mod1_model();
+					mod1_model() = default;
 					~mod1_model() = default;
 
 	struct			exception_not_built : public std::exception
@@ -30,14 +30,13 @@ public :
 
 private :
 
-	GLuint 			vao;
 	bool			is_built = false;
 	bool			is_loaded = false;
 
 protected :
 
 	mod1_model_data	data;
-	int				vertex_number_internal;
+	int				vertex_number_internal = -1;
 
 	void			*get_ptr(const int &index, const mod1_model_data::slot_type &slot);
 	void const		*get_ptr(const int &index, const mod1_model_data::slot_type &slot) const;

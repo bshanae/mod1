@@ -18,10 +18,3 @@ void					mod1_loader::eab_unbind()
 {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
-
-void 					mod1_loader::eab_buffer(GLuint eab, const void *data, int data_size)
-{
-	eab_bind(eab);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, data_size, data, GL_STATIC_DRAW);
-	eab_unbind();
-}
