@@ -19,7 +19,7 @@ void					mod1_water::gravity_helper_a(const mod1_point2<int> &iter)
 
 void					mod1_water::gravity_helper_b(const mod1_point2<int> &from, const mod1_point2<int> &to)
 {
-	if (get_water(from) >= 1)
+	if (get_water(from) <= 1)
 		return ;
 	try
 	{

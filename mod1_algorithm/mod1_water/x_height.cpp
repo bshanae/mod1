@@ -37,5 +37,8 @@ void					mod1_water::update_height()
 
 	for (iter.y = 0; iter.y < terrain->size.y; iter.y++)
 		for (iter.x = 0; iter.x < terrain->size.x; iter.x++)
+			((float *)get_ptr(iter, mod1_model_data::slot_point))[1] = -10;
+	for (iter.y = 0; iter.y < terrain->size.y; iter.y++)
+		for (iter.x = 0; iter.x < terrain->size.x; iter.x++)
 			update_height_iter(iter);
 }
