@@ -13,17 +13,21 @@ public :
 								mod1_loader() = default;
 								~mod1_loader();
 
-	void 						load(mod1_model_data &data);
+	void 						load(mod1_model_data &data, const bool &is_dynamic);
 
 	GLuint						vbo_build();
 	static void					vbo_bind(GLuint vbo);
 	static void					vbo_unbind();
 
 	template					<typename type>
-	void 						vbo_buffer(GLuint vbo, const mod1_buffer<type> &buffer)
+	static void 				vbo_buffer(GLuint vbo, const mod1_buffer<type> &buffer, const bool &is_dynamic)
 	{
 		vbo_bind(vbo);
-		glBufferData(GL_ARRAY_BUFFER, buffer.size_in_bytes(), buffer.data(), GL_STATIC_DRAW);
+		glBufferData(
+			GL_ARRAY_BUFFER,
+			buffer.size_in_bytes(),
+			buffer.data(),
+			is_dynamic ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
 		vbo_unbind();
 	}
 
@@ -32,13 +36,19 @@ public :
 	static void					vao_unbind();
 
 	template					<typename type>
-	GLuint 						vao_edit_attribute(GLuint vao, int attribute, int element_size, GLenum gl_type, const mod1_buffer<type> &buffer)
+	GLuint 						vao_edit_attribute(
+								GLuint vao,
+								int attribute,
+								int element_size,
+								GLenum gl_type,
+								const mod1_buffer<type> &buffer,
+								const bool &is_dynamic)
 	{
-		GLuint				vbo;
+		GLuint					vbo;
 
 		vbo = vbo_build();
 		vao_bind(vao);
-		vbo_buffer(vbo, buffer);
+		vbo_buffer(vbo, buffer, is_dynamic);
 		vbo_bind(vbo);
 		glVertexAttribPointer(attribute, element_size, gl_type, GL_FALSE, 3 * sizeof(GLfloat), nullptr);
 		glEnableVertexAttribArray(attribute);

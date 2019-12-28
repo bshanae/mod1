@@ -23,15 +23,15 @@ public :
 		const char	*what() const noexcept override;
 	};
 
+	struct			exception_logic_dynamic : public std::exception
+	{
+		const char	*what() const noexcept override;
+	};
+
 	virtual void	build() = 0;
 	void			load(mod1_loader &loader);
 	void			use();
 	int 			vertex_number();
-
-private :
-
-	bool			is_built = false;
-	bool			is_loaded = false;
 
 protected :
 
@@ -41,7 +41,16 @@ protected :
 	void			*get_ptr(const int &index, const mod1_model_data::slot_type &slot);
 	void const		*get_ptr(const int &index, const mod1_model_data::slot_type &slot) const;
 
+	void 			upload_buffer(const mod1_model_data::slot_type &slot);
+
 	void			set_as_built();
+	void			set_as_dynamic();
+
+private :
+
+	bool			is_built = false;
+	bool			is_loaded = false;
+	bool 			is_dynamic = false;
 };
 
 

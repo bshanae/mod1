@@ -29,6 +29,8 @@ void					mod1_water::update_height_one(const mod1_point2<int> &iter, const float
 
 void 					mod1_water::build()
 {
+	set_as_dynamic();
+
 	set(
 		terrain->min - mod1_point2<float>(terrain->delta / 2),
 		terrain->max + mod1_point2<float>(terrain->delta / 2),
