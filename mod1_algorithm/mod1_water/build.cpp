@@ -1,8 +1,38 @@
 #include "mod1_water.h"
 
+void					mod1_water::update_height(const mod1_point2<int> &iter)
+{
+	mod1_point2<int>	iter_plane;
+	float				height;
+
+	height = get_pressure(iter);
+
+	iter_plane = mod1_point2<int>(iter.x, iter.y);
+	update_height_one(iter_plane, height);
+
+	iter_plane = mod1_point2<int>(iter.x + 1, iter.y);
+	update_height_one(iter_plane, height);
+
+	iter_plane = mod1_point2<int>(iter.x, iter.y + 1);
+	update_height_one(iter_plane, height);
+
+	iter_plane = mod1_point2<int>(iter.x + 1, iter.y + 1);
+	update_height_one(iter_plane, height);
+}
+
+void					mod1_water::update_height_one(const mod1_point2<int> &iter, const float &new_height)
+{
+	auto				ptr = (float *)get_ptr(iter, mod1_model_data::slot_point);
+
+	ptr[1] = new_height;
+}
+
 void 					mod1_water::build()
 {
-	set(terrain->min, terrain->max, terrain->delta);
+	set(
+		terrain->min - mod1_point2<float>(terrain->delta / 2),
+		terrain->max + mod1_point2<float>(terrain->delta / 2),
+		terrain->delta);
 	mod1_plane::build();
 
 	mod1_point2<int>	iter;
@@ -24,71 +54,42 @@ void 					mod1_water::build()
 			ptr[2] = 1;
 		}
 
-	iter.x = 9;
-	iter.y = 9;
+//#define TEST
+
+#ifdef TEST
+
+#define A				2
+#define B				3
+#define H				2
+
+	iter.x = A;
+	iter.y = A;
 	ptr = (float *)get_ptr(iter, mod1_model_data::slot_point);
-	ptr[1] = 2;
+	ptr[1] = H;
 
-	iter.x = 10;
-	iter.y = 9;
+	iter.x = A;
+	iter.y = B;
 	ptr = (float *)get_ptr(iter, mod1_model_data::slot_point);
-	ptr[1] = 2;
+	ptr[1] = H;
 
-//	iter.x = 9;
-//	iter.y = 10;
-//	ptr = (float *)get_ptr(iter, mod1_model_data::slot_point);
-//	ptr[1] = 2;
-//
-//	iter.x = 10;
-//	iter.y = 10;
-//	ptr = (float *)get_ptr(iter, mod1_model_data::slot_point);
-//	ptr[1] = 2;
-//
-//	iter.x = 10;
-//	iter.y = 11;
-//	ptr = (float *)get_ptr(iter, mod1_model_data::slot_point);
-//	ptr[1] = 2;
-//
-//	iter.x = 9;
-//	iter.y = 11;
-//	ptr = (float *)get_ptr(iter, mod1_model_data::slot_point);
-//	ptr[1] = 2;
-//
-	water_level_grid.allocate(size.y - 1, size.x - 1);
-	water_level_grid.set(0);
+	iter.x = B;
+	iter.y = A;
+	ptr = (float *)get_ptr(iter, mod1_model_data::slot_point);
+	ptr[1] = H;
 
-	height_grid.allocate(size.y - 1, size.x - 1);
+	iter.x = B;
+	iter.y = B;
+	ptr = (float *)get_ptr(iter, mod1_model_data::slot_point);
+	ptr[1] = H;
 
-	float const			*const_ptr;
-	float				temp;
+#endif
 
-	for (int y = 0; y < size.y - 1; y++)
-		for (int x = 0; x < size.x - 1; x++)
-		{
-			temp = 0;
+	water_level.allocate(size.x, size.y);
+	water_level.set(0);
 
-			iter = mod1_point2<int>(x, y);
-			const_ptr = (float const *)terrain->get_ptr(iter, mod1_model_data::slot_point);
-			temp += *const_ptr;
+	iter = mod1_point2<int>(2, 2);
+	add_water(iter);
+//	add_water(iter);
 
-			iter = mod1_point2<int>(x + 1, y);
-			const_ptr = (float const *)terrain->get_ptr(iter, mod1_model_data::slot_point);
-			temp += *const_ptr;
-
-			iter = mod1_point2<int>(x, y + 1);
-			const_ptr = (float const *)terrain->get_ptr(iter, mod1_model_data::slot_point);
-			temp += *const_ptr;
-
-			iter = mod1_point2<int>(x + 1, y + 1);
-			const_ptr = (float const *)terrain->get_ptr(iter, mod1_model_data::slot_point);
-			temp += *const_ptr;
-
-			height_grid[y][x] = temp / 4;
-		}
-
-	for (int y = 0; y < size.y - 1; y++)
-		for (int x = 0; x < size.x - 1; x++)
-		{
-			height_grid[y][x] = temp / 4;
-		}
+	gravity();
 }
