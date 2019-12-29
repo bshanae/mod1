@@ -1,20 +1,12 @@
 #include "mod1_water.h"
 
-void					mod1_water::gravity_helper_a(const mod1_point2<int> &iter)
+void							mod1_water::gravity_helper_a(const mod1_point2<int> &iter)
 {
-	mod1_point2<int>	second;
 
-	second = mod1_point2<int>(iter.x + 1, iter.y);
-	gravity_helper_b(iter, second);
+	std::shuffle(direction_vector.begin(), direction_vector.end(), random_generator);
 
-	second = mod1_point2<int>(iter.x - 1, iter.y);
-	gravity_helper_b(iter, second);
-
-	second = mod1_point2<int>(iter.x, iter.y + 1);
-	gravity_helper_b(iter, second);
-
-	second = mod1_point2<int>(iter.x, iter.y - 1);
-	gravity_helper_b(iter, second);
+	for (const auto &direction : direction_vector)
+		gravity_helper_b(iter, mod1_point2<int>(iter.x + direction.x, iter.y + direction.y));
 }
 
 void					mod1_water::gravity_helper_b(const mod1_point2<int> &from, const mod1_point2<int> &to)
@@ -36,8 +28,8 @@ void					mod1_water::gravity()
 {
 	mod1_point2<int>	iter;
 
-	for (iter.y = 0; iter.y < 10; iter.y++)
-		for (iter.x = 0; iter.x < 10; iter.x++)
+	for (iter.y = 0; iter.y < terrain->size.y; iter.y++)
+		for (iter.x = 0; iter.x < terrain->size.x; iter.x++)
 			gravity_helper_a(iter);
 	update_height();
 }

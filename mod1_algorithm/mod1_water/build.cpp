@@ -31,4 +31,10 @@ void 					mod1_water::build()
 
 	water_level.allocate(size.x, size.y);
 	water_level.set(0);
+
+	for (iter.y = 0; iter.y < 8; iter.y++)
+		for (iter.x = 0; iter.x < size.x; iter.x++)
+			add_water(iter, 20);
+	update_height();
+	update_color();
 }
