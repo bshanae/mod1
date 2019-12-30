@@ -15,7 +15,7 @@ void					mod1_water::update_height_iter(const mod1_point2<int> &iter)
 	float				height;
 
 	water = get_water(iter);
-	water = water ? water : -10;
+	water = water ? water : -50;
 	height = get_height(iter) + (float)water * water_drop_height;
 
 	iter_plane = mod1_point2<int>(iter.x, iter.y);
