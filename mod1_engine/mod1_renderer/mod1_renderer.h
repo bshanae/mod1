@@ -44,7 +44,8 @@ private :
 
 	glm::vec3					light_position;
 
-	GLuint						uniform_transformation;
+	GLuint						uniform_view;
+	GLuint						uniform_projection;
 	GLuint						uniform_light;
 
 	void						prepare_internal();

@@ -24,6 +24,6 @@ public :
 private :
 
 	GLuint 				object_internal;
-	const std::string	shader_vertex_source = "./mod1_engine/shaders/vertex.glsl";
-	const std::string	shader_fragment_source = "./mod1_engine/shaders/fragment.glsl";
+	const std::string	shader_vertex_source = "./shaders/vertex.glsl";
+	const std::string	shader_fragment_source = "./shaders/fragment.glsl";
 };

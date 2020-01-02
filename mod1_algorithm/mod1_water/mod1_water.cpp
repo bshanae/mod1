@@ -17,7 +17,7 @@ bool 					mod1_water::callback(int key, void *ptr)
 	auto				water = (mod1_water *)ptr;
 	mod1_point2<int>	iter;
 
-	if (key == GLFW_KEY_R)
+	if (key == GLFW_KEY_1)
 	{
 		water->water_level.set(0);
 		

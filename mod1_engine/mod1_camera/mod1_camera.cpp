@@ -1,20 +1,20 @@
 #include "mod1_camera.h"
 
-					mod1_camera::mod1_camera(int screen_width, int screen_height, const glm::vec3 &position)
+					mod1_camera::mod1_camera(int screen_width, int screen_height, const glm::vec3 &position) :
+					projection(glm::perspective(
+						glm::radians(45.0f),
+						(float)screen_width / (float)screen_height,
+						0.1f,
+						100000.0f))
 {
 	this->position = position;
 	matrix_view = glm::mat4(1.0f);
-	matrix_projection = glm::perspective(
-		glm::radians(45.0f),
-		(float)screen_width / (float)screen_height,
-		0.1f,
-		100000.0f);
 	update_transformation();
 }
 
-const glm::mat4		&mod1_camera::transformation()
+const glm::mat4		&mod1_camera::view()
 {
-	return (transformation_internal);
+	return (matrix_view);
 }
 
 void				mod1_camera::move(mod1_axis axis, mod1_sign sign)
@@ -55,7 +55,6 @@ void 				mod1_camera::update_transformation()
 	direction = glm::vec3(matrix_rotation * forward_const);
 	up = glm::vec3(matrix_rotation * up_const);
 	matrix_view = glm::lookAt(position, position + direction, up);
-	transformation_internal = matrix_projection * matrix_view;
 }
 
 const char			*mod1_camera::exception_bad_axis::what() const noexcept

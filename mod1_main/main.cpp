@@ -7,7 +7,7 @@ void						main_unsafe(int argc, char **argv)
 	mod1_main				main(argc, argv);
 
 	main.terrain->push_color(mod1_point3<float>(1, 0, 0));
-	main.terrain->push_color(mod1_point3<float>(1, 1, 1));
+//	main.terrain->push_color(mod1_point3<float>(1, 1, 1));
 
 	main.build();
 

@@ -12,6 +12,8 @@ void					mod1_terrain::build()
 	for (auto const &iter_source : data_raw)
 		generate_hill(iter_source);
 
+//	update_normal();
+
 	//					Colors
 
 	mod1_point2<int>	iter;
@@ -28,5 +30,6 @@ void					mod1_terrain::build()
 			ptr[1] = color.y;
 			ptr[2] = color.z;
 		}
+
 
 }

@@ -13,8 +13,10 @@ mod1_point3<float>		mod1_terrain::compute_color(const float &height) const
 	float				ratio_normal;
 	mod1_point3<float>	result;
 
-	if (data_color.size() < 2)
+	if (data_color.empty())
 		throw (exception_color());
+	if (data_color.size() == 1)
+		return (data_color[0]);
 	ratio = height / max_raw.z * (float)(data_color.size() - 1);
 
 	index_from = floor(ratio);

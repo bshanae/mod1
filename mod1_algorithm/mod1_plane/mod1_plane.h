@@ -40,6 +40,8 @@ protected :
 	void 				*get_ptr(const mod1_point2<int> &iter, const mod1_model_data::slot_type &slot);
 	void const			*get_ptr(const mod1_point2<int> &iter, const mod1_model_data::slot_type &slot) const;
 
+	void 				update_normal();
+
 private :
 
 	bool				is_set = false;

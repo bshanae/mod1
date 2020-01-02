@@ -35,7 +35,8 @@ public :
 	void				move(mod1_axis axis, mod1_sign sign);
 	void				rotate(mod1_axis axis, mod1_sign sign);
 
-	const glm::mat4		&transformation();
+	const glm::mat4		&view();
+	const glm::mat4		projection;
 
 private :
 
@@ -55,8 +56,6 @@ private :
 
 	glm::mat4			matrix_rotation = glm::mat4(1);
 	glm::mat4			matrix_view;
-	glm::mat4			matrix_projection;
-	glm::mat4			transformation_internal;
 
 	glm::vec3			position;
 
