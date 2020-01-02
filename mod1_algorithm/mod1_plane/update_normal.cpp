@@ -1,18 +1,5 @@
 #include "mod1_plane.h"
 
-static glm::vec3		helper_ptr_to_vec3(void *ptr)
-{
-	auto				*ptr_f = (float *)ptr;
-
-	return (glm::vec3(ptr_f[0], ptr_f[1], ptr_f[2]));
-}
-
-static void				helper_vec3_to_ptr(const glm::vec3 &source, float *destination)
-{
-	for (int i = 0; i < 2; i++)
-		destination[i] = source[i];
-}
-
 void 					mod1_plane::update_normal_helper(const mod1_point2<int> &iter)
 {
 	float 				height[4];
