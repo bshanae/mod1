@@ -63,16 +63,16 @@ void					mod1_water::gravity()
 {
 	mod1_point2<int>	iter;
 
-	for (iter.y = 0; iter.y < terrain->size.y; iter.y++)
-		for (iter.x = 0; iter.x < terrain->size.x; iter.x++)
+	for (iter.y = 0; iter.y < size.y; iter.y++)
+		for (iter.x = 0; iter.x < size.x; iter.x++)
 			gravity_helper_a(iter);
 
 	update_height();
 
 #ifdef DEBUG
-	for (iter.y = 0; iter.y < terrain->size.y; iter.y++)
+	for (iter.y = 0; iter.y < size.y; iter.y++)
 	{
-		for (iter.x = 0; iter.x < terrain->size.x; iter.x++)
+		for (iter.x = 0; iter.x < size.x; iter.x++)
 			printf("%d ", get_water(iter));
 		printf("\n");
 	}
