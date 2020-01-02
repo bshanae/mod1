@@ -12,7 +12,7 @@ void					mod1_terrain::build()
 	for (auto const &iter_source : data_raw)
 		generate_hill(iter_source);
 
-//	update_normal();
+	update_normal();
 
 	//					Colors
 
