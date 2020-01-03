@@ -8,10 +8,10 @@
 #define MOD1_MAP_RAW_DATA		std::vector<mod1_point3<int>>
 #define MOD1_MAP_RAW_DATA_RI	MOD1_MAP_RAW_DATA::reverse_iterator
 #define MOD1_MAP_COLOR_DATA		std::vector<mod1_point3<float>>
-#define MOD1_MAP_DEFAULT_DELTA	100
-#define MOD1_MAP_DEFAULT_SIZE	mod1_point3<int>(1000)
+#define MOD1_MAP_DEFAULT_DELTA	10
+#define MOD1_MAP_DEFAULT_SIZE	mod1_point3<int>(100)
 #define MOD1_MAP_INDENT			0.3
-#define MOD1_MAP_MIN_SIZE		50
+#define MOD1_MAP_MIN_SIZE		10
 
 #define MOD1_MAP_INFO_RAW		0x000001u
 #define MOD1_MAP_INFO_MODEL		0x000010u
@@ -65,6 +65,7 @@ private :
 	mod1_point3<int>			min_raw = mod1_point3<int>(INT_MAX, INT_MAX, INT_MAX);
 	mod1_point3<int>			max_raw = mod1_point3<int>(-INT_MAX, -INT_MAX, -INT_MAX);
 	mod1_point3<int>			diff_raw;
+	bool						case_one_point = false;
 
 	static float				parse_coordinate(std::ifstream &stream, bool eat_delimiter);
 

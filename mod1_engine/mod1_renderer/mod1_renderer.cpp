@@ -31,47 +31,29 @@ void					mod1_renderer::glfw_callback(GLFWwindow* window, int key, int code, int
 		return ;
 	}
 	else if (key == GLFW_KEY_A)
-	{
-		if (!mod_light)
-			renderer->camera.move(mod1_camera::mod1_axis_x,  mod1_camera::mod1_negative);
-		else
-			renderer->light_position.x -= M1;
-	}
+		renderer->camera.move(
+			mod1_camera::mod1_axis_x, mod1_camera::mod1_negative,
+			mod_light ? &renderer->light_position : nullptr);
 	else if (key == GLFW_KEY_D)
-	{
-		if (!mod_light)
-			renderer->camera.move(mod1_camera::mod1_axis_x,  mod1_camera::mod1_positive);
-		else
-			renderer->light_position.x += M1;
-	}
+		renderer->camera.move(
+			mod1_camera::mod1_axis_x, mod1_camera::mod1_positive,
+			mod_light ? &renderer->light_position : nullptr);
 	else if (key == GLFW_KEY_W)
-	{
-		if (!mod_light)
-			renderer->camera.move(mod1_camera::mod1_axis_z,  mod1_camera::mod1_negative);
-		else
-			renderer->light_position.z -= M1;
-	}
+		renderer->camera.move(
+			mod1_camera::mod1_axis_z, mod1_camera::mod1_negative,
+			mod_light ? &renderer->light_position : nullptr);
 	else if (key == GLFW_KEY_S)
-	{
-		if (!mod_light)
-			renderer->camera.move(mod1_camera::mod1_axis_z,  mod1_camera::mod1_positive);
-		else
-			renderer->light_position.z += M1;
-	}
+		renderer->camera.move(
+			mod1_camera::mod1_axis_z, mod1_camera::mod1_positive,
+			mod_light ? &renderer->light_position : nullptr);
 	else if (key == GLFW_KEY_Q)
-	{
-		if (!mod_light)
-			renderer->camera.move(mod1_camera::mod1_axis_y,  mod1_camera::mod1_positive);
-		else
-			renderer->light_position.y += M1;
-	}
+		renderer->camera.move(
+			mod1_camera::mod1_axis_y, mod1_camera::mod1_positive,
+			mod_light ? &renderer->light_position : nullptr);
 	else if (key == GLFW_KEY_E)
-	{
-		if (!mod_light)
-			renderer->camera.move(mod1_camera::mod1_axis_y,  mod1_camera::mod1_negative);
-		else
-			renderer->light_position.y -= M1;
-	}
+		renderer->camera.move(
+			mod1_camera::mod1_axis_y, mod1_camera::mod1_negative,
+			mod_light ? &renderer->light_position : nullptr);
 	else if (key == GLFW_KEY_LEFT)
 		renderer->camera.rotate(mod1_camera::mod1_axis_y, mod1_camera::mod1_positive);
 	else if (key == GLFW_KEY_RIGHT)

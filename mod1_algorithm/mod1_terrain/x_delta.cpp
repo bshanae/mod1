@@ -45,6 +45,7 @@ void 					mod1_terrain::compute_delta()
 
 	if (diff_raw == mod1_point3<int>())
 	{
+		case_one_point = true;
 		delta_i = MOD1_MAP_DEFAULT_DELTA;
 		diff_raw = MOD1_MAP_DEFAULT_SIZE;
 	}

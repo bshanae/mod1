@@ -32,7 +32,7 @@ public :
 		mod1_positive = 1
 	}					mod1_sign;
 
-	void				move(mod1_axis axis, mod1_sign sign);
+	void				move(mod1_axis axis, mod1_sign sign, glm::vec3 *target = NULL);
 	void				rotate(mod1_axis axis, mod1_sign sign);
 
 	const glm::mat4		&view();

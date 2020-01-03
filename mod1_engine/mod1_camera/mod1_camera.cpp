@@ -1,3 +1,4 @@
+#include <mod1_point3.h>
 #include "mod1_camera.h"
 
 					mod1_camera::mod1_camera(int screen_width, int screen_height, const glm::vec3 &position) :
@@ -17,14 +18,17 @@ const glm::mat4		&mod1_camera::view()
 	return (matrix_view);
 }
 
-void				mod1_camera::move(mod1_axis axis, mod1_sign sign)
+void				mod1_camera::move(mod1_axis axis, mod1_sign sign, glm::vec3 *target)
 {
+	if (!target)
+		target = &position;
+
 	if (axis == mod1_axis_x)
-		position += axis_x * movement_speed * (float)sign;
+		*target += axis_x * movement_speed * (float)sign;
 	else if (axis == mod1_axis_y)
-		position += axis_y * movement_speed * (float)sign;
+		*target += axis_y * movement_speed * (float)sign;
 	else if (axis == mod1_axis_z)
-		position += axis_z * movement_speed * (float)sign;
+		*target += axis_z * movement_speed * (float)sign;
 	else
 		throw (exception_bad_axis());
 	update_transformation();
