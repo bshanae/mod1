@@ -74,26 +74,58 @@ public :
 
 	mod1_buffer<type>				&operator [] (int index)
 	{
-		if (index < 0 || index >= size_internal)
+		if (!is_valid(index))
 			throw (exception_bad_index());
 		return (data_internal[index]);
 	}
 
 	const mod1_buffer<type>			&operator [] (int index) const
 	{
-		if (index < 0 || index >= size_internal)
+		if (!is_valid(index))
 			throw (exception_bad_index());
 		return (data_internal[index]);
 	}
 
 	type							&operator [] (const mod1_point2<int> &iter)
 	{
+		if (!is_valid(iter))
+			throw (exception_bad_index());
 		return (data_internal[iter.x][iter.y]);
 	}
 
 	const type						&operator [] (const mod1_point2<int> &iter) const
 	{
+		if (!is_valid(iter))
+			throw (exception_bad_index());
 		return (data_internal[iter.x][iter.y]);
+	}
+
+	mod1_buffer<type>				*operator + (int index)
+	{
+		if (!is_valid(index))
+			throw (exception_bad_index());
+		return (data_internal + index);
+	}
+
+	const mod1_buffer<type>			*operator + (int index) const
+	{
+		if (!is_valid(index))
+			throw (exception_bad_index());
+		return (data_internal + index);
+	}
+
+	type							*operator + (const mod1_point2<int> &iter)
+	{
+		if (!is_valid(iter))
+			throw (exception_bad_index());
+		return (data_internal[iter.x] + iter.y);
+	}
+
+	const type						*operator + (const mod1_point2<int> &iter) const
+	{
+		if (!is_valid(iter))
+			throw (exception_bad_index());
+		return (data_internal[iter.x] + iter.y);
 	}
 
 	bool 							is_valid(const int &index) const
@@ -107,7 +139,7 @@ public :
 	{
 		if (!size_internal)
 			throw (exception_not_allocated());
-		if (iter.x > 0 || iter.x >= size_internal)
+		if (iter.x < 0 || iter.x >= size_internal)
 			return (false);
 		if (iter.y < 0 || iter.y >= data_internal[0].size())
 			return (false);

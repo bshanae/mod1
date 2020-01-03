@@ -91,16 +91,30 @@ public :
 
 	type				&operator [] (int index)
 	{
-		if (index < 0 || index >= size_internal)
+		if (!is_valid(index))
 			throw (exception_bad_index());
 		return (data_internal[index]);
 	}
 
 	const type			&operator [] (int index) const
 	{
-		if (index < 0 || index >= size_internal)
+		if (!is_valid(index))
 			throw (exception_bad_index());
 		return (data_internal[index]);
+	}
+
+	type				*operator + (int index)
+	{
+		if (!is_valid(index))
+			throw (exception_bad_index());
+		return (data_internal + index);
+	}
+
+	const type			*operator + (int index) const
+	{
+		if (!is_valid(index))
+			throw (exception_bad_index());
+		return (data_internal + index);
 	}
 
 	bool 				is_valid(const int &index) const

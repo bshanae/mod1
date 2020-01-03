@@ -1,7 +1,5 @@
 #include "mod1_water.h"
 
-#include <iostream>
-
 void					mod1_water::update_flow()
 {
 	mod1_point2<int>	iter;
@@ -11,22 +9,47 @@ void					mod1_water::update_flow()
 	for (iter.y = 0; iter.y < terrain->size.y; iter.y++)
 		for (iter.x = 0; iter.x < terrain->size.x; iter.x++)
 		{
+
 			height_me = get_total_height(iter);
-			try
+
+			if (terrain->is_valid(iter + MOD1_WATER_RIGHT, mod1_model_data::slot_point))
 			{
 				height_neighbour = get_total_height(iter + MOD1_WATER_RIGHT);
 				flow_horizontal[iter] += (height_neighbour - height_me) * flow_constant;
 			}
-			catch (...)
-			{}
 
-			try
+			if (terrain->is_valid(iter + MOD1_WATER_DOWN, mod1_model_data::slot_point))
 			{
 				height_neighbour = get_total_height(iter + MOD1_WATER_DOWN);
 				flow_vertical[iter] += (height_neighbour - height_me) * flow_constant;
 			}
-			catch (...)
-			{}
+		}
+}
+
+void					mod1_water::limit_flow()
+{
+	mod1_point2<int>	iter;
+	float 				flow_right;
+	float 				flow_down;
+	float 				height_neighbour;
+
+	for (iter.y = 0; iter.y < terrain->size.y; iter.y++)
+		for (iter.x = 0; iter.x < terrain->size.x; iter.x++)
+		{
+
+			flow_right = get_total_height(iter);
+
+			if (terrain->is_valid(iter + MOD1_WATER_RIGHT, mod1_model_data::slot_point))
+			{
+				height_neighbour = get_total_height(iter + MOD1_WATER_RIGHT);
+				flow_horizontal[iter] += (height_neighbour - flow_right) * flow_constant;
+			}
+
+			if (terrain->is_valid(iter + MOD1_WATER_DOWN, mod1_model_data::slot_point))
+			{
+				height_neighbour = get_total_height(iter + MOD1_WATER_DOWN);
+				flow_vertical[iter] += (height_neighbour - flow_right) * flow_constant;
+			}
 		}
 }
 
@@ -48,7 +71,7 @@ void					mod1_water::update_water_depth()
 				}
 				catch (...)
 				{}
-			water_depth[iter.x][iter.y] += total_flow * water_depth_constant;
+			water_depth[iter] += total_flow * water_depth_constant;
 		}
 }
 
@@ -58,14 +81,45 @@ void					mod1_water::gravity()
 	update_water_depth();
 	update_height();
 
-	mod1_point2<int>	iter;
+# define RED			"\033[0;31m"
+# define BLACK			"\033[0m"
+#define	DEBUG
 
+#ifdef DEBUG
+	mod1_point2<int>	iter;
 	for (iter.y = 0; iter.y < terrain->size.y; iter.y++)
 	{
 		for (iter.x = 0; iter.x < terrain->size.x; iter.x++)
-			printf("(%f, %f) ", flow_horizontal[iter], flow_vertical[iter]);
+		{
+			if (iter.x)
+				printf(":");
+			printf("[%+7.2f]:%s%+7.2f%s",
+				water_depth[iter],
+				RED, get_flow(iter, mod1_water::flow_right), BLACK);
+		}
+		printf("\n");
+		for (iter.x = 0; iter.x < terrain->size.x; iter.x++)
+		{
+			if (iter.x)
+				printf("        ");
+			printf("    ..    ");
+		}
+		printf("\n");
+		for (iter.x = 0; iter.x < terrain->size.x; iter.x++)
+		{
+			if (iter.x)
+				printf("         ");
+			printf("%s %+7.2f %s", RED, get_flow(iter, mod1_water::flow_down), BLACK);
+		}
+		printf("\n");
+		for (iter.x = 0; iter.x < terrain->size.x; iter.x++)
+		{
+			if (iter.x)
+				printf("        ");
+			printf("    ..    ");
+		}
 		printf("\n");
 	}
 	printf("\n");
-
+#endif
 }

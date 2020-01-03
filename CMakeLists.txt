@@ -59,6 +59,7 @@ set(MOD1_ALGORITHM
 	./mod1_algorithm/mod1_plane/build.cpp
 	./mod1_algorithm/mod1_plane/update_normal.cpp
 	./mod1_algorithm/mod1_plane/model.cpp
+	./mod1_algorithm/mod1_plane/is_valid.cpp
 
 	./mod1_algorithm/mod1_terrain/parse_x.cpp
 	./mod1_algorithm/mod1_terrain/build.cpp

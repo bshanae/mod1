@@ -53,11 +53,14 @@ bool 					mod1_water::callback(int key, void *ptr)
 
 #ifdef FLOOD_POINT
 
-#define A_X				30
-#define A_Y				30
+#define A_X				0
+#define A_Y				0
 
-	for (int y = 0; y < 5; y++)
-		for (int x = 0; x < 5; x++)
+#define D_X				1
+#define D_Y				1
+
+	for (int y = 0; y < D_Y; y++)
+		for (int x = 0; x < D_X; x++)
 			water->water_depth[mod1_point2<int>(A_X + x, A_Y + y)] += 1;
 #endif
 

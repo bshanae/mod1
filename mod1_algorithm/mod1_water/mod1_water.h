@@ -63,6 +63,7 @@ private :
 	void							update_color();
 
 	void							update_flow();
+	void							limit_flow();
 	void							update_water_depth();
 
 	void							gravity();

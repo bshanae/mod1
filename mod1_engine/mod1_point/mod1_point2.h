@@ -133,11 +133,11 @@ public :
 		return (mod1_point2<t2>(this->x, this->y));
 	}
 
-	template 			<class p3>
-	mod1_point2<t1>		&operator = (const p3 &point3)
+	template 			<class point_like>
+	mod1_point2<t1>		&operator = (const point_like &point)
 	{
-		this->x = point3.x;
-		this->y = point3.y;
+		this->x = point.x;
+		this->y = point.y;
 		return (*this);
 	}
 
