@@ -26,6 +26,8 @@ include_directories(
 	./mod1_main
 	./mod1_main/mod1_main
 
+	./third_party/FastNoise
+
 	./mod1_engine/mod1_point
 	./mod1_engine/mod1_core
 	./mod1_engine/mod1_shader
@@ -42,6 +44,8 @@ include_directories(
 	./mod1_algorithm/mod1_water)
 
 set(MOD1_MAIN
+	./third_party/FastNoise/FastNoise.cpp
+
 	./mod1_main/main.cpp
 
 	./mod1_main/mod1_main/mod1_main.cpp

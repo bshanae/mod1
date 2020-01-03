@@ -18,7 +18,7 @@ void							main()
 
 	float						n_dot_l = dot(normal_global, to_light);
 
-    pass_light_intensity = clamp(n_dot_l, 0, 1);
+    pass_light_intensity = clamp(n_dot_l, 0, 1) + 0.2;
     pass_color = color;
 
     gl_Position = projection * view * vec4(position, 1);
