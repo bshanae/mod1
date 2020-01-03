@@ -1,6 +1,7 @@
 #pragma once
 
 #include "mod1_buffer.h"
+#include "mod1_point2.h"
 
 template							<typename  type>
 class 								mod1_buffer2
@@ -85,6 +86,15 @@ public :
 		return (data_internal[index]);
 	}
 
+	type							&operator [] (const mod1_point2<int> &iter)
+	{
+		return (data_internal[iter.x][iter.y]);
+	}
+
+	const type						&operator [] (const mod1_point2<int> &iter) const
+	{
+		return (data_internal[iter.x][iter.y]);
+	}
 
 private :
 

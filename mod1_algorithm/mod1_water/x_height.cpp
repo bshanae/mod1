@@ -11,12 +11,12 @@ void					mod1_water::update_height_helper(const mod1_point2<int> &iter, const fl
 void					mod1_water::update_height_iter(const mod1_point2<int> &iter)
 {
 	mod1_point2<int>	iter_plane;
-	int 				water;
+	float				water;
 	float				height;
 
-	water = get_water(iter);
-	water = water ? water : -50;
-	height = get_height(iter) + (float)water * water_drop_height;
+	water = water_depth[iter];
+	water = water > 0.1 ? water : -10;
+	height = get_terrain_height(iter) + water;
 
 	iter_plane = mod1_point2<int>(iter.x, iter.y);
 	update_height_helper(iter_plane, height);

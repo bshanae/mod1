@@ -13,22 +13,22 @@ void					mod1_terrain::build()
 	for (auto const &iter_source : data_raw)
 		generate_hill(iter_source);
 
-	mod1_point2<int>	iter_;
-	float				*ptr_;
-	FastNoise			noise;
-
-	noise.SetNoiseType(FastNoise::Perlin);
-
-	for (iter_.y = 0; iter_.y < size.y; iter_.y++)
-		for (iter_.x = 0; iter_.x < size.x; iter_.x++)
-		{
-			ptr_ = (float *)get_ptr(iter_, mod1_model_data::slot_point);
-			ptr_[1] += noise.GetNoise(ptr_[0], ptr_[2]) * 10;
+//	mod1_point2<int>	iter_;
+//	float				*ptr_;
+//	FastNoise			noise;
+//
+//	noise.SetNoiseType(FastNoise::Perlin);
+//
+//	for (iter_.y = 0; iter_.y < size.y; iter_.y++)
+//		for (iter_.x = 0; iter_.x < size.x; iter_.x++)
+//		{
+//			ptr_ = (float *)get_ptr(iter_, mod1_model_data::slot_point);
+//			ptr_[1] += noise.GetNoise(ptr_[0], ptr_[2]) * 100;
 //			printf("%f\n", noise.GetNoise(ptr_[0], ptr_[2]) * 10);
-		}
-
+//		}
+//
 	update_normal();
-
+//
 	//					Colors
 
 	mod1_point2<int>	iter;

@@ -1,5 +1,9 @@
 #include "mod1_water.h"
 
+#define MACRO_A			1
+#define MACRO_g			-10
+#define MACRO_dt		1
+
 void 					mod1_water::build()
 {
 	set_as_dynamic();
@@ -9,6 +13,9 @@ void 					mod1_water::build()
 		terrain->max + mod1_point2<float>(terrain->delta / 2),
 		terrain->delta);
 	mod1_plane::build();
+
+	flow_constant = MACRO_A * MACRO_g * (1.f / terrain->delta) * MACRO_dt;
+	water_depth_constant = -MACRO_dt / (terrain->delta * terrain->delta);
 
 	mod1_point2<int>	iter;
 	float				*ptr;
@@ -29,9 +36,14 @@ void 					mod1_water::build()
 			ptr[2] = 1;
 		}
 
-	water_level.allocate(size.x, size.y);
-	water_level.set(0);
+	water_depth.allocate(size.x, size.y);
+	water_depth.set(0);
 
+	flow_horizontal.allocate(size.x - 1, size.y);
+	flow_horizontal.set(0);
+
+	flow_vertical.allocate(size.x, size.y - 1);
+	flow_vertical.set(0);
 
 
 	update_height();

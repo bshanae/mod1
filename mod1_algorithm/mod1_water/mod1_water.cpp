@@ -2,14 +2,8 @@
 
 						mod1_water::mod1_water(mod1_terrain const *terrain) :
 						terrain(terrain)
-
 {
-	random_generator = std::mt19937(random_device());
 
-	direction_vector.emplace_back(-1, 0);
-	direction_vector.emplace_back(0, -1);
-	direction_vector.emplace_back(0, +1);
-	direction_vector.emplace_back(+1, 0);
 }
 
 bool 					mod1_water::callback(int key, void *ptr)
@@ -19,7 +13,7 @@ bool 					mod1_water::callback(int key, void *ptr)
 
 	if (key == GLFW_KEY_1)
 	{
-		water->water_level.set(0);
+		water->water_depth.set(0);
 		
 #ifdef FLOOD_BORDER
 
@@ -28,17 +22,17 @@ bool 					mod1_water::callback(int key, void *ptr)
 
 		for (iter.y = 0; iter.y < water->size.y; iter.y++)
 			for (iter.x = 0; iter.x < WIDTH; iter.x++)
-				water->set_water(iter, HEIGHT);
+				water->set_water_depth(iter, HEIGHT);
 		for (iter.y = 0; iter.y < water->size.y; iter.y++)
 			for (iter.x = water->size.x - WIDTH - 2; iter.x < water->size.x - 2; iter.x++)
-				water->set_water(iter, HEIGHT);
+				water->set_water_depth(iter, HEIGHT);
 
 		for (iter.x = 0; iter.x < water->size.x - 2; iter.x++)
 			for (iter.y = 0; iter.y < WIDTH; iter.y++)
-				water->set_water(iter, HEIGHT);
+				water->set_water_depth(iter, HEIGHT);
 		for (iter.x = 0; iter.x < water->size.x - 2; iter.x++)
 			for (iter.y = water->size.y - WIDTH - 2; iter.y < water->size.y - 2; iter.y++)
-				water->set_water(iter, HEIGHT);
+				water->set_water_depth(iter, HEIGHT);
 #endif
 
 		water->update_height();
@@ -50,7 +44,7 @@ bool 					mod1_water::callback(int key, void *ptr)
 	}
 
 	if (key != GLFW_KEY_ENTER)
-		return (false);
+		return (true);
 
 	static int			kostyl = 0;
 
@@ -64,7 +58,7 @@ bool 					mod1_water::callback(int key, void *ptr)
 
 	for (int y = 0; y < 5; y++)
 		for (int x = 0; x < 5; x++)
-			water->add_water(mod1_point2<int>(A_X + x, A_Y + y), 1);
+			water->water_depth[mod1_point2<int>(A_X + x, A_Y + y)] += 1;
 #endif
 
 #ifdef FLOOD_UNIFORM
@@ -99,7 +93,7 @@ void					mod1_water::update_color()
 	for (iter.y = 0; iter.y < terrain->size.y; iter.y++)
 		for (iter.x = 0; iter.x < terrain->size.x; iter.x++)
 		{
-			pressure = get_pressure(iter);
+			pressure = get_total_height(iter);
 			for (int i = 0; i < 3; i++)
 				color[i] = mod1_terrain::interpolate_cosine(
 					MOD1_WATER_COLOR_A[i],
