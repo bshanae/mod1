@@ -103,6 +103,11 @@ public :
 		return (data_internal[index]);
 	}
 
+	bool 				is_valid(const int &index) const
+	{
+		return (index >= 0 && index < size_internal);
+	}
+
 private :
 
 	type				*data_internal = nullptr;

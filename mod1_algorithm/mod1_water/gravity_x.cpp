@@ -15,7 +15,7 @@ void					mod1_water::update_flow()
 			try
 			{
 				height_neighbour = get_total_height(iter + MOD1_WATER_RIGHT);
-				flow_horizontal[iter.x][iter.y] += (height_neighbour - height_me) * flow_constant;
+				flow_horizontal[iter] += (height_neighbour - height_me) * flow_constant;
 			}
 			catch (...)
 			{}
@@ -23,7 +23,7 @@ void					mod1_water::update_flow()
 			try
 			{
 				height_neighbour = get_total_height(iter + MOD1_WATER_DOWN);
-				flow_vertical[iter.x][iter.y] += (height_neighbour - height_me) * flow_constant;
+				flow_vertical[iter] += (height_neighbour - height_me) * flow_constant;
 			}
 			catch (...)
 			{}
@@ -57,4 +57,15 @@ void					mod1_water::gravity()
 	update_flow();
 	update_water_depth();
 	update_height();
+
+	mod1_point2<int>	iter;
+
+	for (iter.y = 0; iter.y < terrain->size.y; iter.y++)
+	{
+		for (iter.x = 0; iter.x < terrain->size.x; iter.x++)
+			printf("(%f, %f) ", flow_horizontal[iter], flow_vertical[iter]);
+		printf("\n");
+	}
+	printf("\n");
+
 }

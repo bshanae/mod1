@@ -36,6 +36,7 @@ public :
 
 	void 				*get_ptr(const int &index, const slot_type &slot);
 	void const			*get_ptr(const int &index, const slot_type &slot) const;
+	bool				is_valid(const int &index, const slot_type &slot) const;
 };
 
 

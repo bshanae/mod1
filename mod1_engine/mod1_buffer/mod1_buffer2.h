@@ -96,6 +96,24 @@ public :
 		return (data_internal[iter.x][iter.y]);
 	}
 
+	bool 							is_valid(const int &index) const
+	{
+		if (!size_internal)
+			throw (exception_not_allocated());
+		return (index >= 0 && index < size_internal);
+	}
+
+	bool 							is_valid(const mod1_point2<int> &iter) const
+	{
+		if (!size_internal)
+			throw (exception_not_allocated());
+		if (iter.x > 0 || iter.x >= size_internal)
+			return (false);
+		if (iter.y < 0 || iter.y >= data_internal[0].size())
+			return (false);
+		return (true);
+	}
+
 private :
 
 	mod1_buffer<mod1_buffer<type>>	data_internal;
