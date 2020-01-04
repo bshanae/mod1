@@ -35,7 +35,7 @@ bool 					mod1_water::callback(int key, void *ptr)
 				water->set_water_depth(iter, HEIGHT);
 #endif
 
-		water->update_height();
+		water->update_model();
 		water->update_color();
 		water->upload_buffer(mod1_model_data::slot_point);
 		water->upload_buffer(mod1_model_data::slot_color);
@@ -79,7 +79,7 @@ bool 					mod1_water::callback(int key, void *ptr)
 #ifndef FLOOD_UNIFORM
 	water->gravity();
 #endif
-	water->update_height();
+	water->update_model();
 	water->update_color();
 	water->upload_buffer(mod1_model_data::slot_point);
 	water->upload_buffer(mod1_model_data::slot_color);

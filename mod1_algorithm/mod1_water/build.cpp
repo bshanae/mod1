@@ -46,6 +46,6 @@ void 					mod1_water::build()
 	flow_vertical.set(0);
 
 
-	update_height();
+	update_model();
 	update_color();
 }

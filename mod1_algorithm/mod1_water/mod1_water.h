@@ -55,17 +55,22 @@ private :
 		flow_down
 	}								mod1_water_flow_type;
 	float							get_flow(const mod1_point2<int> &iter, const mod1_water_flow_type &type);
+	float							get_flow_safe(const mod1_point2<int> &iter, const mod1_water_flow_type &type);
 
-	void							update_height_helper(const mod1_point2<int> &iter, const float &new_height);
-	void							update_height_iter(const mod1_point2<int> &iter);
-	void							update_height();
+	void							set_flow(const mod1_point2<int> &iter, const mod1_water_flow_type &type, const float &value);
+	bool							set_flow_safe(const mod1_point2<int> &iter, const mod1_water_flow_type &type, const float &value);
+
+	void							update_model_helper_b(const mod1_point2<int> &iter, const float &new_height);
+	void							update_model_helper_a(const mod1_point2<int> &iter);
+	void							update_model();
 
 	void							update_color();
 
 	void							update_flow();
 	void							limit_flow();
-	void							update_water_depth();
+	void							update_depth();
 
+	void 							gravity_debug();
 	void							gravity();
 };
 

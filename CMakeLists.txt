@@ -78,9 +78,12 @@ set(MOD1_ALGORITHM
 	./mod1_algorithm/mod1_water/build.cpp
 	./mod1_algorithm/mod1_water/model.cpp
 	./mod1_algorithm/mod1_water/get_x.cpp
-	./mod1_algorithm/mod1_water/x_height.cpp
+	./mod1_algorithm/mod1_water/set_x.cpp
+	mod1_algorithm/mod1_water/x_model.cpp
 	./mod1_algorithm/mod1_water/gravity_x.cpp
-	./mod1_algorithm/mod1_water/exception_x.cpp)
+	./mod1_algorithm/mod1_water/exception_x.cpp
+	./mod1_algorithm/mod1_water/x_flow.cpp
+	mod1_algorithm/mod1_water/x_depth.cpp)
 
 set(MOD1_ENGINE
 	./mod1_engine/mod1_core/mod1_core.cpp
