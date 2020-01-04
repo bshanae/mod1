@@ -10,11 +10,11 @@ float				mod1_water::get_flow(const mod1_point2<int> &iter, const mod1_water_flo
 	if (type == flow_right)
 		return (flow_horizontal[iter.x][iter.y]);
 	else if (type == flow_up)
-		return (flow_vertical[iter.x][iter.y - 1]);
+		return (-1 * flow_vertical[iter.x][iter.y - 1]);
 	else if (type == flow_left)
 		return (-1 * flow_horizontal[iter.x - 1][iter.y]);
 	else if (type == flow_down)
-		return (-1 * flow_vertical[iter.x][iter.y]);
+		return (flow_vertical[iter.x][iter.y]);
 	throw (exception_unknown_flow_type());
 }
 

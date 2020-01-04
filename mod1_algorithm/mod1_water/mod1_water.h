@@ -15,6 +15,8 @@
 #define MOD1_WATER_LEFT				mod1_point2<int>(-1, 0)
 #define MOD1_WATER_DOWN				mod1_point2<int>(0, 1)
 
+#define MOD1_WATER_EPSILON			0.01f
+
 #define	FLOOD_POINT
 
 class								mod1_water : private mod1_plane
@@ -52,7 +54,8 @@ private :
 		flow_right,
 		flow_up,
 		flow_left,
-		flow_down
+		flow_down,
+		flow_end
 	}								mod1_water_flow_type;
 	float							get_flow(const mod1_point2<int> &iter, const mod1_water_flow_type &type);
 	float							get_flow_safe(const mod1_point2<int> &iter, const mod1_water_flow_type &type);

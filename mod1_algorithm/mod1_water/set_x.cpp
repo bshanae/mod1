@@ -5,11 +5,11 @@ void				mod1_water::set_flow(const mod1_point2<int> &iter, const mod1_water_flow
 	if (type == flow_right)
 		flow_horizontal[iter.x][iter.y] = value;
 	else if (type == flow_up)
-		flow_vertical[iter.x][iter.y - 1] = value;
+		flow_vertical[iter.x][iter.y - 1] = -1 * value;
 	else if (type == flow_left)
 		flow_horizontal[iter.x - 1][iter.y] = -1 * value;
 	else if (type == flow_down)
-		flow_vertical[iter.x][iter.y] = -1 * value;
+		flow_vertical[iter.x][iter.y] = value;
 	else
 		throw (exception_unknown_flow_type());
 }
