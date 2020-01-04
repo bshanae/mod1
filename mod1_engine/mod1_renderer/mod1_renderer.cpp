@@ -5,15 +5,19 @@
 {
 	core.set_callback(glfw_callback, this);
 
-	light_position = glm::vec3(0, 100, 0);
+	light_info.ambient_intensity = 0.3;
+	light_info.point_position = glm::vec3(0, 100, 0);
+	light_info.point_intensity = 0.8;
+	light_info.point_power = 2.;
 
 	uniform_view = glGetUniformLocation(program.object(), "view");
 	uniform_projection = glGetUniformLocation(program.object(), "projection");
 	glUniformMatrix4fv(uniform_projection, 1, GL_FALSE, glm::value_ptr(camera.projection));
-	uniform_light = glGetUniformLocation(program.object(), "light_position");
+	uniform_light_ambient_intensity = glGetUniformLocation(program.object(), "light_info.ambient_intensity");
+	uniform_light_point_position = glGetUniformLocation(program.object(), "light_info.point_position");
+	uniform_light_point_intensity = glGetUniformLocation(program.object(), "light_info.point_intensity");
+	uniform_light_point_power = glGetUniformLocation(program.object(), "light_info.point_power");
 }
-
-#define M1				2
 
 void					mod1_renderer::glfw_callback(GLFWwindow* window, int key, int code, int action, int mode)
 {
@@ -33,27 +37,27 @@ void					mod1_renderer::glfw_callback(GLFWwindow* window, int key, int code, int
 	else if (key == GLFW_KEY_A)
 		renderer->camera.move(
 			mod1_camera::mod1_axis_x, mod1_camera::mod1_negative,
-			mod_light ? &renderer->light_position : nullptr);
+			mod_light ? &renderer->light_info.point_position : nullptr);
 	else if (key == GLFW_KEY_D)
 		renderer->camera.move(
 			mod1_camera::mod1_axis_x, mod1_camera::mod1_positive,
-			mod_light ? &renderer->light_position : nullptr);
+			mod_light ? &renderer->light_info.point_position : nullptr);
 	else if (key == GLFW_KEY_W)
 		renderer->camera.move(
 			mod1_camera::mod1_axis_z, mod1_camera::mod1_negative,
-			mod_light ? &renderer->light_position : nullptr);
+			mod_light ? &renderer->light_info.point_position : nullptr);
 	else if (key == GLFW_KEY_S)
 		renderer->camera.move(
 			mod1_camera::mod1_axis_z, mod1_camera::mod1_positive,
-			mod_light ? &renderer->light_position : nullptr);
+			mod_light ? &renderer->light_info.point_position : nullptr);
 	else if (key == GLFW_KEY_Q)
 		renderer->camera.move(
 			mod1_camera::mod1_axis_y, mod1_camera::mod1_positive,
-			mod_light ? &renderer->light_position : nullptr);
+			mod_light ? &renderer->light_info.point_position : nullptr);
 	else if (key == GLFW_KEY_E)
 		renderer->camera.move(
 			mod1_camera::mod1_axis_y, mod1_camera::mod1_negative,
-			mod_light ? &renderer->light_position : nullptr);
+			mod_light ? &renderer->light_info.point_position : nullptr);
 	else if (key == GLFW_KEY_LEFT)
 		renderer->camera.rotate(mod1_camera::mod1_axis_y, mod1_camera::mod1_positive);
 	else if (key == GLFW_KEY_RIGHT)
@@ -93,7 +97,10 @@ void 					mod1_renderer::prepare_internal()
 	glClearColor(0.1f, 0.1f, 0.1f, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glUniformMatrix4fv(uniform_view, 1, GL_FALSE, glm::value_ptr(camera.view()));
-	glUniform3f(uniform_light, light_position.x, light_position.y, light_position.z);
+	glUniform1f(uniform_light_ambient_intensity, light_info.ambient_intensity);
+	glUniform3f(uniform_light_point_position, light_info.point_position.x, light_info.point_position.y, light_info.point_position.z);
+	glUniform1f(uniform_light_point_intensity, light_info.point_intensity);
+	glUniform1f(uniform_light_point_power, light_info.point_power);
 }
 
 void 					mod1_renderer::render_internal()

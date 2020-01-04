@@ -29,6 +29,14 @@ public :
 
 	const glm::vec3				camera_position = glm::vec3(5, 5, 20);
 
+	typedef struct
+	{
+		float 					ambient_intensity;
+		glm::vec3				point_position;
+		float					point_intensity;
+		float					point_power;
+	}							mod1_light_info;
+
 private :
 
 	static void					glfw_callback(GLFWwindow* window, int key, int code, int action, int mode);
@@ -42,11 +50,14 @@ private :
 	mod1_loader					loader;
 	mod1_camera					camera;
 
-	glm::vec3					light_position;
+	mod1_light_info				light_info;
 
 	GLuint						uniform_view;
 	GLuint						uniform_projection;
-	GLuint						uniform_light;
+	GLuint						uniform_light_ambient_intensity;
+	GLuint						uniform_light_point_position;
+	GLuint						uniform_light_point_intensity;
+	GLuint						uniform_light_point_power;
 
 	void						prepare_internal();
 	void						render_internal();

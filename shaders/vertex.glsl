@@ -1,24 +1,45 @@
 #version 400 core
 
+struct							mod1_light_info
+{
+	float 						ambient_intensity;
+	vec3						point_position;
+	float						point_intensity;
+	float						point_power;
+};
+
 layout(location = 0) in	vec3	position;
 layout(location = 1) in	vec3	normal;
 layout(location = 2) in	vec3	color;
 
 uniform mat4					view;
 uniform mat4					projection;
-uniform vec3					light_position;
+uniform mod1_light_info			light_info;
 
 out vec3						pass_color;
 out float						pass_light_intensity;
 
+float							calculate_light_intensity()
+{
+	vec3						normal_global;
+	vec3						to_light;
+	float						n_dot_l;
+	float						result;
+
+	normal_global = normalize(normal);
+	to_light = normalize(light_info.point_position - position);
+	n_dot_l = dot(normal_global, to_light);
+
+	result = pow(light_info.point_intensity * n_dot_l, light_info.point_power);
+	result += light_info.ambient_intensity;
+	result = clamp(result, 0, 1);
+
+	return (result);
+}
+
 void							main()
 {
-	vec3						normal_global = normalize(normal);
-	vec3						to_light = normalize(light_position - position);
-
-	float						n_dot_l = dot(normal_global, to_light);
-
-    pass_light_intensity = 0.8 * clamp(n_dot_l, 0, 1) + 0.3;
+    pass_light_intensity = calculate_light_intensity();
     pass_color = color;
 
     gl_Position = projection * view * vec4(position, 1);

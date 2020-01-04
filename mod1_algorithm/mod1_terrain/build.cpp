@@ -12,8 +12,8 @@ void					mod1_terrain::build()
 	for (auto const &iter_source : data_raw)
 		generate_hill(iter_source);
 
-	apply_noise(2, 5, 2.5);
-	apply_noise(10, 2);
+//	apply_noise(2, 5, 2.5);
+//	apply_noise(10, 2);
 
 	update_normal();
 
