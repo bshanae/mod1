@@ -73,13 +73,14 @@ set(MOD1_ALGORITHM
 	./mod1_algorithm/mod1_terrain/x_color.cpp
 	./mod1_algorithm/mod1_terrain/model.cpp
 	./mod1_algorithm/mod1_terrain/exception_x.cpp
+	./mod1_algorithm/mod1_terrain/apply_noise.cpp
 
 	./mod1_algorithm/mod1_water/mod1_water.cpp
 	./mod1_algorithm/mod1_water/build.cpp
 	./mod1_algorithm/mod1_water/model.cpp
 	./mod1_algorithm/mod1_water/get_x.cpp
 	./mod1_algorithm/mod1_water/set_x.cpp
-	mod1_algorithm/mod1_water/x_model.cpp
+	./mod1_algorithm/mod1_water/x_model.cpp
 	./mod1_algorithm/mod1_water/gravity_x.cpp
 	./mod1_algorithm/mod1_water/exception_x.cpp
 	./mod1_algorithm/mod1_water/x_flow.cpp

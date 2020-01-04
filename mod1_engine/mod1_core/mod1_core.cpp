@@ -31,8 +31,8 @@
 
 	glEnable(GL_DEPTH_TEST);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-//	glEnable(GL_CULL_FACE);
-//	glCullFace(GL_BACK);
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
 }
 
 					mod1_core::~mod1_core()
