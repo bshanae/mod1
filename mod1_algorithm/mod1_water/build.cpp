@@ -1,8 +1,8 @@
 #include "mod1_water.h"
 
-#define MACRO_A			1
+#define MACRO_A			10
 #define MACRO_g			10
-#define MACRO_dt		100
+#define MACRO_dt		5.f
 
 void 					mod1_water::build()
 {

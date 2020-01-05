@@ -44,26 +44,27 @@ void 					mod1_water::gravity_debug()
 }
 
 int 					i = 0;
-//#define DEBUG
+//#define DEBUG_GRAVITY
+//#define DEBUG_FLOW
 
 void					mod1_water::gravity()
 {
 
-#ifdef DEBUG
+#ifdef DEBUG_GRAVITY
 	printf("\nBefore gravity (i = %i)\n\n", i++);
 	gravity_debug();
 #endif
 
 	update_flow();
 
-#ifdef DEBUG
+#ifdef DEBUG_FLOW
 	printf("\nBefore limiting (i = %i)\n\n", i);
 	gravity_debug();
 #endif
 
 	limit_flow();
 
-#ifdef DEBUG
+#ifdef DEBUG_FLOW
 	printf("\nAfter limiting (i = %i)\n\n", i);
 	gravity_debug();
 #endif
@@ -71,7 +72,7 @@ void					mod1_water::gravity()
 	update_depth();
 	update_model();
 
-#ifdef DEBUG
+#ifdef DEBUG_GRAVITY
 	printf("\nAfter gravity (i = %i)\n\n", i);
 	gravity_debug();
 #endif

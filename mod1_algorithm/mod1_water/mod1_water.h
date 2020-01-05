@@ -17,7 +17,7 @@
 
 #define MOD1_WATER_EPSILON			0.01f
 
-#define	FLOOD_POINT
+#define	FLOOD_BORDER
 
 class								mod1_water : private mod1_plane
 {

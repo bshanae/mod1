@@ -22,17 +22,17 @@ bool 					mod1_water::callback(int key, void *ptr)
 
 		for (iter.y = 0; iter.y < water->size.y; iter.y++)
 			for (iter.x = 0; iter.x < WIDTH; iter.x++)
-				water->set_water_depth(iter, HEIGHT);
+				water->water_depth[iter] = HEIGHT;
 		for (iter.y = 0; iter.y < water->size.y; iter.y++)
 			for (iter.x = water->size.x - WIDTH - 2; iter.x < water->size.x - 2; iter.x++)
-				water->set_water_depth(iter, HEIGHT);
+				water->water_depth[iter] = HEIGHT;
 
 		for (iter.x = 0; iter.x < water->size.x - 2; iter.x++)
 			for (iter.y = 0; iter.y < WIDTH; iter.y++)
-				water->set_water_depth(iter, HEIGHT);
+				water->water_depth[iter] = HEIGHT;
 		for (iter.x = 0; iter.x < water->size.x - 2; iter.x++)
 			for (iter.y = water->size.y - WIDTH - 2; iter.y < water->size.y - 2; iter.y++)
-				water->set_water_depth(iter, HEIGHT);
+				water->water_depth[iter] = HEIGHT;
 #endif
 
 		water->update_model();
@@ -53,15 +53,15 @@ bool 					mod1_water::callback(int key, void *ptr)
 
 #ifdef FLOOD_POINT
 
-#define A_X				0
-#define A_Y				0
+#define A_X				35
+#define A_Y				35
 
 #define D_X				1
 #define D_Y				1
 
 	for (int y = 0; y < D_Y; y++)
 		for (int x = 0; x < D_X; x++)
-			water->water_depth[mod1_point2<int>(A_X + x, A_Y + y)] += 1;
+			water->water_depth[mod1_point2<int>(A_X + x, A_Y + y)] += 5;
 #endif
 
 #ifdef FLOOD_UNIFORM

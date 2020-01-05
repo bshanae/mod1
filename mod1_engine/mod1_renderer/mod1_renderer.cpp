@@ -5,9 +5,9 @@
 {
 	core.set_callback(glfw_callback, this);
 
-	light_info.ambient_intensity = 0.3;
+	light_info.ambient_intensity = 0.;
 	light_info.point_position = glm::vec3(0, 100, 0);
-	light_info.point_intensity = 0.8;
+	light_info.point_intensity = 1.;
 	light_info.point_power = 2.;
 
 	uniform_view = glGetUniformLocation(program.object(), "view");

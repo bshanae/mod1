@@ -69,11 +69,10 @@ set(MOD1_ALGORITHM
 	./mod1_algorithm/mod1_terrain/x_delta.cpp
 	./mod1_algorithm/mod1_terrain/find_ptr.cpp
 	./mod1_algorithm/mod1_terrain/interpolate_x.cpp
-	./mod1_algorithm/mod1_terrain/write_height.cpp
 	./mod1_algorithm/mod1_terrain/x_color.cpp
 	./mod1_algorithm/mod1_terrain/model.cpp
 	./mod1_algorithm/mod1_terrain/exception_x.cpp
-	./mod1_algorithm/mod1_terrain/apply_noise.cpp
+	mod1_algorithm/mod1_terrain/x_noise.cpp
 
 	./mod1_algorithm/mod1_water/mod1_water.cpp
 	./mod1_algorithm/mod1_water/build.cpp

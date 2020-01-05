@@ -84,10 +84,25 @@ private :
 	void 						compute_delta();
 	void						optimize_delta();
 
-	bool						write_height(const mod1_point2<int> &iter, const float &height);
+	bool						generate_hill_helper(const mod1_point2<int> &iter, const float &height);
 	void						generate_hill(const mod1_point3<int> &summit);
 
-	void						apply_noise(const float &frequency, const float &range, const float &power = 1);
+	FastNoise					noise_generator;
+
+	float						generate_noise(
+								const mod1_point2<int> &iter,
+								const float &frequency,
+								const float &range,
+								const float &power = 1) const;
+	void						apply_noise(
+								const mod1_point2<int> &iter,
+								const float &frequency,
+								const float &range,
+								const float &power = 1);
+	void						apply_noise(
+								const float &frequency,
+								const float &range,
+								const float &power = 1);
 
 	mod1_point2<int>			find_ptr(const mod1_point3<int> &object) const;
 

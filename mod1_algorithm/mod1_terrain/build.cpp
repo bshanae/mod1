@@ -9,6 +9,8 @@ void					mod1_terrain::build()
 
 	//					Hills
 
+	noise_generator.SetNoiseType(FastNoise::Perlin);
+
 	for (auto const &iter_source : data_raw)
 		generate_hill(iter_source);
 
