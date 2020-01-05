@@ -44,10 +44,12 @@ protected :
 
 	void 				update_normal();
 	void 				update_normal_helper(const mod1_point2<int> &iter);
+	void				update_normal_helper_test(const mod1_point2<int> &a, const mod1_point2<int> &b, const mod1_point2<int> &c);
 
 private :
 
 	bool				is_set = false;
+
 };
 
 

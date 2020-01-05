@@ -78,6 +78,8 @@ public :
 
 	int 				size_in_bytes() const
 	{
+		if (!size_internal)
+			throw (exception_not_allocated());
 		return (size_internal * sizeof(type));
 	}
 
@@ -93,7 +95,7 @@ public :
 	{
 		if (!size_internal)
 			throw (exception_not_allocated());
-		memcpy(data_internal, source, size_internal);
+		memcpy(data_internal, source, size_internal * sizeof(type));
 	}
 
 	type				&operator [] (int index)

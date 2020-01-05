@@ -32,7 +32,7 @@ public :
 		mod1_positive = 1
 	}					mod1_sign;
 
-	void				move(mod1_axis axis, mod1_sign sign, glm::vec3 *target = NULL);
+	void				move(mod1_axis axis, mod1_sign sign, glm::vec3 *target = nullptr);
 	void				rotate(mod1_axis axis, mod1_sign sign);
 
 	const glm::mat4		&view();
@@ -59,7 +59,7 @@ private :
 
 	glm::vec3			position;
 
-	const float			movement_speed = 2.;
+	const float			movement_speed = 4.;
 	const float			rotation_speed = 0.035;
 
 	void 				update_transformation();

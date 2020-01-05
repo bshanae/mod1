@@ -17,7 +17,7 @@ uniform mat4					camera_view;
 uniform mat4					camera_projection;
 uniform mod1_light_info			light_info;
 
-out vec3						pass_color;
+flat out vec3					pass_color;
 out float						pass_light_intensity;
 
 float							calculate_light_intensity()
@@ -29,7 +29,7 @@ float							calculate_light_intensity()
 
 	normal_global = normalize(normal);
 	to_light = normalize(light_info.point_position - position);
-	n_dot_l = dot(normal_global, to_light);
+	n_dot_l = clamp(dot(normal_global, to_light), 0, 1);
 
 	result = pow(light_info.point_intensity * n_dot_l, light_info.point_power);
 	result += light_info.ambient_intensity;

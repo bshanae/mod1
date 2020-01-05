@@ -1,5 +1,7 @@
 #include "mod1_cube.h"
 
+#define SIDE	15.f
+
 void			mod1_cube::build()
 {
 	set_as_built();
@@ -7,15 +9,15 @@ void			mod1_cube::build()
 	float		points[] =
 	{
 		// 		Upper square
-		+2, +2, -2,
-		+2, +2, +2,
-		-2, +2, -2,
-		-2, +2, +2,
+		+SIDE, +SIDE, -SIDE,
+		+SIDE, +SIDE, +SIDE,
+		-SIDE, +SIDE, -SIDE,
+		-SIDE, +SIDE, +SIDE,
 		// 		Lower square
-		+2, -2, -2,
-		+2, -2, +2,
-		-2, -2, -2,
-		-2, -2, +2
+		+SIDE, -SIDE, -SIDE,
+		+SIDE, -SIDE, +SIDE,
+		-SIDE, -SIDE, -SIDE,
+		-SIDE, -SIDE, +SIDE
 	};
 
 	int 		indices[] =
@@ -68,16 +70,16 @@ void			mod1_cube::build()
 		0, 0, 0
 	};
 
-	data.point_buffer.allocate(sizeof(points));
+	data.point_buffer.allocate(sizeof(points) / sizeof(float));
 	data.point_buffer.copy(points);
 
-	data.index_buffer.allocate(sizeof(indices));
+	data.index_buffer.allocate(sizeof(indices) / sizeof(int));
 	data.index_buffer.copy(indices);
 
-	data.normal_buffer.allocate(sizeof(normals));
+	data.normal_buffer.allocate(sizeof(normals) / sizeof(float));
 	data.normal_buffer.copy(normals);
 
-	data.color_buffer.allocate(sizeof(colors));
+	data.color_buffer.allocate(sizeof(colors) / sizeof(float));
 	data.color_buffer.copy(colors);
 }
 
