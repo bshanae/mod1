@@ -5,14 +5,15 @@
 {
 	core.set_callback(glfw_callback, this);
 
-	light_info.ambient_intensity = 0.;
-	light_info.point_position = glm::vec3(0, 100, 0);
+	light_info.ambient_intensity = 0.2;
+	light_info.point_position = glm::vec3(1, 0, 0);
 	light_info.point_intensity = 1.;
 	light_info.point_power = 2.;
 
-	uniform_view = glGetUniformLocation(program.object(), "view");
-	uniform_projection = glGetUniformLocation(program.object(), "projection");
-	glUniformMatrix4fv(uniform_projection, 1, GL_FALSE, glm::value_ptr(camera.projection));
+	uniform_object_transformation = glGetUniformLocation(program.object(), "object_transformation");
+	uniform_camera_view = glGetUniformLocation(program.object(), "camera_view");
+	uniform_camera_projection = glGetUniformLocation(program.object(), "camera_projection");
+	glUniformMatrix4fv(uniform_camera_projection, 1, GL_FALSE, glm::value_ptr(camera.projection));
 	uniform_light_ambient_intensity = glGetUniformLocation(program.object(), "light_info.ambient_intensity");
 	uniform_light_point_position = glGetUniformLocation(program.object(), "light_info.point_position");
 	uniform_light_point_intensity = glGetUniformLocation(program.object(), "light_info.point_intensity");
@@ -92,24 +93,23 @@ void					mod1_renderer::load_model(mod1_model *model)
 	model_array.push_back(model);
 }
 
-void 					mod1_renderer::prepare_internal()
+void 					mod1_renderer::render_internal()
 {
+	program.start();
+
 	glClearColor(0.1f, 0.1f, 0.1f, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glUniformMatrix4fv(uniform_view, 1, GL_FALSE, glm::value_ptr(camera.view()));
+
+	glUniformMatrix4fv(uniform_camera_view, 1, GL_FALSE, glm::value_ptr(camera.view()));
 	glUniform1f(uniform_light_ambient_intensity, light_info.ambient_intensity);
 	glUniform3f(uniform_light_point_position, light_info.point_position.x, light_info.point_position.y, light_info.point_position.z);
 	glUniform1f(uniform_light_point_intensity, light_info.point_intensity);
 	glUniform1f(uniform_light_point_power, light_info.point_power);
-}
 
-void 					mod1_renderer::render_internal()
-{
-	program.start();
-	prepare_internal();
 	for (auto &model : model_array)
 	{
 		model->use();
+		glUniformMatrix4fv(uniform_object_transformation, 1, GL_FALSE, glm::value_ptr(model->transformation));
 		glDrawElements(GL_TRIANGLES, model->vertex_number(), GL_UNSIGNED_INT, nullptr);
 	}
 	program.stop();

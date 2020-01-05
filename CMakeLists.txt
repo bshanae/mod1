@@ -36,6 +36,7 @@ include_directories(
 	./mod1_engine/mod1_buffer
 	./mod1_engine/mod1_loader
 	./mod1_engine/mod1_model
+	./mod1_engine/mod1_cube
 	./mod1_engine/mod1_camera
 	./mod1_engine/mod1_callback
 
@@ -98,6 +99,8 @@ set(MOD1_ENGINE
 
 	./mod1_engine/mod1_model/mod1_model.cpp
 	./mod1_engine/mod1_model/mod1_model_data.cpp
+
+	./mod1_engine/mod1_cube/mod1_cube.cpp
 
 	./mod1_engine/mod1_loader/eab_x.cpp
 	./mod1_engine/mod1_loader/vao_x.cpp

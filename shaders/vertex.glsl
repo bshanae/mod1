@@ -12,8 +12,9 @@ layout(location = 0) in	vec3	position;
 layout(location = 1) in	vec3	normal;
 layout(location = 2) in	vec3	color;
 
-uniform mat4					view;
-uniform mat4					projection;
+uniform mat4					object_transformation;
+uniform mat4					camera_view;
+uniform mat4					camera_projection;
 uniform mod1_light_info			light_info;
 
 out vec3						pass_color;
@@ -40,7 +41,7 @@ float							calculate_light_intensity()
 void							main()
 {
     pass_light_intensity = calculate_light_intensity();
-    pass_color = color;
+	pass_color = color;
 
-    gl_Position = projection * view * vec4(position, 1);
+    gl_Position = camera_projection * camera_view * object_transformation * vec4(position, 1);
 }

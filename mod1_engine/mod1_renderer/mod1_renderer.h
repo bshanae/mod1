@@ -52,14 +52,14 @@ private :
 
 	mod1_light_info				light_info;
 
-	GLuint						uniform_view;
-	GLuint						uniform_projection;
+	GLuint						uniform_object_transformation;
+	GLuint						uniform_camera_view;
+	GLuint						uniform_camera_projection;
 	GLuint						uniform_light_ambient_intensity;
 	GLuint						uniform_light_point_position;
 	GLuint						uniform_light_point_intensity;
 	GLuint						uniform_light_point_power;
 
-	void						prepare_internal();
 	void						render_internal();
 
 };

@@ -33,10 +33,13 @@ public :
 	void			use();
 	int 			vertex_number();
 
+	glm::mat4 		transformation = glm::mat4(1);
+
 protected :
 
 	mod1_model_data	data;
 	int				vertex_number_internal = -1;
+
 
 	void			*get_ptr(const int &index, const mod1_model_data::slot_type &slot);
 	void const		*get_ptr(const int &index, const mod1_model_data::slot_type &slot) const;

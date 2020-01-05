@@ -24,11 +24,18 @@ void				mod1_main::build()
 	water->build();
 }
 
+#include "mod1_cube.h"
+
 void				mod1_main::loop()
 {
 	renderer->add_callback(mod1_water::callback, water);
 
-	renderer->load_model(terrain->model());
+	mod1_cube		cube;
+
+	cube.build();
+
+//	renderer->load_model(terrain->model());
+	renderer->load_model(cube.model());
 //	renderer->load_model(water->model());
 	renderer->loop();
 }

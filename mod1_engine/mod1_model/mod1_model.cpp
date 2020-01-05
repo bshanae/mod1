@@ -29,6 +29,7 @@ void				mod1_model::use()
 	if (!is_loaded)
 		throw (exception_not_loaded());
 	mod1_loader::vao_bind(data.vao);
+//	glUniformMatrix4fv(uniform_camera, 1, GL_FALSE, glm::value_ptr(transformation));
 }
 
 int 				mod1_model::vertex_number()

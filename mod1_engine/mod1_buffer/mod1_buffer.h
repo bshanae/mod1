@@ -89,6 +89,13 @@ public :
 			data_internal[i] = value;
 	}
 
+	void 				copy(const type *source)
+	{
+		if (!size_internal)
+			throw (exception_not_allocated());
+		memcpy(data_internal, source, size_internal);
+	}
+
 	type				&operator [] (int index)
 	{
 		if (!is_valid(index))
