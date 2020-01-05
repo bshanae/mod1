@@ -4,6 +4,7 @@
 #include "mod1_core.h"
 #include "mod1_program.h"
 #include "mod1_model.h"
+#include "mod1_cube.h"
 #include "mod1_loader.h"
 #include "mod1_camera.h"
 #include "mod1_callback.h"
@@ -28,6 +29,7 @@ public :
 	void						loop();
 
 	const glm::vec3				camera_position = glm::vec3(5, 5, 20);
+	const glm::vec3				background = glm::vec3(0.8);
 
 	typedef struct
 	{
@@ -51,6 +53,7 @@ private :
 	mod1_camera					camera;
 
 	mod1_light_info				light_info;
+	mod1_cube					light_cube;
 
 	GLuint						uniform_object_transformation;
 	GLuint						uniform_camera_view;

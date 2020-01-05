@@ -31,15 +31,15 @@ public :
 	virtual void	build() = 0;
 	void			load(mod1_loader &loader);
 	void			use();
-	int 			vertex_number();
 
-	glm::mat4 		transformation = glm::mat4(1);
+	int 			vertex_number();
+	glm::mat4		&transformation();
 
 protected :
 
 	mod1_model_data	data;
 	int				vertex_number_internal = -1;
-
+	glm::mat4 		transformation_internal = glm::mat4(1);
 
 	void			*get_ptr(const int &index, const mod1_model_data::slot_type &slot);
 	void const		*get_ptr(const int &index, const mod1_model_data::slot_type &slot) const;

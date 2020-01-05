@@ -11,6 +11,7 @@ public :
 
 	void			build() final;
 	mod1_model		*model();
+	using			mod1_model::transformation;
 };
 
 

@@ -1,7 +1,9 @@
 #include "mod1_renderer.h"
 
 						mod1_renderer::mod1_renderer() :
-						camera(core.window_width(), core.window_height(), camera_position)
+						camera(core.window_width(),
+						core.window_height(), camera_position),
+						light_info()
 {
 	core.set_callback(glfw_callback, this);
 
@@ -18,6 +20,9 @@
 	uniform_light_point_position = glGetUniformLocation(program.object(), "light_info.point_position");
 	uniform_light_point_intensity = glGetUniformLocation(program.object(), "light_info.point_intensity");
 	uniform_light_point_power = glGetUniformLocation(program.object(), "light_info.point_power");
+
+	light_cube.build();
+	load_model(light_cube.model());
 }
 
 void					mod1_renderer::glfw_callback(GLFWwindow* window, int key, int code, int action, int mode)
@@ -97,19 +102,22 @@ void 					mod1_renderer::render_internal()
 {
 	program.start();
 
-	glClearColor(0.1f, 0.1f, 0.1f, 1);
+	glClearColor(background.x, background.y, background.z, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glUniformMatrix4fv(uniform_camera_view, 1, GL_FALSE, glm::value_ptr(camera.view()));
+
 	glUniform1f(uniform_light_ambient_intensity, light_info.ambient_intensity);
 	glUniform3f(uniform_light_point_position, light_info.point_position.x, light_info.point_position.y, light_info.point_position.z);
 	glUniform1f(uniform_light_point_intensity, light_info.point_intensity);
 	glUniform1f(uniform_light_point_power, light_info.point_power);
 
+	light_cube.transformation() = glm::translate(glm::mat4(1), light_info.point_position);
+
 	for (auto &model : model_array)
 	{
+		glUniformMatrix4fv(uniform_object_transformation, 1, GL_FALSE, glm::value_ptr(model->transformation()));
 		model->use();
-		glUniformMatrix4fv(uniform_object_transformation, 1, GL_FALSE, glm::value_ptr(model->transformation));
 		glDrawElements(GL_TRIANGLES, model->vertex_number(), GL_UNSIGNED_INT, nullptr);
 	}
 	program.stop();

@@ -29,12 +29,16 @@ void				mod1_model::use()
 	if (!is_loaded)
 		throw (exception_not_loaded());
 	mod1_loader::vao_bind(data.vao);
-//	glUniformMatrix4fv(uniform_camera, 1, GL_FALSE, glm::value_ptr(transformation));
 }
 
 int 				mod1_model::vertex_number()
 {
 	return (vertex_number_internal);
+}
+
+glm::mat4			&mod1_model::transformation()
+{
+	return (transformation_internal);
 }
 
 void				*mod1_model::get_ptr(const int &index, const mod1_model_data::slot_type &slot)
