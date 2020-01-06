@@ -17,7 +17,7 @@
 
 #define MOD1_WATER_EPSILON			0.01f
 
-#define	FLOOD_BORDER
+#define	FLOOD_POINT
 
 class								mod1_water : private mod1_plane
 {
@@ -43,6 +43,7 @@ private :
 	mod1_buffer2<float>				flow_vertical;
 	float							flow_constant;
 
+	mod1_buffer2<float>				water_depth_copy;
 	mod1_buffer2<float>				water_depth;
 	float							water_depth_constant;
 
@@ -71,7 +72,9 @@ private :
 
 	void							update_flow();
 	void							limit_flow();
+
 	void							update_depth();
+	void							diffuse_depth();
 
 	void 							gravity_debug();
 	void							gravity();

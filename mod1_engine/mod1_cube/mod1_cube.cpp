@@ -1,6 +1,6 @@
 #include "mod1_cube.h"
 
-#define SIDE	15.f
+#define SIDE	2.f
 
 void			mod1_cube::build()
 {

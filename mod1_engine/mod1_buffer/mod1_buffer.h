@@ -30,11 +30,19 @@ public :
 		}
 	};
 
-	struct				exception_logic : public std::exception
+	struct				exception_logic_a : public std::exception
 	{
 		const char		*what() const noexcept override
 		{
 			return ("Mod1 Buffer : Buffer shouldn't be allocated more than once");
+		}
+	};
+
+	struct				exception_logic_b : public std::exception
+	{
+		const char		*what() const noexcept override
+		{
+			return ("Mod1 Buffer : Source buffer has different size");
 		}
 	};
 
@@ -57,7 +65,7 @@ public :
 	void 				allocate(int size)
 	{
 		if (data_internal)
-			throw (exception_logic());
+			throw (exception_logic_a());
 		if (size < 1)
 			throw (exception_bad_size());
 		data_internal = new type[size];
@@ -96,6 +104,15 @@ public :
 		if (!size_internal)
 			throw (exception_not_allocated());
 		memcpy(data_internal, source, size_internal * sizeof(type));
+	}
+
+	void 				copy(const mod1_buffer<type> &source)
+	{
+		if (!size_internal)
+			throw (exception_not_allocated());
+		if (size_internal != source.size())
+			throw (exception_logic_b());
+		memcpy(data_internal, source.data(), size_internal * sizeof(type));
 	}
 
 	type				&operator [] (int index)

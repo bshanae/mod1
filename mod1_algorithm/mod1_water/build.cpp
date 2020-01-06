@@ -36,6 +36,7 @@ void 					mod1_water::build()
 			ptr[2] = 1;
 		}
 
+	water_depth_copy.allocate(size.x, size.y);
 	water_depth.allocate(size.x, size.y);
 	water_depth.set(0);
 

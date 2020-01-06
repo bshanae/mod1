@@ -19,11 +19,19 @@ public :
 		}
 	};
 
-	struct							exception_logic : public std::exception
+	struct							exception_logic_a : public std::exception
 	{
 		const char					*what() const noexcept override
 		{
 			return ("Mod1 Buffer2 : Buffer shouldn't be allocated more than once");
+		}
+	};
+
+	struct							exception_logic_b : public std::exception
+	{
+		const char					*what() const noexcept override
+		{
+			return ("Mod1 Buffer2 : Source buffer has different size");
 		}
 	};
 
@@ -45,7 +53,7 @@ public :
 	void 							allocate(int size_column, int size_row)
 	{
 		if (size_internal)
-			throw (exception_logic());
+			throw (exception_logic_a());
 		if (size_column < 1)
 			throw (exception_bad_size());
 		data_internal.allocate(size_column);
@@ -70,6 +78,16 @@ public :
 			throw (exception_not_allocated());
 		for (int i = 0; i < size_internal; i++)
 			data_internal[i].set(value);
+	}
+
+	void 							copy(const mod1_buffer2<type> &source)
+	{
+		if (!size_internal)
+			throw (exception_not_allocated());
+		if (size_internal != source.size())
+			throw (exception_logic_b());
+		for (int i = 0; i < size_internal; i++)
+			data_internal[i].copy(source[i]);
 	}
 
 	mod1_buffer<type>				&operator [] (int index)
