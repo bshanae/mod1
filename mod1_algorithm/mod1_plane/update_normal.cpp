@@ -58,7 +58,7 @@ void	 				mod1_plane::update_normal_helper_test(
 
 void					mod1_plane::update_normal()
 {
-#define SOLUTION_A
+#define SOLUTION_B
 
 #ifdef SOLUTION_A
 	mod1_point2<int>	iter;

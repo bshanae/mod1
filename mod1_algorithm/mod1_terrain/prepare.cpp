@@ -26,7 +26,7 @@ void					mod1_terrain::prepare()
 		max_i = mod1_point2<int>::max(max_i, test);
 	}
 
-	mod1_point2<int> indent = (max_i - min_i) * MOD1_MAP_INDENT;
+	mod1_point2<int> indent = (max_i - min_i) * MOD1_TERRAIN_INDENT;
 
 	min_i -= indent;
 	max_i += indent;

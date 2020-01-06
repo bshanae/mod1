@@ -6,7 +6,7 @@ void						mod1_terrain::info(unsigned int flags) const
 
 	printf("Mod1 Terrain Info : \n");
 
-	if (flags & MOD1_MAP_INFO_RAW)
+	if (flags & MOD1_TERRAIN_INFO_RAW)
 	{
 		printf("\nSource\n");
 		printf("{\n");
@@ -17,7 +17,7 @@ void						mod1_terrain::info(unsigned int flags) const
 		printf("Raw max = {%d, %d, %d}\n", max_raw.x, max_raw.y, max_raw.z);
 	}
 
-	if (flags & MOD1_MAP_INFO_MODEL)
+	if (flags & MOD1_TERRAIN_INFO_MODEL)
 	{
 		printf("\nModel : \n");
 		printf("Min = {%f, %f}\n", min.x, min.y);
@@ -26,7 +26,7 @@ void						mod1_terrain::info(unsigned int flags) const
 		printf("Delta = %f(%d)\n", delta, delta_i);
 	}
 
-	if(flags & MOD1_MAP_INFO_POINT)
+	if(flags & MOD1_TERRAIN_INFO_POINT)
 	{
 		width_count = 0;
 		printf("\nPoints : \n");
@@ -45,7 +45,7 @@ void						mod1_terrain::info(unsigned int flags) const
 		}
 	}
 
-	if(flags & MOD1_MAP_INFO_NORMAL)
+	if(flags & MOD1_TERRAIN_INFO_NORMAL)
 	{
 		width_count = 0;
 		printf("\nNormals : \n");
@@ -64,7 +64,7 @@ void						mod1_terrain::info(unsigned int flags) const
 		}
 	}
 
-	if(flags & MOD1_MAP_INFO_COLOR)
+	if(flags & MOD1_TERRAIN_INFO_COLOR)
 	{
 		width_count = 0;
 		printf("\nNormals : \n");
@@ -83,7 +83,7 @@ void						mod1_terrain::info(unsigned int flags) const
 		}
 	}
 
-	if (flags & MOD1_MAP_INFO_POLYGON)
+	if (flags & MOD1_TERRAIN_INFO_POLYGON)
 	{
 		printf("\nPolygons : \n");
 		for (int i = 0; i < data.index_buffer.size(); i += 3)

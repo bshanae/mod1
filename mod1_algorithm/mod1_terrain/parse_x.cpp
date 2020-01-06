@@ -15,7 +15,7 @@ void						mod1_terrain::parse(const std::string &file)
 {
 	std::ifstream			stream;
 	int 					temp_char;
-	MOD1_MAP_RAW_DATA_RI	iter;
+	MOD1_TERRAIN_RAW_DATA_RI	iter;
 
 	stream.open(file);
 

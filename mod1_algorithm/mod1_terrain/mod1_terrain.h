@@ -6,20 +6,22 @@
 #include <fstream>
 #include <vector>
 
-#define MOD1_MAP_RAW_DATA		std::vector<mod1_point3<int>>
-#define MOD1_MAP_RAW_DATA_RI	MOD1_MAP_RAW_DATA::reverse_iterator
-#define MOD1_MAP_COLOR_DATA		std::vector<mod1_point3<float>>
-#define MOD1_MAP_DEFAULT_DELTA	10
-#define MOD1_MAP_DEFAULT_SIZE	mod1_point3<int>(100)
-#define MOD1_MAP_INDENT			0.3
-#define MOD1_MAP_MIN_SIZE		10
+#define MOD1_TERRAIN_RAW_DATA		std::vector<mod1_point3<int>>
+#define MOD1_TERRAIN_RAW_DATA_RI	MOD1_TERRAIN_RAW_DATA::reverse_iterator
+#define MOD1_TERRAIN_COLOR_DATA		std::vector<mod1_point3<float>>
+#define MOD1_TERRAIN_DEFAULT_DELTA	10
+#define MOD1_TERRAIN_DEFAULT_SIZE	mod1_point3<int>(100)
+#define MOD1_TERRAIN_INDENT			0.3
+#define MOD1_TERRAIN_MIN_SIZE		10
 
-#define MOD1_MAP_INFO_RAW		0x000001u
-#define MOD1_MAP_INFO_MODEL		0x000010u
-#define MOD1_MAP_INFO_POINT		0x000100u
-#define MOD1_MAP_INFO_NORMAL	0x001000u
-#define MOD1_MAP_INFO_COLOR		0x010000u
-#define MOD1_MAP_INFO_POLYGON	0x100000u
+#define MOD1_TERRAIN_INFO_RAW		0x000001u
+#define MOD1_TERRAIN_INFO_MODEL		0x000010u
+#define MOD1_TERRAIN_INFO_POINT		0x000100u
+#define MOD1_TERRAIN_INFO_NORMAL	0x001000u
+#define MOD1_TERRAIN_INFO_COLOR		0x010000u
+#define MOD1_TERRAIN_INFO_POLYGON	0x100000u
+
+#define MOD1_TERRAIN_NOISE_DISABLE
 
 class							mod1_terrain : private mod1_plane
 {
@@ -52,7 +54,7 @@ public :
 
 	mod1_model					*model() final;
 
-	void						info(unsigned int flags = MOD1_MAP_INFO_RAW | MOD1_MAP_INFO_MODEL) const;
+	void						info(unsigned int flags = MOD1_TERRAIN_INFO_RAW | MOD1_TERRAIN_INFO_MODEL) const;
 
 	void						push_color(const mod1_point3<float> &color);
 
@@ -62,7 +64,7 @@ public :
 
 private :
 
-	MOD1_MAP_RAW_DATA			data_raw;
+	MOD1_TERRAIN_RAW_DATA			data_raw;
 	mod1_point3<int>			min_raw = mod1_point3<int>(INT_MAX, INT_MAX, INT_MAX);
 	mod1_point3<int>			max_raw = mod1_point3<int>(-INT_MAX, -INT_MAX, -INT_MAX);
 	mod1_point3<int>			diff_raw;
@@ -70,7 +72,7 @@ private :
 
 	static float				parse_coordinate(std::ifstream &stream, bool eat_delimiter);
 
-	MOD1_MAP_COLOR_DATA			data_color;
+	MOD1_TERRAIN_COLOR_DATA			data_color;
 
 	mod1_point3<float>			compute_color(const float &height) const;
 

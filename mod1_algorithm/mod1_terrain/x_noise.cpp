@@ -9,6 +9,14 @@ float					mod1_terrain::generate_noise(
 	float				*ptr;
 	float				value;
 
+#ifdef MOD1_TERRAIN_NOISE_DISABLE
+	return (0);
+#else
+# ifndef MOD1_TERRAIN_NOISE_ENABLE
+#  error Terrain : Noise state is not defined
+# endif
+#endif
+
 	ptr = (float *)get_ptr(iter, mod1_model_data::slot_point);
 	value = noise_generator.GetNoise(ptr[0] * frequency, ptr[2] * frequency);
 	value *= range;
