@@ -1,8 +1,8 @@
 #include "mod1_water.h"
 
-#define MACRO_A			10
+#define MACRO_A			0.001
 #define MACRO_g			10
-#define MACRO_dt		5.f
+#define MACRO_dt		20.f
 
 void 					mod1_water::build()
 {
@@ -45,7 +45,6 @@ void 					mod1_water::build()
 
 	flow_vertical.allocate(size.x, size.y - 1);
 	flow_vertical.set(0);
-
 
 	update_model();
 	update_color();

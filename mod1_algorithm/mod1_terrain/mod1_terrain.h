@@ -1,5 +1,6 @@
 #pragma once
 
+#include "mod1_primitives.h"
 #include "FastNoise.h"
 #include "mod1_plane.h"
 
@@ -21,7 +22,7 @@
 #define MOD1_TERRAIN_INFO_COLOR		0x010000u
 #define MOD1_TERRAIN_INFO_POLYGON	0x100000u
 
-#define MOD1_TERRAIN_NOISE_DISABLE
+#define MOD1_TERRAIN_NOISE			MOD1_ENABLE
 
 class							mod1_terrain : private mod1_plane
 {

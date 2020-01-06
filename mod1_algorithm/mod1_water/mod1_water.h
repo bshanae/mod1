@@ -17,7 +17,7 @@
 
 #define MOD1_WATER_EPSILON			0.01f
 
-#define	FLOOD_POINT
+#define	FLOOD_BORDER
 
 class								mod1_water : private mod1_plane
 {
@@ -41,11 +41,11 @@ private :
 	mod1_terrain const				*terrain;
 	mod1_buffer2<float>				flow_horizontal;
 	mod1_buffer2<float>				flow_vertical;
-	float							flow_constant;
+	float							flow_constant = 0;
 
 	mod1_buffer2<float>				water_depth_copy;
 	mod1_buffer2<float>				water_depth;
-	float							water_depth_constant;
+	float							water_depth_constant = 0;
 
 	float							get_terrain_height(const mod1_point2<int> &iter);
 	float							get_total_height(const mod1_point2<int> &iter);

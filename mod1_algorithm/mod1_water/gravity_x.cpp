@@ -56,9 +56,6 @@ void					mod1_water::gravity()
 	update_flow();
 	limit_flow();
 
-	for (int ii = 0; ii < water_depth.size(); ii++)
-		water_depth_copy[ii].copy(water_depth[ii]);
-
 	water_depth_copy.copy(water_depth);
 
 	update_depth();

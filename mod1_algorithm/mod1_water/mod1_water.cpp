@@ -50,7 +50,7 @@ bool 					mod1_water::callback(int key, void *ptr)
 #define D_X               	5
 #define D_Y               	5
 
-#define Q					15
+#define Q					30
 
 		for (int y = 0; y < D_Y; y++)
 			for (int x = 0; x < D_X; x++)
@@ -89,18 +89,18 @@ void					mod1_water::update_color()
 {
 	mod1_point2<int>	iter;
 	mod1_point3<float>	color;
-	float 				pressure;
+	float 				total;
 	float 				*ptr;
 
 	for (iter.y = 0; iter.y < terrain->size.y; iter.y++)
 		for (iter.x = 0; iter.x < terrain->size.x; iter.x++)
 		{
-			pressure = get_total_height(iter);
+			total = get_total_height(iter);
 			for (int i = 0; i < 3; i++)
 				color[i] = mod1_terrain::interpolate_cosine(
 					MOD1_WATER_COLOR_A[i],
 					MOD1_WATER_COLOR_B[i],
-					pressure / 60);
+					total / 80);
 			ptr = (float *)get_ptr(iter, mod1_model_data::slot_color);
 			for (int i = 0; i < 3; i++)
 				ptr[i] = color[i];

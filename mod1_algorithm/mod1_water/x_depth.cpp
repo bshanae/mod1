@@ -10,7 +10,7 @@ void					mod1_water::update_depth()
 		for (iter.x = 0; iter.x < terrain->size.x; iter.x++)
 		{
 			total_flow = 0;
-			for (int i = flow_right; i <= flow_down; i++)
+			for (int i = flow_right; i < flow_end; i++)
 			{
 				total_temp = get_flow_safe(iter, (mod1_water_flow_type)i);
 				total_flow += total_temp;

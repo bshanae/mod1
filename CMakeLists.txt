@@ -28,6 +28,7 @@ include_directories(
 
 	./third_party/FastNoise
 
+	./mod1_engine/
 	./mod1_engine/mod1_point
 	./mod1_engine/mod1_core
 	./mod1_engine/mod1_shader
