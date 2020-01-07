@@ -1,19 +1,14 @@
 #pragma once
 
-#include "mod1_min_max.h"
+#include "mod1_primiteve.h"
+#include "mod1_exception.h"
 
 template				<typename t1>
 class					mod1_point2
 {
 public :
 
-	struct				exception_bad_index : public std::exception
-	{
-		const char *	what() const noexcept override
-		{
-			return ("Mod1 Point2 : Bad index");
-		}
-	};
+	MOD1_EXCEPTION_GENERATE(exception_index, "Mod1 Point2 : Bad index")
 
 	t1					x = 0;
 	t1					y = 0;
@@ -110,7 +105,7 @@ public :
 			case 1 :
 				return (y);
 			default :
-				throw (exception_bad_index());
+				throw (exception_index());
 		}
 	}
 
@@ -123,7 +118,7 @@ public :
 			case 1 :
 				return (y);
 			default :
-				throw (exception_bad_index());
+				throw (exception_index());
 		}
 	}
 

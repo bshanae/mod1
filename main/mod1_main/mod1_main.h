@@ -12,10 +12,7 @@ public :
 					mod1_main(int argc, char **argv);
 					~mod1_main();
 
-	struct			exception_invalid_arguments : public std::exception
-	{
-		const char	*what() const noexcept override;
-	};
+	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_invalid_arguments, "Mod1 Main : Invalid number of arguments")
 
 	void			build();
 	void			loop();

@@ -2,6 +2,8 @@
 
 #include "mod1_OpenGL.h"
 #include "mod1_const.h"
+#include "mod1_exception.h"
+
 #include "mod1_shader.h"
 
 class					mod1_program
@@ -12,10 +14,7 @@ public :
 						mod1_program();
 						~mod1_program();
 
-	struct				exception_compilation : public std::exception
-	{
-		const char		*what() const noexcept override;
-	};
+	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_compilation, "")
 
 	void				start();
 	void				stop();

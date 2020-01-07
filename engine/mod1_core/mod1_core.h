@@ -1,6 +1,7 @@
 #pragma once
 
 #include "mod1_OpenGL.h"
+#include "mod1_exception.h"
 
 #include <string>
 
@@ -9,26 +10,10 @@ class					mod1_core
 
 public :
 
-	struct				exception_logic_object : public std::exception
-	{
-		const char		*what() const noexcept override;
-	};
-
-	struct				exception_logic_callback : public std::exception
-	{
-		const char		*what() const noexcept override;
-	};
-
-	struct				exception_window : public std::exception
-	{
-		const char		*what() const noexcept override;
-	};
-
-	struct				exception_GLEW : public std::exception
-	{
-		const char		*what() const noexcept override;
-	};
-
+	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_logic_object, "Mod1 Core : Can't create more than one core")
+	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_logic_callback, "Mod1 Core : Can't create more than one callback")
+	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_window, "Mod1 Core : Can't initialize window")
+	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_GLEW, "Mod1 Core : Can't initialize GLEW")
 
 	typedef void		(* mod1_callback)(GLFWwindow *, int, int, int, int);
 

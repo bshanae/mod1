@@ -30,25 +30,10 @@ public :
 								mod1_terrain() = default;
 								~mod1_terrain() = default;
 
-	struct						exception_source : public std::exception
-	{
-		const char				*what() const noexcept override;
-	};
-
-	struct						exception_pattern : public std::exception
-	{
-		const char				*what() const noexcept override;
-	};
-
-	struct						exception_search : public std::exception
-	{
-		const char				*what() const noexcept override;
-	};
-
-	struct						exception_color : public std::exception
-	{
-		const char				*what() const noexcept override;
-	};
+	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_source, "Mod1 Terrain : Invalid source file")
+	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_pattern, "Mod1 Terrain : Invalid pattern")
+	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_search, "Mod1 Terrain : Can't find given point")
+	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_color, "Mod1 Terrain : Too few colors defined")
 
 	void						parse(const std::string &file);
 	void						build() final;

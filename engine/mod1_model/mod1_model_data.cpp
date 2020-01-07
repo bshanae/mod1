@@ -1,9 +1,6 @@
 #include "mod1_model_data.h"
 
-const char *		mod1_model_data::exception_unknown_slot::what() const noexcept
-{
-	return ("Mod1 Model Data : Unknown slot");
-}
+MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_model_data, exception_unknown_slot)
 
 void 				*mod1_model_data::get_ptr(const int &index, const slot_type &slot)
 {

@@ -1,19 +1,8 @@
 #include "mod1_model.h"
 
-const char			*mod1_model::exception_not_built::what() const noexcept
-{
-	return ("Mod1 Model : Not built");
-}
-
-const char			*mod1_model::exception_not_loaded::what() const noexcept
-{
-	return ("Mod1 Model : Not loaded");
-}
-
-const char			*mod1_model::exception_logic_dynamic::what() const noexcept
-{
-	return ("Mod1 Model : Can't set model as dynamic after loading");
-}
+MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_model, exception_build)
+MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_model, exception_load)
+MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_model, exception_dynamic)
 
 void				mod1_model::load(mod1_loader &loader)
 {
@@ -25,9 +14,9 @@ void				mod1_model::load(mod1_loader &loader)
 void				mod1_model::use()
 {
 	if (!is_built)
-		throw (exception_not_built());
+		throw (exception_build());
 	if (!is_loaded)
-		throw (exception_not_loaded());
+		throw (exception_load());
 	mod1_loader::vao_bind(data.vao);
 }
 
@@ -59,7 +48,7 @@ void 				mod1_model::set_as_built()
 void 				mod1_model::set_as_dynamic()
 {
 	if (is_built)
-		throw (exception_logic_dynamic());
+		throw (exception_dynamic());
 	is_dynamic = true;
 }
 

@@ -21,9 +21,9 @@ bool				mod1_water::set_flow_safe(const mod1_point2<int> &iter, const mod1_water
 		set_flow(iter, type, value);
 		return (true);
 	}
-	catch (mod1_buffer<float>::exception_bad_index &exception)
+	catch (mod1_buffer<float>::exception_index &exception)
 	{}
-	catch (mod1_buffer2<float>::exception_bad_index &exception)
+	catch (mod1_buffer2<float>::exception_index &exception)
 	{}
 	return (false);
 }

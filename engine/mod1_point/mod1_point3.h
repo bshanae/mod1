@@ -1,19 +1,13 @@
 #pragma once
 
-#include <exception>
+#include "mod1_exception.h"
 
 template				<typename t1>
 class						mod1_point3
 {
 public :
 
-	struct					exception_bad_index : public std::exception
-	{
-		const char *		what() const noexcept override
-		{
-			return ("Mod1 Point3 : Bad index");
-		}
-	};
+	MOD1_EXCEPTION_GENERATE(exception_bad_index, "Mod1 Point3 : Bad index")
 
 	t1						x = 0;
 	t1						y = 0;

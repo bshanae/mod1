@@ -52,7 +52,7 @@ set(MAIN
 	main/main.cpp
 
 	main/mod1_main/mod1_main.cpp
-	main/mod1_main/exception_x.cpp)
+	)
 
 set(ALGORITHM
 	./algorithm/mod1_plane/mod1_plane.cpp
@@ -64,6 +64,7 @@ set(ALGORITHM
 	./algorithm/mod1_plane/model.cpp
 	./algorithm/mod1_plane/is_valid.cpp
 
+	./algorithm/mod1_terrain/mod1_terrain.cpp
 	./algorithm/mod1_terrain/parse_x.cpp
 	./algorithm/mod1_terrain/build.cpp
 	./algorithm/mod1_terrain/generate_hill.cpp
@@ -74,7 +75,6 @@ set(ALGORITHM
 	./algorithm/mod1_terrain/interpolate_x.cpp
 	./algorithm/mod1_terrain/x_color.cpp
 	./algorithm/mod1_terrain/model.cpp
-	./algorithm/mod1_terrain/exception_x.cpp
 	./algorithm/mod1_terrain/x_noise.cpp
 
 	./algorithm/mod1_water/mod1_water.cpp
@@ -84,9 +84,10 @@ set(ALGORITHM
 	./algorithm/mod1_water/set_x.cpp
 	./algorithm/mod1_water/x_model.cpp
 	./algorithm/mod1_water/gravity_x.cpp
-	./algorithm/mod1_water/exception_x.cpp
 	./algorithm/mod1_water/x_flow.cpp
-	./algorithm/mod1_water/x_depth.cpp)
+	./algorithm/mod1_water/x_depth.cpp
+	./algorithm/mod1_water/x_color.cpp
+	./algorithm/mod1_water/callback.cpp)
 
 set(ENGINE
 	./engine/mod1_core/mod1_core.cpp

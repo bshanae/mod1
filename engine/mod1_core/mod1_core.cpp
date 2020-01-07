@@ -1,5 +1,10 @@
 #include "mod1_core.h"
 
+MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_core, exception_logic_object)
+MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_core, exception_logic_callback)
+MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_core, exception_window)
+MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_core, exception_GLEW)
+
 					mod1_core::mod1_core()
 {
 	static int 		count;
@@ -75,24 +80,4 @@ void				mod1_core::set_callback(mod1_callback function, void *ptr)
 
 	glfwSetWindowUserPointer(window, ptr);
 	glfwSetKeyCallback(window, function);
-}
-
-const char			*mod1_core::exception_logic_object::what() const noexcept
-{
-	return ("Mod1 Core : Can't create more than one core");
-}
-
-const char			*mod1_core::exception_logic_callback::what() const noexcept
-{
-	return ("Mod1 Core : Can't create more than one callback");
-}
-
-const char			*mod1_core::exception_window::what() const noexcept
-{
-	return ("Mod1 Core : Can't initialize window");
-}
-
-const char			*mod1_core::exception_GLEW::what() const noexcept
-{
-	return ("Mod1 Core : Can't initialize GLEW");
 }

@@ -1,5 +1,6 @@
-#include <mod1_point3.h>
 #include "mod1_camera.h"
+
+MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_camera, exception_axis)
 
 					mod1_camera::mod1_camera(int screen_width, int screen_height, const glm::vec3 &position) :
 					projection(glm::perspective(
@@ -30,7 +31,7 @@ void				mod1_camera::move(mod1_axis axis, mod1_sign sign, glm::vec3 *target)
 	else if (axis == mod1_axis_z)
 		*target += axis_z * movement_speed * (float)sign;
 	else
-		throw (exception_bad_axis());
+		throw (exception_axis());
 	update_transformation();
 }
 
@@ -43,7 +44,7 @@ void				mod1_camera::rotate(mod1_axis axis, mod1_sign sign)
 	else if (axis == mod1_axis_z)
 		angle_z += (float)sign * rotation_speed;
 	else
-		throw (exception_bad_axis());
+		throw (exception_axis());
 	matrix_rotation = glm::eulerAngleYXZ(angle_y, angle_x, angle_z);
 	axis_x = glm::vec3(matrix_rotation * glm::vec4(axis_x_const, 1));
 	axis_y = glm::vec3(matrix_rotation * glm::vec4(axis_y_const, 1));
@@ -59,9 +60,4 @@ void 				mod1_camera::update_transformation()
 	direction = glm::vec3(matrix_rotation * forward_const);
 	up = glm::vec3(matrix_rotation * up_const);
 	matrix_view = glm::lookAt(position, position + direction, up);
-}
-
-const char			*mod1_camera::exception_bad_axis::what() const noexcept
-{
-	return ("Mod1 Camera : Unknown axis");
 }

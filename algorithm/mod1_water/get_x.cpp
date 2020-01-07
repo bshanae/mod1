@@ -24,9 +24,9 @@ float				mod1_water::get_flow_safe(const mod1_point2<int> &iter, const mod1_wate
 	{
 		return (get_flow(iter, type));
 	}
-	catch (mod1_buffer<float>::exception_bad_index &exception)
+	catch (mod1_buffer<float>::exception_index &exception)
 	{}
-	catch (mod1_buffer2<float>::exception_bad_index &exception)
+	catch (mod1_buffer2<float>::exception_index &exception)
 	{}
 	return (0);
 }

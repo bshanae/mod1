@@ -1,8 +1,7 @@
 #pragma once
 
 #include "mod1_OpenGL.h"
-
-#include <exception>
+#include "mod1_exception.h"
 
 class					mod1_camera
 {
@@ -14,10 +13,7 @@ public :
 						const glm::vec3 &position = glm::vec3(0, 0, 0));
 						~mod1_camera() = default;
 
-	struct				exception_bad_axis : public std::exception
-	{
-		const char		*what() const noexcept override;
-	};
+	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_axis, "Mod1 Camera : Unknown axis")
 
 	typedef enum
 	{

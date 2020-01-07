@@ -1,5 +1,7 @@
 #include "mod1_program.h"
 
+MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_program, exception_compilation)
+
 					mod1_program::mod1_program()
 {
 	mod1_shader		shader_vertex(GL_VERTEX_SHADER, MOD1_SOURCE_SHADER_VERTEX);
@@ -41,9 +43,4 @@ void				mod1_program::stop()
 GLuint				mod1_program::object()
 {
 	return (object_internal);
-}
-
-const char			*mod1_program::exception_compilation::what() const noexcept
-{
-	return ("Mod1 Program : Compilation error");
 }

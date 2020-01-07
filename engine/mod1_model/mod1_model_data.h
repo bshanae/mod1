@@ -1,6 +1,8 @@
 #pragma once
 
 #include "mod1_OpenGL.h"
+#include "mod1_exception.h"
+
 #include "mod1_buffer.h"
 
 class					mod1_model_data
@@ -21,10 +23,7 @@ public :
 	GLuint				vbo_normal = 0;
 	GLuint				vbo_color = 0;
 
-	struct				exception_unknown_slot : public std::exception
-	{
-		const char *	what() const noexcept override;
-	};
+	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_unknown_slot, "Mod1 Model Data : Unknown slot")
 
 	typedef enum
 	{

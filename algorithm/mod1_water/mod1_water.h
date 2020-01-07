@@ -23,10 +23,7 @@ class								mod1_water : private mod1_plane
 {
 public :
 
-	struct							exception_unknown_flow_type : public std::exception
-	{
-		const char					*what() const noexcept override;
-	};
+	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_unknown_flow_type, "Mod1 Water : Unknown flow type")
 
 	explicit	 					mod1_water(mod1_terrain const *terrain);
 									~mod1_water() = default;

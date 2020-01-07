@@ -1,5 +1,7 @@
 #include "mod1_main.h"
 
+MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_main, exception_invalid_arguments)
+
 					mod1_main::mod1_main(int argc, char **argv)
 {
 	renderer = new mod1_renderer;

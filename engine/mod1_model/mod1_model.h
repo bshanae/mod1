@@ -1,6 +1,8 @@
 #pragma once
 
 #include "mod1_OpenGL.h"
+#include "mod1_exception.h"
+
 #include "mod1_model_data.h"
 #include "mod1_loader.h"
 #include "mod1_point2.h"
@@ -13,20 +15,9 @@ public :
 					mod1_model() = default;
 					~mod1_model() = default;
 
-	struct			exception_not_built : public std::exception
-	{
-		const char	*what() const noexcept override;
-	};
-
-	struct			exception_not_loaded : public std::exception
-	{
-		const char	*what() const noexcept override;
-	};
-
-	struct			exception_logic_dynamic : public std::exception
-	{
-		const char	*what() const noexcept override;
-	};
+	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_build, "Mod1 Model : Object not built")
+	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_load, "Mod1 Model : Object not loaded")
+	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_dynamic, "Mod1 Model : Can't set object as dynamic after loading")
 
 	virtual void	build() = 0;
 	void			load(mod1_loader &loader);
