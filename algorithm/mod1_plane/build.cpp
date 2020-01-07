@@ -3,7 +3,7 @@
 void					mod1_plane::build()
 {
 	if (!is_set)
-		throw (exception_not_set());
+		throw (exception_logic());
 
 	set_as_built();
 

@@ -24,8 +24,6 @@ void				mod1_main::build()
 	water->build();
 }
 
-#include "mod1_cube.h"
-
 void				mod1_main::loop()
 {
 	renderer->add_callback(mod1_water::callback, water);

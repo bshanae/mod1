@@ -2,12 +2,12 @@
 
 					mod1_program::mod1_program()
 {
-	mod1_shader		shader_vertex(GL_VERTEX_SHADER, shader_vertex_source);
-	mod1_shader		shader_fragment(GL_FRAGMENT_SHADER, shader_fragment_source);
+	mod1_shader		shader_vertex(GL_VERTEX_SHADER, MOD1_SOURCE_SHADER_VERTEX);
+	mod1_shader		shader_fragment(GL_FRAGMENT_SHADER, MOD1_SOURCE_SHADER_FRAGMENT);
 
 	object_internal = glCreateProgram();
-	glAttachShader(object_internal, shader_vertex.get_object());
-	glAttachShader(object_internal, shader_fragment.get_object());
+	glAttachShader(object_internal, shader_vertex.object());
+	glAttachShader(object_internal, shader_fragment.object());
 	glLinkProgram(object_internal);
 	glUseProgram(object_internal);
 

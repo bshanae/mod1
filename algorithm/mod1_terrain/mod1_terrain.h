@@ -1,6 +1,6 @@
 #pragma once
 
-#include "mod1_primitives.h"
+#include "mod1_primiteve.h"
 #include "FastNoise.h"
 #include "mod1_plane.h"
 

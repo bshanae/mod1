@@ -1,5 +1,6 @@
 #pragma once
 
+#include "mod1_exception.h"
 #include "mod1_model.h"
 #include "mod1_point2.h"
 #include "mod1_point3.h"
@@ -10,15 +11,8 @@ public :
 						mod1_plane() = default;
 						~mod1_plane() = default;
 
-	struct				exception_bad_coordinate : public std::exception
-	{
-		const char		*what() const noexcept override;
-	};
-
-	struct				exception_not_set : public std::exception
-	{
-		const char		*what() const noexcept override;
-	};
+	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_coordinate, "Mod1 Plane : Bad coordinate")
+	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_logic, "Mod1 Plane : Object not set")
 
 	void				set(
 						const mod1_point2<float> &min,
@@ -51,5 +45,3 @@ private :
 	bool				is_set = false;
 
 };
-
-

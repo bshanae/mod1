@@ -11,7 +11,7 @@ bool					mod1_terrain::generate_hill_helper(const mod1_point2<int> &iter, const 
 			*ptr = height + generate_noise(iter, 5, 10);
 		return (true);
 	}
-	catch (mod1_plane::exception_bad_coordinate &exception)
+	catch (const mod1_plane::exception_coordinate &exception)
 	{
 		return (false);
 	}

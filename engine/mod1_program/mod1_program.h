@@ -1,6 +1,7 @@
 #pragma once
 
 #include "mod1_OpenGL.h"
+#include "mod1_const.h"
 #include "mod1_shader.h"
 
 class					mod1_program
@@ -24,6 +25,4 @@ public :
 private :
 
 	GLuint 				object_internal;
-	const std::string	shader_vertex_source = "./shaders/vertex.glsl";
-	const std::string	shader_fragment_source = "./shaders/fragment.glsl";
 };

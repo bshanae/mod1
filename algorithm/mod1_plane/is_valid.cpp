@@ -8,7 +8,7 @@ bool				mod1_plane::is_valid(const mod1_point2<int> &iter, const mod1_model_data
 	{
 		index = get_index(iter);
 	}
-	catch (exception_bad_coordinate &exception)
+	catch (const exception_coordinate &exception)
 	{
 		return (false);
 	}

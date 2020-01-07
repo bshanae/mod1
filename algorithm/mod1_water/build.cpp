@@ -1,6 +1,6 @@
 #include "mod1_water.h"
 
-#define MACRO_A			0.001
+#define MACRO_A			0.1
 #define MACRO_g			10
 #define MACRO_dt		20.f
 
