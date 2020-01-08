@@ -9,10 +9,9 @@ bool 					mod1_water::callback(int key, void *ptr)
 	{
 		water->water_depth.set(0);
 		
-#ifdef FLOOD_BORDER
-
-#define	HEIGHT			60
-#define WIDTH			5
+#ifdef MOD1_WATER_FLOOD_BORDER
+#define	HEIGHT			500
+#define WIDTH			100
 
 		for (iter.y = 0; iter.y < water->size.y; iter.y++)
 			for (iter.x = 0; iter.x < WIDTH; iter.x++)
@@ -36,22 +35,22 @@ bool 					mod1_water::callback(int key, void *ptr)
 		if (kostyl++ % 2 == 1)
 			return (false);
 
-#ifdef FLOOD_POINT
+#ifdef MOD1_WATER_FLOOD_POINT
 
-#define A_X               	5
-#define A_Y                	5
+#define A_X               	10
+#define A_Y                	10
 
-#define D_X               	5
-#define D_Y               	5
+#define D_X               	10
+#define D_Y               	10
 
-#define Q					30
+#define Q					500
 
 		for (int y = 0; y < D_Y; y++)
 			for (int x = 0; x < D_X; x++)
 				water->water_depth[mod1_point2<int>(A_X + x, A_Y + y)] = Q;
 #endif
 
-#ifdef FLOOD_UNIFORM
+#ifdef MOD1_WATER_FLOOD_UNIFORM
 		static float		level = 0;
 
 		if (level > water->terrain->max_raw.z)
@@ -67,7 +66,7 @@ bool 					mod1_water::callback(int key, void *ptr)
 		;
 	else
 		return (false);
-#ifndef FLOOD_UNIFORM
+#ifndef MOD1_WATER_FLOOD_UNIFORM
 	water->gravity();
 #endif
 

@@ -40,6 +40,11 @@ protected :
 	void 				update_normal_helper(const mod1_point2<int> &iter);
 	void				update_normal_helper_test(const mod1_point2<int> &a, const mod1_point2<int> &b, const mod1_point2<int> &c);
 
+	mod1_point3<float>	final_min;
+	mod1_point3<float>	final_max;
+
+	void 				update_final();
+
 private :
 
 	bool				is_set = false;

@@ -6,8 +6,9 @@ void						main_unsafe(int argc, char **argv)
 {
 	mod1_main				main(argc, argv);
 
-	main.terrain->push_color(mod1_point3<float>(1, 0, 0));
-//	main.terrain->push_color(mod1_point3<float>(1, 1, 1));
+	main.terrain->add_color(mod1_point3<int>(101, 67, 33));
+	main.terrain->add_color(mod1_point3<int>(80, 171, 93));
+	main.terrain->add_color(mod1_point3<int>(120, 120, 120));
 
 	main.build();
 

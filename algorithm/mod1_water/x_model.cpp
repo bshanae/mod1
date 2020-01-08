@@ -7,7 +7,8 @@ void					mod1_water::update_model_helper_a(const mod1_point2<int> &iter)
 	float				height;
 
 	water = water_depth[iter];
-	water = water > 0.1 ? water : -10;
+	if (water < MOD1_WATER_EPSILON)
+		water = MOD1_WATER_HIDDEN;
 	height = get_terrain_height(iter) + water;
 
 	iter_plane = mod1_point2<int>(iter.x, iter.y);

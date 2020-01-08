@@ -61,6 +61,7 @@ set(ALGORITHM
 	./algorithm/mod1_plane/set.cpp
 	./algorithm/mod1_plane/build.cpp
 	./algorithm/mod1_plane/update_normal.cpp
+	./algorithm/mod1_plane/update_final.cpp
 	./algorithm/mod1_plane/model.cpp
 	./algorithm/mod1_plane/is_valid.cpp
 

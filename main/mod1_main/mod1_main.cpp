@@ -30,8 +30,13 @@ void				mod1_main::loop()
 {
 	renderer->add_callback(mod1_water::callback, water);
 
+#if MOD1_ENABLED(MOD1_USE_TERRAIN)
 	renderer->load_model(terrain->model());
-//	renderer->load_model(water->model());
+#endif
+
+#if MOD1_ENABLED(MOD1_USE_WATER)
+	renderer->load_model(water->model());
+#endif
 
 	renderer->loop();
 }

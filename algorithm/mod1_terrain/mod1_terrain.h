@@ -27,7 +27,8 @@ public :
 
 	void					info(unsigned int flags = MOD1_TERRAIN_INFO_RAW | MOD1_TERRAIN_INFO_MODEL) const;
 
-	void					push_color(const mod1_point3<float> &color);
+	void					add_color(const mod1_point3<float> &color);
+	void 					add_color(const mod1_point3<int> &color);
 
 	static float			interpolate_linear(float min, float max, float ratio);
 	static float			interpolate_cosine(float min, float max, float ratio);

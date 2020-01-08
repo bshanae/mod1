@@ -1,23 +1,17 @@
 #pragma once
 
+#include "mod1_const.h"
+#include "mod1_preference.h"
+
 #include "mod1_model.h"
 #include "mod1_plane.h"
 #include "mod1_terrain.h"
 #include "mod1_buffer2.h"
 
-#include <random>
-
-#define MOD1_WATER_COLOR_A			mod1_point3<float>(0, 0.62, 1)
-#define MOD1_WATER_COLOR_B			mod1_point3<float>(0, 0.05, 0.1)
-
 #define MOD1_WATER_RIGHT			mod1_point2<int>(1, 0)
 #define MOD1_WATER_UPPER			mod1_point2<int>(0, -1)
 #define MOD1_WATER_LEFT				mod1_point2<int>(-1, 0)
 #define MOD1_WATER_DOWN				mod1_point2<int>(0, 1)
-
-#define MOD1_WATER_EPSILON			0.01f
-
-#define	FLOOD_POINT
 
 class								mod1_water : private mod1_plane
 {

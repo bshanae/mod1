@@ -20,7 +20,8 @@ public :
 		this->y = value;
 		this->z = value;
 	}
-							mod1_point3(t1 x, t1 y, t1 z)
+
+							mod1_point3(t1 x, t1 y, t1 z = 0)
 	{
 		this->x = x;
 		this->y = y;

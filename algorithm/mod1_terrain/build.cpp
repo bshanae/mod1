@@ -23,6 +23,7 @@ void					mod1_terrain::build()
 #endif
 
 	update_normal();
+	update_final();
 
 	//					Colors
 

@@ -17,8 +17,8 @@ uniform mat4					camera_view;
 uniform mat4					camera_projection;
 uniform mod1_light_info			light_info;
 
-out vec3						pass_color;
-out float						pass_light_intensity;
+flat out vec3					pass_color;
+flat out float					pass_light_intensity;
 
 float							calculate_light_intensity()
 {

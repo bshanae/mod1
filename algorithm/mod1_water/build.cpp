@@ -1,8 +1,6 @@
 #include "mod1_water.h"
 
-#define MACRO_A			0.1
-#define MACRO_g			10
-#define MACRO_dt		20.f
+
 
 void 					mod1_water::build()
 {
@@ -14,8 +12,8 @@ void 					mod1_water::build()
 		terrain->delta);
 	mod1_plane::build();
 
-	flow_constant = MACRO_A * MACRO_g * (1.f / terrain->delta) * MACRO_dt;
-	water_depth_constant = MACRO_dt / (terrain->delta * terrain->delta);
+	flow_constant = MOD1_WATER_CONST_A * MOD1_WATER_CONST_g * (1.f / terrain->delta) * MOD1_WATER_CONST_dt;
+	water_depth_constant = MOD1_WATER_CONST_dt / (terrain->delta * terrain->delta);
 
 	mod1_point2<int>	iter;
 	float				*ptr;
