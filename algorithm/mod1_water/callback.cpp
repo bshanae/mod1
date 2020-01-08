@@ -51,15 +51,18 @@ bool 					mod1_water::callback(int key, void *ptr)
 #endif
 
 #ifdef MOD1_WATER_FLOOD_UNIFORM
-		static float		level = 0;
 
-		if (level > water->terrain->max_raw.z)
+#define STEP				50
+
+		static float		level = water->terrain->final_min.z;
+
+		if (level > water->terrain->final_max.z)
 			return (false);
 		for (iter.y = 0; iter.y < water->terrain->size.y; iter.y++)
 			for (iter.x = 0; iter.x < water->terrain->size.x; iter.x++)
-				if (water->get_pressure(iter) < level)
-					water->add_water(iter, 1);
-		level += water->water_drop_height;
+				if (water->get_total_height(iter) < level)
+					water->water_depth[iter] += STEP;
+		level += STEP;
 #endif
 	}
 	else if (key == GLFW_KEY_3)

@@ -74,7 +74,7 @@ set(ALGORITHM
 	./algorithm/mod1_terrain/x_delta.cpp
 	./algorithm/mod1_terrain/find_ptr.cpp
 	./algorithm/mod1_terrain/interpolate_x.cpp
-	./algorithm/mod1_terrain/x_color.cpp
+	algorithm/mod1_plane/x_color.cpp
 	./algorithm/mod1_terrain/model.cpp
 	./algorithm/mod1_terrain/x_noise.cpp
 

@@ -38,6 +38,8 @@ MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_core, exception_GLEW)
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 //	glEnable(GL_FRAMEBUFFER_SRGB);
 }
 

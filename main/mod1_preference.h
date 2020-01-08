@@ -6,8 +6,17 @@
 
 #define MOD1_NORMAL_TEST					MOD1_DISABLE
 
+#if MOD1_NORMAL_TEST
+#define MOD1_SOURCE_SHADER_VERTEX			"./shaders/test_vertex.glsl"
+#define MOD1_SOURCE_SHADER_GEOMETRY			"./shaders/test_geometry.glsl"
+#define MOD1_SOURCE_SHADER_FRAGMENT			"./shaders/test_fragment.glsl"
+#else
+#define MOD1_SOURCE_SHADER_VERTEX			"./shaders/vertex.glsl"
+#define MOD1_SOURCE_SHADER_FRAGMENT			"./shaders/fragment.glsl"
+#endif
+
 #define MOD1_USE_TERRAIN					MOD1_ENABLE
-#define MOD1_USE_WATER						MOD1_DISABLE
+#define MOD1_USE_WATER						MOD1_ENABLE
 
 #define MOD1_LIGHT_AMBIENT_INTENSITY		0.2
 #define MOD1_LIGHT_POINT_INTENSITY			0.8
@@ -38,7 +47,7 @@
 
 //											WATER
 
-#define MOD1_WATER_FLOOD_POINT
+#define MOD1_WATER_FLOOD_UNIFORM
 
 #define MOD1_WATER_CONST_A					1000
 #define MOD1_WATER_CONST_g					10

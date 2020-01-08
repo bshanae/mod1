@@ -2,3 +2,4 @@
 
 MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_plane, exception_coordinate)
 MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_plane, exception_logic)
+MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_plane, exception_color)

@@ -116,8 +116,20 @@ void 					mod1_renderer::render_internal()
 
 	light_cube.transformation() = glm::translate(glm::mat4(1), light_info.point_position);
 
+	static GLuint		x = -1;
+
+	if (x == -1)
+		x = glGetUniformLocation(program.object(), "x");
+
+	int i = 0;
+
 	for (auto &model : model_array)
 	{
+		if (i++ == 2)
+			glUniform1i(x, 1);
+		else
+			glUniform1i(x, 0);
+
 		glUniformMatrix4fv(uniform_object_transformation, 1, GL_FALSE, glm::value_ptr(model->transformation()));
 		model->use();
 		glDrawElements(GL_TRIANGLES, model->vertex_number(), GL_UNSIGNED_INT, nullptr);
