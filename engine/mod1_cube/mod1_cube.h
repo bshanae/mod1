@@ -1,5 +1,7 @@
 #pragma once
 
+#include "mod1_preference.h"
+
 #include "mod1_model.h"
 
 class				mod1_cube : private mod1_model

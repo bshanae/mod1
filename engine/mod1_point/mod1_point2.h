@@ -1,6 +1,6 @@
 #pragma once
 
-#include "mod1_primiteve.h"
+#include "mod1_primitive.h"
 #include "mod1_exception.h"
 
 template				<typename t1>

@@ -9,14 +9,14 @@ float					mod1_terrain::generate_noise(
 	float				*ptr;
 	float				value;
 
-#if MOD1_ENABLED(MOD1_TERRAIN_NOISE)
+#if MOD1_DISABLED(MOD1_TERRAIN_NOISE)
 	return (0);
 #endif
 
 	ptr = (float *)get_ptr(iter, mod1_model_data::slot_point);
 	value = noise_generator.GetNoise(ptr[0] * frequency, ptr[2] * frequency);
-	value *= range;
 	value = pow(abs(value), power) * (value > 0 ? 1.f : -1.f);
+	value *= range;
 	return (value);
 }
 

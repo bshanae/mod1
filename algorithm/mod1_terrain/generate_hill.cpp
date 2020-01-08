@@ -2,13 +2,18 @@
 
 bool					mod1_terrain::generate_hill_helper(const mod1_point2<int> &iter, const float &height)
 {
+	float				noise = 0;
 	float				*ptr;
 
 	try
 	{
 		ptr = (float *)get_ptr(iter, mod1_model_data::slot_point) + 1;
+#if MOD1_ENABLED(MOD1_TERRAIN_NOISE_HILL)
+		noise = generate_noise(iter, MOD1_TERRAIN_NOISE_HILL_FREQUENCY, MOD1_TERRAIN_NOISE_HILL_RANGE);
+		noise *= pow(interpolate_cosine(0, 1, height / max_raw.z), MOD1_TERRAIN_NOISE_HILL_ADD);
+#endif
 		if (*ptr < height)
-			*ptr = height + generate_noise(iter, 5, 10);
+			*ptr = height + noise;
 		return (true);
 	}
 	catch (const mod1_plane::exception_coordinate &exception)

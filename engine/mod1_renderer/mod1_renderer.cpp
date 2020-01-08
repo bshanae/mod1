@@ -7,9 +7,9 @@
 {
 	core.set_callback(glfw_callback, this);
 
-	light_info.ambient_intensity = 0.2;
-	light_info.point_position = glm::vec3(1, 0, 0);
-	light_info.point_intensity = 1.;
+	light_info.ambient_intensity = MOD1_LIGHT_AMBIENT_INTENSITY;
+	light_info.point_position = glm::vec3(MOD1_LIGHT_POINT_POSITION);
+	light_info.point_intensity = MOD1_LIGHT_POINT_INTENSITY;
 	light_info.point_power = 2.;
 
 	uniform_object_transformation = glGetUniformLocation(program.object(), "object_transformation");
@@ -21,8 +21,10 @@
 	uniform_light_point_intensity = glGetUniformLocation(program.object(), "light_info.point_intensity");
 	uniform_light_point_power = glGetUniformLocation(program.object(), "light_info.point_power");
 
+#if MOD1_ENABLED(MOD1_LIGHT_CUBE)
 	light_cube.build();
 	load_model(light_cube.model());
+#endif
 }
 
 void					mod1_renderer::glfw_callback(GLFWwindow* window, int key, int code, int action, int mode)

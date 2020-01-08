@@ -17,8 +17,7 @@ uniform mat4					camera_view;
 uniform mat4					camera_projection;
 uniform mod1_light_info			light_info;
 
-out vec3						pass_color;
-out float						pass_light_intensity;
+out vec4						_normal;
 
 float							calculate_light_intensity()
 {
@@ -40,8 +39,7 @@ float							calculate_light_intensity()
 
 void							main()
 {
-	pass_light_intensity = calculate_light_intensity();
-	pass_color = color;
+	_normal = vec4(normal, 1);
 
-	gl_Position = camera_projection * camera_view * object_transformation * vec4(position, 1);
+	gl_Position = object_transformation * vec4(position, 1);
 }

@@ -14,8 +14,13 @@ void					mod1_terrain::build()
 	for (auto const &iter_source : data_raw)
 		generate_hill(iter_source);
 
-	apply_noise(2, 5, 2.5);
-	apply_noise(10, 2);
+#if MOD1_ENABLED(MOD1_TERRAIN_NOISE_A)
+	apply_noise(MOD1_TERRAIN_NOISE_A_FREQUENCY, MOD1_TERRAIN_NOISE_A_RANGE, 2.5);
+#endif
+
+#if MOD1_ENABLED(MOD1_TERRAIN_NOISE_B)
+	apply_noise(MOD1_TERRAIN_NOISE_B_FREQUENCY, MOD1_TERRAIN_NOISE_B_RANGE);
+#endif
 
 	update_normal();
 

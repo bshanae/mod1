@@ -2,8 +2,15 @@
 
 MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_shader, exception_source)
 MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_shader, exception_compilation)
+MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_shader, exception_build)
+MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_shader, exception_link)
 
-						mod1_shader::mod1_shader(int type, const char *source)
+						mod1_shader::~mod1_shader()
+{
+	glDeleteShader(object_internal);
+}
+
+void					mod1_shader::build(int type, const char *source)
 {
 	std::string			string;
 	const char 			*ptr;
@@ -25,15 +32,27 @@ MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_shader, exception_compilation)
 		printf("Log : \n%s\n", log);
 		throw (exception_compilation());
 	}
+
+	is_build = true;
 }
 
-						mod1_shader::~mod1_shader()
+void					mod1_shader::link(const GLuint &program_id)
 {
-	glDeleteShader(object_internal);
+	if (!is_build)
+		throw (exception_build());
+
+	glAttachShader(program_id, object_internal);
+
+	is_linked = true;
 }
 
 GLuint					mod1_shader::object()
 {
+	if (!is_build)
+		throw (exception_build());
+	if (!is_linked)
+		throw (exception_link());
+
 	return (object_internal);
 }
 

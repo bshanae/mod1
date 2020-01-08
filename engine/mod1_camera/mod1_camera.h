@@ -1,6 +1,7 @@
 #pragma once
 
 #include "mod1_OpenGL.h"
+#include "mod1_preference.h"
 #include "mod1_exception.h"
 
 class					mod1_camera
@@ -55,8 +56,8 @@ private :
 
 	glm::vec3			position;
 
-	const float			movement_speed = 4.;
-	const float			rotation_speed = 0.035;
+	const float			movement_speed = MOD1_CAMERA_MOVEMENT_SPEED;
+	const float			rotation_speed = MOD1_CAMERA_ROTATION_SPEED;
 
 	void 				update_transformation();
 };

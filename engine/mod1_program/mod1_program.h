@@ -14,7 +14,7 @@ public :
 						mod1_program();
 						~mod1_program();
 
-	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_compilation, "")
+	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_compilation, "Mod1 Program : Compilation error")
 
 	void				start();
 	void				stop();
