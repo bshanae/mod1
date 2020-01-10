@@ -53,6 +53,10 @@ protected :
 							const mod1_model_data::slot_type &slot,
 							const mod1_indexing_convention &convention = convention_dual_first) const;
 
+	float					read_height(const mod1_point2<int> &iter);
+
+	bool					write_height(const mod1_point2<int> &iter, const float &z);
+
 	bool					is_valid(
 							const mod1_point2<int> &iter,
 							const mod1_model_data::slot_type &slot,

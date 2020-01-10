@@ -11,8 +11,8 @@ void					mod1_terrain::build()
 
 	noise_generator.SetNoiseType(FastNoise::Perlin);
 
-//	for (auto const &iter_source : data_raw)
-//		generate_hill(iter_source);
+	for (auto const &iter_source : data_raw)
+		generate_hill(iter_source);
 
 #if MOD1_ENABLED(MOD1_TERRAIN_NOISE_A)
 	apply_noise(MOD1_TERRAIN_NOISE_A_FREQUENCY, MOD1_TERRAIN_NOISE_A_RANGE, 2.5);

@@ -229,7 +229,7 @@ public :
 		return (mod1_point3<t1>(MOD1_MAX(a.x, b.x), MOD1_MAX(a.y, b.y), MOD1_MAX(a.z, b.z)));
 	}
 
-	void 					write_to_ptr(t1 *ptr, const mod1_axis_convention &convention)
+	void 					write_to_ptr(t1 *ptr, const mod1_axis_convention &convention) const
 	{
 		ptr[0] = this->x;
 		if (convention == convention_xyz)

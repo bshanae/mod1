@@ -37,14 +37,21 @@ float							calculate_light_intensity()
 	return (result);
 }
 
+#define FOG						0
+#define BACKGROUND				vec3(0.8, 0.8, 0.8)
+
 void							main()
 {
 	float						visibilty;
 
+#if FOG
 	visibilty = length(camera_view * object_transformation * vec4(position, 1)) / 10000;
 	visibilty = clamp(visibilty, 0, 1);
+#else
+	visibilty = 0;
+#endif
 
-	pass_color = mix(color * calculate_light_intensity(), vec3(0.8, 0.8, 0.8), visibilty);
+	pass_color = mix(color * calculate_light_intensity(), BACKGROUND, visibilty);
 
 	gl_Position = camera_projection * camera_view * object_transformation * vec4(position, 1);
 }

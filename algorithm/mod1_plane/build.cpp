@@ -26,15 +26,6 @@ void					mod1_plane::build()
 			}
 		}
 
-	for (iter.y = 0; iter.y < size.y; iter.y++)
-		for (iter.x = 0; iter.x < size.x; iter.x++)
-		{
-			break ;
-			temp = mod1_point3<float>(min.x + delta * iter.x, min.y + delta * iter.y, +5);
-			ptr = (float *)get_ptr(iter, mod1_model_data::slot_point, convention_dual_first);
-			temp.write_to_ptr(ptr, mod1_point3<float>::convention_xzy);
-		}
-
 	//					Indices
 
 	data.index_buffer.allocate(MOD1_PLANE_INDEX_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(size));
@@ -101,13 +92,6 @@ void					mod1_plane::build()
 				ptr = (float *)get_ptr(iter, mod1_model_data::slot_color, convention_dual_second);
 				temp.write_to_ptr(ptr, mod1_point3<float>::convention_xyz);
 			}
-		}
-
-	for (iter.y = 0; iter.y < size.y - 1; iter.y++)
-		for (iter.x = 1; iter.x < size.x; iter.x++)
-		{
-			ptr = (float *)get_ptr(iter, mod1_model_data::slot_color, convention_dual_first);
-			mod1_point3<float>(1, 0, 0).write_to_ptr(ptr, mod1_point3<float>::convention_xyz);
 		}
 
 	set_as_built();

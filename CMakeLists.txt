@@ -56,12 +56,14 @@ set(MAIN
 
 set(ALGORITHM
 	./algorithm/mod1_plane/mod1_plane.cpp
-	algorithm/mod1_plane/get_x.cpp
+	./algorithm/mod1_plane/get_x.cpp
 	./algorithm/mod1_plane/set.cpp
 	./algorithm/mod1_plane/build.cpp
-	algorithm/mod1_plane/update_x.cpp
+	./algorithm/mod1_plane/update_x.cpp
 	./algorithm/mod1_plane/model.cpp
-	algorithm/mod1_plane/is_x.cpp
+	./algorithm/mod1_plane/is_x.cpp
+	./algorithm/mod1_plane/read_x.cpp
+	./algorithm/mod1_plane/write_x.cpp
 
 	./algorithm/mod1_terrain/mod1_terrain.cpp
 	./algorithm/mod1_terrain/parse_x.cpp
@@ -72,7 +74,7 @@ set(ALGORITHM
 	./algorithm/mod1_terrain/x_delta.cpp
 	./algorithm/mod1_terrain/find_ptr.cpp
 	./algorithm/mod1_terrain/interpolate_x.cpp
-	algorithm/mod1_plane/x_color.cpp
+	./algorithm/mod1_plane/x_color.cpp
 	./algorithm/mod1_terrain/model.cpp
 	./algorithm/mod1_terrain/x_noise.cpp
 
