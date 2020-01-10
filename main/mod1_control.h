@@ -37,7 +37,7 @@
 //											MAIN
 
 #define MOD1_USE_TERRAIN					MOD1_ENABLE
-#define MOD1_USE_WATER						MOD1_DISABLE
+#define MOD1_USE_WATER						MOD1_ENABLE
 
 //											TERRAIN
 
@@ -62,7 +62,7 @@
 
 //											WATER
 
-#define MOD1_WATER_FLOOD_UNIFORM
+#define MOD1_WATER_FLOOD_POINT
 
 #define MOD1_WATER_CONST_A					1000
 #define MOD1_WATER_CONST_g					10

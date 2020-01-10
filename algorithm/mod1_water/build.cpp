@@ -1,7 +1,5 @@
 #include "mod1_water.h"
 
-
-
 void 					mod1_water::build()
 {
 	set_as_dynamic();

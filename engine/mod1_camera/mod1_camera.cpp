@@ -6,7 +6,7 @@ MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_camera, exception_axis)
 					projection(glm::perspective(
 						glm::radians(45.0f),
 						(float)screen_width / (float)screen_height,
-						0.1f,
+						0.5f,
 						100000.0f))
 {
 	this->position = position;
