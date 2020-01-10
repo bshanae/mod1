@@ -61,10 +61,9 @@ protected :
 
 	void 					update_normal();
 	void					update_normal_helper(
-							const int &a,
-							const int &b,
-							const int &c,
-							const int &n);
+							const int &index_a,
+							const int &index_b,
+							const int &index_c);
 
 	mod1_point3<float>		final_min;
 	mod1_point3<float>		final_max;

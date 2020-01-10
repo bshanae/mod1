@@ -71,7 +71,7 @@ void					mod1_plane::build()
 
 	data.normal_buffer.allocate(MOD1_PLANE_NORMAL_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(size));
 
-	temp = mod1_point3<float>(0, 0, 1);
+	temp = mod1_point3<float>(0, 0, -1);
 
 	for (iter.y = 0; iter.y < size.y - 1; iter.y++)
 		for (iter.x = 0; iter.x < size.x; iter.x++)
@@ -83,15 +83,6 @@ void					mod1_plane::build()
 				ptr = (float *)get_ptr(iter, mod1_model_data::slot_normal, convention_dual_second);
 				temp.write_to_ptr(ptr, mod1_point3<float>::convention_xzy);
 			}
-		}
-
-	temp = mod1_point3<float>(0, 0, -1);
-
-	for (iter.y = 0; iter.y < size.y - 1; iter.y++)
-		for (iter.x = 1; iter.x < size.x; iter.x++)
-		{
-			ptr = (float *)get_ptr(iter, mod1_model_data::slot_normal, convention_dual_first);
-			temp.write_to_ptr(ptr, mod1_point3<float>::convention_xzy);
 		}
 
 	//					Colors

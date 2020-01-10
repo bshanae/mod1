@@ -7,7 +7,7 @@ class						mod1_point3
 {
 public :
 
-	MOD1_EXCEPTION_GENERATE(exception_bad_index, "Mod1 Point3 : Bad index")
+	MOD1_EXCEPTION_GENERATE(exception_index, "Mod1 Point3 : Bad index")
 	MOD1_EXCEPTION_GENERATE(exception_axis_convetion, "Mod1 Point3 : Unknown axis convention")
 
 	t1						x = 0;
@@ -27,6 +27,31 @@ public :
 		this->x = x;
 		this->y = y;
 		this->z = z;
+	}
+
+
+	typedef enum
+	{
+		convention_xyz,
+		convention_xzy
+	}						mod1_axis_convention;
+
+	explicit				mod1_point3(t1 *ptr, const mod1_axis_convention &convention)
+	{
+		if (convention == convention_xyz)
+		{
+			this->x = ptr[0];
+			this->y = ptr[1];
+			this->z = ptr[2];
+		}
+		else if (convention == convention_xzy)
+		{
+			this->x = ptr[0];
+			this->y = ptr[2];
+			this->z = ptr[1];
+		}
+		else
+			throw (exception_axis_convetion());
 	}
 							~mod1_point3() = default;
 
@@ -106,6 +131,38 @@ public :
 		this->z /= other;
 	}
 
+	mod1_point3<t1>			dot(const mod1_point3<t1> &other) const
+	{
+		return (mod1_point3<t1>(
+			this->x * other->x,
+			this->y * other->y,
+			this->z * other->z));
+	}
+
+	static void				dot(const mod1_point3<t1> &a, const mod1_point3<t1> &b)
+	{
+		return (mod1_point3<t1>(
+			a->x * b->x,
+			a->y * b->y,
+			a->z * b->z));
+	}
+
+	mod1_point3<t1>			cross(const mod1_point3<t1> &other) const
+	{
+		return (mod1_point3<t1>(
+			this->y * other.z - this->z * other.y,
+			this->z * other.x - this->x * other.z,
+			this->x * other.y - this->y * other.x));
+	}
+
+	static mod1_point3<t1>	cross(const mod1_point3<t1> &a, const mod1_point3<t1> &b)
+	{
+		return (mod1_point3<t1>(
+			a.y * b.z - a.z * b.y,
+			a.z * b.x - a.x * b.z,
+			a.x * b.y - a.y * b.x));
+	}
+
 	t1						&operator [] (int i)
 	{
 		switch (i)
@@ -117,7 +174,7 @@ public :
 			case 2 :
 				return (z);
 			default :
-				throw (exception_bad_index());
+				throw (exception_index());
 		}
 	}
 
@@ -132,7 +189,7 @@ public :
 			case 2 :
 				return (z);
 			default :
-				throw (exception_bad_index());
+				throw (exception_index());
 		}
 	}
 
@@ -172,12 +229,6 @@ public :
 		return (mod1_point3<t1>(MOD1_MAX(a.x, b.x), MOD1_MAX(a.y, b.y), MOD1_MAX(a.z, b.z)));
 	}
 
-	typedef enum
-	{
-		convention_xyz,
-		convention_xzy
-	}						mod1_axis_convention;
-
 	void 					write_to_ptr(t1 *ptr, const mod1_axis_convention &convention)
 	{
 		ptr[0] = this->x;
@@ -193,5 +244,36 @@ public :
 		}
 		else
 			throw (exception_axis_convetion());
+	}
+
+	t1						length() const
+	{
+		return (sqrt(
+			this->x * this->x +
+			this->y * this->y +
+			this->z * this->z));
+	}
+
+	void 					normalize()
+	{
+		t1					length = this->length();
+
+		this->x /= length;
+		this->y /= length;
+		this->z /= length;
+	}
+
+	static mod1_point3<t1>	normalize(const mod1_point3<t1> &point)
+	{
+		t1					length = point->length();
+
+		return (mod1_point3<t1>(point->x / length, point->y / length, point->z / length));
+	}
+
+	mod1_point3<t1>	 		normalized() const
+	{
+		t1					length = this->length();
+
+		return (mod1_point3<t1>(this->x / length, this->y / length, this->z / length));
 	}
 };
