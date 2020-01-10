@@ -1,6 +1,6 @@
 #include "mod1_model_data.h"
 
-MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_model_data, exception_unknown_slot)
+MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_model_data, exception_unknown_slot)
 
 void 				*mod1_model_data::get_ptr(const int &index, const slot_type &slot)
 {

@@ -8,28 +8,28 @@ int 				mod1_plane::get_index(
 	{
 		case convention_single :
 		{
-			if (iter.x < 0 || iter.x >= MOD1_PLANE_REAL_SIZE_X(size.x))
+			if (iter.x < 0 || iter.x >= MOD1_PLANE_REAL_SIZE_X(size_internal.x))
 				throw (exception_coordinate());
-			if (iter.y < 0 || iter.y >= size.y)
+			if (iter.y < 0 || iter.y >= size_internal.y)
 				throw (exception_coordinate());
-			return (iter.y * MOD1_PLANE_REAL_SIZE_X(size.x) + iter.x);
+			return (iter.y * MOD1_PLANE_REAL_SIZE_X(size_internal.x) + iter.x);
 		}
 		case convention_dual_first :
 		{
-			if (iter.x < 0 || iter.x >= size.x)
+			if (iter.x < 0 || iter.x >= size_internal.x)
 				throw (exception_coordinate());
-			if (iter.y < 0 || iter.y >= size.y)
+			if (iter.y < 0 || iter.y >= size_internal.y)
 				throw (exception_coordinate());
-			return (iter.y * MOD1_PLANE_REAL_SIZE_X(size.x)
+			return (iter.y * MOD1_PLANE_REAL_SIZE_X(size_internal.x)
 					+ MOD1_PLANE_REAL_INDEX_X(iter.x));
 		}
 		case convention_dual_second :
 		{
-			if (iter.x < 0 || iter.x >= size.x)
+			if (iter.x < 0 || iter.x >= size_internal.x)
 				throw (exception_coordinate());
-			if (iter.y < 0 || iter.y >= size.y)
+			if (iter.y < 0 || iter.y >= size_internal.y)
 				throw (exception_coordinate());
-			return (iter.y * MOD1_PLANE_REAL_SIZE_X(size.x)
+			return (iter.y * MOD1_PLANE_REAL_SIZE_X(size_internal.x)
 					+ MOD1_PLANE_REAL_INDEX_X(iter.x) + 1);
 		}
 		default :

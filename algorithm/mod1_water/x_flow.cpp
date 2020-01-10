@@ -6,8 +6,8 @@ void					mod1_water::update_flow()
 	float 				height_me;
 	float 				height_neighbour;
 
-	for (iter.y = 0; iter.y < terrain->size.y; iter.y++)
-		for (iter.x = 0; iter.x < terrain->size.x; iter.x++)
+	for (iter.y = 0; iter.y < terrain->size().y; iter.y++)
+		for (iter.x = 0; iter.x < terrain->size().x; iter.x++)
 		{
 
 			height_me = get_total_height(iter);
@@ -36,8 +36,8 @@ void					mod1_water::limit_flow()
 	float				distribution[flow_end];
 	float				depth;
 
-	for (iter.y = 0; iter.y < terrain->size.y; iter.y++)
-		for (iter.x = 0; iter.x < terrain->size.x; iter.x++)
+	for (iter.y = 0; iter.y < terrain->size().y; iter.y++)
+		for (iter.x = 0; iter.x < terrain->size().x; iter.x++)
 		{
 			if ((depth = water_depth[iter]) < MOD1_WATER_EPSILON)
 			{

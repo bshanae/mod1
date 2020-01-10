@@ -2,7 +2,7 @@
 
 #include "mod1_OpenGL.h"
 #include "mod1_control.h"
-#include "mod1_exception.h"
+#include "mod1_generate_x.h"
 
 #include <string>
 
@@ -11,10 +11,10 @@ class					mod1_core
 
 public :
 
-	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_logic_object, "Mod1 Core : Can't create more than one core")
-	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_logic_callback, "Mod1 Core : Can't create more than one callback")
-	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_window, "Mod1 Core : Can't initialize window")
-	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_GLEW, "Mod1 Core : Can't initialize GLEW")
+	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_logic_object, "Mod1 Core : Can't create more than one core")
+	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_logic_callback, "Mod1 Core : Can't create more than one callback")
+	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_window, "Mod1 Core : Can't initialize window")
+	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_GLEW, "Mod1 Core : Can't initialize GLEW")
 
 	typedef void		(* mod1_callback)(GLFWwindow *, int, int, int, int);
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "mod1_OpenGL.h"
-#include "mod1_exception.h"
+#include "mod1_generate_x.h"
 
 #include <string>
 #include <fstream>
@@ -15,10 +15,10 @@ public :
 						mod1_shader() = default;
 						~mod1_shader();
 
-	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_source, "Mod1 Shader : Invalid source file")
-	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_compilation, "Mod1 Shader : Compilation error")
-	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_build, "Mod1 Shader : Object is not built")
-	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_link, "Mod1 Shader : Object is not linked")
+	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_source, "Mod1 Shader : Invalid source file")
+	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_compilation, "Mod1 Shader : Compilation error")
+	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_build, "Mod1 Shader : Object is not built")
+	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_link, "Mod1 Shader : Object is not linked")
 
 
 	void				build(int type, const char *source);

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "mod1_OpenGL.h"
-#include "mod1_exception.h"
+#include "mod1_generate_x.h"
 
 #include "mod1_buffer.h"
 
@@ -23,7 +23,7 @@ public :
 	GLuint				vbo_normal = 0;
 	GLuint				vbo_color = 0;
 
-	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_unknown_slot, "Mod1 Model Data : Unknown slot")
+	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_unknown_slot, "Mod1 Model Data : Unknown slot")
 
 	typedef enum
 	{

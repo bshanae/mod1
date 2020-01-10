@@ -1,14 +1,14 @@
 #pragma once
 
-#include "mod1_exception.h"
+#include "mod1_generate_x.h"
 
 template				<typename t1>
 class						mod1_point3
 {
 public :
 
-	MOD1_EXCEPTION_GENERATE(exception_index, "Mod1 Point3 : Bad index")
-	MOD1_EXCEPTION_GENERATE(exception_axis_convetion, "Mod1 Point3 : Unknown axis convention")
+	MOD1_GENERATE_EXCEPTION(exception_index, "Mod1 Point3 : Bad index")
+	MOD1_GENERATE_EXCEPTION(exception_axis_convetion, "Mod1 Point3 : Unknown axis convention")
 
 	t1						x = 0;
 	t1						y = 0;

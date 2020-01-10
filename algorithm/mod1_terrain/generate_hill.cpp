@@ -7,7 +7,11 @@ bool					mod1_terrain::generate_hill_helper(const mod1_point2<int> &iter, const 
 	try
 	{
 #if MOD1_ENABLED(MOD1_TERRAIN_NOISE_HILL)
-		noise = generate_noise(iter, MOD1_TERRAIN_NOISE_HILL_FREQUENCY, MOD1_TERRAIN_NOISE_HILL_RANGE);
+		noise = generate_noise(
+			iter,
+			MOD1_TERRAIN_NOISE_HILL_FREQUENCY,
+			MOD1_TERRAIN_NOISE_HILL_RANGE,
+			MOD1_TERRAIN_NOISE_HILL_OFFSET);
 		noise *= pow(interpolate_cosine(0, 1, height / max_raw.z), MOD1_TERRAIN_NOISE_HILL_ADD);
 #endif
 		if (read_height(iter) < height)
@@ -26,7 +30,7 @@ void					mod1_terrain::generate_hill(const mod1_point3<int> &summit)
 	mod1_point2<int>	iter;
 	float				height;
 	bool 				at_least_one;
-	const int 			step_limit = (int)(summit.z / delta);
+	const int 			step_limit = (int)(summit.z / delta());
 
 	generate_hill_helper(iter_const, (float) summit.z);
 	for (int step = 1; step <= step_limit; step++)

@@ -12,7 +12,7 @@ public :
 					mod1_main(int argc, char **argv);
 					~mod1_main();
 
-	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_invalid_arguments, "Mod1 Main : Invalid number of arguments")
+	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_invalid_arguments, "Mod1 Main : Invalid number of arguments")
 
 	void			build();
 	void			loop();

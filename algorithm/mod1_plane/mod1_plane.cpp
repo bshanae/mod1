@@ -1,6 +1,14 @@
 #include "mod1_plane.h"
 
-MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_plane, exception_coordinate)
-MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_plane, exception_logic)
-MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_plane, exception_color)
-MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_plane, exception_indexing_convention)
+MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_plane, exception_coordinate)
+MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_plane, exception_logic)
+MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_plane, exception_color)
+MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_plane, exception_indexing_convention)
+
+MOD1_GENERATE_GET_IMPLEMENTATION(mod1_plane, size)
+MOD1_GENERATE_GET_IMPLEMENTATION(mod1_plane, real_size)
+MOD1_GENERATE_GET_IMPLEMENTATION(mod1_plane, min)
+MOD1_GENERATE_GET_IMPLEMENTATION(mod1_plane, max)
+MOD1_GENERATE_GET_IMPLEMENTATION(mod1_plane, delta)
+MOD1_GENERATE_GET_IMPLEMENTATION(mod1_plane, final_min)
+MOD1_GENERATE_GET_IMPLEMENTATION(mod1_plane, final_max)

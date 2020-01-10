@@ -1,6 +1,6 @@
 #include "mod1_camera.h"
 
-MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_camera, exception_axis)
+MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_camera, exception_axis)
 
 					mod1_camera::mod1_camera(int screen_width, int screen_height, const glm::vec3 &position) :
 					projection(glm::perspective(

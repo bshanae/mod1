@@ -15,16 +15,16 @@ public :
 							mod1_terrain() = default;
 							~mod1_terrain() = default;
 
-	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_source, "Mod1 Terrain : Invalid source file")
-	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_pattern, "Mod1 Terrain : Invalid pattern")
-	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_search, "Mod1 Terrain : Can't find given point")
+	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_source, "Mod1 Terrain : Invalid source file")
+	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_pattern, "Mod1 Terrain : Invalid pattern")
+	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_search, "Mod1 Terrain : Can't find given point")
 
 	void					parse(const std::string &file);
 	void					build() final;
 
-	mod1_model				*model() final;
+	mod1_model				*model() override;
 
-	void					info(unsigned int flags = MOD1_TERRAIN_INFO_RAW | MOD1_TERRAIN_INFO_MODEL) const;
+	void					info(const bool &raw = true, const bool &model = true) const;
 
 	static float			interpolate_linear(float min, float max, float ratio);
 	static float			interpolate_cosine(float min, float max, float ratio);
@@ -61,15 +61,18 @@ private :
 							const mod1_point2<int> &iter,
 							const float &frequency,
 							const float &range,
+							const mod1_point2<float> &offset = mod1_point2<float>(0),
 							const float &power = 1) const;
 	void					apply_noise(
 							const mod1_point2<int> &iter,
 							const float &frequency,
 							const float &range,
+							const mod1_point2<float> &offset = mod1_point2<float>(0),
 							const float &power = 1);
 	void					apply_noise(
 							const float &frequency,
 							const float &range,
+							const mod1_point2<float> &offset = mod1_point2<float>(0),
 							const float &power = 1);
 
 	mod1_point2<int>		find_ptr(const mod1_point3<int> &object) const;

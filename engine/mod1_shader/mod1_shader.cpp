@@ -1,9 +1,9 @@
 #include "mod1_shader.h"
 
-MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_shader, exception_source)
-MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_shader, exception_compilation)
-MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_shader, exception_build)
-MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_shader, exception_link)
+MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_shader, exception_source)
+MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_shader, exception_compilation)
+MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_shader, exception_build)
+MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_shader, exception_link)
 
 						mod1_shader::~mod1_shader()
 {

@@ -28,7 +28,7 @@ mod1_point3<float>		mod1_plane::compute_color(const float &height) const
 	if (color_data.size() == 1)
 		return (color_data[0]);
 
-	ratio = (height - final_min.z) / (final_max.z - final_min.z) * (float)(color_data.size() - 1);
+	ratio = (height - final_min_internal.z) / (final_max_internal.z - final_min_internal.z) * (float)(color_data.size() - 1);
 
 	index_from = floor(ratio);
 	index_to = index_from + 1;

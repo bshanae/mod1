@@ -2,7 +2,7 @@
 
 #include "mod1_control.h"
 
-MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_program, exception_compilation)
+MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_program, exception_compilation)
 
 					mod1_program::mod1_program()
 {

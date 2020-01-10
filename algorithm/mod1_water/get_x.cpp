@@ -2,7 +2,7 @@
 
 float				mod1_water::get_terrain_height(const mod1_point2<int> &iter)
 {
-	return (((float const *)terrain->get_ptr(iter, mod1_model_data::slot_point))[1]);
+	return (terrain->read_height(iter));
 }
 
 float				mod1_water::get_flow(const mod1_point2<int> &iter, const mod1_water_flow_type &type)

@@ -1,14 +1,14 @@
 #pragma once
 
 #include "mod1_macros.h"
-#include "mod1_exception.h"
+#include "mod1_generate_x.h"
 
 template				<typename t1>
 class					mod1_point2
 {
 public :
 
-	MOD1_EXCEPTION_GENERATE(exception_index, "Mod1 Point2 : Bad index")
+	MOD1_GENERATE_EXCEPTION(exception_index, "Mod1 Point2 : Bad index")
 
 	t1					x = 0;
 	t1					y = 0;

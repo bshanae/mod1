@@ -36,7 +36,6 @@ bool 					mod1_water::callback(int key, void *ptr)
 			return (false);
 
 #ifdef MOD1_WATER_FLOOD_POINT
-
 #define A_X               	10
 #define A_Y                	10
 
@@ -54,12 +53,12 @@ bool 					mod1_water::callback(int key, void *ptr)
 
 #define STEP				50
 
-		static float		level = water->terrain->final_min.z;
+		static float		level = water->terrain->final_min().z;
 
-		if (level > water->terrain->final_max.z)
+		if (level > water->terrain->final_max().z)
 			return (false);
-		for (iter.y = 0; iter.y < water->terrain->size.y; iter.y++)
-			for (iter.x = 0; iter.x < water->terrain->size.x; iter.x++)
+		for (iter.y = 0; iter.y < water->terrain->size().y; iter.y++)
+			for (iter.x = 0; iter.x < water->terrain->size().x; iter.x++)
 				if (water->get_total_height(iter) < level)
 					water->water_depth[iter] += STEP;
 		level += STEP;

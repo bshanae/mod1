@@ -1,7 +1,7 @@
 #pragma once
 
 #include "mod1_OpenGL.h"
-#include "mod1_exception.h"
+#include "mod1_generate_x.h"
 
 #include "mod1_model_data.h"
 #include "mod1_loader.h"
@@ -15,9 +15,9 @@ public :
 					mod1_model() = default;
 					~mod1_model() = default;
 
-	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_build, "Mod1 Model : Object not built")
-	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_load, "Mod1 Model : Object not loaded")
-	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_dynamic, "Mod1 Model : Can't set object as dynamic after loading")
+	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_build, "Mod1 Model : Object not built")
+	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_load, "Mod1 Model : Object not loaded")
+	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_dynamic, "Mod1 Model : Can't set object as dynamic after loading")
 
 	virtual void	build() = 0;
 	void			load(mod1_loader &loader);

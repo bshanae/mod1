@@ -7,9 +7,9 @@ void 					mod1_water::gravity_debug()
 
 	mod1_point2<int>	iter;
 
-	for (iter.y = 0; iter.y < terrain->size.y; iter.y++)
+	for (iter.y = 0; iter.y < terrain->size().y; iter.y++)
 	{
-		for (iter.x = 0; iter.x < terrain->size.x; iter.x++)
+		for (iter.x = 0; iter.x < terrain->size().x; iter.x++)
 		{
 			if (iter.x)
 				printf(":");
@@ -18,21 +18,21 @@ void 					mod1_water::gravity_debug()
 				   RED, get_flow(iter, mod1_water::flow_right), BLACK);
 		}
 		printf("\n");
-		for (iter.x = 0; iter.x < terrain->size.x; iter.x++)
+		for (iter.x = 0; iter.x < terrain->size().x; iter.x++)
 		{
 			if (iter.x)
 				printf("        ");
 			printf("    ..    ");
 		}
 		printf("\n");
-		for (iter.x = 0; iter.x < terrain->size.x; iter.x++)
+		for (iter.x = 0; iter.x < terrain->size().x; iter.x++)
 		{
 			if (iter.x)
 				printf("         ");
 			printf("%s %+7.2f %s", RED, get_flow(iter, mod1_water::flow_down), BLACK);
 		}
 		printf("\n");
-		for (iter.x = 0; iter.x < terrain->size.x; iter.x++)
+		for (iter.x = 0; iter.x < terrain->size().x; iter.x++)
 		{
 			if (iter.x)
 				printf("        ");

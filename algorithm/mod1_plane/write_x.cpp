@@ -16,3 +16,18 @@ bool				mod1_plane::write_height(const mod1_point2<int> &iter, const float &z)
 
 	return (false);
 }
+
+void				mod1_plane::write_color(const mod1_point2<int> &iter, const mod1_point3<float> &color)
+{
+	float 			*ptr;
+
+	ptr = (float *)get_ptr(iter, mod1_model_data::slot_color, convention_dual_first);
+	color.write_to_ptr(ptr, mod1_point3<float>::convention_xyz);
+
+	if (is_dual(iter))
+	{
+		ptr = (float *) get_ptr(iter, mod1_model_data::slot_color, convention_dual_second);
+		color.write_to_ptr(ptr, mod1_point3<float>::convention_xyz);
+	}
+
+}

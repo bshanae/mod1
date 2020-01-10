@@ -1,5 +1,5 @@
 #include "mod1_terrain.h"
 
-MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_terrain, exception_source)
-MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_terrain, exception_pattern)
-MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_terrain, exception_search)
+MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_terrain, exception_source)
+MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_terrain, exception_pattern)
+MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_terrain, exception_search)

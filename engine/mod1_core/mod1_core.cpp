@@ -1,9 +1,9 @@
 #include "mod1_core.h"
 
-MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_core, exception_logic_object)
-MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_core, exception_logic_callback)
-MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_core, exception_window)
-MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_core, exception_GLEW)
+MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_core, exception_logic_object)
+MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_core, exception_logic_callback)
+MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_core, exception_window)
+MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_core, exception_GLEW)
 
 					mod1_core::mod1_core()
 {

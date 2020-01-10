@@ -1,8 +1,8 @@
 #include "mod1_model.h"
 
-MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_model, exception_build)
-MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_model, exception_load)
-MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_model, exception_dynamic)
+MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_model, exception_build)
+MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_model, exception_load)
+MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_model, exception_dynamic)
 
 void				mod1_model::load(mod1_loader &loader)
 {

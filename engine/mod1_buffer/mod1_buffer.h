@@ -1,6 +1,6 @@
 #pragma once
 
-#include "mod1_exception.h"
+#include "mod1_generate_x.h"
 
 template				<typename  type>
 class 					mod1_buffer
@@ -14,12 +14,12 @@ public :
 			delete []data_internal;
 	}
 
-	MOD1_EXCEPTION_GENERATE(exception_allocation_a, "Mod1 Buffer : Can't allocate memory")
-	MOD1_EXCEPTION_GENERATE(exception_allocation_b, "Mod1 Buffer : Buffer isn't allocated")
-	MOD1_EXCEPTION_GENERATE(exception_logic_a, "Mod1 Buffer : Buffer shouldn't be allocated more than once")
-	MOD1_EXCEPTION_GENERATE(exception_logic_b, "Mod1 Buffer : Source buffer has different size")
-	MOD1_EXCEPTION_GENERATE(exception_size, "Mod1 Buffer : Bad size")
-	MOD1_EXCEPTION_GENERATE(exception_index, "Mod1 Buffer : Bad index")
+	MOD1_GENERATE_EXCEPTION(exception_allocation_a, "Mod1 Buffer : Can't allocate memory")
+	MOD1_GENERATE_EXCEPTION(exception_allocation_b, "Mod1 Buffer : Buffer isn't allocated")
+	MOD1_GENERATE_EXCEPTION(exception_logic_a, "Mod1 Buffer : Buffer shouldn't be allocated more than once")
+	MOD1_GENERATE_EXCEPTION(exception_logic_b, "Mod1 Buffer : Source buffer has different size")
+	MOD1_GENERATE_EXCEPTION(exception_size, "Mod1 Buffer : Bad size")
+	MOD1_GENERATE_EXCEPTION(exception_index, "Mod1 Buffer : Bad index")
 
 	void 				allocate(int size)
 	{

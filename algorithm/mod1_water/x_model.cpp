@@ -26,20 +26,20 @@ void					mod1_water::update_model_helper_a(const mod1_point2<int> &iter)
 
 void					mod1_water::update_model_helper_b(const mod1_point2<int> &iter, const float &new_height)
 {
-	auto				ptr = (float *)get_ptr(iter, mod1_model_data::slot_point);
+	auto				old_height = read_height(iter);
 
-	if (ptr[1] < new_height)
-		ptr[1] = new_height;
+	if (old_height < new_height)
+		write_height(iter, new_height);
 }
 
 void					mod1_water::update_model()
 {
 	mod1_point2<int>	iter;
 
-	for (iter.y = 0; iter.y < size.y; iter.y++)
-		for (iter.x = 0; iter.x < size.x; iter.x++)
-			((float *)get_ptr(iter, mod1_model_data::slot_point))[1] = -10;
-	for (iter.y = 0; iter.y < terrain->size.y; iter.y++)
-		for (iter.x = 0; iter.x < terrain->size.x; iter.x++)
+	for (iter.y = 0; iter.y < size().y; iter.y++)
+		for (iter.x = 0; iter.x < size().x; iter.x++)
+			write_height(iter, -10);
+	for (iter.y = 0; iter.y < terrain->size().y; iter.y++)
+		for (iter.x = 0; iter.x < terrain->size().x; iter.x++)
 			update_model_helper_a(iter);
 }

@@ -11,38 +11,38 @@ void					mod1_terrain::build()
 
 	noise_generator.SetNoiseType(FastNoise::Perlin);
 
+#if MOD1_ENABLED(MOD1_TERRAIN_HILLS)
 	for (auto const &iter_source : data_raw)
 		generate_hill(iter_source);
+#endif
 
 #if MOD1_ENABLED(MOD1_TERRAIN_NOISE_A)
-	apply_noise(MOD1_TERRAIN_NOISE_A_FREQUENCY, MOD1_TERRAIN_NOISE_A_RANGE, 2.5);
+	apply_noise(
+		MOD1_TERRAIN_NOISE_A_FREQUENCY,
+		MOD1_TERRAIN_NOISE_A_RANGE,
+		MOD1_TERRAIN_NOISE_A_OFFSET,
+		2.5);
 #endif
 
 #if MOD1_ENABLED(MOD1_TERRAIN_NOISE_B)
-	apply_noise(MOD1_TERRAIN_NOISE_B_FREQUENCY, MOD1_TERRAIN_NOISE_B_RANGE);
+	apply_noise(
+		MOD1_TERRAIN_NOISE_B_FREQUENCY,
+		MOD1_TERRAIN_NOISE_B_RANGE,
+		MOD1_TERRAIN_NOISE_B_OFFSET);
 #endif
 
 	update_normal();
 	update_final();
 
-	return ;
-
 	//					Colors
 
 	mod1_point2<int>	iter;
-	float				*ptr;
 	mod1_point3<float>	color;
 
-	for (iter.y = 0; iter.y < size.y; iter.y++)
-		for (iter.x = 0; iter.x < size.x; iter.x++)
+	for (iter.y = 0; iter.y < size().y - 1; iter.y++)
+		for (iter.x = 0; iter.x < size().x; iter.x++)
 		{
-			ptr = (float *)get_ptr(iter, mod1_model_data::slot_point);
-			color = compute_color(ptr[1]);
-			ptr = (float *)get_ptr(iter, mod1_model_data::slot_color, mod1_plane::convention_single);
-			ptr[0] = color.x;
-			ptr[1] = color.y;
-			ptr[2] = color.z;
+			color = compute_color(read_height(iter));
+			write_color(iter, color);
 		}
-
-
 }

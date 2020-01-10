@@ -2,7 +2,7 @@
 
 #include "mod1_OpenGL.h"
 #include "mod1_control.h"
-#include "mod1_exception.h"
+#include "mod1_generate_x.h"
 
 class					mod1_camera
 {
@@ -14,7 +14,7 @@ public :
 						const glm::vec3 &position = glm::vec3(0, 0, 0));
 						~mod1_camera() = default;
 
-	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_axis, "Mod1 Camera : Unknown axis")
+	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_axis, "Mod1 Camera : Unknown axis")
 
 	typedef enum
 	{

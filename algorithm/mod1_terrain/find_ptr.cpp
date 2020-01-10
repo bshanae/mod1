@@ -3,13 +3,13 @@
 mod1_point2<int>		mod1_terrain::find_ptr(const mod1_point3<int> &object) const
 {
 	mod1_point2<int>	iter;
-	float 				*ptr;
+	mod1_point3<int>	point;
 
-	for (iter.y = 0; iter.y < size.y; iter.y++)
-		for (iter.x = 0; iter.x < size.x; iter.x++)
+	for (iter.y = 0; iter.y < size().y; iter.y++)
+		for (iter.x = 0; iter.x < size().x; iter.x++)
 		{
-			ptr = (float *)get_ptr(iter, mod1_model_data::slot_point);
-			if ((int)ptr[0] == object.x && (int)ptr[2] == object.y)
+			point = (mod1_point3<int>)read_point(iter);
+			if (point.x == object.x && point.y == object.y)
 				return (iter);
 		}
 	throw (exception_search());

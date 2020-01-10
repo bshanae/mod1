@@ -20,5 +20,5 @@ bool				mod1_plane::is_valid(
 
 bool 				mod1_plane::is_dual(const mod1_point2<int> &iter) const
 {
-	return (iter.x > 0 && iter.x < size.x - 1 && iter.y < size.y - 1);
+	return (iter.x > 0 && iter.x < size_internal.x - 1 && iter.y < size_internal.y - 1);
 }
