@@ -56,14 +56,12 @@ set(MAIN
 
 set(ALGORITHM
 	./algorithm/mod1_plane/mod1_plane.cpp
-	./algorithm/mod1_plane/get_index.cpp
-	./algorithm/mod1_plane/get_ptr.cpp
+	algorithm/mod1_plane/get_x.cpp
 	./algorithm/mod1_plane/set.cpp
 	./algorithm/mod1_plane/build.cpp
-	./algorithm/mod1_plane/update_normal.cpp
-	./algorithm/mod1_plane/update_final.cpp
+	algorithm/mod1_plane/update_x.cpp
 	./algorithm/mod1_plane/model.cpp
-	./algorithm/mod1_plane/is_valid.cpp
+	algorithm/mod1_plane/is_x.cpp
 
 	./algorithm/mod1_terrain/mod1_terrain.cpp
 	./algorithm/mod1_terrain/parse_x.cpp

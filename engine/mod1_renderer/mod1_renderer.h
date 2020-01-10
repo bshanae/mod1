@@ -1,6 +1,8 @@
 #pragma once
 
 #include "mod1_OpenGL.h"
+#include "mod1_control.h"
+
 #include "mod1_core.h"
 #include "mod1_program.h"
 #include "mod1_model.h"
@@ -8,6 +10,7 @@
 #include "mod1_loader.h"
 #include "mod1_camera.h"
 #include "mod1_callback.h"
+#include "mod1_point3.h"
 
 #include <fstream>
 #include <sstream>
@@ -27,9 +30,6 @@ public :
 
 	void						render();
 	void						loop();
-
-	const glm::vec3				camera_position = glm::vec3(5, 5, 20);
-	const glm::vec3				background = glm::vec3(0.8);
 
 	typedef struct
 	{

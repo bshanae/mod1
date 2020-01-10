@@ -43,6 +43,7 @@ void							main()
 
 	visibilty = length(camera_view * object_transformation * vec4(position, 1)) / 10000;
 	visibilty = clamp(visibilty, 0, 1);
+
 	pass_color = mix(color * calculate_light_intensity(), vec3(0.8, 0.8, 0.8), visibilty);
 
 	gl_Position = camera_projection * camera_view * object_transformation * vec4(position, 1);

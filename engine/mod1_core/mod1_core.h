@@ -1,6 +1,7 @@
 #pragma once
 
 #include "mod1_OpenGL.h"
+#include "mod1_control.h"
 #include "mod1_exception.h"
 
 #include <string>

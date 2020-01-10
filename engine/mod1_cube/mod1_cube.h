@@ -1,6 +1,6 @@
 #pragma once
 
-#include "mod1_preference.h"
+#include "mod1_control.h"
 
 #include "mod1_model.h"
 

@@ -1,12 +1,12 @@
 #pragma once
 
-#include "mod1_primitive.h"
+#include "mod1_macros.h"
 
 //											GLOBAL
 
 #define MOD1_NORMAL_TEST					MOD1_DISABLE
 
-#if MOD1_NORMAL_TEST
+#if MOD1_ENABLED(MOD1_NORMAL_TEST)
 #define MOD1_SOURCE_SHADER_VERTEX			"./shaders/test_vertex.glsl"
 #define MOD1_SOURCE_SHADER_GEOMETRY			"./shaders/test_geometry.glsl"
 #define MOD1_SOURCE_SHADER_FRAGMENT			"./shaders/test_fragment.glsl"
@@ -15,22 +15,33 @@
 #define MOD1_SOURCE_SHADER_FRAGMENT			"./shaders/fragment.glsl"
 #endif
 
-#define MOD1_USE_TERRAIN					MOD1_ENABLE
-#define MOD1_USE_WATER						MOD1_ENABLE
+//											ENGINE
+
+#define MOD1_DEPTH_TEST						MOD1_ENABLE
+#define MOD1_SHOW_BACK_OF_POLYGON			MOD1_ENABLE
+#define MOD1_SRGB							MOD1_DISABLE
 
 #define MOD1_LIGHT_AMBIENT_INTENSITY		0.2
 #define MOD1_LIGHT_POINT_INTENSITY			0.8
-#define MOD1_LIGHT_POINT_POSITION			1000, 3000, 1000
+#define MOD1_LIGHT_POINT_POSITION			50, 100, 50
 
 #define MOD1_LIGHT_CUBE						MOD1_ENABLE
-#define MOD1_LIGHT_CUBE_SIDE				50
+#define MOD1_LIGHT_CUBE_SIDE				10
 
-#define MOD1_CAMERA_MOVEMENT_SPEED			100
+#define MOD1_CAMERA_POSITION				glm::vec3(20, 20, 50)
+#define MOD1_CAMERA_MOVEMENT_SPEED			5
 #define MOD1_CAMERA_ROTATION_SPEED			0.04
+
+#define MOD1_BACKGROUND						mod1_point3<float>(0.1)
+
+//											MAIN
+
+#define MOD1_USE_TERRAIN					MOD1_ENABLE
+#define MOD1_USE_WATER						MOD1_DISABLE
 
 //											TERRAIN
 
-#define MOD1_TERRAIN_NOISE					MOD1_ENABLE
+#define MOD1_TERRAIN_NOISE					MOD1_DISABLE
 
 #define MOD1_TERRAIN_NOISE_HILL				MOD1_ENABLE
 #define MOD1_TERRAIN_NOISE_HILL_FREQUENCY	0.2

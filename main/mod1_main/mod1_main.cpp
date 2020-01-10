@@ -23,7 +23,7 @@ void				mod1_main::build()
 {
 	terrain->parse(source);
 	terrain->build();
-	water->build();
+//	water->build();
 }
 
 void				mod1_main::loop()

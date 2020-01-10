@@ -1,7 +1,7 @@
 #pragma once
 
 #include "mod1_exception.h"
-#include "mod1_const.h"
+#include "mod1_macros.h"
 
 #include "mod1_model.h"
 #include "mod1_point2.h"
@@ -15,7 +15,8 @@ public :
 
 	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_coordinate, "Mod1 Plane : Bad coordinate")
 	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_logic, "Mod1 Plane : Object not set")
-	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_color, "Mod1 Terrain : Too few colors defined")
+	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_color, "Mod1 Plane : Too few colors defined")
+	MOD1_EXCEPTION_GENERATE_DEFINITION(exception_indexing_convention, "Mod1 Plane : Unknown indexing convention")
 
 	void					set(
 							const mod1_point2<float> &min,
@@ -32,16 +33,38 @@ protected :
 	mod1_point2<float>		max;
 	float					delta = 0;
 
-	int 					get_index(const mod1_point2<int> &iter) const;
+	typedef enum
+	{
+		convention_single,
+		convention_dual_first,
+		convention_dual_second
+	}						mod1_indexing_convention;
 
-	void 					*get_ptr(const mod1_point2<int> &iter, const mod1_model_data::slot_type &slot);
-	void const				*get_ptr(const mod1_point2<int> &iter, const mod1_model_data::slot_type &slot) const;
+	int 					get_index(
+							const mod1_point2<int> &iter,
+							const mod1_indexing_convention &convention = convention_dual_first) const;
 
-	bool					is_valid(const mod1_point2<int> &iter, const mod1_model_data::slot_type &slot) const;
+	void 					*get_ptr(
+							const mod1_point2<int> &iter,
+							const mod1_model_data::slot_type &slot,
+							const mod1_indexing_convention &convention = convention_dual_first);
+	void const				*get_ptr(
+							const mod1_point2<int> &iter,
+							const mod1_model_data::slot_type &slot,
+							const mod1_indexing_convention &convention = convention_dual_first) const;
+
+	bool					is_valid(
+							const mod1_point2<int> &iter,
+							const mod1_model_data::slot_type &slot,
+							const mod1_indexing_convention &convention = convention_dual_first) const;
+	bool 					is_dual(const mod1_point2<int> &iter) const;
 
 	void 					update_normal();
-	void 					update_normal_helper(const mod1_point2<int> &iter);
-	void					update_normal_helper_test(const mod1_point2<int> &a, const mod1_point2<int> &b, const mod1_point2<int> &c);
+	void					update_normal_helper(
+							const int &a,
+							const int &b,
+							const int &c,
+							const int &n);
 
 	mod1_point3<float>		final_min;
 	mod1_point3<float>		final_max;

@@ -34,13 +34,23 @@ MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_core, exception_GLEW)
 	glfwGetFramebufferSize(window, &width, &height);
 	glViewport(0, 0, width, height);
 
-	glEnable(GL_DEPTH_TEST);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-//	glEnable(GL_FRAMEBUFFER_SRGB);
+	glProvokingVertex(GL_FIRST_VERTEX_CONVENTION);
+
+#if MOD1_ENABLED(MOD1_DEPTH_TEST)
+	glEnable(GL_DEPTH_TEST);
+#endif
+
+#if MOD1_DISABLED(MOD1_SHOW_BACK_OF_POLYGON)
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+#endif
+
+#if MOD1_ENABLED(MOD1_SRGB)
+	glEnable(GL_FRAMEBUFFER_SRGB);
+#endif
 }
 
 					mod1_core::~mod1_core()

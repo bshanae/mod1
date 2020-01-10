@@ -1,7 +1,7 @@
 #pragma once
 
 #include "mod1_OpenGL.h"
-#include "mod1_const.h"
+#include "mod1_macros.h"
 #include "mod1_exception.h"
 
 #include "mod1_shader.h"

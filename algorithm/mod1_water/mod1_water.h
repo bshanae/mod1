@@ -1,7 +1,7 @@
 #pragma once
 
-#include "mod1_const.h"
-#include "mod1_preference.h"
+#include "mod1_macros.h"
+#include "mod1_control.h"
 
 #include "mod1_model.h"
 #include "mod1_plane.h"

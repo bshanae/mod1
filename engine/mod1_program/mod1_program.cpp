@@ -1,6 +1,6 @@
 #include "mod1_program.h"
 
-#include "mod1_preference.h"
+#include "mod1_control.h"
 
 MOD1_EXCEPTION_GENERATE_IMPLEMENTATION(mod1_program, exception_compilation)
 

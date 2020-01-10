@@ -1,8 +1,7 @@
 #include "mod1_renderer.h"
 
 						mod1_renderer::mod1_renderer() :
-						camera(core.window_width(),
-						core.window_height(), camera_position),
+						camera(core.window_width(), core.window_height(), MOD1_CAMERA_POSITION),
 						light_info()
 {
 	core.set_callback(glfw_callback, this);
@@ -104,7 +103,7 @@ void 					mod1_renderer::render_internal()
 {
 	program.start();
 
-	glClearColor(background.x, background.y, background.z, 1);
+	glClearColor(MOD1_BACKGROUND.x, MOD1_BACKGROUND.y, MOD1_BACKGROUND.z, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glUniformMatrix4fv(uniform_camera_view, 1, GL_FALSE, glm::value_ptr(camera.view()));

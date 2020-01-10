@@ -1,0 +1,54 @@
+#include "mod1_plane.h"
+
+int 				mod1_plane::get_index(
+					const mod1_point2<int> &iter,
+					const mod1_indexing_convention &convention) const
+{
+	switch (convention)
+	{
+		case convention_single :
+		{
+			if (iter.x < 0 || iter.x >= MOD1_PLANE_REAL_SIZE_X(size.x))
+				throw (exception_coordinate());
+			if (iter.y < 0 || iter.y >= size.y)
+				throw (exception_coordinate());
+			return (iter.y * MOD1_PLANE_REAL_SIZE_X(size.x) + iter.x);
+		}
+		case convention_dual_first :
+		{
+			if (iter.x < 0 || iter.x >= size.x)
+				throw (exception_coordinate());
+			if (iter.y < 0 || iter.y >= size.y)
+				throw (exception_coordinate());
+			return (iter.y * MOD1_PLANE_REAL_SIZE_X(size.x)
+					+ MOD1_PLANE_REAL_INDEX_X(iter.x));
+		}
+		case convention_dual_second :
+		{
+			if (iter.x < 0 || iter.x >= size.x)
+				throw (exception_coordinate());
+			if (iter.y < 0 || iter.y >= size.y)
+				throw (exception_coordinate());
+			return (iter.y * MOD1_PLANE_REAL_SIZE_X(size.x)
+					+ MOD1_PLANE_REAL_INDEX_X(iter.x) + 1);
+		}
+		default :
+			throw (exception_indexing_convention());
+	}
+}
+
+void 				*mod1_plane::get_ptr(
+					const mod1_point2<int> &iter,
+					const mod1_model_data::slot_type &slot,
+					const mod1_indexing_convention &convention)
+{
+	return (mod1_model::get_ptr(get_index(iter, convention), slot));
+}
+
+void const			*mod1_plane::get_ptr(
+					const mod1_point2<int> &iter,
+					const mod1_model_data::slot_type &slot,
+					const mod1_indexing_convention &convention) const
+{
+	return (mod1_model::get_ptr(get_index(iter, convention), slot));
+}

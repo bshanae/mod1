@@ -8,6 +8,7 @@ class						mod1_point3
 public :
 
 	MOD1_EXCEPTION_GENERATE(exception_bad_index, "Mod1 Point3 : Bad index")
+	MOD1_EXCEPTION_GENERATE(exception_axis_convetion, "Mod1 Point3 : Unknown axis convention")
 
 	t1						x = 0;
 	t1						y = 0;
@@ -169,5 +170,28 @@ public :
 	static mod1_point3<t1>	max (const mod1_point3<t1> &a, const mod1_point3<t1> &b)
 	{
 		return (mod1_point3<t1>(MOD1_MAX(a.x, b.x), MOD1_MAX(a.y, b.y), MOD1_MAX(a.z, b.z)));
+	}
+
+	typedef enum
+	{
+		convention_xyz,
+		convention_xzy
+	}						mod1_axis_convention;
+
+	void 					write_to_ptr(t1 *ptr, const mod1_axis_convention &convention)
+	{
+		ptr[0] = this->x;
+		if (convention == convention_xyz)
+		{
+			ptr[1] = this->y;
+			ptr[2] = this->z;
+		}
+		else if (convention == convention_xzy)
+		{
+			ptr[1] = this->z;
+			ptr[2] = this->y;
+		}
+		else
+			throw (exception_axis_convetion());
 	}
 };
