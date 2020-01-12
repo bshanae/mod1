@@ -4,6 +4,8 @@
 
 #define TYPE(x)									decltype(x)
 
+#define STRING(x)								#x
+
 #define MOD1_DISABLE							0
 #define MOD1_ENABLE								1
 
@@ -29,7 +31,7 @@
 #define MOD1_PLANE_NUMBER_OF_SQUARES(size)		(((size.x) - 1) * ((size.y) - 1))
 #define MOD1_PLANE_NUMBER_OF_TRIANGLES(size)	(MOD1_PLANE_NUMBER_OF_SQUARES(size) * 2)
 
-#define MOD1_PLANE_COLOR_DATA					std::vector<mod1_engine::point3<float>>
+#define MOD1_PLANE_COLOR_DATA					std::vector<point3<float>>
 
 //												TERRAIN
 
@@ -43,3 +45,8 @@
 //												WATER
 
 #define MOD1_WATER_EPSILON						0.01f
+
+#define MOD1_WATER_RIGHT						point2<int>(1, 0)
+#define MOD1_WATER_UPPER						point2<int>(0, -1)
+#define MOD1_WATER_LEFT							point2<int>(-1, 0)
+#define MOD1_WATER_DOWN							point2<int>(0, 1)

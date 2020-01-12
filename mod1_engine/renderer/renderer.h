@@ -2,6 +2,7 @@
 
 #include "mod1_main/mod1_OpenGL.h"
 #include "mod1_main/mod1_control.h"
+#include "mod1_main/mod1_generic.h"
 
 #include "mod1_engine/core/core.h"
 #include "mod1_engine/program/program.h"
@@ -18,14 +19,12 @@ class							mod1_engine::renderer
 {
 
 public :
-
 								renderer();
 								~renderer() = default;
 
 	void						load_model(model *model);
 
-	void						render();
-	void						loop();
+protected :
 
 	typedef struct
 	{
@@ -35,12 +34,32 @@ public :
 		float					point_power;
 	}							mod1_light_info;
 
+	mod1_light_info				light_info;
+
+	const core					*core_ptr;
+	const program				*program_ptr;
+	const loader				*loader_ptr;
+	const camera				*camera_ptr;
+
+	void						render();
+
 private :
+
+	class 						program : public mod1_engine::program
+	{
+	public :
+		MOD1_GENERATE_UNIFORM(object_transformation)
+		MOD1_GENERATE_UNIFORM(camera_view)
+		MOD1_GENERATE_UNIFORM(camera_projection)
+		MOD1_GENERATE_UNIFORM(light_ambient_intensity)
+		MOD1_GENERATE_UNIFORM(light_point_position)
+		MOD1_GENERATE_UNIFORM(light_point_intensity)
+		MOD1_GENERATE_UNIFORM(light_point_power)
+	};
 
 	class						cube : private model
 	{
 	public :
-
 		cube() = default;
 		~cube() = default;
 
@@ -49,30 +68,14 @@ private :
 		using					model::transformation;
 	};
 
-
 	static void					glfw_callback(GLFWwindow* window, int key, int code, int action, int mode);
 
 	std::vector<model *>		model_array;
-	bool						render_request = true;
 
 	core						core;
 	program						program;
 	loader						loader;
 	camera						camera;
 
-	mod1_light_info				light_info;
 	cube						light_cube;
-
-	GLuint						uniform_object_transformation;
-	GLuint						uniform_camera_view;
-	GLuint						uniform_camera_projection;
-	GLuint						uniform_light_ambient_intensity;
-	GLuint						uniform_light_point_position;
-	GLuint						uniform_light_point_intensity;
-	GLuint						uniform_light_point_power;
-
-	void						render_internal();
-
-	GLuint						texture;
 };
-

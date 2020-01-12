@@ -4,6 +4,9 @@
 
 //											GLOBAL
 
+#define MOD1_SCREEN_WIDTH					720
+#define MOD1_SCREEN_HEIGHT					480
+
 #define MOD1_NORMAL_TEST					MOD1_DISABLE
 
 #if MOD1_ENABLED(MOD1_NORMAL_TEST)
@@ -58,7 +61,7 @@
 #define MOD1_TERRAIN_NOISE_B				MOD1_ENABLE
 #define MOD1_TERRAIN_NOISE_B_FREQUENCY		10
 #define MOD1_TERRAIN_NOISE_B_RANGE			100
-#define MOD1_TERRAIN_NOISE_B_OFFSET			point2<float>(0)
+#define MOD1_TERRAIN_NOISE_B_OFFSET			mod1_engine::point2<float>(0)
 
 //											WATER
 

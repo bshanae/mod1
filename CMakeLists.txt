@@ -26,62 +26,22 @@ include_directories(
 	./)
 
 set(LIBRARIES
-	./libraries/FastNoise/FastNoise.cpp)
-
-set(MAIN
-	mod1_main/main.cpp
-
-	mod1_main/mod1_main/mod1_main.cpp)
-
-set(ALGORITHM
-	./algorithm/mod1_plane/mod1_plane.cpp
-	./algorithm/mod1_plane/get_x.cpp
-	./algorithm/mod1_plane/set.cpp
-	./algorithm/mod1_plane/build.cpp
-	./algorithm/mod1_plane/update_x.cpp
-	./algorithm/mod1_plane/model.cpp
-	./algorithm/mod1_plane/is_x.cpp
-	./algorithm/mod1_plane/read_x.cpp
-	./algorithm/mod1_plane/write_x.cpp
-
-	./algorithm/mod1_terrain/mod1_terrain.cpp
-	./algorithm/mod1_terrain/parse_x.cpp
-	./algorithm/mod1_terrain/build.cpp
-	./algorithm/mod1_terrain/generate_hill.cpp
-	./algorithm/mod1_terrain/prepare.cpp
-	./algorithm/mod1_terrain/info.cpp
-	./algorithm/mod1_terrain/x_delta.cpp
-	./algorithm/mod1_terrain/find_ptr.cpp
-	./algorithm/mod1_terrain/interpolate_x.cpp
-	./algorithm/mod1_plane/x_color.cpp
-	./algorithm/mod1_terrain/model.cpp
-	./algorithm/mod1_terrain/x_noise.cpp
-
-	./algorithm/mod1_water/mod1_water.cpp
-	./algorithm/mod1_water/build.cpp
-	./algorithm/mod1_water/model.cpp
-	./algorithm/mod1_water/get_x.cpp
-	./algorithm/mod1_water/set_x.cpp
-	./algorithm/mod1_water/x_model.cpp
-	./algorithm/mod1_water/gravity_x.cpp
-	./algorithm/mod1_water/x_flow.cpp
-	./algorithm/mod1_water/x_depth.cpp
-	./algorithm/mod1_water/x_color.cpp
-	./algorithm/mod1_water/callback.cpp)
+	./mod1_libraries/FastNoise/FastNoise.cpp)
 
 set(ENGINE
 	./mod1_engine/core/core.cpp
 
 	./mod1_engine/shader/shader.cpp
 
+	./mod1_engine/uniform/uniform.cpp
+
+	./mod1_engine/program/program.cpp
+
 	./mod1_engine/renderer/renderer.cpp
 	./mod1_engine/renderer/glfw_callback.cpp
-	./mod1_engine/renderer/loop.cpp
 	./mod1_engine/renderer/render_x.cpp
 	./mod1_engine/renderer/load_model.cpp
 	./mod1_engine/renderer/cube.cpp
-
-	./mod1_engine/program/program.cpp
 
 	./mod1_engine/buffer/buffer.h
 
@@ -93,7 +53,49 @@ set(ENGINE
 	./mod1_engine/loader/vbo_x.cpp
 
 	./mod1_engine/loader/loader.cpp
+
 	./mod1_engine/camera/camera.cpp)
+
+set(ALGORITHM
+	./mod1_algorithm/plane/plane.cpp
+	./mod1_algorithm/plane/get_x.cpp
+	./mod1_algorithm/plane/set.cpp
+	./mod1_algorithm/plane/build.cpp
+	./mod1_algorithm/plane/update_x.cpp
+	./mod1_algorithm/plane/model.cpp
+	./mod1_algorithm/plane/is_x.cpp
+	./mod1_algorithm/plane/read_x.cpp
+	./mod1_algorithm/plane/write_x.cpp
+
+	./mod1_algorithm/terrain/terrain.cpp
+	./mod1_algorithm/terrain/parse_x.cpp
+	./mod1_algorithm/terrain/build.cpp
+	./mod1_algorithm/terrain/generate_hill.cpp
+	./mod1_algorithm/terrain/prepare.cpp
+	./mod1_algorithm/terrain/info.cpp
+	./mod1_algorithm/terrain/x_delta.cpp
+	./mod1_algorithm/terrain/find_ptr.cpp
+	./mod1_algorithm/terrain/interpolate_x.cpp
+	./mod1_algorithm/plane/x_color.cpp
+	./mod1_algorithm/terrain/model.cpp
+	./mod1_algorithm/terrain/x_noise.cpp
+
+	./mod1_algorithm/water/water.cpp
+	./mod1_algorithm/water/build.cpp
+	./mod1_algorithm/water/model.cpp
+	./mod1_algorithm/water/get_x.cpp
+	./mod1_algorithm/water/set_x.cpp
+	./mod1_algorithm/water/x_model.cpp
+	./mod1_algorithm/water/gravity_x.cpp
+	./mod1_algorithm/water/x_flow.cpp
+	./mod1_algorithm/water/x_depth.cpp
+	./mod1_algorithm/water/x_color.cpp
+	./mod1_algorithm/water/callback.cpp)
+
+set(MAIN
+	mod1_main/main.cpp
+
+	mod1_main/main/mod1_main.cpp)
 
 add_executable(21_mod1
 	${LIBRARIES}

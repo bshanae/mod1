@@ -10,21 +10,18 @@ void				model::load(loader &loader)
 {
 	is_loaded = true;
 	loader.load(data, is_dynamic);
-	vertex_number_internal = data.index_buffer.size() * 3;
+	vertex_number = data.index_buffer.size() * 3;
 }
 
-void				model::use()
+void				model::draw()
 {
 	if (!is_built)
 		throw (exception_build());
 	if (!is_loaded)
 		throw (exception_load());
 	loader::vao_bind(data.vao);
-}
-
-int 				model::vertex_number()
-{
-	return (vertex_number_internal);
+	glDrawElements(GL_TRIANGLES, vertex_number, GL_UNSIGNED_INT, nullptr);
+	loader::vao_bind(0);
 }
 
 glm::mat4			&model::transformation()

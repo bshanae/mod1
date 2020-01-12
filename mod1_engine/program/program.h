@@ -8,6 +8,7 @@
 #include "mod1_engine/namespace.h"
 
 #include "mod1_engine/shader/shader.h"
+#include "mod1_engine/uniform/uniform.h"
 
 class					mod1_engine::program
 {

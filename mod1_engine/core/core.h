@@ -6,6 +6,8 @@
 
 #include "mod1_engine/namespace.h"
 
+#include "mod1_engine/point/point3.h"
+
 #include <string>
 
 class					mod1_engine::core
@@ -23,18 +25,20 @@ public :
 						core();
 						~core();
 
-	int					window_width();
-	int					window_height();
+	int					window_width() const;
+	int					window_height() const;
 
-	bool				is_working();
-	void				update();
-	void				swap_buffers();
+	bool				is_working() const;
+	void				update() const;
+	void				clear(const point3<float> &color) const;
+	void				swap_buffers() const;
+
 	void				set_callback(mod1_callback function, void *ptr);
 
 private :
 
 	const std::string	window_name = "Mod1";
 	GLFWwindow			*window;
-	const int 			window_width_internal = 720;
-	const int 			window_height_internal = 480;
+	const int 			window_width_internal = MOD1_SCREEN_WIDTH;
+	const int 			window_height_internal = MOD1_SCREEN_HEIGHT;
 };
