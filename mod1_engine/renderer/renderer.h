@@ -24,8 +24,6 @@ public :
 
 	void						load_model(model *model);
 
-protected :
-
 	typedef struct
 	{
 		float 					ambient_intensity;

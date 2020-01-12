@@ -59,9 +59,10 @@ void 				program::link()
 
 	glLinkProgram(object_internal);
 
+	is_linked = true;
+
 	check_error();
 
-	is_linked = true;
 }
 
 //					PRIVATE

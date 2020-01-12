@@ -1,8 +1,8 @@
 #include "terrain.h"
 
-float						terrain::parse_coordinate(std::ifstream &stream, bool eat_delimiter)
+float							terrain::parse_coordinate(std::ifstream &stream, bool eat_delimiter)
 {
-	float					temp;
+	float						temp;
 
 	if (eat_delimiter)
 		if (stream.get() != ',')
@@ -11,15 +11,15 @@ float						terrain::parse_coordinate(std::ifstream &stream, bool eat_delimiter)
 	return (temp);
 }
 
-void						terrain::parse(const std::string &file)
+void							terrain::parse(const std::string &file)
 {
-	std::ifstream			stream;
-	int 					temp_char;
+	std::ifstream				stream;
+	int 						temp_char;
 	MOD1_TERRAIN_RAW_DATA_RI	iter;
 
 	stream.open(file);
 
-	if (!stream.is_open())
+	if (not stream.is_open())
 		throw (exception_source());
 
 	while ((temp_char = stream.get()) != EOF)
