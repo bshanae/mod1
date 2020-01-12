@@ -1,7 +1,9 @@
 #include "mod1_plane.h"
 
+using namespace		mod1_engine;
+
 int 				mod1_plane::get_index(
-					const mod1_point2<int> &iter,
+					const point2<int> &iter,
 					const mod1_indexing_convention &convention) const
 {
 	switch (convention)
@@ -38,17 +40,17 @@ int 				mod1_plane::get_index(
 }
 
 void 				*mod1_plane::get_ptr(
-					const mod1_point2<int> &iter,
-					const mod1_model_data::slot_type &slot,
+					const point2<int> &iter,
+					const model_data::slot_type &slot,
 					const mod1_indexing_convention &convention)
 {
-	return (mod1_model::get_ptr(get_index(iter, convention), slot));
+	return (model::get_ptr(get_index(iter, convention), slot));
 }
 
 void const			*mod1_plane::get_ptr(
-					const mod1_point2<int> &iter,
-					const mod1_model_data::slot_type &slot,
+					const point2<int> &iter,
+					const model_data::slot_type &slot,
 					const mod1_indexing_convention &convention) const
 {
-	return (mod1_model::get_ptr(get_index(iter, convention), slot));
+	return (model::get_ptr(get_index(iter, convention), slot));
 }

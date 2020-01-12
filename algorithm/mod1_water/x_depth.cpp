@@ -2,7 +2,7 @@
 
 void					mod1_water::update_depth()
 {
-	mod1_point2<int>	iter;
+	point2<int>	iter;
 	float 				total_flow;
 	float 				total_temp;
 
@@ -21,7 +21,7 @@ void					mod1_water::update_depth()
 
 void					mod1_water::diffuse_depth()
 {
-	mod1_point2<int>	iter;
+	point2<int>	iter;
 
 	for (iter.y = 0; iter.y < terrain->size().y; iter.y++)
 		for (iter.x = 0; iter.x < terrain->size().x; iter.x++)

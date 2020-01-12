@@ -1,13 +1,13 @@
 #include "mod1_plane.h"
 
-void					mod1_plane::add_color(const mod1_point3<float> &color)
+void					mod1_plane::add_color(const point3<float> &color)
 {
 	color_data.push_back(color);
 }
 
-void					mod1_plane::add_color(const mod1_point3<int> &color)
+void					mod1_plane::add_color(const point3<int> &color)
 {
-	auto				color_f = (mod1_point3<float>)color;
+	auto				color_f = (point3<float>)color;
 
 	color_f /= 255;
 	color_data.push_back(color_f);
@@ -15,13 +15,13 @@ void					mod1_plane::add_color(const mod1_point3<int> &color)
 
 #define INTERPOLATE(a, b, r)	(a + (b - a) * r)
 
-mod1_point3<float>		mod1_plane::compute_color(const float &height) const
+point3<float>		mod1_plane::compute_color(const float &height) const
 {
 	float				ratio;
 	int 				index_from;
 	int 				index_to;
 	float				ratio_normal;
-	mod1_point3<float>	result;
+	point3<float>	result;
 
 	if (color_data.empty())
 		throw (exception_color());
@@ -39,6 +39,6 @@ mod1_point3<float>		mod1_plane::compute_color(const float &height) const
 
 	for (int i = 0; i < 3; i++)
 		result[i] = INTERPOLATE(color_data[index_from][i], color_data[index_to][i], ratio_normal);
-	result = mod1_point3<float>::min(result, mod1_point3<float>(1.f));
+	result = point3<float>::min(result, point3<float>(1.f));
 	return (result);
 }

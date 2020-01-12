@@ -1,6 +1,6 @@
 #include "mod1_water.h"
 
-void				mod1_water::set_flow(const mod1_point2<int> &iter, const mod1_water_flow_type &type, const float &value)
+void				mod1_water::set_flow(const point2<int> &iter, const mod1_water_flow_type &type, const float &value)
 {
 	if (type == flow_right)
 		flow_horizontal[iter.x][iter.y] = value;
@@ -14,16 +14,16 @@ void				mod1_water::set_flow(const mod1_point2<int> &iter, const mod1_water_flow
 		throw (exception_unknown_flow_type());
 }
 
-bool				mod1_water::set_flow_safe(const mod1_point2<int> &iter, const mod1_water_flow_type &type, const float &value)
+bool				mod1_water::set_flow_safe(const point2<int> &iter, const mod1_water_flow_type &type, const float &value)
 {
 	try
 	{
 		set_flow(iter, type, value);
 		return (true);
 	}
-	catch (mod1_buffer<float>::exception_index &exception)
+	catch (buffer<float>::exception_index &exception)
 	{}
-	catch (mod1_buffer2<float>::exception_index &exception)
+	catch (buffer2<float>::exception_index &exception)
 	{}
 	return (false);
 }

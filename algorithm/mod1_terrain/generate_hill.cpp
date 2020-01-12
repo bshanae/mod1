@@ -1,6 +1,6 @@
 #include "mod1_terrain.h"
 
-bool					mod1_terrain::generate_hill_helper(const mod1_point2<int> &iter, const float &height)
+bool					mod1_terrain::generate_hill_helper(const point2<int> &iter, const float &height)
 {
 	float				noise = 0;
 
@@ -24,10 +24,10 @@ bool					mod1_terrain::generate_hill_helper(const mod1_point2<int> &iter, const 
 	}
 }
 
-void					mod1_terrain::generate_hill(const mod1_point3<int> &summit)
+void					mod1_terrain::generate_hill(const point3<int> &summit)
 {
 	const auto			iter_const = find_ptr(summit);
-	mod1_point2<int>	iter;
+	point2<int>	iter;
 	float				height;
 	bool 				at_least_one;
 	const int 			step_limit = (int)(summit.z / delta());

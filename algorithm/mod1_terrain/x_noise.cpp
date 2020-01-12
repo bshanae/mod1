@@ -1,10 +1,10 @@
 #include "mod1_terrain.h"
 
 float					mod1_terrain::generate_noise(
-						const mod1_point2<int> &iter,
+						const point2<int> &iter,
 						const float &frequency,
 						const float &range,
-						const mod1_point2<float> &offset,
+						const point2<float> &offset,
 						const float &power) const
 {
 	float				value;
@@ -28,11 +28,11 @@ float					mod1_terrain::generate_noise(
 void					mod1_terrain::apply_noise(
 						const float &frequency,
 						const float &range,
-						const mod1_point2<float> &offset,
+						const point2<float> &offset,
 						const float &power)
 {
 
-	mod1_point2<int>	iter;
+	point2<int>	iter;
 
 	for (iter.y = 0; iter.y < size().y; iter.y++)
 		for (iter.x = 0; iter.x < size().x; iter.x++)
@@ -40,10 +40,10 @@ void					mod1_terrain::apply_noise(
 }
 
 void					mod1_terrain::apply_noise(
-						const mod1_point2<int> &iter,
+						const point2<int> &iter,
 						const float &frequency,
 						const float &range,
-						const mod1_point2<float> &offset,
+						const point2<float> &offset,
 						const float &power)
 {
 	write_height(iter, read_height(iter) + generate_noise(iter, frequency, range, offset, power));

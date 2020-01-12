@@ -39,8 +39,8 @@ void						mod1_terrain::parse(const std::string &file)
 				iter->x = parse_coordinate(stream, false);
 				iter->y = parse_coordinate(stream, true);
 				iter->z = parse_coordinate(stream, true);
-				min_raw = mod1_point3<int>::min(min_raw, *iter);
-				max_raw = mod1_point3<int>::max(max_raw, *iter);
+				min_raw = point3<int>::min(min_raw, *iter);
+				max_raw = point3<int>::max(max_raw, *iter);
 				continue ;
 			}
 			default :
