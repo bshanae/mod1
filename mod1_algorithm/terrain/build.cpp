@@ -9,6 +9,8 @@ void					terrain::build()
 	set((point2<float>)min_i, (point2<float>)max_i, (float)delta_i);
 	plane::build();
 
+	return ;
+
 	//					Hills
 
 	noise_generator.SetNoiseType(FastNoise::Perlin);

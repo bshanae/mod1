@@ -58,5 +58,5 @@ void					renderer::glfw_callback(GLFWwindow* window, int key, int code, int acti
 		mod_light = !mod_light;
 	else
 		return ;
-	renderer->render();
+	renderer->request_render();
 }

@@ -8,9 +8,9 @@ MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(model, exception_dynamic)
 
 void				model::load(loader &loader)
 {
-	is_loaded = true;
 	loader.load(data, is_dynamic);
 	vertex_number = data.index_buffer.size() * 3;
+	is_loaded = true;
 }
 
 void				model::draw()
@@ -20,8 +20,8 @@ void				model::draw()
 	if (!is_loaded)
 		throw (exception_load());
 	loader::vao_bind(data.vao);
-	glDrawElements(GL_TRIANGLES, vertex_number, GL_UNSIGNED_INT, nullptr);
-	loader::vao_bind(0);
+//	glDrawElements(GL_TRIANGLES, vertex_number, GL_UNSIGNED_INT, nullptr);
+//	loader::vao_unbind();
 }
 
 glm::mat4			&model::transformation()

@@ -48,6 +48,9 @@ void 				program::add_shader(const shader_type &type, const char *source)
 	shader.build(type, source);
 	shader.link(object_internal);
 
+	if (glGetError())
+		exit(1);
+
 	if (type == vertex)
 		has_vertex_shader = true;
 }
@@ -59,20 +62,24 @@ void 				program::link()
 
 	glLinkProgram(object_internal);
 
-	is_linked = true;
-
 	check_error();
 
+	is_linked = true;
 }
 
 //					PRIVATE
+
+void				program::start_noexcept()
+{
+	glUseProgram(object_internal);
+}
 
 void 				program::check_error()
 {
 	GLint			success;
 	GLchar			log[1024];
 
-	start();
+	start_noexcept();
 
 	glGetProgramiv(object_internal, GL_LINK_STATUS, &success);
 	if(!success)
