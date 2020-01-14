@@ -56,3 +56,4 @@ TYPE(space::name##_internal)	space::name() const						\
 
 #define MOD1_GENERATE_UNIFORM(name, name_GL)							\
 	uniform						name = uniform(name_GL);
+

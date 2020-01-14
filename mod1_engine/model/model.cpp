@@ -13,13 +13,18 @@ void				model::load(loader &loader)
 	vertex_number_internal = data.index_buffer.size() * 3;
 }
 
-void				model::use()
+void				model::start()
 {
 	if (!is_built)
 		throw (exception_build());
 	if (!is_loaded)
 		throw (exception_load());
 	loader::vao_bind(data.vao);
+}
+
+void				model::stop()
+{
+	loader::vao_unbind();
 }
 
 int 				model::vertex_number()

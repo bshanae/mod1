@@ -11,8 +11,8 @@
 #define MOD1_SOURCE_SHADER_GEOMETRY			"./shaders/test_geometry.glsl"
 #define MOD1_SOURCE_SHADER_FRAGMENT			"./shaders/test_fragment.glsl"
 #else
-#define MOD1_SOURCE_SHADER_VERTEX			"./shaders/vertex.glsl"
-#define MOD1_SOURCE_SHADER_FRAGMENT			"./shaders/fragment.glsl"
+#define MOD1_SOURCE_SHADER_VERTEX			"./shaders/main_vertex.glsl"
+#define MOD1_SOURCE_SHADER_FRAGMENT			"./shaders/main_fragment.glsl"
 #endif
 
 //											ENGINE

@@ -26,75 +26,75 @@ include_directories(
 	./)
 
 set(LIBRARIES
-	mod1_libraries/FastNoise/FastNoise.cpp)
+	./mod1_libraries/FastNoise/FastNoise.cpp)
 
 set(ENGINE
-	mod1_engine/core/core.cpp
+	./mod1_engine/core/core.cpp
 
-	mod1_engine/shader/shader.cpp
+	./mod1_engine/shader/shader.cpp
 
-	mod1_engine/renderer/renderer.cpp
-	mod1_engine/renderer/glfw_callback.cpp
-	mod1_engine/renderer/add_callback.cpp
-	mod1_engine/renderer/load_model.cpp
-	mod1_engine/renderer/loop.cpp
-	mod1_engine/renderer/render_x.cpp
+	./mod1_engine/renderer/renderer.cpp
+	./mod1_engine/renderer/glfw_callback.cpp
+	./mod1_engine/renderer/add_callback.cpp
+	./mod1_engine/renderer/load_model.cpp
+	./mod1_engine/renderer/loop.cpp
+	./mod1_engine/renderer/render_x.cpp
+	./mod1_engine/renderer/cube/cube.cpp
 
-	mod1_engine/program/program.cpp
+	./mod1_engine/program/program.cpp
 
-	mod1_engine/buffer/buffer.h
+	./mod1_engine/buffer/buffer.h
 
-	mod1_engine/model/model.cpp
-	mod1_engine/model/model_data.cpp
+	./mod1_engine/model/model.cpp
+	./mod1_engine/model/model_data.cpp
 
-	mod1_engine/cube/cube.cpp
 
-	mod1_engine/loader/eab_x.cpp
-	mod1_engine/loader/vao_x.cpp
-	mod1_engine/loader/vbo_x.cpp
+	./mod1_engine/loader/eab_x.cpp
+	./mod1_engine/loader/vao_x.cpp
+	./mod1_engine/loader/vbo_x.cpp
 
-	mod1_engine/loader/loader.cpp
-	mod1_engine/camera/camera.cpp
+	./mod1_engine/loader/loader.cpp
+	./mod1_engine/camera/camera.cpp
 
-	mod1_engine/callback/callback.cpp
+	./mod1_engine/callback/callback.cpp
 
-	mod1_engine/uniform/uniform.cpp)
+	./mod1_engine/uniform/uniform.cpp)
 
 set(ALGORITHM
-	mod1_algorithm/plane/plane.cpp
-	mod1_algorithm/plane/get_x.cpp
-	mod1_algorithm/plane/set.cpp
-	mod1_algorithm/plane/build.cpp
-	mod1_algorithm/plane/update_x.cpp
-	mod1_algorithm/plane/model.cpp
-	mod1_algorithm/plane/is_x.cpp
-	mod1_algorithm/plane/read_x.cpp
-	mod1_algorithm/plane/write_x.cpp
+	./mod1_algorithm/plane/plane.cpp
+	./mod1_algorithm/plane/get_x.cpp
+	./mod1_algorithm/plane/set.cpp
+	./mod1_algorithm/plane/build.cpp
+	./mod1_algorithm/plane/update_x.cpp
+	./mod1_algorithm/plane/model.cpp
+	./mod1_algorithm/plane/is_x.cpp
+	./mod1_algorithm/plane/read_x.cpp
+	./mod1_algorithm/plane/write_x.cpp
 
-	mod1_algorithm/terrain/terrain.cpp
-	mod1_algorithm/terrain/parse_x.cpp
-	mod1_algorithm/terrain/build.cpp
-	mod1_algorithm/terrain/generate_hill.cpp
-	mod1_algorithm/terrain/prepare.cpp
-	mod1_algorithm/terrain/info.cpp
-	mod1_algorithm/terrain/x_delta.cpp
-	mod1_algorithm/terrain/find_ptr.cpp
-	mod1_algorithm/terrain/interpolate_x.cpp
-	mod1_algorithm/plane/x_color.cpp
-	mod1_algorithm/terrain/model.cpp
-	mod1_algorithm/terrain/x_noise.cpp
+	./mod1_algorithm/terrain/terrain.cpp
+	./mod1_algorithm/terrain/parse_x.cpp
+	./mod1_algorithm/terrain/build.cpp
+	./mod1_algorithm/terrain/generate_hill.cpp
+	./mod1_algorithm/terrain/prepare.cpp
+	./mod1_algorithm/terrain/info.cpp
+	./mod1_algorithm/terrain/x_delta.cpp
+	./mod1_algorithm/terrain/find_ptr.cpp
+	./mod1_algorithm/terrain/interpolate_x.cpp
+	./mod1_algorithm/plane/x_color.cpp
+	./mod1_algorithm/terrain/model.cpp
+	./mod1_algorithm/terrain/x_noise.cpp
 
-	mod1_algorithm/water/water.cpp
-	mod1_algorithm/water/build.cpp
-	mod1_algorithm/water/model.cpp
-	mod1_algorithm/water/get_x.cpp
-	mod1_algorithm/water/set_x.cpp
-	mod1_algorithm/water/x_model.cpp
-	mod1_algorithm/water/gravity_x.cpp
-	mod1_algorithm/water/x_flow.cpp
-	mod1_algorithm/water/x_depth.cpp
-	mod1_algorithm/water/x_color.cpp
-	mod1_algorithm/water/callback.cpp)
+	./mod1_algorithm/water/water.cpp
+	./mod1_algorithm/water/build.cpp
+	./mod1_algorithm/water/model.cpp
+	./mod1_algorithm/water/get_x.cpp
+	./mod1_algorithm/water/set_x.cpp
+	./mod1_algorithm/water/x_model.cpp
+	./mod1_algorithm/water/gravity_x.cpp
+	./mod1_algorithm/water/x_flow.cpp
+	./mod1_algorithm/water/x_depth.cpp
+	./mod1_algorithm/water/x_color.cpp
+	./mod1_algorithm/water/callback.cpp)
 
 
 set(MAIN

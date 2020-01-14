@@ -12,7 +12,7 @@ public :
 					~cube() = default;
 
 	void			build() final;
-	model		*model();
+	model			*model();
 	using			model::transformation;
 };
 

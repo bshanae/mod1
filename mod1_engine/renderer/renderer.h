@@ -8,12 +8,12 @@
 #include "mod1_engine/core/core.h"
 #include "mod1_engine/program/program.h"
 #include "mod1_engine/model/model.h"
-#include "mod1_engine/cube/cube.h"
 #include "mod1_engine/loader/loader.h"
 #include "mod1_engine/camera/camera.h"
 #include "mod1_engine/callback/callback.h"
 #include "mod1_engine/uniform/uniform.h"
 #include "mod1_engine/point/point3.h"
+#include "mod1_engine/renderer/cube/cube.h"
 
 #include <fstream>
 #include <sstream>

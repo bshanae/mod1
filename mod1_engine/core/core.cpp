@@ -80,6 +80,17 @@ void				core::update()
 	glfwPollEvents();
 }
 
+void 				core::clear(const point3<float> &color)
+{
+	glClearColor(color.x, color.y, color.z, 1);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+void 				core::draw(const int &vertex_number)
+{
+	glDrawElements(GL_TRIANGLES, vertex_number, GL_UNSIGNED_INT, nullptr);
+}
+
 void				core::swap_buffers()
 {
 	glfwSwapBuffers(window);

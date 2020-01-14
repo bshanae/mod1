@@ -23,7 +23,8 @@ public :
 
 	virtual void	build() = 0;
 	void			load(loader &loader);
-	void			use();
+	void			start();
+	void			stop();
 
 	int 			vertex_number();
 	glm::mat4		&transformation();

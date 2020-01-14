@@ -6,6 +6,8 @@
 
 #include "mod1_engine/namespace.h"
 
+#include "mod1_engine/point/point3.h"
+
 #include <string>
 
 class					mod1_engine::core
@@ -28,6 +30,8 @@ public :
 
 	bool				is_working();
 	void				update();
+	void 				clear(const point3<float> &color);
+	void 				draw(const int &vertex_number);
 	void				swap_buffers();
 	void				set_callback(mod1_callback function, void *ptr);
 
