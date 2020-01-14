@@ -54,40 +54,40 @@ set(ENGINE
 	mod1_engine/callback/callback.cpp)
 
 set(ALGORITHM
-	./mod1_algorithm/mod1_plane/mod1_plane.cpp
-	./mod1_algorithm/mod1_plane/get_x.cpp
-	./mod1_algorithm/mod1_plane/set.cpp
-	./mod1_algorithm/mod1_plane/build.cpp
-	./mod1_algorithm/mod1_plane/update_x.cpp
-	./mod1_algorithm/mod1_plane/model.cpp
-	./mod1_algorithm/mod1_plane/is_x.cpp
-	./mod1_algorithm/mod1_plane/read_x.cpp
-	./mod1_algorithm/mod1_plane/write_x.cpp
+	mod1_algorithm/plane/plane.cpp
+	mod1_algorithm/plane/get_x.cpp
+	mod1_algorithm/plane/set.cpp
+	mod1_algorithm/plane/build.cpp
+	mod1_algorithm/plane/update_x.cpp
+	mod1_algorithm/plane/model.cpp
+	mod1_algorithm/plane/is_x.cpp
+	mod1_algorithm/plane/read_x.cpp
+	mod1_algorithm/plane/write_x.cpp
 
-	./mod1_algorithm/mod1_terrain/mod1_terrain.cpp
-	./mod1_algorithm/mod1_terrain/parse_x.cpp
-	./mod1_algorithm/mod1_terrain/build.cpp
-	./mod1_algorithm/mod1_terrain/generate_hill.cpp
-	./mod1_algorithm/mod1_terrain/prepare.cpp
-	./mod1_algorithm/mod1_terrain/info.cpp
-	./mod1_algorithm/mod1_terrain/x_delta.cpp
-	./mod1_algorithm/mod1_terrain/find_ptr.cpp
-	./mod1_algorithm/mod1_terrain/interpolate_x.cpp
-	./mod1_algorithm/mod1_plane/x_color.cpp
-	./mod1_algorithm/mod1_terrain/model.cpp
-	./mod1_algorithm/mod1_terrain/x_noise.cpp
+	mod1_algorithm/terrain/terrain.cpp
+	mod1_algorithm/terrain/parse_x.cpp
+	mod1_algorithm/terrain/build.cpp
+	mod1_algorithm/terrain/generate_hill.cpp
+	mod1_algorithm/terrain/prepare.cpp
+	mod1_algorithm/terrain/info.cpp
+	mod1_algorithm/terrain/x_delta.cpp
+	mod1_algorithm/terrain/find_ptr.cpp
+	mod1_algorithm/terrain/interpolate_x.cpp
+	mod1_algorithm/plane/x_color.cpp
+	mod1_algorithm/terrain/model.cpp
+	mod1_algorithm/terrain/x_noise.cpp
 
-	./mod1_algorithm/mod1_water/mod1_water.cpp
-	./mod1_algorithm/mod1_water/build.cpp
-	./mod1_algorithm/mod1_water/model.cpp
-	./mod1_algorithm/mod1_water/get_x.cpp
-	./mod1_algorithm/mod1_water/set_x.cpp
-	./mod1_algorithm/mod1_water/x_model.cpp
-	./mod1_algorithm/mod1_water/gravity_x.cpp
-	./mod1_algorithm/mod1_water/x_flow.cpp
-	./mod1_algorithm/mod1_water/x_depth.cpp
-	./mod1_algorithm/mod1_water/x_color.cpp
-	./mod1_algorithm/mod1_water/callback.cpp)
+	mod1_algorithm/water/water.cpp
+	mod1_algorithm/water/build.cpp
+	mod1_algorithm/water/model.cpp
+	mod1_algorithm/water/get_x.cpp
+	mod1_algorithm/water/set_x.cpp
+	mod1_algorithm/water/x_model.cpp
+	mod1_algorithm/water/gravity_x.cpp
+	mod1_algorithm/water/x_flow.cpp
+	mod1_algorithm/water/x_depth.cpp
+	mod1_algorithm/water/x_color.cpp
+	mod1_algorithm/water/callback.cpp)
 
 
 set(MAIN

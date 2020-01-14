@@ -1,8 +1,7 @@
 #pragma once
 
 #include "mod1_engine/mod1_engine.h"
-#include "mod1_algorithm/mod1_terrain/mod1_terrain.h"
-#include "mod1_algorithm/mod1_water/mod1_water.h"
+#include "mod1_algorithm/mod1_algorithm.h"
 
 class 						mod1_main
 {
@@ -18,8 +17,8 @@ public :
 	void					loop();
 
 	mod1_engine::renderer	*renderer = nullptr;
-	mod1_terrain			*terrain = nullptr;
-	mod1_water				*water = nullptr;
+	mod1_algorithm::terrain	*terrain = nullptr;
+	mod1_algorithm::water	*water = nullptr;
 
 private :
 

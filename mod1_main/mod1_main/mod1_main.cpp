@@ -5,8 +5,8 @@ MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_main, exception_invalid_arguments)
 					mod1_main::mod1_main(int argc, char **argv)
 {
 	renderer = new mod1_engine::renderer;
-	terrain = new mod1_terrain;
-	water = new mod1_water(terrain);
+	terrain = new mod1_algorithm::terrain;
+	water = new mod1_algorithm::water(terrain);
 	if (argc < 2)
 		throw (exception_invalid_arguments());
 	source = argv[1];
@@ -28,7 +28,7 @@ void				mod1_main::build()
 
 void				mod1_main::loop()
 {
-	renderer->add_callback(mod1_water::callback, water);
+	renderer->add_callback(mod1_algorithm::water::callback, water);
 
 #if MOD1_ENABLED(MOD1_USE_TERRAIN)
 	renderer->load_model(terrain->model());

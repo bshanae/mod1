@@ -35,6 +35,14 @@ public :
 		slot_color
 	}					slot_type;
 
+	enum class test
+	{
+		slot_point,
+		slot_index,
+		slot_normal,
+		slot_color
+	};
+
 	void 				*get_ptr(const int &index, const slot_type &slot);
 	void const			*get_ptr(const int &index, const slot_type &slot) const;
 	bool				is_valid(const int &index, const slot_type &slot) const;

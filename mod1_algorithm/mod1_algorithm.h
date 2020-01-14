@@ -2,6 +2,6 @@
 
 #include "mod1_algorithm/namespace.h"
 
-#include "mod1_algorithm/mod1_plane/mod1_plane.h"
-#include "mod1_algorithm/mod1_terrain/mod1_terrain.h"
-#include "mod1_algorithm/mod1_water/mod1_water.h"
+#include "mod1_algorithm/plane/plane.h"
+#include "mod1_algorithm/terrain/terrain.h"
+#include "mod1_algorithm/water/water.h"
