@@ -5,9 +5,9 @@ void					mod1_plane::build()
 	if (!is_set)
 		throw (exception_logic());
 
-	point2<int>	iter;
+	mod1_point2<int>	iter;
 	float				*ptr;
-	point3<float>	temp;
+	mod1_point3<float>	temp;
 
 	//					Points
 
@@ -16,13 +16,13 @@ void					mod1_plane::build()
 	for (iter.y = 0; iter.y < size_internal.y; iter.y++)
 		for (iter.x = 0; iter.x < size_internal.x; iter.x++)
 		{
-			temp = point3<float>(min_internal.x + delta_internal * iter.x, min_internal.y + delta_internal * iter.y, 0);
-			ptr = (float *)get_ptr(iter, model_data::slot_point, mod1_plane::convention_dual_first);
-			temp.write_to_ptr(ptr, point3<float>::convention_xzy);
+			temp = mod1_point3<float>(min_internal.x + delta_internal * iter.x, min_internal.y + delta_internal * iter.y, 0);
+			ptr = (float *)get_ptr(iter, mod1_model_data::slot_point, mod1_plane::convention_dual_first);
+			temp.write_to_ptr(ptr, mod1_point3<float>::convention_xzy);
 			if (is_dual(iter))
 			{
-				ptr = (float *)get_ptr(iter, model_data::slot_point, mod1_plane::convention_dual_second);
-				temp.write_to_ptr(ptr, point3<float>::convention_xzy);
+				ptr = (float *)get_ptr(iter, mod1_model_data::slot_point, mod1_plane::convention_dual_second);
+				temp.write_to_ptr(ptr, mod1_point3<float>::convention_xzy);
 			}
 		}
 
@@ -43,11 +43,11 @@ void					mod1_plane::build()
 	for (iter.y = 0; iter.y < size_internal.y - 1; iter.y++)
 		for (iter.x = 0; iter.x < size_internal.x - 1; iter.x++)
 		{
-			top_left = get_index(point2<int>(iter.x, iter.y),
+			top_left = get_index(mod1_point2<int>(iter.x, iter.y),
 			    is_dual(iter) ? convention_dual_second : convention_dual_first);
-			top_right = get_index(point2<int>(iter.x + 1, iter.y), convention_dual_first);
-			bottom_left = get_index(point2<int>(iter.x, iter.y + 1));
-			bottom_right = get_index(point2<int>(iter.x + 1, iter.y + 1));
+			top_right = get_index(mod1_point2<int>(iter.x + 1, iter.y), convention_dual_first);
+			bottom_left = get_index(mod1_point2<int>(iter.x, iter.y + 1));
+			bottom_right = get_index(mod1_point2<int>(iter.x + 1, iter.y + 1));
 
 			index_ptr[index_i++] = top_left;
 			index_ptr[index_i++] = bottom_left;
@@ -62,17 +62,17 @@ void					mod1_plane::build()
 
 	data.normal_buffer.allocate(MOD1_PLANE_NORMAL_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(size_internal));
 
-	temp = point3<float>(0, 0, -1);
+	temp = mod1_point3<float>(0, 0, -1);
 
 	for (iter.y = 0; iter.y < size_internal.y - 1; iter.y++)
 		for (iter.x = 0; iter.x < size_internal.x; iter.x++)
 		{
-			ptr = (float *)get_ptr(iter, model_data::slot_normal, convention_dual_first);
-			temp.write_to_ptr(ptr, point3<float>::convention_xzy);
+			ptr = (float *)get_ptr(iter, mod1_model_data::slot_normal, convention_dual_first);
+			temp.write_to_ptr(ptr, mod1_point3<float>::convention_xzy);
 			if (is_dual(iter))
 			{
-				ptr = (float *)get_ptr(iter, model_data::slot_normal, convention_dual_second);
-				temp.write_to_ptr(ptr, point3<float>::convention_xzy);
+				ptr = (float *)get_ptr(iter, mod1_model_data::slot_normal, convention_dual_second);
+				temp.write_to_ptr(ptr, mod1_point3<float>::convention_xzy);
 			}
 		}
 
@@ -80,17 +80,17 @@ void					mod1_plane::build()
 
 	data.color_buffer.allocate(MOD1_PLANE_COLOR_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(size_internal));
 
-	temp = point3<float>(0, 0, 1);
+	temp = mod1_point3<float>(0, 0, 1);
 
 	for (iter.y = 0; iter.y < size_internal.y - 1; iter.y++)
 		for (iter.x = 0; iter.x < size_internal.x; iter.x++)
 		{
-			ptr = (float *)get_ptr(iter, model_data::slot_color, convention_dual_first);
-			temp.write_to_ptr(ptr, point3<float>::convention_xyz);
+			ptr = (float *)get_ptr(iter, mod1_model_data::slot_color, convention_dual_first);
+			temp.write_to_ptr(ptr, mod1_point3<float>::convention_xyz);
 			if (is_dual(iter))
 			{
-				ptr = (float *)get_ptr(iter, model_data::slot_color, convention_dual_second);
-				temp.write_to_ptr(ptr, point3<float>::convention_xyz);
+				ptr = (float *)get_ptr(iter, mod1_model_data::slot_color, convention_dual_second);
+				temp.write_to_ptr(ptr, mod1_point3<float>::convention_xyz);
 			}
 		}
 

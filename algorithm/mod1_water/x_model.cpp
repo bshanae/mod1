@@ -1,8 +1,8 @@
 #include "mod1_water.h"
 
-void					mod1_water::update_model_helper_a(const point2<int> &iter)
+void					mod1_water::update_model_helper_a(const mod1_point2<int> &iter)
 {
-	point2<int>	iter_plane;
+	mod1_point2<int>	iter_plane;
 	float				water;
 	float				height;
 
@@ -11,20 +11,20 @@ void					mod1_water::update_model_helper_a(const point2<int> &iter)
 		water = MOD1_WATER_HIDDEN;
 	height = get_terrain_height(iter) + water;
 
-	iter_plane = point2<int>(iter.x, iter.y);
+	iter_plane = mod1_point2<int>(iter.x, iter.y);
 	update_model_helper_b(iter_plane, height);
 
-	iter_plane = point2<int>(iter.x + 1, iter.y);
+	iter_plane = mod1_point2<int>(iter.x + 1, iter.y);
 	update_model_helper_b(iter_plane, height);
 
-	iter_plane = point2<int>(iter.x, iter.y + 1);
+	iter_plane = mod1_point2<int>(iter.x, iter.y + 1);
 	update_model_helper_b(iter_plane, height);
 
-	iter_plane = point2<int>(iter.x + 1, iter.y + 1);
+	iter_plane = mod1_point2<int>(iter.x + 1, iter.y + 1);
 	update_model_helper_b(iter_plane, height);
 }
 
-void					mod1_water::update_model_helper_b(const point2<int> &iter, const float &new_height)
+void					mod1_water::update_model_helper_b(const mod1_point2<int> &iter, const float &new_height)
 {
 	auto				old_height = read_height(iter);
 
@@ -34,7 +34,7 @@ void					mod1_water::update_model_helper_b(const point2<int> &iter, const float 
 
 void					mod1_water::update_model()
 {
-	point2<int>	iter;
+	mod1_point2<int>	iter;
 
 	for (iter.y = 0; iter.y < size().y; iter.y++)
 		for (iter.x = 0; iter.x < size().x; iter.x++)

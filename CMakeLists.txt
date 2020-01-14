@@ -23,15 +23,36 @@ include_directories(
 	/Users/bshanae/.brew/Cellar/glfw/3.3/include/GLFW
 	/Users/bshanae/.brew/Cellar/glm/0.9.9.5/include/glm
 
-	./)
+	main
+	main/mod1_main
+
+	./libraries/FastNoise
+
+	./engine/
+	./engine/mod1_point
+	./engine/mod1_core
+	./engine/mod1_shader
+	./engine/mod1_program
+	./engine/mod1_renderer
+	./engine/mod1_buffer
+	./engine/mod1_loader
+	./engine/mod1_model
+	./engine/mod1_cube
+	./engine/mod1_camera
+	./engine/mod1_callback
+
+	./algorithm/mod1_plane
+	./algorithm/mod1_terrain
+	./algorithm/mod1_water)
 
 set(LIBRARIES
 	./libraries/FastNoise/FastNoise.cpp)
 
 set(MAIN
-	mod1_main/main.cpp
+	main/main.cpp
 
-	mod1_main/mod1_main/mod1_main.cpp)
+	main/mod1_main/mod1_main.cpp
+	)
 
 set(ALGORITHM
 	./algorithm/mod1_plane/mod1_plane.cpp
@@ -70,30 +91,29 @@ set(ALGORITHM
 	./algorithm/mod1_water/callback.cpp)
 
 set(ENGINE
-	./mod1_engine/core/core.cpp
+	./engine/mod1_core/mod1_core.cpp
 
-	./mod1_engine/shader/shader.cpp
+	./engine/mod1_shader/mod1_shader.cpp
 
-	./mod1_engine/renderer/renderer.cpp
-	./mod1_engine/renderer/glfw_callback.cpp
-	./mod1_engine/renderer/loop.cpp
-	./mod1_engine/renderer/render_x.cpp
-	./mod1_engine/renderer/load_model.cpp
-	./mod1_engine/renderer/cube.cpp
+	./engine/mod1_renderer/mod1_renderer.cpp
 
-	./mod1_engine/program/program.cpp
+	./engine/mod1_program/mod1_program.cpp
 
-	./mod1_engine/buffer/buffer.h
+	./engine/mod1_buffer/mod1_buffer.h
 
-	./mod1_engine/model/model.cpp
-	./mod1_engine/model/model_data.cpp
+	./engine/mod1_model/mod1_model.cpp
+	./engine/mod1_model/mod1_model_data.cpp
 
-	./mod1_engine/loader/eab_x.cpp
-	./mod1_engine/loader/vao_x.cpp
-	./mod1_engine/loader/vbo_x.cpp
+	./engine/mod1_cube/mod1_cube.cpp
 
-	./mod1_engine/loader/loader.cpp
-	./mod1_engine/camera/camera.cpp)
+	./engine/mod1_loader/eab_x.cpp
+	./engine/mod1_loader/vao_x.cpp
+	./engine/mod1_loader/vbo_x.cpp
+
+	./engine/mod1_loader/mod1_loader.cpp
+	./engine/mod1_camera/mod1_camera.cpp
+
+	./engine/mod1_callback/mod1_callback.cpp)
 
 add_executable(21_mod1
 	${LIBRARIES}

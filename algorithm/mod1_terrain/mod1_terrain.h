@@ -1,15 +1,13 @@
 #pragma once
 
-#include "mod1_main/mod1_macro.h"
-#include "mod1_main/mod1_control.h"
+#include "mod1_macros.h"
+#include "mod1_control.h"
 
-#include "libraries/FastNoise/FastNoise.h"
-#include "algorithm/mod1_plane/mod1_plane.h"
+#include "FastNoise.h"
+#include "mod1_plane.h"
 
 #include <fstream>
 #include <vector>
-
-using namespace				mod1_engine;
 
 class						mod1_terrain : private mod1_plane
 {
@@ -24,7 +22,7 @@ public :
 	void					parse(const std::string &file);
 	void					build() final;
 
-	class model				*model() override;
+	mod1_model				*model() override;
 
 	void					info(const bool &raw = true, const bool &model = true) const;
 
@@ -37,15 +35,15 @@ public :
 private :
 
 	MOD1_TERRAIN_RAW_DATA	data_raw;
-	point3<int>		min_raw = point3<int>(INT_MAX, INT_MAX, INT_MAX);
-	point3<int>		max_raw = point3<int>(-INT_MAX, -INT_MAX, -INT_MAX);
-	point3<int>		diff_raw;
+	mod1_point3<int>		min_raw = mod1_point3<int>(INT_MAX, INT_MAX, INT_MAX);
+	mod1_point3<int>		max_raw = mod1_point3<int>(-INT_MAX, -INT_MAX, -INT_MAX);
+	mod1_point3<int>		diff_raw;
 	bool					case_one_point = false;
 
 	static float			parse_coordinate(std::ifstream &stream, bool eat_delimiter);
 
-	point2<int>		min_i;
-	point2<int>		max_i;
+	mod1_point2<int>		min_i;
+	mod1_point2<int>		max_i;
 	int						delta_i = 0;
 
 	void					prepare();
@@ -54,30 +52,30 @@ private :
 	void 					compute_delta();
 	void					optimize_delta();
 
-	bool					generate_hill_helper(const point2<int> &iter, const float &height);
-	void					generate_hill(const point3<int> &summit);
+	bool					generate_hill_helper(const mod1_point2<int> &iter, const float &height);
+	void					generate_hill(const mod1_point3<int> &summit);
 
 	FastNoise				noise_generator;
 
 	float					generate_noise(
-							const point2<int> &iter,
+							const mod1_point2<int> &iter,
 							const float &frequency,
 							const float &range,
-							const point2<float> &offset = point2<float>(0),
+							const mod1_point2<float> &offset = mod1_point2<float>(0),
 							const float &power = 1) const;
 	void					apply_noise(
-							const point2<int> &iter,
+							const mod1_point2<int> &iter,
 							const float &frequency,
 							const float &range,
-							const point2<float> &offset = point2<float>(0),
+							const mod1_point2<float> &offset = mod1_point2<float>(0),
 							const float &power = 1);
 	void					apply_noise(
 							const float &frequency,
 							const float &range,
-							const point2<float> &offset = point2<float>(0),
+							const mod1_point2<float> &offset = mod1_point2<float>(0),
 							const float &power = 1);
 
-	point2<int>		find_ptr(const point3<int> &object) const;
+	mod1_point2<int>		find_ptr(const mod1_point3<int> &object) const;
 
 	friend class			mod1_water;
 };

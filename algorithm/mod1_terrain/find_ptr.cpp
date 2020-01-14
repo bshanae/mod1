@@ -1,14 +1,14 @@
 #include "mod1_terrain.h"
 
-point2<int>		mod1_terrain::find_ptr(const point3<int> &object) const
+mod1_point2<int>		mod1_terrain::find_ptr(const mod1_point3<int> &object) const
 {
-	point2<int>	iter;
-	point3<int>	point;
+	mod1_point2<int>	iter;
+	mod1_point3<int>	point;
 
 	for (iter.y = 0; iter.y < size().y; iter.y++)
 		for (iter.x = 0; iter.x < size().x; iter.x++)
 		{
-			point = (point3<int>)read_point(iter);
+			point = (mod1_point3<int>)read_point(iter);
 			if (point.x == object.x && point.y == object.y)
 				return (iter);
 		}

@@ -1,6 +1,6 @@
 #include "mod1_plane.h"
 
-model			*mod1_plane::model()
+mod1_model			*mod1_plane::model()
 {
-	return ((class model *)this);
+	return ((mod1_model *)this);
 }

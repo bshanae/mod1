@@ -5,7 +5,7 @@ void 					mod1_water::gravity_debug()
 # define RED			"\033[0;31m"
 # define BLACK			"\033[0m"
 
-	point2<int>	iter;
+	mod1_point2<int>	iter;
 
 	for (iter.y = 0; iter.y < terrain->size().y; iter.y++)
 	{

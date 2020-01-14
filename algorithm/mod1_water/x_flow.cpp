@@ -2,7 +2,7 @@
 
 void					mod1_water::update_flow()
 {
-	point2<int>	iter;
+	mod1_point2<int>	iter;
 	float 				height_me;
 	float 				height_neighbour;
 
@@ -12,13 +12,13 @@ void					mod1_water::update_flow()
 
 			height_me = get_total_height(iter);
 
-			if (terrain->is_valid(iter + MOD1_WATER_RIGHT, model_data::slot_point))
+			if (terrain->is_valid(iter + MOD1_WATER_RIGHT, mod1_model_data::slot_point))
 			{
 				height_neighbour = get_total_height(iter + MOD1_WATER_RIGHT);
 				flow_horizontal[iter] += (height_neighbour - height_me) * flow_constant;
 			}
 
-			if (terrain->is_valid(iter + MOD1_WATER_DOWN, model_data::slot_point))
+			if (terrain->is_valid(iter + MOD1_WATER_DOWN, mod1_model_data::slot_point))
 			{
 				height_neighbour = get_total_height(iter + MOD1_WATER_DOWN);
 				flow_vertical[iter] += (height_neighbour - height_me) * flow_constant;
@@ -30,7 +30,7 @@ void					mod1_water::update_flow()
 
 void					mod1_water::limit_flow()
 {
-	point2<int>	iter;
+	mod1_point2<int>	iter;
 	float				flow[flow_end];
 	float				sum;
 	float				distribution[flow_end];

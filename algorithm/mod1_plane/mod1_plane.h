@@ -1,13 +1,13 @@
 #pragma once
 
-#include "mod1_main/mod1_generic.h"
-#include "mod1_main/mod1_macro.h"
+#include "mod1_generate_x.h"
+#include "mod1_macros.h"
 
-#include "mod1_engine/mod1_engine.h"
+#include "mod1_model.h"
+#include "mod1_point2.h"
+#include "mod1_point3.h"
 
-using namespace				mod1_engine;
-
-class						mod1_plane : protected mod1_engine::model
+class						mod1_plane : protected mod1_model
 {
 public :
 							mod1_plane() = default;
@@ -19,24 +19,24 @@ public :
 	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_indexing_convention, "Mod1 Plane : Unknown indexing convention")
 
 	void					set(
-							const point2<float> &min,
-							const point2<float> &max,
+							const mod1_point2<float> &min,
+							const mod1_point2<float> &max,
 							const float &delta);
 	void					build() override;
 
-	virtual model			*model();
+	virtual mod1_model		*model();
 
 private :
 
-	point2<int>				size_internal;
-	point2<float>			min_internal;
-	point2<float>			max_internal;
+	mod1_point2<int>		size_internal;
+	mod1_point2<float>		min_internal;
+	mod1_point2<float>		max_internal;
 	float					delta_internal = 0;
 
-	point2<int>				real_size_internal;
+	mod1_point2<int>		real_size_internal;
 
-	point3<float>			final_min_internal;
-	point3<float>			final_max_internal;
+	mod1_point3<float>		final_min_internal;
+	mod1_point3<float>		final_max_internal;
 
 protected :
 
@@ -47,25 +47,25 @@ protected :
 		convention_dual_second
 	}						mod1_indexing_convention;
 
-	point3<float>			read_point(const point2<int> &iter) const;
-	float					read_height(const point2<int> &iter) const;
+	mod1_point3<float>		read_point(const mod1_point2<int> &iter) const;
+	float					read_height(const mod1_point2<int> &iter) const;
 
-	bool					write_height(const point2<int> &iter, const float &z);
-	void					write_color(const point2<int> &iter, const point3<float> &color);
+	bool					write_height(const mod1_point2<int> &iter, const float &z);
+	void					write_color(const mod1_point2<int> &iter, const mod1_point3<float> &color);
 
 	bool					is_valid(
-							const point2<int> &iter,
-							const model_data::slot_type &slot,
+							const mod1_point2<int> &iter,
+							const mod1_model_data::slot_type &slot,
 							const mod1_indexing_convention &convention = convention_dual_first) const;
-	bool 					is_dual(const point2<int> &iter) const;
+	bool 					is_dual(const mod1_point2<int> &iter) const;
 
 	void 					update_normal();
 
 	void 					update_final();
 
-	void					add_color(const point3<float> &color);
-	void 					add_color(const point3<int> &color);
-	point3<float>			compute_color(const float &height) const;
+	void					add_color(const mod1_point3<float> &color);
+	void 					add_color(const mod1_point3<int> &color);
+	mod1_point3<float>		compute_color(const float &height) const;
 
 	MOD1_GENERATE_GET_DEFINITION(size)
 	MOD1_GENERATE_GET_DEFINITION(real_size)
@@ -78,21 +78,21 @@ protected :
 private :
 
 	MOD1_PLANE_COLOR_DATA	color_data;
-	using 					model::data;
+	using 					mod1_model::data;
 
 	bool					is_set = false;
 
 	int 					get_index(
-							const point2<int> &iter,
+							const mod1_point2<int> &iter,
 							const mod1_indexing_convention &convention = convention_dual_first) const;
 
 	void 					*get_ptr(
-							const point2<int> &iter,
-							const model_data::slot_type &slot,
+							const mod1_point2<int> &iter,
+							const mod1_model_data::slot_type &slot,
 							const mod1_indexing_convention &convention = convention_dual_first);
 	void const				*get_ptr(
-							const point2<int> &iter,
-							const model_data::slot_type &slot,
+							const mod1_point2<int> &iter,
+							const mod1_model_data::slot_type &slot,
 							const mod1_indexing_convention &convention = convention_dual_first) const;
 
 	void					update_normal_helper(

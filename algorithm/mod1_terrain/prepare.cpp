@@ -16,21 +16,21 @@ void					mod1_terrain::prepare()
 	min_i = min_raw;
 	max_i = max_raw;
 
-	point2<int>	test;
+	mod1_point2<int>	test;
 
 	for (auto const &iter : data_raw)
 	{
-		test = point2<int>(iter.x - iter.z, iter.y - iter.z);
-		min_i = point2<int>::min(min_i, test);
-		test = point2<int>(iter.x + iter.z, iter.y + iter.z);
-		max_i = point2<int>::max(max_i, test);
+		test = mod1_point2<int>(iter.x - iter.z, iter.y - iter.z);
+		min_i = mod1_point2<int>::min(min_i, test);
+		test = mod1_point2<int>(iter.x + iter.z, iter.y + iter.z);
+		max_i = mod1_point2<int>::max(max_i, test);
 	}
 
-	point2<int> indent = (max_i - min_i) * MOD1_TERRAIN_INDENT;
+	mod1_point2<int> indent = (max_i - min_i) * MOD1_TERRAIN_INDENT;
 
 	min_i -= indent;
 	max_i += indent;
 
-	min_i = (min_i / delta_i - point2<int>(1)) * delta_i;
-	max_i = (max_i / delta_i + point2<int>(1)) * delta_i;
+	min_i = (min_i / delta_i - mod1_point2<int>(1)) * delta_i;
+	max_i = (max_i / delta_i + mod1_point2<int>(1)) * delta_i;
 }

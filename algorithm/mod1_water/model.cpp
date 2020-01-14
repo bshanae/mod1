@@ -1,6 +1,6 @@
 #include "mod1_water.h"
 
-model			*mod1_water::model()
+mod1_model			*mod1_water::model()
 {
-	return ((class model *)this);
+	return ((mod1_model *)this);
 }

@@ -24,9 +24,9 @@ static bool				reduce(int &value)
 	return (false);
 }
 
-static bool				does_need_optimization(const point3<int> &diff, const int &delta_i)
+static bool				does_need_optimization(const mod1_point3<int> &diff, const int &delta_i)
 {
-	point3<int>	count;
+	mod1_point3<int>	count;
 
 	count = diff / delta_i;
 	return (count.x < MOD1_TERRAIN_MIN_SIZE || count.y < MOD1_TERRAIN_MIN_SIZE);
@@ -43,7 +43,7 @@ void 					mod1_terrain::compute_delta()
 {
 	diff_raw = max_raw - min_raw;
 
-	if (diff_raw == point3<int>())
+	if (diff_raw == mod1_point3<int>())
 	{
 		case_one_point = true;
 		delta_i = MOD1_TERRAIN_DEFAULT_DELTA;

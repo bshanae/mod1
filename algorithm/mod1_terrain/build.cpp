@@ -4,7 +4,7 @@ void					mod1_terrain::build()
 {
 	prepare();
 
-	set((point2<float>)min_i, (point2<float>)max_i, (float)delta_i);
+	set((mod1_point2<float>)min_i, (mod1_point2<float>)max_i, (float)delta_i);
 	mod1_plane::build();
 
 	//					Hills
@@ -36,8 +36,8 @@ void					mod1_terrain::build()
 
 	//					Colors
 
-	point2<int>	iter;
-	point3<float>	color;
+	mod1_point2<int>	iter;
+	mod1_point3<float>	color;
 
 	for (iter.y = 0; iter.y < size().y - 1; iter.y++)
 		for (iter.x = 0; iter.x < size().x; iter.x++)

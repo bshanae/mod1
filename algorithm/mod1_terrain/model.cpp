@@ -1,6 +1,6 @@
 #include "mod1_terrain.h"
 
-model			*mod1_terrain::model()
+mod1_model			*mod1_terrain::model()
 {
-	return ((class model *)this);
+	return ((mod1_model *)this);
 }

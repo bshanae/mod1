@@ -3,7 +3,7 @@
 bool 					mod1_water::callback(int key, void *ptr)
 {
 	auto				water = (mod1_water *)ptr;
-	point2<int>	iter;
+	mod1_point2<int>	iter;
 
 	if (key == GLFW_KEY_1)
 	{
@@ -46,7 +46,7 @@ bool 					mod1_water::callback(int key, void *ptr)
 
 		for (int y = 0; y < D_Y; y++)
 			for (int x = 0; x < D_X; x++)
-				water->water_depth[point2<int>(A_X + x, A_Y + y)] = Q;
+				water->water_depth[mod1_point2<int>(A_X + x, A_Y + y)] = Q;
 #endif
 
 #ifdef MOD1_WATER_FLOOD_UNIFORM
@@ -74,8 +74,8 @@ bool 					mod1_water::callback(int key, void *ptr)
 
 	water->update_model();
 	water->update_color();
-	water->upload_buffer(model_data::slot_point);
-	water->upload_buffer(model_data::slot_color);
+	water->upload_buffer(mod1_model_data::slot_point);
+	water->upload_buffer(mod1_model_data::slot_color);
 
 	return (true);
 }
