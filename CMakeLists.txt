@@ -39,7 +39,7 @@ set(ENGINE
 
 	./mod1_engine/renderer/renderer.cpp
 	./mod1_engine/renderer/glfw_callback.cpp
-	mod1_engine/renderer/x_render_x.cpp
+	./mod1_engine/renderer/render_x.cpp
 	./mod1_engine/renderer/load_model.cpp
 	./mod1_engine/renderer/cube.cpp
 

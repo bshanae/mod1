@@ -23,4 +23,5 @@ public :
 private :
 
 	char						*source;
+
 };

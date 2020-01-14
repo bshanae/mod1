@@ -39,8 +39,7 @@ public :
 	const loader				*loader_ptr;
 	const camera				*camera_ptr;
 
-	void						request_render();
-	void						try_render();
+	void						render();
 
 private :
 
@@ -77,8 +76,4 @@ private :
 	camera						camera;
 
 	cube						light_cube;
-
-	bool 						render_request = true;
-
-	void						render();
 };

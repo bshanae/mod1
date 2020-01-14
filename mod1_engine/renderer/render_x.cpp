@@ -2,29 +2,19 @@
 
 using namespace		mod1_engine;
 
-
-void				renderer::request_render()
-{
-	render_request = true;
-}
-
-void				renderer::try_render()
-{
-	if (render_request)
-		render();
-	render_request = false;
-}
-
 void 				renderer::render()
 {
 	core.clear(MOD1_BACKGROUND);
+
 	program.start();
 
 	program.camera_view.upload(camera.view());
+
 	program.light_ambient_intensity.upload(light_info.ambient_intensity);
 	program.light_point_position.upload(light_info.point_position);
 	program.light_point_intensity.upload(light_info.point_intensity);
 	program.light_point_power.upload(light_info.point_power);
+
 	light_cube.transformation() = glm::translate(glm::mat4(1), light_info.point_position);
 
 	for (auto &model : model_array)

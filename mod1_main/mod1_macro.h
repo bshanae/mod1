@@ -4,9 +4,6 @@
 
 #define TYPE(x)									decltype(x)
 
-#define CONCAT_(a, b)							a##b
-#define CONCAT(a, b)							CONCAT_(a, b)
-
 #define STRING(x)								#x
 
 #define MOD1_DISABLE							0
@@ -53,5 +50,3 @@
 #define MOD1_WATER_UPPER						point2<int>(0, -1)
 #define MOD1_WATER_LEFT							point2<int>(-1, 0)
 #define MOD1_WATER_DOWN							point2<int>(0, 1)
-
-#define DEBUG	{ int CONCAT(x_, __LINE__) = glGetError(); if (CONCAT(x_, __LINE__)) exit(1); }

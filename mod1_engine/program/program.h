@@ -45,8 +45,6 @@ private :
 
 	GLuint 				object_internal;
 
-	void				start_noexcept();
-
 	void 				check_error();
 
 };
