@@ -2,9 +2,9 @@
 
 using namespace		mod1_engine;
 
-MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(model, exception_build)
-MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(model, exception_load)
-MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(model, exception_dynamic)
+MOD1_GENERATE_EXCEPTION_DEFINITION(model, exception_build)
+MOD1_GENERATE_EXCEPTION_DEFINITION(model, exception_load)
+MOD1_GENERATE_EXCEPTION_DEFINITION(model, exception_dynamic)
 
 void				model::load(loader &loader)
 {

@@ -17,14 +17,21 @@ public :
 						program();
 						~program();
 
-	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_compilation, "Mod1 Program : Compilation error")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_compilation, "Mod1 Program : Compilation error")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_link, "Mod1 Program : Object is nit linked")
 
 	void				start();
 	void				stop();
+
+	void 				add_shader(const shader_type &type, const char *source);
+	void				link();
 
 	GLuint				object();
 
 private :
 
+	bool				is_linked = false;
 	GLuint 				object_internal;
+
+	void				check_error();
 };

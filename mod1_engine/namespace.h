@@ -15,6 +15,7 @@ namespace			mod1_engine
 
 	class			core;
 	class			shader;
+	enum class		shader_type;
 	class			uniform;
 	class			program;
 	class			callback;

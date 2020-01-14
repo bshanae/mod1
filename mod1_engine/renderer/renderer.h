@@ -12,6 +12,7 @@
 #include "mod1_engine/loader/loader.h"
 #include "mod1_engine/camera/camera.h"
 #include "mod1_engine/callback/callback.h"
+#include "mod1_engine/uniform/uniform.h"
 #include "mod1_engine/point/point3.h"
 
 #include <fstream>
@@ -33,15 +34,27 @@ public :
 	void						render();
 	void						loop();
 
-	typedef struct
+private :
+
+	struct						light_info
 	{
 		float 					ambient_intensity;
 		glm::vec3				point_position;
 		float					point_intensity;
 		float					point_power;
-	}							mod1_light_info;
+	};
 
-private :
+	class						program : public mod1_engine::program
+	{
+	public :
+		MOD1_GENERATE_UNIFORM(object_transformation)
+		MOD1_GENERATE_UNIFORM(camera_view)
+		MOD1_GENERATE_UNIFORM(camera_projection)
+		MOD1_GENERATE_UNIFORM(light_ambient_intensity)
+		MOD1_GENERATE_UNIFORM(light_point_position)
+		MOD1_GENERATE_UNIFORM(light_point_intensity)
+		MOD1_GENERATE_UNIFORM(light_point_power)
+	};
 
 	static void					glfw_callback(GLFWwindow* window, int key, int code, int action, int mode);
 
@@ -54,7 +67,7 @@ private :
 	loader						loader;
 	camera						camera;
 
-	mod1_light_info				light_info;
+	struct light_info			light_info;
 	cube						light_cube;
 
 	GLuint						uniform_object_transformation;

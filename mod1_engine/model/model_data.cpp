@@ -2,7 +2,7 @@
 
 using namespace		mod1_engine;
 
-MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(model_data, exception_unknown_slot)
+MOD1_GENERATE_EXCEPTION_DEFINITION(model_data, exception_unknown_slot)
 
 void 				*model_data::get_ptr(const int &index, const slot_type &slot)
 {

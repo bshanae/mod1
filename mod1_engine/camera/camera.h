@@ -16,7 +16,7 @@ public :
 						const glm::vec3 &position = glm::vec3(0, 0, 0));
 						~camera() = default;
 
-	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_axis, "Mod1 Camera : Unknown axis")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_axis, "Mod1 Camera : Unknown axis")
 
 	typedef enum
 	{

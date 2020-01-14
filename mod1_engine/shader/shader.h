@@ -9,6 +9,14 @@
 #include <fstream>
 #include <sstream>
 
+enum class				mod1_engine::shader_type
+{
+	vertex = GL_VERTEX_SHADER,
+	geometry = GL_GEOMETRY_SHADER,
+	fragment = GL_FRAGMENT_SHADER,
+	compute = GL_COMPUTE_SHADER
+};
+
 class					mod1_engine::shader
 {
 
@@ -17,13 +25,14 @@ public :
 						shader() = default;
 						~shader();
 
-	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_source, "Mod1 Shader : Invalid source file")
-	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_compilation, "Mod1 Shader : Compilation error")
-	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_build, "Mod1 Shader : Object is not built")
-	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_link, "Mod1 Shader : Object is not linked")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_source, "Mod1 Shader : Invalid source file")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_compilation, "Mod1 Shader : Compilation error")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_build, "Mod1 Shader : Object is not built")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_link, "Mod1 Shader : Object is not linked")
 
 
-	void				build(int type, const char *source);
+
+	void				build(const shader_type &type, const char *source);
 	void				link(const GLuint &program_id);
 
 	GLuint				object();

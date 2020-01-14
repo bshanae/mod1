@@ -11,10 +11,10 @@ public :
 								plane() = default;
 								~plane() = default;
 
-	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_coordinate, "Mod1 Plane : Bad coordinate")
-	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_logic, "Mod1 Plane : Object not set")
-	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_color, "Mod1 Plane : Too few colors defined")
-	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_indexing_convention, "Mod1 Plane : Unknown indexing convention")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_coordinate, "Mod1 Plane : Bad coordinate")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_logic, "Mod1 Plane : Object not set")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_color, "Mod1 Plane : Too few colors defined")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_indexing_convention, "Mod1 Plane : Unknown indexing convention")
 
 	void						set(
 								const point2<float> &min,
@@ -65,13 +65,13 @@ protected :
 	void 						add_color(const point3<int> &color);
 	point3<float>				compute_color(const float &height) const;
 
-	MOD1_GENERATE_GET_DEFINITION(size)
-	MOD1_GENERATE_GET_DEFINITION(real_size)
-	MOD1_GENERATE_GET_DEFINITION(min)
-	MOD1_GENERATE_GET_DEFINITION(max)
-	MOD1_GENERATE_GET_DEFINITION(delta)
-	MOD1_GENERATE_GET_DEFINITION(final_min)
-	MOD1_GENERATE_GET_DEFINITION(final_max)
+	MOD1_GENERATE_GET_DECLARATION(size)
+	MOD1_GENERATE_GET_DECLARATION(real_size)
+	MOD1_GENERATE_GET_DECLARATION(min)
+	MOD1_GENERATE_GET_DECLARATION(max)
+	MOD1_GENERATE_GET_DECLARATION(delta)
+	MOD1_GENERATE_GET_DECLARATION(final_min)
+	MOD1_GENERATE_GET_DECLARATION(final_max)
 
 private :
 

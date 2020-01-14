@@ -18,7 +18,7 @@ private :																\
 };
 
 
-#define MOD1_GENERATE_EXCEPTION_DEFINITION(name, message)				\
+#define MOD1_GENERATE_EXCEPTION_DECLARATION(name, message)				\
 class							name : public std::exception			\
 {																		\
 public :																\
@@ -29,7 +29,7 @@ private :																\
 	const char					*buffer = message;						\
 };
 
-#define MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(space, name)				\
+#define MOD1_GENERATE_EXCEPTION_DEFINITION(space, name)					\
 								space::name::name() : std::exception()	\
 {}																		\
 																		\
@@ -38,10 +38,10 @@ const char						*space::name::what() const noexcept		\
 	return (buffer);													\
 }
 
-#define MOD1_GENERATE_GET_DEFINITION(name)								\
+#define MOD1_GENERATE_GET_DECLARATION(name)								\
 TYPE(name##_internal)			name() const;
 
-#define MOD1_GENERATE_GET_IMPLEMENTATION(space, name)					\
+#define MOD1_GENERATE_GET_DEFINITION(space, name)						\
 TYPE(space::name##_internal)	space::name() const						\
 {																		\
 	return (name##_internal);											\
@@ -55,4 +55,4 @@ TYPE(space::name##_internal)	space::name() const						\
 //		UNIFORM
 
 #define MOD1_GENERATE_UNIFORM(name)										\
-	uniform						name = uniform(STRING(uniform##name));
+	uniform						name = uniform(#name);

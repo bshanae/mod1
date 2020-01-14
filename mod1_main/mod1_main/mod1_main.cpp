@@ -1,6 +1,6 @@
 #include "mod1_main.h"
 
-MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(mod1_main, exception_invalid_arguments)
+MOD1_GENERATE_EXCEPTION_DEFINITION(mod1_main, exception_invalid_arguments)
 
 					mod1_main::mod1_main(int argc, char **argv)
 {

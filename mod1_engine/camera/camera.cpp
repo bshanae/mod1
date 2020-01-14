@@ -2,7 +2,7 @@
 
 using namespace		mod1_engine;
 
-MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(camera, exception_axis)
+MOD1_GENERATE_EXCEPTION_DEFINITION(camera, exception_axis)
 
 					camera::camera(int screen_width, int screen_height, const glm::vec3 &position) :
 					projection(glm::perspective(

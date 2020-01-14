@@ -13,6 +13,15 @@ using namespace			mod1_engine;
 	light_info.point_intensity = MOD1_LIGHT_POINT_INTENSITY;
 	light_info.point_power = 2.;
 
+	program.add_shader(shader_type::vertex, MOD1_SOURCE_SHADER_VERTEX);
+#if MOD1_NORMAL_TEST
+	add_shader(shader_type::geometry, MOD1_SOURCE_SHADER_GEOMETRY);
+#endif
+	program.add_shader(shader_type::fragment, MOD1_SOURCE_SHADER_FRAGMENT);
+	program.link();
+
+	program.start();
+
 	uniform_object_transformation = glGetUniformLocation(program.object(), "object_transformation");
 	uniform_camera_view = glGetUniformLocation(program.object(), "camera_view");
 	uniform_camera_projection = glGetUniformLocation(program.object(), "camera_projection");
@@ -22,135 +31,11 @@ using namespace			mod1_engine;
 	uniform_light_point_intensity = glGetUniformLocation(program.object(), "light_info.point_intensity");
 	uniform_light_point_power = glGetUniformLocation(program.object(), "light_info.point_power");
 
+	program.stop();
+
 #if MOD1_ENABLED(MOD1_LIGHT_CUBE)
 	light_cube.build();
 	load_model(light_cube.model());
 #endif
-}
 
-void					renderer::glfw_callback(GLFWwindow* window, int key, int code, int action, int mode)
-{
-	renderer		*renderer;
-	static bool			mod_line = false;
-	static bool			mod_light = false;
-
-	renderer = (mod1_engine::renderer *)glfwGetWindowUserPointer(window);
-	for (const auto &callback : renderer->callback_array)
-		if (callback.run(key))
-			renderer->render();
-	if (key == GLFW_KEY_ESCAPE)
-	{
-		glfwSetWindowShouldClose(window, GL_TRUE);
-		return ;
-	}
-	else if (key == GLFW_KEY_A)
-		renderer->camera.move(
-			camera::mod1_axis_x, camera::mod1_negative,
-			mod_light ? &renderer->light_info.point_position : nullptr);
-	else if (key == GLFW_KEY_D)
-		renderer->camera.move(
-			camera::mod1_axis_x, camera::mod1_positive,
-			mod_light ? &renderer->light_info.point_position : nullptr);
-	else if (key == GLFW_KEY_W)
-		renderer->camera.move(
-			camera::mod1_axis_z, camera::mod1_negative,
-			mod_light ? &renderer->light_info.point_position : nullptr);
-	else if (key == GLFW_KEY_S)
-		renderer->camera.move(
-			camera::mod1_axis_z, camera::mod1_positive,
-			mod_light ? &renderer->light_info.point_position : nullptr);
-	else if (key == GLFW_KEY_Q)
-		renderer->camera.move(
-			camera::mod1_axis_y, camera::mod1_positive,
-			mod_light ? &renderer->light_info.point_position : nullptr);
-	else if (key == GLFW_KEY_E)
-		renderer->camera.move(
-			camera::mod1_axis_y, camera::mod1_negative,
-			mod_light ? &renderer->light_info.point_position : nullptr);
-	else if (key == GLFW_KEY_LEFT)
-		renderer->camera.rotate(camera::mod1_axis_y, camera::mod1_positive);
-	else if (key == GLFW_KEY_RIGHT)
-		renderer->camera.rotate(camera::mod1_axis_y, camera::mod1_negative);
-	else if (key == GLFW_KEY_UP)
-		renderer->camera.rotate(camera::mod1_axis_x, camera::mod1_positive);
-	else if (key == GLFW_KEY_DOWN)
-		renderer->camera.rotate(camera::mod1_axis_x, camera::mod1_negative);
-	else if (key == GLFW_KEY_R && action == GLFW_PRESS)
-	{
-		mod_line = !mod_line;
-		if (mod_line)
-			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-		else
-			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	}
-	else if (key == GLFW_KEY_L && action == GLFW_PRESS)
-		mod_light = !mod_light;
-	else
-		return ;
-	renderer->render();
-}
-
-void					renderer::add_callback(callback::functor_type functor, void *ptr)
-{
-	callback_array.emplace_back(callback(functor, ptr));
-}
-
-void					renderer::load_model(model *model)
-{
-	model->load(loader);
-	model_array.push_back(model);
-}
-
-void 					renderer::render_internal()
-{
-	program.start();
-
-	glClearColor(MOD1_BACKGROUND.x, MOD1_BACKGROUND.y, MOD1_BACKGROUND.z, 1);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	glUniformMatrix4fv(uniform_camera_view, 1, GL_FALSE, glm::value_ptr(camera.view()));
-
-	glUniform1f(uniform_light_ambient_intensity, light_info.ambient_intensity);
-	glUniform3f(uniform_light_point_position, light_info.point_position.x, light_info.point_position.y, light_info.point_position.z);
-	glUniform1f(uniform_light_point_intensity, light_info.point_intensity);
-	glUniform1f(uniform_light_point_power, light_info.point_power);
-
-	light_cube.transformation() = glm::translate(glm::mat4(1), light_info.point_position);
-
-	static GLuint		x = -1;
-
-	if (x == -1)
-		x = glGetUniformLocation(program.object(), "x");
-
-	int i = 0;
-
-	for (auto &model : model_array)
-	{
-		if (i++ == 2)
-			glUniform1i(x, 1);
-		else
-			glUniform1i(x, 0);
-
-		glUniformMatrix4fv(uniform_object_transformation, 1, GL_FALSE, glm::value_ptr(model->transformation()));
-		model->use();
-		glDrawElements(GL_TRIANGLES, model->vertex_number(), GL_UNSIGNED_INT, nullptr);
-	}
-	program.stop();
-	core.swap_buffers();
-	render_request = false;
-}
-
-void					renderer::render()
-{
-	render_request = true;
-}
-
-void 					renderer::loop()
-{
-	while(!core.is_working())
-	{
-		core.update();
-		if (render_request)
-			render_internal();
-	}
 }

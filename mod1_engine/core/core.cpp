@@ -2,10 +2,10 @@
 
 using namespace		mod1_engine;
 
-MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(core, exception_logic_object)
-MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(core, exception_logic_callback)
-MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(core, exception_window)
-MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(core, exception_GLEW)
+MOD1_GENERATE_EXCEPTION_DEFINITION(core, exception_logic_object)
+MOD1_GENERATE_EXCEPTION_DEFINITION(core, exception_logic_callback)
+MOD1_GENERATE_EXCEPTION_DEFINITION(core, exception_window)
+MOD1_GENERATE_EXCEPTION_DEFINITION(core, exception_GLEW)
 
 					core::core()
 {

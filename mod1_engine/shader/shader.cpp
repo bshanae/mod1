@@ -2,22 +2,22 @@
 
 using namespace			mod1_engine;
 
-MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(shader, exception_source)
-MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(shader, exception_compilation)
-MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(shader, exception_build)
-MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(shader, exception_link)
+MOD1_GENERATE_EXCEPTION_DEFINITION(shader, exception_source)
+MOD1_GENERATE_EXCEPTION_DEFINITION(shader, exception_compilation)
+MOD1_GENERATE_EXCEPTION_DEFINITION(shader, exception_build)
+MOD1_GENERATE_EXCEPTION_DEFINITION(shader, exception_link)
 
 						shader::~shader()
 {
 	glDeleteShader(object_internal);
 }
 
-void					shader::build(int type, const char *source)
+void					shader::build(const shader_type &type, const char *source)
 {
 	std::string			string;
 	const char 			*ptr;
 
-	object_internal = glCreateShader(type);
+	object_internal = glCreateShader((GLuint)type);
 	string = read_source(source);
 	ptr = string.c_str();
 

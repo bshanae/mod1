@@ -21,9 +21,9 @@ public :
 							terrain() = default;
 							~terrain() = default;
 
-	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_source, "Mod1 Terrain : Invalid source file")
-	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_pattern, "Mod1 Terrain : Invalid pattern")
-	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_search, "Mod1 Terrain : Can't find given point")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_source, "Mod1 Terrain : Invalid source file")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_pattern, "Mod1 Terrain : Invalid pattern")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_search, "Mod1 Terrain : Can't find given point")
 
 	void					parse(const std::string &file);
 	void					build() final;

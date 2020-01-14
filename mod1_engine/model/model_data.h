@@ -25,7 +25,7 @@ public :
 	GLuint				vbo_normal = 0;
 	GLuint				vbo_color = 0;
 
-	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_unknown_slot, "Mod1 Model Data : Unknown slot")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_unknown_slot, "Mod1 Model Data : Unknown slot")
 
 	enum class			slot_type
 	{

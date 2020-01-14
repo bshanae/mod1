@@ -34,6 +34,11 @@ set(ENGINE
 	mod1_engine/shader/shader.cpp
 
 	mod1_engine/renderer/renderer.cpp
+	mod1_engine/renderer/glfw_callback.cpp
+	mod1_engine/renderer/add_callback.cpp
+	mod1_engine/renderer/load_model.cpp
+	mod1_engine/renderer/loop.cpp
+	mod1_engine/renderer/render_x.cpp
 
 	mod1_engine/program/program.cpp
 
@@ -51,7 +56,9 @@ set(ENGINE
 	mod1_engine/loader/loader.cpp
 	mod1_engine/camera/camera.cpp
 
-	mod1_engine/callback/callback.cpp)
+	mod1_engine/callback/callback.cpp
+
+	mod1_engine/uniform/uniform.cpp)
 
 set(ALGORITHM
 	mod1_algorithm/plane/plane.cpp

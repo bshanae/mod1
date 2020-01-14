@@ -11,7 +11,7 @@ class								mod1_algorithm::water : private plane
 {
 public :
 
-	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_unknown_flow_type, "Mod1 Water : Unknown flow type")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_unknown_flow_type, "Mod1 Water : Unknown flow type")
 
 	explicit	 					water(terrain const *terrain);
 									~water() = default;

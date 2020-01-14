@@ -2,31 +2,53 @@
 
 using namespace		mod1_engine;
 
-MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(program, exception_compilation)
+MOD1_GENERATE_EXCEPTION_DEFINITION(program, exception_compilation)
+MOD1_GENERATE_EXCEPTION_DEFINITION(program, exception_link)
 
 					program::program()
 {
-	shader			shader_vertex;
-	shader			shader_geometry;
-	shader			shader_fragment;
-
 	object_internal = glCreateProgram();
+}
 
-	shader_vertex.build(GL_VERTEX_SHADER, MOD1_SOURCE_SHADER_VERTEX);
-#if MOD1_NORMAL_TEST
-	shader_geometry.build(GL_GEOMETRY_SHADER, MOD1_SOURCE_SHADER_GEOMETRY);
-#endif
-	shader_fragment.build(GL_FRAGMENT_SHADER, MOD1_SOURCE_SHADER_FRAGMENT);
+					program::~program()
+{
+	glDeleteProgram(object_internal);
+}
 
-	shader_vertex.link(object_internal);
-#if MOD1_NORMAL_TEST
-	shader_geometry.link(object_internal);
-#endif
-	shader_fragment.link(object_internal);
-
-	glLinkProgram(object_internal);
+void				program::start()
+{
+	if (not is_linked)
+		throw (exception_link());
 	glUseProgram(object_internal);
+}
 
+void				program::stop()
+{
+	glUseProgram(0);
+}
+
+void 				program::add_shader(const shader_type &type, const char *source)
+{
+	shader			shader;
+
+	shader.build(type, source);
+	shader.link(object_internal);
+}
+
+void				program::link()
+{
+	glLinkProgram(object_internal);
+	is_linked = true;
+	check_error();
+}
+
+GLuint				program::object()
+{
+	return (object_internal);
+}
+
+void				program::check_error()
+{
 	GLint			success;
 	GLchar			log[1024];
 
@@ -37,24 +59,4 @@ MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(program, exception_compilation)
 		printf("Log : \n%s\n", log);
 		throw (exception_compilation());
 	}
-}
-
-					program::~program()
-{
-	glDeleteProgram(object_internal);
-}
-
-void				program::start()
-{
-	glUseProgram(object_internal);
-}
-
-void				program::stop()
-{
-	glUseProgram(0);
-}
-
-GLuint				program::object()
-{
-	return (object_internal);
 }
