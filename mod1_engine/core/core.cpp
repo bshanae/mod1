@@ -60,33 +60,27 @@ MOD1_GENERATE_EXCEPTION_IMPLEMENTATION(core, exception_GLEW)
 	glfwTerminate();
 }
 
-bool				core::is_working() const
+bool				core::is_working()
 {
-	return (not glfwWindowShouldClose(window));
+	return (glfwWindowShouldClose(window));
 }
 
-int					core::window_width() const
+int					core::window_width()
 {
 	return (window_width_internal);
 }
 
-int					core::window_height() const
+int					core::window_height()
 {
 	return (window_height_internal);
 }
 
-void				core::update() const
+void				core::update()
 {
 	glfwPollEvents();
 }
 
-void				core::clear(const point3<float> &color) const
-{
-	glClearColor(color.x, color.y, color.z, 1);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-}
-
-void				core::swap_buffers() const
+void				core::swap_buffers()
 {
 	glfwSwapBuffers(window);
 }

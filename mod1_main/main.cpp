@@ -1,4 +1,4 @@
-#include "mod1_main/main/mod1_main.h"
+#include "mod1_main/mod1_main/mod1_main.h"
 
 void						main_unsafe(int argc, char **argv)
 {

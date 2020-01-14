@@ -38,7 +38,7 @@ public :
 		convention_xzy
 	}						mod1_axis_convention;
 
-	explicit				point3(const type *ptr, const mod1_axis_convention &convention)
+	explicit				point3(type *ptr, const mod1_axis_convention &convention)
 	{
 		if (convention == convention_xyz)
 		{

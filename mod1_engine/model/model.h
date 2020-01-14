@@ -22,14 +22,15 @@ public :
 
 	virtual void	build() = 0;
 	void			load(loader &loader);
-	void			draw();
+	void			use();
 
+	int 			vertex_number();
 	glm::mat4		&transformation();
 
 protected :
 
 	model_data	data;
-	int				vertex_number = -1;
+	int				vertex_number_internal = -1;
 	glm::mat4 		transformation_internal = glm::mat4(1);
 
 	void			*get_ptr(const int &index, const model_data::slot_type &slot);

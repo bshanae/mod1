@@ -16,7 +16,6 @@ namespace			mod1_engine
 
 	class			core;
 	class			shader;
-	class			uniform;
 	class			program;
 	class			renderer;
 	class			loader;
