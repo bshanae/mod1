@@ -42,6 +42,11 @@ void				program::link()
 	check_error();
 }
 
+void 				program::set_uniform(uniform &uniform)
+{
+	uniform.set(object_internal);
+}
+
 GLuint				program::object()
 {
 	return (object_internal);

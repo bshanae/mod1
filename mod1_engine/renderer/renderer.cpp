@@ -22,14 +22,15 @@ using namespace			mod1_engine;
 
 	program.start();
 
-	uniform_object_transformation = glGetUniformLocation(program.object(), "object_transformation");
-	uniform_camera_view = glGetUniformLocation(program.object(), "camera_view");
-	uniform_camera_projection = glGetUniformLocation(program.object(), "camera_projection");
-	glUniformMatrix4fv(uniform_camera_projection, 1, GL_FALSE, glm::value_ptr(camera.projection));
-	uniform_light_ambient_intensity = glGetUniformLocation(program.object(), "light_info.ambient_intensity");
-	uniform_light_point_position = glGetUniformLocation(program.object(), "light_info.point_position");
-	uniform_light_point_intensity = glGetUniformLocation(program.object(), "light_info.point_intensity");
-	uniform_light_point_power = glGetUniformLocation(program.object(), "light_info.point_power");
+	program.set_uniform(program.object_transformation);
+	program.set_uniform(program.camera_view);
+	program.set_uniform(program.camera_projection);
+	program.set_uniform(program.light_ambient_intensity);
+	program.set_uniform(program.light_point_position);
+	program.set_uniform(program.light_point_intensity);
+	program.set_uniform(program.light_point_power);
+
+	program.camera_projection.upload(camera.projection);
 
 	program.stop();
 
@@ -37,5 +38,4 @@ using namespace			mod1_engine;
 	light_cube.build();
 	load_model(light_cube.model());
 #endif
-
 }

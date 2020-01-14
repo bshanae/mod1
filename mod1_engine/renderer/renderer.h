@@ -47,13 +47,13 @@ private :
 	class						program : public mod1_engine::program
 	{
 	public :
-		MOD1_GENERATE_UNIFORM(object_transformation)
-		MOD1_GENERATE_UNIFORM(camera_view)
-		MOD1_GENERATE_UNIFORM(camera_projection)
-		MOD1_GENERATE_UNIFORM(light_ambient_intensity)
-		MOD1_GENERATE_UNIFORM(light_point_position)
-		MOD1_GENERATE_UNIFORM(light_point_intensity)
-		MOD1_GENERATE_UNIFORM(light_point_power)
+		MOD1_GENERATE_UNIFORM(object_transformation, "object_transformation")
+		MOD1_GENERATE_UNIFORM(camera_view, "camera_view")
+		MOD1_GENERATE_UNIFORM(camera_projection, "camera_projection")
+		MOD1_GENERATE_UNIFORM(light_ambient_intensity, "light_info.ambient_intensity")
+		MOD1_GENERATE_UNIFORM(light_point_position, "light_info.point_position")
+		MOD1_GENERATE_UNIFORM(light_point_intensity, "light_info.point_intensity")
+		MOD1_GENERATE_UNIFORM(light_point_power, "light_info.point_power")
 	};
 
 	static void					glfw_callback(GLFWwindow* window, int key, int code, int action, int mode);
@@ -70,15 +70,6 @@ private :
 	struct light_info			light_info;
 	cube						light_cube;
 
-	GLuint						uniform_object_transformation;
-	GLuint						uniform_camera_view;
-	GLuint						uniform_camera_projection;
-	GLuint						uniform_light_ambient_intensity;
-	GLuint						uniform_light_point_position;
-	GLuint						uniform_light_point_intensity;
-	GLuint						uniform_light_point_power;
-
 	void						render_internal();
-
 };
 

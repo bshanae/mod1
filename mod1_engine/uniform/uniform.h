@@ -12,7 +12,7 @@ public :
 	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_set, "Mod1 Engine, Uniform : Object is not set")
 
 	explicit		uniform(const char *name);
-	~uniform() = default;
+					~uniform() = default;
 
 	void			set(const GLuint &program);
 

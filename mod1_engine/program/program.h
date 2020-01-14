@@ -8,6 +8,7 @@
 #include "mod1_engine/namespace.h"
 
 #include "mod1_engine/shader/shader.h"
+#include "mod1_engine/uniform/uniform.h"
 
 class					mod1_engine::program
 {
@@ -25,6 +26,7 @@ public :
 
 	void 				add_shader(const shader_type &type, const char *source);
 	void				link();
+	void 				set_uniform(uniform &uniform);
 
 	GLuint				object();
 
