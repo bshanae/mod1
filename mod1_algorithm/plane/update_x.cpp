@@ -18,9 +18,9 @@ void	 				plane::update_normal_helper(
 
 	point3<float>	normal;
 
-	ptr_a = (float *)mod1_engine::model::get_ptr(index_a, mod1_engine::model_data::slot_point);
-	ptr_b = (float *)mod1_engine::model::get_ptr(index_b, mod1_engine::model_data::slot_point);
-	ptr_c = (float *)mod1_engine::model::get_ptr(index_c, mod1_engine::model_data::slot_point);
+	ptr_a = (float *)mod1_engine::model::get_ptr(index_a, model_slot::point);
+	ptr_b = (float *)mod1_engine::model::get_ptr(index_b, model_slot::point);
+	ptr_c = (float *)mod1_engine::model::get_ptr(index_c, model_slot::point);
 
 
 	a = point3<float>(ptr_a, point3<float>::convention_xzy);
@@ -29,7 +29,7 @@ void	 				plane::update_normal_helper(
 
 	normal = point3<float>::cross(c - a, b - a).normalized();
 
-	ptr_n = (float *)mod1_engine::model::get_ptr(index_a, mod1_engine::model_data::slot_normal);
+	ptr_n = (float *)mod1_engine::model::get_ptr(index_a, model_slot::normal);
 	normal.write_to_ptr(ptr_n, point3<float>::convention_xzy);
 }
 
@@ -69,7 +69,7 @@ void 					plane::update_final()
 	for (iter.y = 0; iter.y < size_internal.y - 1; iter.y++)
 		for (iter.x = 0; iter.x < size_internal.x - 1; iter.x++)
 		{
-			ptr = (float *)get_ptr(iter, mod1_engine::model_data::slot_point);
+			ptr = (float *)get_ptr(iter, model_slot::point);
 			point = point3<float>(ptr[0], ptr[2], ptr[1]);
 			final_min_internal = point3<float>::min(final_min_internal, point);
 			final_max_internal = point3<float>::max(final_max_internal, point);

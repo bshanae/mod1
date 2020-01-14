@@ -56,11 +56,11 @@ void 				model::set_as_dynamic()
 
 void				model::upload_buffer(const model_data::slot_type &slot)
 {
-	if (slot == model_data::slot_point)
+	if (slot == model_data::slot_type::point)
 		loader::vbo_buffer(data.vbo_point, data.point_buffer, is_dynamic);
-	else if (slot == model_data::slot_normal)
+	else if (slot == model_data::slot_type::normal)
 		loader::vbo_buffer(data.vbo_normal, data.normal_buffer, is_dynamic);
-	else if (slot == model_data::slot_color)
+	else if (slot == model_data::slot_type::color)
 		loader::vbo_buffer(data.vbo_color, data.color_buffer, is_dynamic);
 	else
 		throw (model_data::exception_unknown_slot());

@@ -27,20 +27,12 @@ public :
 
 	MOD1_GENERATE_EXCEPTION_DEFINITION(exception_unknown_slot, "Mod1 Model Data : Unknown slot")
 
-	typedef enum
+	enum class			slot_type
 	{
-		slot_point,
-		slot_index,
-		slot_normal,
-		slot_color
-	}					slot_type;
-
-	enum class test
-	{
-		slot_point,
-		slot_index,
-		slot_normal,
-		slot_color
+		point,
+		index,
+		normal,
+		color
 	};
 
 	void 				*get_ptr(const int &index, const slot_type &slot);

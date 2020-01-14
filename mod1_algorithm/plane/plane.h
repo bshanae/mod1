@@ -53,7 +53,7 @@ protected :
 
 	bool						is_valid(
 								const point2<int> &iter,
-								const mod1_engine::model_data::slot_type &slot,
+								const model_slot &slot,
 								const mod1_indexing_convention &convention = convention_dual_first) const;
 	bool 						is_dual(const point2<int> &iter) const;
 
@@ -86,11 +86,11 @@ private :
 
 	void 						*get_ptr(
 								const point2<int> &iter,
-								const mod1_engine::model_data::slot_type &slot,
+								const model_slot &slot,
 								const mod1_indexing_convention &convention = convention_dual_first);
 	void const					*get_ptr(
 								const point2<int> &iter,
-								const mod1_engine::model_data::slot_type &slot,
+								const model_slot &slot,
 								const mod1_indexing_convention &convention = convention_dual_first) const;
 
 	void						update_normal_helper(

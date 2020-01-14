@@ -14,13 +14,13 @@ void					water::update_flow()
 
 			height_me = get_total_height(iter);
 
-			if (terrain->is_valid(iter + MOD1_WATER_RIGHT, mod1_engine::model_data::slot_point))
+			if (terrain->is_valid(iter + MOD1_WATER_RIGHT, model_slot::point))
 			{
 				height_neighbour = get_total_height(iter + MOD1_WATER_RIGHT);
 				flow_horizontal[iter] += (height_neighbour - height_me) * flow_constant;
 			}
 
-			if (terrain->is_valid(iter + MOD1_WATER_DOWN, mod1_engine::model_data::slot_point))
+			if (terrain->is_valid(iter + MOD1_WATER_DOWN, model_slot::point))
 			{
 				height_neighbour = get_total_height(iter + MOD1_WATER_DOWN);
 				flow_vertical[iter] += (height_neighbour - height_me) * flow_constant;

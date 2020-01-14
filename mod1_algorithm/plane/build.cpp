@@ -19,11 +19,11 @@ void					plane::build()
 		for (iter.x = 0; iter.x < size_internal.x; iter.x++)
 		{
 			temp = point3<float>(min_internal.x + delta_internal * iter.x, min_internal.y + delta_internal * iter.y, 0);
-			ptr = (float *)get_ptr(iter, mod1_engine::model_data::slot_point, plane::convention_dual_first);
+			ptr = (float *)get_ptr(iter, model_slot::point, plane::convention_dual_first);
 			temp.write_to_ptr(ptr, point3<float>::convention_xzy);
 			if (is_dual(iter))
 			{
-				ptr = (float *)get_ptr(iter, mod1_engine::model_data::slot_point, plane::convention_dual_second);
+				ptr = (float *)get_ptr(iter, model_slot::point, plane::convention_dual_second);
 				temp.write_to_ptr(ptr, point3<float>::convention_xzy);
 			}
 		}
@@ -69,11 +69,11 @@ void					plane::build()
 	for (iter.y = 0; iter.y < size_internal.y - 1; iter.y++)
 		for (iter.x = 0; iter.x < size_internal.x; iter.x++)
 		{
-			ptr = (float *)get_ptr(iter, mod1_engine::model_data::slot_normal, convention_dual_first);
+			ptr = (float *)get_ptr(iter, model_slot::normal, convention_dual_first);
 			temp.write_to_ptr(ptr, point3<float>::convention_xzy);
 			if (is_dual(iter))
 			{
-				ptr = (float *)get_ptr(iter, mod1_engine::model_data::slot_normal, convention_dual_second);
+				ptr = (float *)get_ptr(iter, model_slot::normal, convention_dual_second);
 				temp.write_to_ptr(ptr, point3<float>::convention_xzy);
 			}
 		}
@@ -87,11 +87,11 @@ void					plane::build()
 	for (iter.y = 0; iter.y < size_internal.y - 1; iter.y++)
 		for (iter.x = 0; iter.x < size_internal.x; iter.x++)
 		{
-			ptr = (float *)get_ptr(iter, mod1_engine::model_data::slot_color, convention_dual_first);
+			ptr = (float *)get_ptr(iter, model_slot::color, convention_dual_first);
 			temp.write_to_ptr(ptr, point3<float>::convention_xyz);
 			if (is_dual(iter))
 			{
-				ptr = (float *)get_ptr(iter, mod1_engine::model_data::slot_color, convention_dual_second);
+				ptr = (float *)get_ptr(iter, model_slot::color, convention_dual_second);
 				temp.write_to_ptr(ptr, point3<float>::convention_xyz);
 			}
 		}
