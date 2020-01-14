@@ -27,6 +27,8 @@ public :
 
 	GLuint				object();
 
+protected :
+
 	typedef enum
 	{
 		vertex = GL_VERTEX_SHADER,

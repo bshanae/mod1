@@ -38,8 +38,5 @@ void				mod1_main::loop()
 	renderer->load_model(water->model());
 #endif
 
-	renderer->render();
-
-	while (renderer->core_ptr->is_working())
-		renderer->core_ptr->update();
+//	renderer->loop();
 }

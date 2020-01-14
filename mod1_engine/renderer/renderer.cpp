@@ -22,17 +22,4 @@ using namespace		mod1_engine;
 	light_cube.build();
 	load_model(light_cube.model());
 #endif
-
-	program.add_shader(program::vertex, MOD1_SOURCE_SHADER_VERTEX);
-	program.add_shader(program::fragment, MOD1_SOURCE_SHADER_FRAGMENT);
-
-	program.link();
-
-	program.object_transformation.set(program.object());
-	program.camera_view.set(program.object());
-	program.camera_projection.set(program.object());
-	program.light_ambient_intensity.set(program.object());
-	program.light_point_position.set(program.object());
-	program.light_point_intensity.set(program.object());
-	program.light_point_power.set(program.object());
 }
