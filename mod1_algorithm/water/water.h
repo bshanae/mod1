@@ -17,7 +17,7 @@ public :
 									~water() = default;
 
 	void							build() final;
-	mod1_engine::model				*model() final;
+	mod1_engine_gl::model			*model() final;
 
 	static bool						callback(int key, void *ptr);
 

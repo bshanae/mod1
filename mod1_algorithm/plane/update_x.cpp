@@ -18,9 +18,9 @@ void	 				plane::update_normal_helper(
 
 	point3<float>	normal;
 
-	ptr_a = (float *)mod1_engine::model::get_ptr(index_a, model_slot::point);
-	ptr_b = (float *)mod1_engine::model::get_ptr(index_b, model_slot::point);
-	ptr_c = (float *)mod1_engine::model::get_ptr(index_c, model_slot::point);
+	ptr_a = (float *)mod1_engine_gl::model::get_ptr(index_a, model_slot::point);
+	ptr_b = (float *)mod1_engine_gl::model::get_ptr(index_b, model_slot::point);
+	ptr_c = (float *)mod1_engine_gl::model::get_ptr(index_c, model_slot::point);
 
 
 	a = point3<float>(ptr_a, point3<float>::convention_xzy);
@@ -29,7 +29,7 @@ void	 				plane::update_normal_helper(
 
 	normal = point3<float>::cross(c - a, b - a).normalized();
 
-	ptr_n = (float *)mod1_engine::model::get_ptr(index_a, model_slot::normal);
+	ptr_n = (float *)mod1_engine_gl::model::get_ptr(index_a, model_slot::normal);
 	normal.write_to_ptr(ptr_n, point3<float>::convention_xzy);
 }
 

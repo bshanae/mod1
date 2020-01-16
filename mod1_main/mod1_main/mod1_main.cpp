@@ -4,7 +4,7 @@ MOD1_GENERATE_EXCEPTION_DEFINITION(mod1_main, exception_invalid_arguments)
 
 					mod1_main::mod1_main(int argc, char **argv)
 {
-	renderer = new mod1_engine::renderer;
+	renderer = new mod1_engine_gl::renderer;
 	terrain = new mod1_algorithm::terrain;
 	water = new mod1_algorithm::water(terrain);
 	if (argc < 2)

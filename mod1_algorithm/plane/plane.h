@@ -5,7 +5,7 @@
 
 #include "mod1_algorithm/namespace.h"
 
-class							mod1_algorithm::plane : protected mod1_engine::model
+class							mod1_algorithm::plane : protected mod1_engine_gl::model
 {
 public :
 								plane() = default;
@@ -22,7 +22,7 @@ public :
 								const float &delta);
 	void						build() override;
 
-	virtual mod1_engine::model	*model();
+	virtual mod1_engine_gl::model	*model();
 
 private :
 
@@ -76,7 +76,7 @@ protected :
 private :
 
 	MOD1_PLANE_COLOR_DATA		color_data;
-	using 						mod1_engine::model::data;
+	using 						mod1_engine_gl::model::data;
 
 	bool						is_set = false;
 

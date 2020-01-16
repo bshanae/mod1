@@ -2,13 +2,19 @@
 
 #include <iostream>
 
+#include "mod1_engine_cl/mod1_engine_cl.h"
+
 void						main_unsafe(int argc, char **argv)
 {
 	mod1_main				main(argc, argv);
 
-	main.terrain->add_color(mod1_engine::point3<int>(101, 67, 33));
-	main.terrain->add_color(mod1_engine::point3<int>(80, 171, 93));
-	main.terrain->add_color(mod1_engine::point3<int>(120, 120, 120));
+	mod1_engine_cl::control	control;
+
+	control.build("source_cl/kernel.cl");
+
+	main.terrain->add_color(mod1_engine_gl::point3<int>(101, 67, 33));
+	main.terrain->add_color(mod1_engine_gl::point3<int>(80, 171, 93));
+	main.terrain->add_color(mod1_engine_gl::point3<int>(120, 120, 120));
 
 	main.build();
 

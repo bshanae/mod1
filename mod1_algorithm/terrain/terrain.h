@@ -28,7 +28,7 @@ public :
 	void					parse(const std::string &file);
 	void					build() final;
 
-	mod1_engine::model		*model() override;
+	mod1_engine_gl::model	*model() override;
 
 	void					info(const bool &raw = true, const bool &model = true) const;
 

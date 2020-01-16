@@ -11,6 +11,7 @@ link_directories(
 
 link_libraries(
 	"-framework OpenGL"
+	"-framework OpenCL"
 	"glfw.3"
 	"glew")
 
@@ -28,37 +29,39 @@ include_directories(
 set(LIBRARIES
 	./mod1_libraries/FastNoise/FastNoise.cpp)
 
-set(ENGINE
-	./mod1_engine/core/core.cpp
+set(ENGINE_GL
+	./mod1_engine_gl/core/core.cpp
 
-	./mod1_engine/shader/shader.cpp
+	./mod1_engine_gl/shader/shader.cpp
 
-	./mod1_engine/renderer/renderer.cpp
-	./mod1_engine/renderer/glfw_callback.cpp
-	./mod1_engine/renderer/add_callback.cpp
-	./mod1_engine/renderer/load_model.cpp
-	./mod1_engine/renderer/loop.cpp
-	./mod1_engine/renderer/render_x.cpp
-	./mod1_engine/renderer/cube/cube.cpp
+	./mod1_engine_gl/renderer/renderer.cpp
+	./mod1_engine_gl/renderer/glfw_callback.cpp
+	./mod1_engine_gl/renderer/add_callback.cpp
+	./mod1_engine_gl/renderer/load_model.cpp
+	./mod1_engine_gl/renderer/loop.cpp
+	./mod1_engine_gl/renderer/render_x.cpp
+	./mod1_engine_gl/renderer/cube/cube.cpp
 
-	./mod1_engine/program/program.cpp
+	./mod1_engine_gl/program/program.cpp
 
-	./mod1_engine/buffer/buffer.h
+	./mod1_engine_gl/buffer/buffer.h
 
-	./mod1_engine/model/model.cpp
-	./mod1_engine/model/model_data.cpp
+	./mod1_engine_gl/model/model.cpp
+	./mod1_engine_gl/model/model_data.cpp
 
 
-	./mod1_engine/loader/eab_x.cpp
-	./mod1_engine/loader/vao_x.cpp
-	./mod1_engine/loader/vbo_x.cpp
+	./mod1_engine_gl/loader/eab_x.cpp
+	./mod1_engine_gl/loader/vao_x.cpp
+	./mod1_engine_gl/loader/vbo_x.cpp
 
-	./mod1_engine/loader/loader.cpp
-	./mod1_engine/camera/camera.cpp
+	./mod1_engine_gl/loader/loader.cpp
+	./mod1_engine_gl/camera/camera.cpp
 
-	./mod1_engine/callback/callback.cpp
+	./mod1_engine_gl/callback/callback.cpp
 
-	./mod1_engine/uniform/uniform.cpp)
+	./mod1_engine_gl/uniform/uniform.cpp
+
+	mod1_engine_cl/control/control.cpp)
 
 set(ALGORITHM
 	./mod1_algorithm/plane/plane.cpp
@@ -105,5 +108,5 @@ set(MAIN
 add_executable(21_mod1
 	${LIBRARIES}
 	${MAIN}
-	${ENGINE}
+	${ENGINE_GL}
 	${ALGORITHM})

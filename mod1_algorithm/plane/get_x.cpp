@@ -41,16 +41,16 @@ int 				plane::get_index(
 
 void 				*plane::get_ptr(
 					const point2<int> &iter,
-					const mod1_engine::model_data::slot_type &slot,
+					const mod1_engine_gl::model_data::slot_type &slot,
 					const mod1_indexing_convention &convention)
 {
-	return (mod1_engine::model::get_ptr(get_index(iter, convention), slot));
+	return (mod1_engine_gl::model::get_ptr(get_index(iter, convention), slot));
 }
 
 void const			*plane::get_ptr(
 					const point2<int> &iter,
-					const mod1_engine::model_data::slot_type &slot,
+					const mod1_engine_gl::model_data::slot_type &slot,
 					const mod1_indexing_convention &convention) const
 {
-	return (mod1_engine::model::get_ptr(get_index(iter, convention), slot));
+	return (mod1_engine_gl::model::get_ptr(get_index(iter, convention), slot));
 }
