@@ -4,7 +4,8 @@
 
 #include "mod1_engine_cl/namespace.h"
 
-#include "mod1_libraries/OpenCL/cl.hpp"
+#include "mod1_engine_cl/argument/argument.h"
+
 
 #include <string>
 #include <fstream>
@@ -16,14 +17,21 @@ public :
 
 	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_source, "Mod1 Cl_control : Invalid source file")
 	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_compilation, "Mod1 Cl_control : Compilation error")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_build, "Mod1 Cl_control : Object is not built")
 
 								control();
-								~control();
+								~control() = default;
 
 	void						build(const char *filename);
 	void						build(const std::string &filename);
 
+	argument 					create_argument(void *ptr, const int &size, const argument_type &type);
+	void						link_argument(argument &argument);
+
 private :
+
+	bool 						is_built = false;
+	int 						argument_count = 0;
 
 	cl::Platform				platform;
 	cl::Device					device;

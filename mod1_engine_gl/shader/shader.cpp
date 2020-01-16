@@ -35,12 +35,12 @@ void					shader::build(const shader_type &type, const char *source)
 		throw (exception_compilation());
 	}
 
-	is_build = true;
+	is_built = true;
 }
 
 void					shader::link(const GLuint &program_id)
 {
-	if (!is_build)
+	if (!is_built)
 		throw (exception_build());
 
 	glAttachShader(program_id, object_internal);
@@ -50,7 +50,7 @@ void					shader::link(const GLuint &program_id)
 
 GLuint					shader::object()
 {
-	if (!is_build)
+	if (!is_built)
 		throw (exception_build());
 	if (!is_linked)
 		throw (exception_link());

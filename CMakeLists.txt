@@ -59,9 +59,11 @@ set(ENGINE_GL
 
 	./mod1_engine_gl/callback/callback.cpp
 
-	./mod1_engine_gl/uniform/uniform.cpp
+	./mod1_engine_gl/uniform/uniform.cpp)
 
-	mod1_engine_cl/control/control.cpp)
+set(ENGINE_CL
+	./mod1_engine_cl/control/control.cpp
+	./mod1_engine_cl/argument/argument.cpp)
 
 set(ALGORITHM
 	./mod1_algorithm/plane/plane.cpp
@@ -109,4 +111,5 @@ add_executable(21_mod1
 	${LIBRARIES}
 	${MAIN}
 	${ENGINE_GL}
+	${ENGINE_CL}
 	${ALGORITHM})

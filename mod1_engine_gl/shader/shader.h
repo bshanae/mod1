@@ -39,7 +39,7 @@ public :
 
 private :
 
-	bool				is_build = false;
+	bool				is_built = false;
 	bool				is_linked = false;
 	GLuint 				object_internal = -1;
 

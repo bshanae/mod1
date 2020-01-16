@@ -6,17 +6,13 @@ using namespace					mod1_engine_cl;
 
 MOD1_GENERATE_EXCEPTION_DEFINITION(control, exception_source)
 MOD1_GENERATE_EXCEPTION_DEFINITION(control, exception_compilation)
+MOD1_GENERATE_EXCEPTION_DEFINITION(control, exception_build)
 
 								control::control()
 {
 	set_platform();
 	set_device();
 	set_context();
-}
-
-								control::~control()
-{
-
 }
 
 void							control::build(const char *filename)
@@ -35,31 +31,46 @@ void							control::build(const std::string &filename)
 	set_queue();
 	set_kernel();
 
-	cl::Buffer					buffer_A(context, CL_MEM_READ_WRITE, sizeof(int) * 10);
-	cl::Buffer					buffer_B(context, CL_MEM_READ_WRITE, sizeof(int) * 10);
-	cl::Buffer					buffer_C(context, CL_MEM_READ_WRITE, sizeof(int) * 10);
-
 	int							A[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 	int							B[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+	int							C[10];
 
-	queue.enqueueWriteBuffer(buffer_A, CL_TRUE, 0, sizeof(int) * 10, A);
-	queue.enqueueWriteBuffer(buffer_B, CL_TRUE, 0, sizeof(int) * 10, B);
+	auto 						arg_a = create_argument(A, sizeof(int) * 10, argument_type::read_only);
+	auto 						arg_b = create_argument(B, sizeof(int) * 10, argument_type::read_only);
+	auto 						arg_c = create_argument(C, sizeof(int) * 10, argument_type::write_only);
 
-	kernel.setArg(0, buffer_A);
-	kernel.setArg(1, buffer_B);
-	kernel.setArg(2, buffer_C);
+	link_argument(arg_a);
+	link_argument(arg_b);
+	link_argument(arg_c);
+
+	arg_a.write();
+	arg_b.write();
 
 	queue.enqueueNDRangeKernel(kernel, cl::NullRange, cl::NDRange(10), cl::NullRange);
 	queue.finish();
 
-	int C[10];
-	//read result C from the device to array C
-	queue.enqueueReadBuffer(buffer_C, CL_TRUE, 0, sizeof(int) * 10, C);
+	arg_c.read();
 
 	printf("C : ");
 	for (auto &i : C)
 		printf("%d ", i);
 	printf("\n");
+
+	is_built = true;
+}
+
+argument 						control::create_argument(void *ptr, const int &size, const argument_type &type)
+{
+	if (not is_built)
+		throw (exception_build());
+	return (argument(context, &queue, ptr, size, type));
+}
+
+void							control::link_argument(argument &argument)
+{
+	if (not is_built)
+		throw (exception_build());
+	argument.link(kernel, argument_count++);
 }
 
 
