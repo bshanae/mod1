@@ -1,6 +1,7 @@
 #pragma once
 
 #include "mod1_engine_gl/mod1_engine_gl.h"
+#include "mod1_engine_cl/mod1_engine_cl.h"
 
 namespace			mod1_algorithm
 {

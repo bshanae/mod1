@@ -43,6 +43,7 @@ private :
 		flow_down,
 		flow_end
 	}								mod1_water_flow_type;
+
 	float							get_flow(const point2<int> &iter, const mod1_water_flow_type &type);
 	float							get_flow_safe(const point2<int> &iter, const mod1_water_flow_type &type);
 
@@ -60,6 +61,8 @@ private :
 
 	void							update_depth();
 	void							diffuse_depth();
+
+	mod1_engine_cl::core			cl_core;
 
 	void 							gravity_debug();
 	void							gravity();

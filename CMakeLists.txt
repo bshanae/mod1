@@ -62,7 +62,8 @@ set(ENGINE_GL
 	./mod1_engine_gl/uniform/uniform.cpp)
 
 set(ENGINE_CL
-	./mod1_engine_cl/control/control.cpp
+	./mod1_engine_cl/core/core.cpp
+	./mod1_engine_cl/kenrel/kernel.cpp
 	./mod1_engine_cl/argument/argument.cpp)
 
 set(ALGORITHM

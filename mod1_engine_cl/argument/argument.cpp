@@ -8,7 +8,7 @@ MOD1_GENERATE_EXCEPTION_DEFINITION(argument, exception_null)
 
 
 					argument::argument(
-					const cl::Context &context,
+					const cl::Context *context,
 					const cl::CommandQueue *queue,
 					void *ptr,
 					const int &size,
@@ -17,7 +17,7 @@ MOD1_GENERATE_EXCEPTION_DEFINITION(argument, exception_null)
 {
 	host_ptr = ptr;
 	host_size = size;
-	buffer = cl::Buffer(context, (int)type, size);
+	buffer = cl::Buffer(*context, (int)type, size);
 	is_built = true;
 }
 

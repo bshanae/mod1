@@ -45,16 +45,8 @@ void 					water::gravity_debug()
 	printf("\n");
 }
 
-//#define DEBUG_GRAVITY
-
 void					water::gravity()
 {
-
-#ifdef DEBUG_GRAVITY
-	printf("\nBefore gravity (i = %i)\n\n", i++);
-	gravity_debug();
-#endif
-
 	update_flow();
 	limit_flow();
 
@@ -64,9 +56,4 @@ void					water::gravity()
 	diffuse_depth();
 
 	update_model();
-
-#ifdef DEBUG_GRAVITY
-	printf("\nAfter gravity (i = %i)\n\n", i);
-	gravity_debug();
-#endif
 }
