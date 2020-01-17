@@ -24,7 +24,12 @@ public :
 
 	void					run();
 
-	argument 				generate_argument(void *ptr, const int &size, const argument_type &type);
+	argument 				generate_argument(
+							void *ptr,
+							const int &size,
+							const argument_type &type,
+							const bool &link = true);
+	void 					link_argument(argument &argument);
 
 private :
 

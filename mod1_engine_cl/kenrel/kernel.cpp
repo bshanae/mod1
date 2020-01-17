@@ -16,15 +16,25 @@ void 						kernel::run()
 	queue.finish();
 }
 
-argument 					kernel::generate_argument(void *ptr, const int &size, const argument_type &type)
+argument 					kernel::generate_argument(
+							void *ptr,
+							const int &size,
+							const argument_type &type,
+							const bool &link)
 {
 	argument				argument;
 
 	if (not is_built)
 		throw (exception_build());
 	argument = mod1_engine_cl::argument(context, &queue, ptr, size, type);
-	argument.link(object, argument_count++);
+	if (link)
+		link_argument(argument);
 	return (argument);
+}
+
+void 						kernel::link_argument(argument &argument)
+{
+	argument.link(object, argument_count++);
 }
 
 //							PRIVATE
