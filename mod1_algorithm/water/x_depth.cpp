@@ -17,7 +17,7 @@ void					water::update_depth()
 				total_temp = get_flow_safe(iter, (mod1_water_flow_type)i);
 				total_flow += total_temp;
 			}
-			water_depth[iter] += total_flow * water_depth_constant;
+//			water_depth[iter] += total_flow * constant_water_depth;
 		}
 }
 
@@ -26,6 +26,6 @@ void					water::diffuse_depth()
 	point2<int>			iter;
 
 	for (iter.y = 0; iter.y < terrain->size().y; iter.y++)
-		for (iter.x = 0; iter.x < terrain->size().x; iter.x++)
-			water_depth[iter] = (water_depth[iter] + water_depth_copy[iter]) / 2;
+		for (iter.x = 0; iter.x < terrain->size().x; iter.x++);
+//			water_depth[iter] = (water_depth[iter] + water_depth_copy[iter]) / 2;
 }

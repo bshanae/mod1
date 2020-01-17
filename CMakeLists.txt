@@ -48,7 +48,7 @@ set(ENGINE_GL
 
 	./mod1_engine_gl/model/model.cpp
 	./mod1_engine_gl/model/model_data.cpp
-
+	./mod1_engine_gl/model/model_reader.cpp
 
 	./mod1_engine_gl/loader/eab_x.cpp
 	./mod1_engine_gl/loader/vao_x.cpp

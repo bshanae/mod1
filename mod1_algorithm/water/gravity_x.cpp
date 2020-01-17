@@ -8,7 +8,7 @@ void 					water::gravity_debug()
 # define BLACK			"\033[0m"
 
 	point2<int>			iter;
-
+/*
 	for (iter.y = 0; iter.y < terrain->size().y; iter.y++)
 	{
 		for (iter.x = 0; iter.x < terrain->size().x; iter.x++)
@@ -43,14 +43,13 @@ void 					water::gravity_debug()
 		printf("\n");
 	}
 	printf("\n");
+ */
 }
 
 void					water::gravity()
 {
 	update_flow();
 	limit_flow();
-
-	water_depth_copy.copy(water_depth);
 
 	update_depth();
 	diffuse_depth();

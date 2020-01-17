@@ -13,6 +13,7 @@
 #include "mod1_engine_gl/callback/callback.h"
 #include "mod1_engine_gl/renderer/renderer.h"
 #include "mod1_engine_gl/loader/loader.h"
-#include "mod1_engine_gl/model/model_data.h"
 #include "mod1_engine_gl/model/model.h"
+#include "mod1_engine_gl/model/model_data.h"
+#include "mod1_engine_gl/model/model_reader.h"
 #include "mod1_engine_gl/camera/camera.h"

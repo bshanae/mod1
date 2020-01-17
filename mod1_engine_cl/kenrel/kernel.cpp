@@ -34,6 +34,8 @@ argument 					kernel::generate_argument(
 
 void 						kernel::link_argument(argument &argument)
 {
+	if (not is_built)
+		throw (exception_build());
 	argument.link(object, argument_count++);
 }
 

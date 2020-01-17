@@ -4,28 +4,28 @@ using namespace			mod1_algorithm;
 
 void					water::update_flow()
 {
-	point2<int>			iter;
-	float 				height_me;
-	float 				height_neighbour;
-
-	for (iter.y = 0; iter.y < terrain->size().y; iter.y++)
-		for (iter.x = 0; iter.x < terrain->size().x; iter.x++)
-		{
-
-			height_me = get_total_height(iter);
-
-			if (terrain->is_valid(iter + MOD1_WATER_RIGHT, model_slot::point))
-			{
-				height_neighbour = get_total_height(iter + MOD1_WATER_RIGHT);
-				flow_horizontal[iter] += (height_neighbour - height_me) * flow_constant;
-			}
-
-			if (terrain->is_valid(iter + MOD1_WATER_DOWN, model_slot::point))
-			{
-				height_neighbour = get_total_height(iter + MOD1_WATER_DOWN);
-				flow_vertical[iter] += (height_neighbour - height_me) * flow_constant;
-			}
-		}
+//	point2<int>			iter;
+//	float 				height_me;
+//	float 				height_neighbour;
+//
+//	for (iter.y = 0; iter.y < terrain->size().y; iter.y++)
+//		for (iter.x = 0; iter.x < terrain->size().x; iter.x++)
+//		{
+//
+//			height_me = get_total_height(iter);
+//
+//			if (terrain->is_valid(iter + MOD1_WATER_RIGHT, model_slot::point))
+//			{
+//				height_neighbour = get_total_height(iter + MOD1_WATER_RIGHT);
+//				flow_horizontal[iter] += (height_neighbour - height_me) * constant_flow;
+//			}
+//
+//			if (terrain->is_valid(iter + MOD1_WATER_DOWN, model_slot::point))
+//			{
+//				height_neighbour = get_total_height(iter + MOD1_WATER_DOWN);
+//				flow_vertical[iter] += (height_neighbour - height_me) * constant_flow;
+//			}
+//		}
 }
 
 //#define DEBUG
@@ -41,13 +41,13 @@ void					water::limit_flow()
 	for (iter.y = 0; iter.y < terrain->size().y; iter.y++)
 		for (iter.x = 0; iter.x < terrain->size().x; iter.x++)
 		{
-			if ((depth = water_depth[iter]) < MOD1_WATER_EPSILON)
-			{
-				for (int i = flow_right; i < flow_end; i++)
-					if (get_flow_safe(iter, (mod1_water_flow_type)i) < 0)
-						set_flow_safe(iter, (mod1_water_flow_type)i, 0);
-				continue ;
-			}
+//			if ((depth = water_depth[iter]) < MOD1_WATER_EPSILON)
+//			{
+//				for (int i = flow_right; i < flow_end; i++)
+//					if (get_flow_safe(iter, (mod1_water_flow_type)i) < 0)
+//						set_flow_safe(iter, (mod1_water_flow_type)i, 0);
+//				continue ;
+//			}
 
 			for (int i = flow_right; i < flow_end; i++)
 			{

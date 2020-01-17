@@ -24,13 +24,9 @@ public :
 private :
 
 	terrain const					*terrain;
-	buffer2<float>					flow_horizontal;
-	buffer2<float>					flow_vertical;
-	float							flow_constant = 0;
-
-	buffer2<float>					water_depth_copy;
-	buffer2<float>					water_depth;
-	float							water_depth_constant = 0;
+	float							constant_flow = 0;
+	float							constant_water_depth = 0;
+	buffer<float>					water_depth;
 
 	float							get_terrain_height(const point2<int> &iter);
 	float							get_total_height(const point2<int> &iter);
@@ -63,6 +59,17 @@ private :
 	void							diffuse_depth();
 
 	mod1_engine_cl::core			cl_core;
+
+	mod1_engine_cl::kernel			cl_kernel_flow_update;
+	mod1_engine_cl::kernel			cl_kernel_flow_limit;
+	mod1_engine_cl::kernel			cl_kernel_depth;
+
+	mod1_engine_cl::argument		cl_arg_terrain_size;
+	mod1_engine_cl::argument		cl_arg_terrain_data;
+	mod1_engine_cl::argument		cl_arg_water_size;
+	mod1_engine_cl::argument		cl_arg_water_data;
+	mod1_engine_cl::argument		cl_arg_flow_horizontal;
+	mod1_engine_cl::argument		cl_arg_flow_vertical;
 
 	void 							gravity_debug();
 	void							gravity();

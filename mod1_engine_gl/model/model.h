@@ -11,6 +11,7 @@
 
 class				mod1_engine_gl::model
 {
+	friend class 	model_reader;
 
 public :
 

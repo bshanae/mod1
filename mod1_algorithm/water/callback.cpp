@@ -47,8 +47,8 @@ bool 					water::callback(int key, void *ptr)
 #define Q					500
 
 		for (int y = 0; y < D_Y; y++)
-			for (int x = 0; x < D_X; x++)
-				water->water_depth[point2<int>(A_X + x, A_Y + y)] = Q;
+			for (int x = 0; x < D_X; x++);
+//				water->water_depth[point2<int>(A_X + x, A_Y + y)] = Q;
 #endif
 
 #ifdef MOD1_WATER_FLOOD_UNIFORM

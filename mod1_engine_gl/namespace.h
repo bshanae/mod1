@@ -23,5 +23,6 @@ namespace			mod1_engine_gl
 	class			loader;
 	class			model_data;
 	class			model;
+	class			model_reader;
 	class			camera;
 }
