@@ -37,7 +37,7 @@
 //											MAIN
 
 #define MOD1_USE_TERRAIN					MOD1_ENABLE
-#define MOD1_USE_WATER						MOD1_DISABLE
+#define MOD1_USE_WATER						MOD1_ENABLE
 
 //											TERRAIN
 

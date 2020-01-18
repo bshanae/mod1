@@ -11,7 +11,7 @@ bool				plane::write_height(const point2<int> &iter, const float &z)
 
 	if (is_dual(iter))
 	{
-		ptr = (float *) get_ptr(iter, model_slot::point, convention_dual_second);
+		ptr = (float *)get_ptr(iter, model_slot::point, convention_dual_second);
 		ptr[1] = z;
 		return (true);
 	}

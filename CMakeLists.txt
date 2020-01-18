@@ -100,7 +100,12 @@ set(ALGORITHM
 	./mod1_algorithm/water/x_flow.cpp
 	./mod1_algorithm/water/x_depth.cpp
 	./mod1_algorithm/water/x_color.cpp
-	./mod1_algorithm/water/callback.cpp)
+	./mod1_algorithm/water/callback.cpp
+	./mod1_algorithm/water/data_x.cpp
+	./mod1_algorithm/water/cl_build.cpp
+	./mod1_algorithm/water/cl_set_x.cpp
+	./mod1_algorithm/water/cl_link_x.cpp
+	./mod1_algorithm/water/cl_write.cpp)
 
 
 set(MAIN

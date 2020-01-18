@@ -9,7 +9,7 @@ bool 					water::callback(int key, void *ptr)
 
 	if (key == GLFW_KEY_1)
 	{
-		water->water_depth.set(0);
+		water->water_data.set(0);
 		
 #ifdef MOD1_WATER_FLOOD_BORDER
 #define	HEIGHT			500

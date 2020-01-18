@@ -24,9 +24,16 @@ public :
 private :
 
 	terrain const					*terrain;
+
 	float							constant_flow = 0;
-	float							constant_water_depth = 0;
-	buffer<float>					water_depth;
+	float							constant_depth = 0;
+
+	point2<int>						data_size;
+	buffer<float>					empty_data;
+	buffer<float>					terrain_data;
+	buffer<float>					water_data;
+
+	void							data_prepare();
 
 	float							get_terrain_height(const point2<int> &iter);
 	float							get_total_height(const point2<int> &iter);
@@ -60,16 +67,33 @@ private :
 
 	mod1_engine_cl::core			cl_core;
 
+	mod1_engine_cl::kernel			cl_kernel_debug;
 	mod1_engine_cl::kernel			cl_kernel_flow_update;
 	mod1_engine_cl::kernel			cl_kernel_flow_limit;
 	mod1_engine_cl::kernel			cl_kernel_depth;
 
-	mod1_engine_cl::argument		cl_arg_terrain_size;
+	mod1_engine_cl::argument		cl_arg_const_flow;
+	mod1_engine_cl::argument		cl_arg_const_depth;
+	mod1_engine_cl::argument		cl_arg_size;
 	mod1_engine_cl::argument		cl_arg_terrain_data;
-	mod1_engine_cl::argument		cl_arg_water_size;
 	mod1_engine_cl::argument		cl_arg_water_data;
 	mod1_engine_cl::argument		cl_arg_flow_horizontal;
 	mod1_engine_cl::argument		cl_arg_flow_vertical;
+
+	void							cl_build();
+
+	void							cl_set();
+	void							cl_set_const();
+	void							cl_set_size();
+	void							cl_set_terrain();
+	void							cl_set_water();
+	void							cl_set_flow();
+
+	void							cl_link();
+	void							cl_link_debug();
+	void							cl_link_flow_update();
+
+	void							cl_write();
 
 	void 							gravity_debug();
 	void							gravity();

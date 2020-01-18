@@ -11,8 +11,8 @@ public :
 
 	MOD1_GENERATE_EXCEPTION(exception_index, "Mod1 Point2 : Bad index")
 
-	type					x = 0;
-	type					y = 0;
+	type				x = 0;
+	type				y = 0;
 
 						point2() = default;
 	explicit			point2(type value)
@@ -97,7 +97,7 @@ public :
 		this->y /= other;
 	}
 
-	type					&operator [] (int i)
+	type				&operator [] (int i)
 	{
 		switch (i)
 		{
@@ -154,5 +154,20 @@ public :
 	static point2<type>	max (const point2<type> &a, const point2<type> &b)
 	{
 		return (point2<type>(MOD1_MAX(a.x, b.x), MOD1_MAX(a.y, b.y)));
+	}
+
+	type				*data()
+	{
+		return (&x);
+	}
+
+	const type			*data() const
+	{
+		return (&x);
+	}
+
+	int 				size_in_bytes() const
+	{
+		return (2 * sizeof(type));
 	}
 };
