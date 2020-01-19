@@ -7,6 +7,12 @@
 
 #include "mod1_algorithm/terrain/terrain.h"
 
+/*
+ * 		FLOW :
+ * 			f < 0 -> outcoming
+ * 			f > 0 -> incoming
+ */
+
 class								mod1_algorithm::water : private plane
 {
 public :
@@ -92,6 +98,7 @@ private :
 	void							cl_link();
 	void							cl_link_debug();
 	void							cl_link_flow_update();
+	void							cl_link_flow_limit();
 
 	void							cl_write();
 
