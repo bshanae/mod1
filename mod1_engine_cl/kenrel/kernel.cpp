@@ -8,6 +8,24 @@ MOD1_GENERATE_EXCEPTION_DEFINITION(kernel, exception_build)
 
 //							PUBLIC
 
+void						kernel::add_source(const std::string &file)
+{
+	source += read_source(file);
+	source += "\n\n";
+}
+
+void						kernel::build(const std::string &function, const int &number)
+{
+	kernel_number = number;
+
+	compile_program();
+	set_queue();
+	set_kernel(function);
+
+	is_built = true;
+}
+
+
 void 						kernel::run()
 {
 	if (not is_built)
@@ -43,23 +61,10 @@ void 						kernel::link_argument(argument &argument)
 
 							kernel::kernel(
 							const cl::Device *device,
-							const cl::Context *context,
-							const std::string &file,
-							const std::string &function,
-							const int &kernel_number)
+							const cl::Context *context)
 {
-	std::string				source;
-
 	this->device = device;
 	this->context = context;
-	this->kernel_number = kernel_number;
-
-	source = read_source(file);
-	compile_program(source);
-	set_queue();
-	set_kernel(function);
-
-	is_built = true;
 }
 
 std::string 				kernel::read_source(const std::string &filename)
@@ -74,12 +79,11 @@ std::string 				kernel::read_source(const std::string &filename)
 	return (stream_s.str());
 }
 
-void 						kernel::compile_program(const std::string &source)
+void 						kernel::compile_program()
 {
 	std::string				log;
 
-	sources.emplace_back(source.c_str(), source.length());
-	program = cl::Program(*context, sources);
+	program = cl::Program(*context, source);
 	if(program.build({*device}) != CL_SUCCESS)
 	{
 		log = program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(*device);

@@ -22,6 +22,9 @@ public :
 							kernel() = default;
 							~kernel() = default;
 
+	void					add_source(const std::string &file);
+
+	void					build(const std::string &function, const int &number);
 	void					run();
 
 	argument 				generate_argument(
@@ -34,25 +37,24 @@ public :
 private :
 
 	bool 					is_built = false;
+
+	std::string 			source;
+
 	int						kernel_number = 0;
 	int 					argument_count = 0;
 
 	const cl::Device		*device = nullptr;
 	const cl::Context		*context = nullptr;
-	cl::Program::Sources	sources;
 	cl::Program				program;
 	cl::CommandQueue		queue;
 	cl::Kernel				object;
 
 							kernel(
 							const cl::Device *device,
-							const cl::Context *context,
-							const std::string &file,
-							const std::string &function,
-							const int &kernel_number);
+							const cl::Context *context);
 
 	static std::string		read_source(const std::string &file);
-	void 					compile_program(const std::string &source);
+	void 					compile_program();
 	void 					set_queue();
 	void 					set_kernel(const std::string &function);
 };

@@ -11,12 +11,9 @@ using namespace					mod1_engine_cl;
 	set_context();
 }
 
-kernel							core::generate_kernel(
-								const std::string &file,
-								const std::string &function,
-								const int &kernel_number)
+kernel							core::generate_kernel()
 {
-	return (kernel(&device, &context, file, function, kernel_number));
+	return (kernel(&device, &context));
 }
 
 //								PRIVATE

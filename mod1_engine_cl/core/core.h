@@ -15,10 +15,7 @@ public :
 								core();
 								~core() = default;
 
-	kernel						generate_kernel(
-								const std::string &file,
-								const std::string &function,
-								const int &kernel_number);
+	kernel						generate_kernel();
 
 private :
 

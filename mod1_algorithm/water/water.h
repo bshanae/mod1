@@ -87,6 +87,9 @@ private :
 	mod1_engine_cl::argument		cl_arg_flow_vertical;
 
 	void							cl_build();
+	void							cl_build_debug();
+	void							cl_build_flow_update();
+	void							cl_build_flow_limit();
 
 	void							cl_set();
 	void							cl_set_const();
