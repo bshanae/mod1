@@ -97,8 +97,6 @@ set(ALGORITHM
 	./mod1_algorithm/water/set_x.cpp
 	./mod1_algorithm/water/x_model.cpp
 	./mod1_algorithm/water/gravity_x.cpp
-	./mod1_algorithm/water/x_flow.cpp
-	./mod1_algorithm/water/x_depth.cpp
 	./mod1_algorithm/water/x_color.cpp
 	./mod1_algorithm/water/callback.cpp
 	./mod1_algorithm/water/data_x.cpp

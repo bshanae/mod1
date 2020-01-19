@@ -84,6 +84,7 @@ private :
 	int 								get_index(
 										const point2<int> &iter,
 										const mod1_indexing_convention &convention = convention_dual_first) const;
+public : // todo delete later
 
 	void 								*get_ptr(
 										const point2<int> &iter,

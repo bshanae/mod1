@@ -38,21 +38,22 @@ bool 					water::callback(int key, void *ptr)
 			return (false);
 
 #ifdef MOD1_WATER_FLOOD_POINT
-#define A_X               	10
-#define A_Y                	10
+#define A_X               	5
+#define A_Y                	5
 
 #define D_X               	10
 #define D_Y               	10
 
-#define Q					500
+#define Q					50
 
 		for (int y = 0; y < D_Y; y++)
-			for (int x = 0; x < D_X; x++);
-//				water->water_depth[point2<int>(A_X + x, A_Y + y)] = Q;
+			for (int x = 0; x < D_X; x++)
+				water->set_water_depth(point2<int>(A_X + x, A_Y + y), Q);
+
+		water->cl_arg_water_data.write();
 #endif
 
 #ifdef MOD1_WATER_FLOOD_UNIFORM
-
 #define STEP				50
 
 		static float		level = water->terrain->final_min().z;

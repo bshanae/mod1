@@ -33,5 +33,5 @@ void kernel							limit_flow(
 
 	for (int i = 0; i < flow_end; i++)
         if (useful[i])
-        	SET_FLOW(task, i, water * distribution[i])
+        	SET_FLOW(task, i, -1 * water * distribution[i])
 }

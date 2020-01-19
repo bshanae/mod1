@@ -2,6 +2,10 @@
 
 using namespace			mod1_algorithm;
 
+#define MOD1_WATER_CONST_A		10
+#define MOD1_WATER_CONST_g		10
+#define MOD1_WATER_CONST_dt		10
+
 void					water::data_prepare()
 {
 	point2<int>			iter;
@@ -15,7 +19,7 @@ void					water::data_prepare()
 
 	for (iter.y = 0; iter.y < data_size.y; iter.y++)
 		for (iter.x = 0; iter.x < data_size.x; iter.x++)
-			terrain_data[data_size.x * iter.y + iter.x] = read_height(iter);
+			terrain_data[data_size.x * iter.y + iter.x] = terrain->read_height(iter);
 
 	water_data.allocate(data_size.x * data_size.y);
 

@@ -14,32 +14,11 @@ void 					water::build()
 
 	data_prepare();
 
-	water_data[1] = 10;
-	water_data[2] = 100;
+	update_model();
+	update_color();
 
 	cl_build();
 	cl_set();
 	cl_link();
 	cl_write();
-
-#define DEBUG	1
-
-	cl_kernel_flow_update.run();
-
-#if DEBUG
-	printf("\n\n");
-	cl_kernel_debug.run();
-#endif
-
-	cl_kernel_flow_limit.run();
-
-#if DEBUG
-	printf("Limited : \n\n");
-	cl_kernel_debug.run();
-#endif
-
-	update_model();
-	update_color();
-
-	exit(1);
 }

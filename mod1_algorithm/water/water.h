@@ -42,22 +42,10 @@ private :
 	void							data_prepare();
 
 	float							get_terrain_height(const point2<int> &iter);
+	float							get_water_depth(const point2<int> &iter);
 	float							get_total_height(const point2<int> &iter);
 
-	typedef enum
-	{
-		flow_right,
-		flow_up,
-		flow_left,
-		flow_down,
-		flow_end
-	}								mod1_water_flow_type;
-
-	float							get_flow(const point2<int> &iter, const mod1_water_flow_type &type);
-	float							get_flow_safe(const point2<int> &iter, const mod1_water_flow_type &type);
-
-	void							set_flow(const point2<int> &iter, const mod1_water_flow_type &type, const float &value);
-	bool							set_flow_safe(const point2<int> &iter, const mod1_water_flow_type &type, const float &value);
+	void							set_water_depth(const point2<int> &iter, const float &value);
 
 	void							update_model_helper_b(const point2<int> &iter, const float &new_height);
 	void							update_model_helper_a(const point2<int> &iter);
@@ -65,18 +53,12 @@ private :
 
 	void							update_color();
 
-	void							update_flow();
-	void							limit_flow();
-
-	void							update_depth();
-	void							diffuse_depth();
-
 	mod1_engine_cl::core			cl_core;
 
 	mod1_engine_cl::kernel			cl_kernel_debug;
-	mod1_engine_cl::kernel			cl_kernel_flow_update;
-	mod1_engine_cl::kernel			cl_kernel_flow_limit;
-	mod1_engine_cl::kernel			cl_kernel_depth;
+	mod1_engine_cl::kernel			cl_kernel_update_flow;
+	mod1_engine_cl::kernel			cl_kernel_limit_flow;
+	mod1_engine_cl::kernel			cl_kernel_update_depth;
 
 	mod1_engine_cl::argument		cl_arg_const_flow;
 	mod1_engine_cl::argument		cl_arg_const_depth;
@@ -88,8 +70,9 @@ private :
 
 	void							cl_build();
 	void							cl_build_debug();
-	void							cl_build_flow_update();
-	void							cl_build_flow_limit();
+	void							cl_build_update_flow();
+	void							cl_build_limit_flow();
+	void							cl_build_update_depth();
 
 	void							cl_set();
 	void							cl_set_const();
@@ -100,12 +83,12 @@ private :
 
 	void							cl_link();
 	void							cl_link_debug();
-	void							cl_link_flow_update();
-	void							cl_link_flow_limit();
+	void							cl_link_update_flow();
+	void							cl_link_limit_flow();
+	void							cl_link_update_depth();
 
 	void							cl_write();
 
-	void 							gravity_debug();
 	void							gravity();
 };
 
