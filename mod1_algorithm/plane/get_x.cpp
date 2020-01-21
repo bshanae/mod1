@@ -35,7 +35,7 @@ int 				plane::get_index(
 					+ MOD1_PLANE_REAL_INDEX_X(iter.x) + 1);
 		}
 		default :
-			throw (exception_indexing_convention());
+			throw (exception_index_convention());
 	}
 }
 

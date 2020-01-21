@@ -14,7 +14,8 @@ public :
 	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_coordinate, "Mod1 Plane : Bad coordinate")
 	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_logic, "Mod1 Plane : Object not set")
 	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_color, "Mod1 Plane : Too few colors defined")
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_indexing_convention, "Mod1 Plane : Unknown indexing convention")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_index_convention, "Mod1 Plane : Unknown index convention")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_cut_style, "Mod1 Plane : Unknown cut style")
 
 	void								set(
 										const point2<float> &min,
@@ -66,8 +67,14 @@ protected :
 	void 								add_color(const point3<int> &color);
 	point3<float>						compute_color(const float &height) const;
 
-	void								get_index_style(const point2<int> &iter);
-	void								switch_index_style(const point2<int> &iter);
+	enum class							cut_style
+	{
+		upwards,
+		downwards
+	};
+
+	cut_style							get_cut_style(const point2<int> &iter);
+	void								switch_cut_style(const point2<int> &iter);
 
 	MOD1_GENERATE_GET_DECLARATION(size)
 	MOD1_GENERATE_GET_DECLARATION(real_size)
@@ -81,7 +88,7 @@ private :
 
 	MOD1_PLANE_COLOR_DATA				color_data;
 	using 								mod1_engine_gl::model::data;
-	buffer2<int>						index_style_data;
+	buffer2<cut_style>					cut_style_data;
 
 	bool								is_set = false;
 

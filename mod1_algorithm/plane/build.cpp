@@ -60,10 +60,6 @@ void					plane::build()
 			index_ptr[index_i++] = bottom_right;
 		}
 
-//	for (iter.y = 0; iter.y < size_internal.y - 1; iter.y++)
-//		for (iter.x = 0; iter.x < size_internal.x - 1; iter.x++)
-//			switch_index_style(iter);
-
 	//					Normals
 
 	data.normal_buffer.allocate(MOD1_PLANE_NORMAL_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(size_internal));
@@ -82,6 +78,11 @@ void					plane::build()
 			}
 		}
 
+	//					Cut style
+
+	cut_style_data.allocate(size_internal.y - 1, size_internal.x - 1);
+	cut_style_data.set(cut_style::upwards);
+
 	//					Colors
 
 	data.color_buffer.allocate(MOD1_PLANE_COLOR_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(size_internal));
@@ -91,13 +92,8 @@ void					plane::build()
 	for (iter.y = 0; iter.y < size_internal.y - 1; iter.y++)
 		for (iter.x = 0; iter.x < size_internal.x; iter.x++)
 		{
-			ptr = (float *)get_ptr(iter, model_slot::color, index_convention::dual_first);
-			temp.write_to_ptr(ptr, point3<float>::convention_xyz);
-			if (is_dual(iter))
-			{
-				ptr = (float *)get_ptr(iter, model_slot::color, index_convention::dual_second);
-				temp.write_to_ptr(ptr, point3<float>::convention_xyz);
-			}
+			printf("%d %d\n", iter.x, iter.y);
+			write_color(iter, temp);
 		}
 
 	set_as_built();

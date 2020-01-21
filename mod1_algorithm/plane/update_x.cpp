@@ -52,8 +52,16 @@ void					plane::update_normal()
 			bottom_left = get_index(point2<int>(iter.x, iter.y + 1));
 			bottom_right = get_index(point2<int>(iter.x + 1, iter.y + 1));
 
-			update_normal_helper(top_left, bottom_left, top_right);
-			update_normal_helper(top_right, bottom_left, bottom_right);
+			if (get_cut_style(iter) == cut_style::upwards)
+			{
+				update_normal_helper(top_left, bottom_left, top_right);
+				update_normal_helper(top_right, bottom_left, bottom_right);
+			}
+			else
+			{
+				update_normal_helper(top_left, bottom_left, bottom_right);
+				update_normal_helper(top_right, top_left, bottom_right);
+			}
 		}
 }
 
