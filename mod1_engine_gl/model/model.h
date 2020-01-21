@@ -18,9 +18,9 @@ public :
 					model() = default;
 					~model() = default;
 
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_build, "Mod1 Model : Object not built")
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_load, "Mod1 Model : Object not loaded")
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_dynamic, "Mod1 Model : Can't set object as dynamic after loading")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_build, "Mod1 Engine GL, Model : Object not built")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_load, "Mod1 Engine GL, Model : Object not loaded")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_dynamic, "Mod1 Engine GL, Model : Can't set object as dynamic after loading")
 
 	virtual void	build() = 0;
 	void			load(loader &loader);

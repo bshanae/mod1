@@ -25,10 +25,10 @@ public :
 						shader() = default;
 						~shader();
 
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_source, "Mod1 Shader : Invalid source file")
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_compilation, "Mod1 Shader : Compilation error")
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_build, "Mod1 Shader : Object is not built")
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_link, "Mod1 Shader : Object is not linked")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_source, "Mod1 Engine GL, Shader : Invalid source file")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_compilation, "Mod1 Engine GL, Shader : Compilation error")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_build, "Mod1 Engine GL, Shader : Object is not built")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_link, "Mod1 Engine GL, Shader : Object is not linked")
 
 
 
