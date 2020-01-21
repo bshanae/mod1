@@ -5,46 +5,54 @@ using namespace			mod1_algorithm;
 bool 					water::callback(int key, void *ptr)
 {
 	auto				water = (mod1_algorithm::water *)ptr;
-	point2<int>			iter;
+
+#define PRESS_ONLY		1
+
+#if PRESS_ONLY
+	static int kostyl = 0;
+
+	if (kostyl++ % 2 == 1)
+		return (false);
+#endif
 
 	if (key == GLFW_KEY_1)
 	{
 		water->water_data.set(0);
 		
 #ifdef MOD1_WATER_FLOOD_BORDER
-#define	HEIGHT			500
-#define WIDTH			100
+#define	HEIGHT			50
+#define WIDTH			3
 
-		for (iter.y = 0; iter.y < water->size.y; iter.y++)
+		point2<int>		iter;
+
+		for (iter.y = 0; iter.y < water->data_size.y; iter.y++)
 			for (iter.x = 0; iter.x < WIDTH; iter.x++)
-				water->water_depth[iter] = HEIGHT;
-		for (iter.y = 0; iter.y < water->size.y; iter.y++)
-			for (iter.x = water->size.x - WIDTH - 2; iter.x < water->size.x - 2; iter.x++)
-				water->water_depth[iter] = HEIGHT;
+				water->set_water_depth(iter, HEIGHT);
+		for (iter.y = 0; iter.y < water->data_size.y; iter.y++)
+			for (iter.x = water->data_size.x - WIDTH; iter.x < water->data_size.x; iter.x++)
+				water->set_water_depth(iter, HEIGHT);
 
-		for (iter.x = 0; iter.x < water->size.x - 2; iter.x++)
+		for (iter.x = 0; iter.x < water->data_size.x; iter.x++)
 			for (iter.y = 0; iter.y < WIDTH; iter.y++)
-				water->water_depth[iter] = HEIGHT;
-		for (iter.x = 0; iter.x < water->size.x - 2; iter.x++)
-			for (iter.y = water->size.y - WIDTH - 2; iter.y < water->size.y - 2; iter.y++)
-				water->water_depth[iter] = HEIGHT;
+				water->set_water_depth(iter, HEIGHT);
+		for (iter.x = 0; iter.x < water->data_size.x; iter.x++)
+			for (iter.y = water->data_size.y - WIDTH; iter.y < water->data_size.y; iter.y++)
+				water->set_water_depth(iter, HEIGHT);
+
+		water->cl_arg_water_data.write();
 #endif
 	}
 	else if (key == GLFW_KEY_2)
 	{
-		static int kostyl = 0;
-
-		if (kostyl++ % 2 == 1)
-			return (false);
 
 #ifdef MOD1_WATER_FLOOD_POINT
-#define A_X               	5
-#define A_Y                	5
+#define A_X               	2
+#define A_Y                	2
 
-#define D_X               	10
-#define D_Y               	10
+#define D_X               	1
+#define D_Y               	1
 
-#define Q					50
+#define Q					10
 
 		for (int y = 0; y < D_Y; y++)
 			for (int x = 0; x < D_X; x++)

@@ -10,28 +10,44 @@ void kernel							limit_flow(
 	int								global_id = get_global_id(0);
 	point2							task = {global_id % size->y, global_id / size->y};
 
-	float							water = GET_WATER(task);
+	float							water_available = GET_WATER(task) / CONST_DEPTH;
 
 	float							flow[4];
-	int								useful[4];
+	int								edit[4];
 	float							distribution[4];
+
+	//								sum : sum of all flows
+	//								sum_edit : sum of outcoming flows
+	//								limit : limit amount of outcoming flows
+
 	float							sum;
+	float							sum_edit;
+	float							limit;
 
 	for (int i = 0; i < flow_end; i++)
 	{
 		flow[i] = GET_FLOW(task, i);
-		useful[i] = flow[i] < -EPSILON;
+		edit[i] = flow[i] < -EPSILON;
 	}
 
 	sum = 0;
+	sum_edit = 0;
 	for (int i = 0; i < flow_end; i++)
-    	if (useful[i])
-    		sum += flow[i];
+    {
+    	sum += flow[i];
+    	if (edit[i])
+    		sum_edit += flow[i];
+    }
+
+	if (-1 * sum_edit < water_available)
+		return ;
+
+	limit = water_available;
 
     for (int i = 0; i < flow_end; i++)
-		distribution[i] = useful[i] ? flow[i] / sum : 0;
+		distribution[i] = edit[i] ? flow[i] / sum_edit : 0;
 
 	for (int i = 0; i < flow_end; i++)
-        if (useful[i])
-        	SET_FLOW(task, i, -1 * water * distribution[i])
+        if (edit[i])
+        	SET_FLOW(task, i, -1 * limit * distribution[i]);
 }

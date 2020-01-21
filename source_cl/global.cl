@@ -16,7 +16,6 @@ typedef struct
 	int								y;
 }									point2;
 
-
 #define RIGHT(point)				(point2){(point).x + 1, (point).y + 0}
 #define UP(point)					(point2){(point).x + 0, (point).y - 1}
 #define LEFT(point)					(point2){(point).x - 1, (point).y + 0}

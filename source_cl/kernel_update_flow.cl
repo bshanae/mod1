@@ -26,13 +26,13 @@ void kernel							update_flow(
 	{
 		height_neighbour = GET_TOTAL(right);
 		flow_value = (height_neighbour - height_me) * CONST_FLOW;
-		SET_FLOW(task, flow_right, flow_value)
+		ADD_FLOW(task, flow_right, flow_value)
 	}
 
 	if (IS_VALID(down))
 	{
 		height_neighbour = GET_TOTAL(down);
 		flow_value = (height_neighbour - height_me) * CONST_FLOW;
-		SET_FLOW(task, flow_down, flow_value)
+		ADD_FLOW(task, flow_down, flow_value)
 	}
 }

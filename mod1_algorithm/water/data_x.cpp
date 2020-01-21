@@ -2,9 +2,9 @@
 
 using namespace			mod1_algorithm;
 
-#define MOD1_WATER_CONST_A		10
-#define MOD1_WATER_CONST_g		10
-#define MOD1_WATER_CONST_dt		10
+#define MOD1_WATER_CONST_A					0.5
+#define MOD1_WATER_CONST_g					10
+#define MOD1_WATER_CONST_dt					1
 
 void					water::data_prepare()
 {
