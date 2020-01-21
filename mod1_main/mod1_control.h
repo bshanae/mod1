@@ -18,7 +18,7 @@
 //											ENGINE
 
 #define MOD1_DEPTH_TEST						MOD1_ENABLE
-#define MOD1_SHOW_BACK_OF_POLYGON			MOD1_DISABLE
+#define MOD1_SHOW_BACK_OF_POLYGON			MOD1_ENABLE
 #define MOD1_SRGB							MOD1_DISABLE
 
 #define MOD1_LIGHT_AMBIENT_INTENSITY		0.2
@@ -37,7 +37,7 @@
 //											MAIN
 
 #define MOD1_USE_TERRAIN					MOD1_ENABLE
-#define MOD1_USE_WATER						MOD1_DISABLE
+#define MOD1_USE_WATER						MOD1_ENABLE
 
 //											TERRAIN
 
@@ -64,11 +64,11 @@
 
 #define MOD1_WATER_FLOOD_BORDER
 
-//#define MOD1_WATER_CONST_A				0.5
-//#define MOD1_WATER_CONST_g				10
-//#define MOD1_WATER_CONST_dt				0.1
+#define MOD1_WATER_CONST_A					0.5
+#define MOD1_WATER_CONST_g					10
+#define MOD1_WATER_CONST_dt					1
 
-#define MOD1_WATER_HIDDEN					-100
+#define MOD1_WATER_HIDDEN					-10
 
 #define MOD1_WATER_COLOR_A					0, 0.62, 1
 #define MOD1_WATER_COLOR_B					0, 0.05, 0.1

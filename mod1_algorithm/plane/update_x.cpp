@@ -12,11 +12,11 @@ void	 				plane::update_normal_helper(
 	float 				*ptr_c;
 	float 				*ptr_n;
 
-	point3<float>	a;
-	point3<float>	b;
-	point3<float>	c;
+	point3<float>		a;
+	point3<float>		b;
+	point3<float>		c;
 
-	point3<float>	normal;
+	point3<float>		normal;
 
 	ptr_a = (float *)mod1_engine_gl::model::get_ptr(index_a, model_slot::point);
 	ptr_b = (float *)mod1_engine_gl::model::get_ptr(index_b, model_slot::point);
@@ -41,7 +41,6 @@ void					plane::update_normal()
 	int					top_right;
 	int					bottom_left;
 	int					bottom_right;
-
 
 	for (iter.y = 0; iter.y < size_internal.y - 1; iter.y++)
 		for (iter.x = 0; iter.x < size_internal.x - 1; iter.x++)

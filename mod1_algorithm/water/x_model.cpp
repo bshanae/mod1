@@ -40,8 +40,10 @@ void					water::update_model()
 
 	for (iter.y = 0; iter.y < size().y; iter.y++)
 		for (iter.x = 0; iter.x < size().x; iter.x++)
-			write_height(iter, -10);
+			write_height(iter, MOD1_WATER_HIDDEN);
 	for (iter.y = 0; iter.y < terrain->size().y; iter.y++)
 		for (iter.x = 0; iter.x < terrain->size().x; iter.x++)
 			update_model_helper_a(iter);
+
+	update_normal();
 }
