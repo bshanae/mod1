@@ -76,6 +76,7 @@ set(ALGORITHM
 	./mod1_algorithm/plane/is_x.cpp
 	./mod1_algorithm/plane/read_x.cpp
 	./mod1_algorithm/plane/write_x.cpp
+	mod1_algorithm/plane/x_index_style.cpp
 
 	./mod1_algorithm/terrain/terrain.cpp
 	./mod1_algorithm/terrain/parse_x.cpp

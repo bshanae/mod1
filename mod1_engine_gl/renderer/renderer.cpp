@@ -3,7 +3,7 @@
 using namespace			mod1_engine_gl;
 
 						renderer::renderer() :
-						camera(core.window_width(), core.window_height(), MOD1_CAMERA_POSITION),
+						camera(core.window_width(), core.window_height(), glm::vec3(MOD1_CAMERA_POSITION)),
 						light_info()
 {
 	core.set_callback(glfw_callback, this);

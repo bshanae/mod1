@@ -23,13 +23,13 @@
 
 #define MOD1_LIGHT_AMBIENT_INTENSITY		0.2
 #define MOD1_LIGHT_POINT_INTENSITY			0.8
-#define MOD1_LIGHT_POINT_POSITION			0, 30, 0
+#define MOD1_LIGHT_POINT_POSITION			1000, 5000, 1000
 
 #define MOD1_LIGHT_CUBE						MOD1_ENABLE
-#define MOD1_LIGHT_CUBE_SIDE				5
+#define MOD1_LIGHT_CUBE_SIDE				100
 
-#define MOD1_CAMERA_POSITION				glm::vec3(20, 20, 50)
-#define MOD1_CAMERA_MOVEMENT_SPEED			20
+#define MOD1_CAMERA_POSITION				500, 1000, 500
+#define MOD1_CAMERA_MOVEMENT_SPEED			100
 #define MOD1_CAMERA_ROTATION_SPEED			0.04
 
 #define MOD1_BACKGROUND						point3<float>(0.8)
@@ -37,7 +37,7 @@
 //											MAIN
 
 #define MOD1_USE_TERRAIN					MOD1_ENABLE
-#define MOD1_USE_WATER						MOD1_ENABLE
+#define MOD1_USE_WATER						MOD1_DISABLE
 
 //											TERRAIN
 
@@ -64,9 +64,9 @@
 
 #define MOD1_WATER_FLOOD_BORDER
 
-//#define MOD1_WATER_CONST_A					0.5
-//#define MOD1_WATER_CONST_g					10
-//#define MOD1_WATER_CONST_dt					0.1
+//#define MOD1_WATER_CONST_A				0.5
+//#define MOD1_WATER_CONST_g				10
+//#define MOD1_WATER_CONST_dt				0.1
 
 #define MOD1_WATER_HIDDEN					-100
 

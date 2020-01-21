@@ -18,12 +18,12 @@ void					plane::build()
 	for (iter.y = 0; iter.y < size_internal.y; iter.y++)
 		for (iter.x = 0; iter.x < size_internal.x; iter.x++)
 		{
-			temp = point3<float>(min_internal.x + delta_internal * iter.x, min_internal.y + delta_internal * iter.y, 0);
-			ptr = (float *)get_ptr(iter, model_slot::point, plane::convention_dual_first);
+			temp = point3<float>(min_internal.x + delta_internal * iter.x, min_internal.y + delta_internal * iter.y);
+			ptr = (float *)get_ptr(iter, model_slot::point, index_convention::dual_first);
 			temp.write_to_ptr(ptr, point3<float>::convention_xzy);
 			if (is_dual(iter))
 			{
-				ptr = (float *)get_ptr(iter, model_slot::point, plane::convention_dual_second);
+				ptr = (float *)get_ptr(iter, model_slot::point, index_convention::dual_second);
 				temp.write_to_ptr(ptr, point3<float>::convention_xzy);
 			}
 		}
@@ -46,8 +46,8 @@ void					plane::build()
 		for (iter.x = 0; iter.x < size_internal.x - 1; iter.x++)
 		{
 			top_left = get_index(point2<int>(iter.x, iter.y),
-			    is_dual(iter) ? convention_dual_second : convention_dual_first);
-			top_right = get_index(point2<int>(iter.x + 1, iter.y), convention_dual_first);
+			    is_dual(iter) ? index_convention::dual_second : index_convention::dual_first);
+			top_right = get_index(point2<int>(iter.x + 1, iter.y), index_convention::dual_first);
 			bottom_left = get_index(point2<int>(iter.x, iter.y + 1));
 			bottom_right = get_index(point2<int>(iter.x + 1, iter.y + 1));
 
@@ -60,6 +60,10 @@ void					plane::build()
 			index_ptr[index_i++] = bottom_right;
 		}
 
+//	for (iter.y = 0; iter.y < size_internal.y - 1; iter.y++)
+//		for (iter.x = 0; iter.x < size_internal.x - 1; iter.x++)
+//			switch_index_style(iter);
+
 	//					Normals
 
 	data.normal_buffer.allocate(MOD1_PLANE_NORMAL_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(size_internal));
@@ -69,11 +73,11 @@ void					plane::build()
 	for (iter.y = 0; iter.y < size_internal.y - 1; iter.y++)
 		for (iter.x = 0; iter.x < size_internal.x; iter.x++)
 		{
-			ptr = (float *)get_ptr(iter, model_slot::normal, convention_dual_first);
+			ptr = (float *)get_ptr(iter, model_slot::normal, index_convention::dual_first);
 			temp.write_to_ptr(ptr, point3<float>::convention_xzy);
 			if (is_dual(iter))
 			{
-				ptr = (float *)get_ptr(iter, model_slot::normal, convention_dual_second);
+				ptr = (float *)get_ptr(iter, model_slot::normal, index_convention::dual_second);
 				temp.write_to_ptr(ptr, point3<float>::convention_xzy);
 			}
 		}
@@ -87,11 +91,11 @@ void					plane::build()
 	for (iter.y = 0; iter.y < size_internal.y - 1; iter.y++)
 		for (iter.x = 0; iter.x < size_internal.x; iter.x++)
 		{
-			ptr = (float *)get_ptr(iter, model_slot::color, convention_dual_first);
+			ptr = (float *)get_ptr(iter, model_slot::color, index_convention::dual_first);
 			temp.write_to_ptr(ptr, point3<float>::convention_xyz);
 			if (is_dual(iter))
 			{
-				ptr = (float *)get_ptr(iter, model_slot::color, convention_dual_second);
+				ptr = (float *)get_ptr(iter, model_slot::color, index_convention::dual_second);
 				temp.write_to_ptr(ptr, point3<float>::convention_xyz);
 			}
 		}

@@ -39,12 +39,12 @@ private :
 
 protected :
 
-	typedef enum
+	enum class							index_convention
 	{
-		convention_single,
-		convention_dual_first,
-		convention_dual_second
-	}									mod1_indexing_convention;
+		single,
+		dual_first,
+		dual_second
+	};
 
 	point3<float>						read_point(const point2<int> &iter) const;
 	float								read_height(const point2<int> &iter) const;
@@ -55,7 +55,7 @@ protected :
 	bool								is_valid(
 										const point2<int> &iter,
 										const model_slot &slot,
-										const mod1_indexing_convention &convention = convention_dual_first) const;
+										const index_convention &convention = index_convention::dual_first) const;
 	bool 								is_dual(const point2<int> &iter) const;
 
 	void 								update_normal();
@@ -65,6 +65,9 @@ protected :
 	void								add_color(const point3<float> &color);
 	void 								add_color(const point3<int> &color);
 	point3<float>						compute_color(const float &height) const;
+
+	void								get_index_style(const point2<int> &iter);
+	void								switch_index_style(const point2<int> &iter);
 
 	MOD1_GENERATE_GET_DECLARATION(size)
 	MOD1_GENERATE_GET_DECLARATION(real_size)
@@ -78,20 +81,21 @@ private :
 
 	MOD1_PLANE_COLOR_DATA				color_data;
 	using 								mod1_engine_gl::model::data;
+	buffer2<int>						index_style_data;
 
 	bool								is_set = false;
 
 	int 								get_index(
 										const point2<int> &iter,
-										const mod1_indexing_convention &convention = convention_dual_first) const;
+										const index_convention &convention = index_convention::dual_first) const;
 	void 								*get_ptr(
 										const point2<int> &iter,
 										const model_slot &slot,
-										const mod1_indexing_convention &convention = convention_dual_first);
+										const index_convention &convention = index_convention::dual_first);
 	void const							*get_ptr(
 										const point2<int> &iter,
 										const model_slot &slot,
-										const mod1_indexing_convention &convention = convention_dual_first) const;
+										const index_convention &convention = index_convention::dual_first) const;
 
 	void								update_normal_helper(
 										const int &index_a,

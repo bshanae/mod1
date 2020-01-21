@@ -5,7 +5,7 @@ using namespace		mod1_algorithm;
 bool				plane::is_valid(
 					const point2<int> &iter,
 					const mod1_engine_gl::model_data::slot_type &slot,
-					const mod1_indexing_convention &convention) const
+					const index_convention &convention) const
 {
 	int 			index;
 

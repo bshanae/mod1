@@ -47,8 +47,8 @@ void					plane::update_normal()
 		for (iter.x = 0; iter.x < size_internal.x - 1; iter.x++)
 		{
 			top_left = get_index(point2<int>(iter.x, iter.y),
-				is_dual(iter) ? convention_dual_second : convention_dual_first);
-			top_right = get_index(point2<int>(iter.x + 1, iter.y), convention_dual_first);
+				is_dual(iter) ? index_convention::dual_second : index_convention::dual_first);
+			top_right = get_index(point2<int>(iter.x + 1, iter.y), index_convention::dual_first);
 			bottom_left = get_index(point2<int>(iter.x, iter.y + 1));
 			bottom_right = get_index(point2<int>(iter.x + 1, iter.y + 1));
 
