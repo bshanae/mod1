@@ -15,10 +15,10 @@ class					mod1_engine_gl::core
 
 public :
 
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_logic_object, "Mod1 Core : Can't create more than one core")
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_logic_callback, "Mod1 Core : Can't create more than one callback")
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_window, "Mod1 Core : Can't initialize window")
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_GLEW, "Mod1 Core : Can't initialize GLEW")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_logic_object, "Mod1 Engine GL, Core : Can't create more than one core")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_logic_callback, "Mod1 Engine GL, Core : Can't create more than one callback")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_window, "Mod1 Engine GL, Core : Can't initialize window")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_GLEW, "Mod1 Engine GL, Core : Can't initialize GLEW")
 
 	typedef void		(* mod1_callback)(GLFWwindow *, int, int, int, int);
 

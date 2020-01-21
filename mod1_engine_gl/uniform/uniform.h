@@ -9,7 +9,7 @@ class				mod1_engine_gl::uniform
 {
 public :
 
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_set, "Mod1 Engine, Uniform : Object is not set")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_set, "Mod1 Engine GL, Uniform : Object is not set")
 
 	explicit		uniform(const char *name);
 					~uniform() = default;

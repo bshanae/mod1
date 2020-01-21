@@ -18,8 +18,8 @@ public :
 						program();
 						~program();
 
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_compilation, "Mod1 Program : Compilation error")
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_link, "Mod1 Program : Object is nit linked")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_compilation, "Mod1 Engine GL, Program : Compilation error")
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_link, "Mod1 Engine GL, Program : Object is nit linked")
 
 	void				start();
 	void				stop();

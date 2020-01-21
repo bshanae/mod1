@@ -15,11 +15,11 @@ public :
 									buffer2() = default;
 									~buffer2() = default;
 
-	MOD1_GENERATE_EXCEPTION(exception_allocation, "Mod1 Buffer2 : Buffer isn't allocated")
-	MOD1_GENERATE_EXCEPTION(exception_logic_a, "Mod1 Buffer2 : Buffer shouldn't be allocated more than once")
-	MOD1_GENERATE_EXCEPTION(exception_logic_b, "Mod1 Buffer2 : Source buffer has different size")
-	MOD1_GENERATE_EXCEPTION(exception_size, "Mod1 Buffer2 : Bad size")
-	MOD1_GENERATE_EXCEPTION(exception_index, "Mod1 Buffer2 : Bad index")
+	MOD1_GENERATE_EXCEPTION(exception_allocation, "Mod1 Engine GL, Buffer2 : Buffer isn't allocated")
+	MOD1_GENERATE_EXCEPTION(exception_logic_a, "Mod1 Engine GL, Buffer2 : Buffer shouldn't be allocated more than once")
+	MOD1_GENERATE_EXCEPTION(exception_logic_b, "Mod1 Engine GL, Buffer2 : Source buffer has different size")
+	MOD1_GENERATE_EXCEPTION(exception_size, "Mod1 Engine GL, Buffer2 : Bad size")
+	MOD1_GENERATE_EXCEPTION(exception_index, "Mod1 Engine GL, Buffer2 : Bad index")
 
 	void 							allocate(int size_column, int size_row)
 	{

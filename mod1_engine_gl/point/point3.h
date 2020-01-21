@@ -11,8 +11,8 @@ class						mod1_engine_gl::point3
 {
 public :
 
-	MOD1_GENERATE_EXCEPTION(exception_index, "Mod1 Point3 : Bad index")
-	MOD1_GENERATE_EXCEPTION(exception_axis_convetion, "Mod1 Point3 : Unknown axis convention")
+	MOD1_GENERATE_EXCEPTION(exception_index, "Mod1 Engine GL, Point3 : Bad index")
+	MOD1_GENERATE_EXCEPTION(exception_axis_convetion, "Mod1 Engine GL, Point3 : Unknown axis convention")
 
 	type					x = 0;
 	type					y = 0;

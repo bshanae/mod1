@@ -18,12 +18,12 @@ public :
 			delete []data_internal;
 	}
 
-	MOD1_GENERATE_EXCEPTION(exception_allocation_a, "Mod1 Buffer : Can't allocate memory")
-	MOD1_GENERATE_EXCEPTION(exception_allocation_b, "Mod1 Buffer : Buffer isn't allocated")
-	MOD1_GENERATE_EXCEPTION(exception_logic_a, "Mod1 Buffer : Buffer shouldn't be allocated more than once")
-	MOD1_GENERATE_EXCEPTION(exception_logic_b, "Mod1 Buffer : Source buffer has different size")
-	MOD1_GENERATE_EXCEPTION(exception_size, "Mod1 Buffer : Bad size")
-	MOD1_GENERATE_EXCEPTION(exception_index, "Mod1 Buffer : Bad index")
+	MOD1_GENERATE_EXCEPTION(exception_allocation_a, "Mod1 Engine GL, Buffer : Can't allocate memory")
+	MOD1_GENERATE_EXCEPTION(exception_allocation_b, "Mod1 Engine GL, Buffer : Buffer isn't allocated")
+	MOD1_GENERATE_EXCEPTION(exception_logic_a, "Mod1 Engine GL, Buffer : Buffer shouldn't be allocated more than once")
+	MOD1_GENERATE_EXCEPTION(exception_logic_b, "Mod1 Engine GL, Buffer : Source buffer has different size")
+	MOD1_GENERATE_EXCEPTION(exception_size, "Mod1 Engine GL, Buffer : Bad size")
+	MOD1_GENERATE_EXCEPTION(exception_index, "Mod1 Engine GL, Buffer : Bad index")
 
 	void 				allocate(int size)
 	{
