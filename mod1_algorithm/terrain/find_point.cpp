@@ -2,7 +2,7 @@
 
 using namespace			mod1_algorithm;
 
-point2<int>				terrain::find_ptr(const point3<int> &object) const
+point2<int>				terrain::find_point(const point3<int> &object) const
 {
 	point2<int>			iter;
 	point3<int>			point;

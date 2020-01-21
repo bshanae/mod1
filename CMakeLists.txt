@@ -85,7 +85,7 @@ set(ALGORITHM
 	./mod1_algorithm/terrain/prepare.cpp
 	./mod1_algorithm/terrain/info.cpp
 	./mod1_algorithm/terrain/x_delta.cpp
-	./mod1_algorithm/terrain/find_ptr.cpp
+	mod1_algorithm/terrain/find_point.cpp
 	./mod1_algorithm/terrain/interpolate_x.cpp
 	./mod1_algorithm/plane/x_color.cpp
 	./mod1_algorithm/terrain/model.cpp

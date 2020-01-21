@@ -80,7 +80,7 @@ void					plane::build()
 
 	//					Cut style
 
-	cut_style_data.allocate(size_internal.y - 1, size_internal.x - 1);
+	cut_style_data.allocate(size_internal.x - 1, size_internal.y - 1);
 	cut_style_data.set(cut_style::upwards);
 
 	//					Colors
@@ -91,10 +91,7 @@ void					plane::build()
 
 	for (iter.y = 0; iter.y < size_internal.y - 1; iter.y++)
 		for (iter.x = 0; iter.x < size_internal.x; iter.x++)
-		{
-			printf("%d %d\n", iter.x, iter.y);
 			write_color(iter, temp);
-		}
 
 	set_as_built();
 }

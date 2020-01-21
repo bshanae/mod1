@@ -59,7 +59,8 @@ private :
 	void 						compute_delta();
 	void						optimize_delta();
 
-	bool						generate_hill_helper(const point2<int> &iter, const float &height);
+	void						generate_hill_helper(const point2<int> &iter, const float &height);
+	void						generate_hill_fix(const point2<int> &iter, const int &step);
 	void						generate_hill(const point3<int> &summit);
 
 	FastNoise					noise_generator;
@@ -82,7 +83,7 @@ private :
 								const point2<float> &offset = point2<float>(0),
 								const float &power = 1);
 
-	point2<int>					find_ptr(const point3<int> &object) const;
+	point2<int>					find_point(const point3<int> &object) const;
 
 	using						plane::size;
 	using						plane::real_size;
