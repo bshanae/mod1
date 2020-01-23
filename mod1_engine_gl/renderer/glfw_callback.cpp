@@ -8,47 +8,45 @@ void					renderer::glfw_callback(GLFWwindow* window, int key, int code, int acti
 	static bool			mod_line = false;
 	static bool			mod_light = false;
 
+
+
 	renderer = (mod1_engine_gl::renderer *)glfwGetWindowUserPointer(window);
 	for (const auto &callback : renderer->callback_array)
 		if (callback.run(key))
 			renderer->render();
 	if (key == GLFW_KEY_ESCAPE)
 	{
-		glfwSetWindowShouldClose(window, GL_TRUE);
+		renderer->terminate();
 		return ;
 	}
 	else if (key == GLFW_KEY_A)
-		renderer->camera.move(
-			camera::mod1_axis_x, camera::mod1_negative,
-			mod_light ? &renderer->light_info.point_position : nullptr);
+		renderer->camera.move(axis::x, sign::negative);
 	else if (key == GLFW_KEY_D)
-		renderer->camera.move(
-			camera::mod1_axis_x, camera::mod1_positive,
-			mod_light ? &renderer->light_info.point_position : nullptr);
+		renderer->camera.move(axis::x, sign::positive);
 	else if (key == GLFW_KEY_W)
-		renderer->camera.move(
-			camera::mod1_axis_z, camera::mod1_negative,
-			mod_light ? &renderer->light_info.point_position : nullptr);
+		renderer->camera.move(axis::z, sign::negative);
 	else if (key == GLFW_KEY_S)
-		renderer->camera.move(
-			camera::mod1_axis_z, camera::mod1_positive,
-			mod_light ? &renderer->light_info.point_position : nullptr);
+		renderer->camera.move(axis::z, sign::positive);
 	else if (key == GLFW_KEY_Q)
-		renderer->camera.move(
-			camera::mod1_axis_y, camera::mod1_positive,
-			mod_light ? &renderer->light_info.point_position : nullptr);
+		renderer->camera.move(axis::y, sign::positive);
 	else if (key == GLFW_KEY_E)
-		renderer->camera.move(
-			camera::mod1_axis_y, camera::mod1_negative,
-			mod_light ? &renderer->light_info.point_position : nullptr);
-	else if (key == GLFW_KEY_LEFT)
-		renderer->camera.rotate(camera::mod1_axis_y, camera::mod1_positive);
-	else if (key == GLFW_KEY_RIGHT)
-		renderer->camera.rotate(camera::mod1_axis_y, camera::mod1_negative);
-	else if (key == GLFW_KEY_UP)
-		renderer->camera.rotate(camera::mod1_axis_x, camera::mod1_positive);
-	else if (key == GLFW_KEY_DOWN)
-		renderer->camera.rotate(camera::mod1_axis_x, camera::mod1_negative);
+		renderer->camera.move(axis::y, sign::negative);
+	else if (key == GLFW_KEY_LEFT && !mod_light)
+		renderer->camera.rotate(axis::y, sign::positive);
+	else if (key == GLFW_KEY_RIGHT && !mod_light)
+		renderer->camera.rotate(axis::y, sign::negative);
+	else if (key == GLFW_KEY_UP && !mod_light)
+		renderer->camera.rotate(axis::x, sign::positive);
+	else if (key == GLFW_KEY_DOWN && !mod_light)
+		renderer->camera.rotate(axis::x, sign::negative);
+	else if (key == GLFW_KEY_LEFT && mod_light)
+		renderer->camera.rotate(renderer->light_info.direct_direction, axis::y, sign::negative);
+	else if (key == GLFW_KEY_RIGHT && mod_light)
+		renderer->camera.rotate(renderer->light_info.direct_direction, axis::y, sign::positive);
+	else if (key == GLFW_KEY_UP && mod_light)
+		renderer->camera.rotate(renderer->light_info.direct_direction, axis::x, sign::negative);
+	else if (key == GLFW_KEY_DOWN && mod_light)
+		renderer->camera.rotate(renderer->light_info.direct_direction, axis::x, sign::positive);
 	else if (key == GLFW_KEY_R && action == GLFW_PRESS)
 	{
 		mod_line = !mod_line;

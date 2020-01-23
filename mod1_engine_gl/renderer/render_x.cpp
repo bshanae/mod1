@@ -11,11 +11,8 @@ void 					renderer::render_internal()
 	program.camera_view.upload(camera.view());
 
 	program.light_ambient_intensity.upload(light_info.ambient_intensity);
-	program.light_point_position.upload(light_info.point_position);
-	program.light_point_intensity.upload(light_info.point_intensity);
-	program.light_point_power.upload(light_info.point_power);
-
-	light_cube.transformation() = glm::translate(glm::mat4(1), light_info.point_position);
+	program.light_direct_direction.upload(light_info.direct_direction);
+	program.light_direct_intensity.upload(light_info.direct_intensity);
 
 	for (auto &model : model_array)
 	{

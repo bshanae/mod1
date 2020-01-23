@@ -29,6 +29,7 @@ public :
 	int					window_height();
 
 	bool				is_working();
+	void 				terminate();
 	void				update();
 	void 				clear(const point3<float> &color);
 	void 				draw(const int &vertex_number);

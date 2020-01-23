@@ -40,7 +40,7 @@ set(ENGINE_GL
 	./mod1_engine_gl/renderer/load_model.cpp
 	./mod1_engine_gl/renderer/loop.cpp
 	./mod1_engine_gl/renderer/render_x.cpp
-	./mod1_engine_gl/renderer/cube/cube.cpp
+	./mod1_engine_gl/renderer/terminate.cpp
 
 	./mod1_engine_gl/program/program.cpp
 

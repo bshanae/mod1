@@ -6,6 +6,19 @@
 
 #include "mod1_engine_gl/namespace.h"
 
+enum class				mod1_engine_gl::axis
+{
+	x,
+	y,
+	z
+};
+
+enum class				mod1_engine_gl::sign : int
+{
+	negative = -1,
+	positive = 1
+};
+
 class					mod1_engine_gl::camera
 {
 public :
@@ -18,21 +31,10 @@ public :
 
 	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_axis, "Mod1 Engine GL, Camera : Unknown axis")
 
-	typedef enum
-	{
-		mod1_axis_x,
-		mod1_axis_y,
-		mod1_axis_z
-	}					mod1_axis;
-
-	typedef enum :		int
-	{
-		mod1_negative = -1,
-		mod1_positive = 1
-	}					mod1_sign;
-
-	void				move(mod1_axis axis, mod1_sign sign, glm::vec3 *target = nullptr);
-	void				rotate(mod1_axis axis, mod1_sign sign);
+	void				move(axis axis, sign sign);
+	void				move(glm::vec3 &target, axis axis, sign sign);
+	void				rotate(axis axis, sign sign);
+	void				rotate(glm::vec3 &target, axis axis, sign sign);
 
 	const glm::mat4		&view();
 	const glm::mat4		projection;

@@ -9,9 +9,8 @@ using namespace			mod1_engine_gl;
 	core.set_callback(glfw_callback, this);
 
 	light_info.ambient_intensity = MOD1_LIGHT_AMBIENT_INTENSITY;
-	light_info.point_position = glm::vec3(MOD1_LIGHT_POINT_POSITION);
-	light_info.point_intensity = MOD1_LIGHT_POINT_INTENSITY;
-	light_info.point_power = 2.;
+	light_info.direct_direction = glm::vec3(MOD1_LIGHT_DIRECT_DIRECTION);
+	light_info.direct_intensity = MOD1_LIGHT_DIRECT_INTENSITY;
 
 	program.add_shader(shader_type::vertex, MOD1_SOURCE_SHADER_VERTEX);
 #if MOD1_NORMAL_TEST
@@ -26,16 +25,11 @@ using namespace			mod1_engine_gl;
 	program.set_uniform(program.camera_view);
 	program.set_uniform(program.camera_projection);
 	program.set_uniform(program.light_ambient_intensity);
-	program.set_uniform(program.light_point_position);
-	program.set_uniform(program.light_point_intensity);
-	program.set_uniform(program.light_point_power);
+	program.set_uniform(program.light_direct_direction);
+	program.set_uniform(program.light_direct_intensity);
 
 	program.camera_projection.upload(camera.projection);
 
 	program.stop();
 
-#if MOD1_ENABLED(MOD1_LIGHT_CUBE)
-	light_cube.build();
-	load_model(light_cube.model());
-#endif
 }

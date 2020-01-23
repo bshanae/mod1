@@ -65,6 +65,11 @@ bool				core::is_working()
 	return (glfwWindowShouldClose(window));
 }
 
+void				core::terminate()
+{
+	glfwSetWindowShouldClose(window, GL_TRUE);
+}
+
 int					core::window_width()
 {
 	return (window_width_internal);

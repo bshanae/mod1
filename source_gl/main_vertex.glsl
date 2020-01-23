@@ -3,9 +3,8 @@
 struct							mod1_light_info
 {
 	float 						ambient_intensity;
-	vec3						point_position;
-	float						point_intensity;
-	float						point_power;
+	vec3						direct_direction;
+	float						direct_intensity;
 };
 
 layout(location = 0) in	vec3	position;
@@ -27,10 +26,10 @@ float							calculate_light_intensity()
 	float						result;
 
 	normal_global = normalize(normal);
-	to_light = normalize(light_info.point_position - position);
+	to_light = -light_info.direct_direction;
 	n_dot_l = clamp(dot(normal_global, to_light), 0, 1);
 
-	result = pow(light_info.point_intensity * n_dot_l, light_info.point_power);
+	result = light_info.direct_intensity * n_dot_l;
 	result += light_info.ambient_intensity;
 	result = clamp(result, 0, 1);
 

@@ -13,7 +13,6 @@
 #include "mod1_engine_gl/callback/callback.h"
 #include "mod1_engine_gl/uniform/uniform.h"
 #include "mod1_engine_gl/point/point3.h"
-#include "mod1_engine_gl/renderer/cube/cube.h"
 
 #include <fstream>
 #include <sstream>
@@ -32,17 +31,11 @@ public :
 	void						load_model(model *model);
 
 	void						render();
+
 	void						loop();
+	void						terminate();
 
 private :
-
-	struct						light_info
-	{
-		float 					ambient_intensity;
-		glm::vec3				point_position;
-		float					point_intensity;
-		float					point_power;
-	};
 
 	class						program : public mod1_engine_gl::program
 	{
@@ -51,9 +44,8 @@ private :
 		MOD1_GENERATE_UNIFORM(camera_view, "camera_view")
 		MOD1_GENERATE_UNIFORM(camera_projection, "camera_projection")
 		MOD1_GENERATE_UNIFORM(light_ambient_intensity, "light_info.ambient_intensity")
-		MOD1_GENERATE_UNIFORM(light_point_position, "light_info.point_position")
-		MOD1_GENERATE_UNIFORM(light_point_intensity, "light_info.point_intensity")
-		MOD1_GENERATE_UNIFORM(light_point_power, "light_info.point_power")
+		MOD1_GENERATE_UNIFORM(light_direct_direction, "light_info.direct_direction")
+		MOD1_GENERATE_UNIFORM(light_direct_intensity, "light_info.direct_intensity")
 	};
 
 	static void					glfw_callback(GLFWwindow* window, int key, int code, int action, int mode);
@@ -67,8 +59,12 @@ private :
 	loader						loader;
 	camera						camera;
 
-	struct light_info			light_info;
-	cube						light_cube;
+	struct
+	{
+		float 					ambient_intensity;
+		glm::vec3				direct_direction;
+		float					direct_intensity;
+	}							light_info;
 
 	void						render_internal();
 };

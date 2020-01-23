@@ -25,4 +25,6 @@ namespace			mod1_engine_gl
 	class			model;
 	class			model_reader;
 	class			camera;
+	enum class		axis;
+	enum class		sign;
 }

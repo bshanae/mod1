@@ -21,29 +21,39 @@ const glm::mat4		&camera::view()
 	return (matrix_view);
 }
 
-void				camera::move(mod1_axis axis, mod1_sign sign, glm::vec3 *target)
+void				camera::move(axis axis, sign sign)
 {
-	if (!target)
-		target = &position;
-
-	if (axis == mod1_axis_x)
-		*target += axis_x * movement_speed * (float)sign;
-	else if (axis == mod1_axis_y)
-		*target += axis_y * movement_speed * (float)sign;
-	else if (axis == mod1_axis_z)
-		*target += axis_z * movement_speed * (float)sign;
+	if (axis == axis::x)
+		position += axis_x * movement_speed * (float)sign;
+	else if (axis == axis::y)
+		position += axis_y * movement_speed * (float)sign;
+	else if (axis == axis::z)
+		position += axis_z * movement_speed * (float)sign;
 	else
 		throw (exception_axis());
 	update_transformation();
 }
 
-void				camera::rotate(mod1_axis axis, mod1_sign sign)
+void				camera::move(glm::vec3 &target, axis axis, sign sign)
 {
-	if (axis == mod1_axis_x)
+	if (axis == axis::x)
+		target += axis_x * movement_speed * (float)sign;
+	else if (axis == axis::y)
+		target += axis_y * movement_speed * (float)sign;
+	else if (axis == axis::z)
+		target += axis_z * movement_speed * (float)sign;
+	else
+		throw (exception_axis());
+	update_transformation();
+}
+
+void				camera::rotate(axis axis, sign sign)
+{
+	if (axis == axis::x)
 		angle_x += (float)sign * rotation_speed;
-	else if (axis == mod1_axis_y)
+	else if (axis == axis::y)
 		angle_y += (float)sign * rotation_speed;
-	else if (axis == mod1_axis_z)
+	else if (axis == axis::z)
 		angle_z += (float)sign * rotation_speed;
 	else
 		throw (exception_axis());
@@ -52,6 +62,30 @@ void				camera::rotate(mod1_axis axis, mod1_sign sign)
 	axis_y = glm::vec3(matrix_rotation * glm::vec4(axis_y_const, 1));
 	axis_z = glm::vec3(matrix_rotation * glm::vec4(axis_z_const, 1));
 	update_transformation();
+}
+
+void				camera::rotate(glm::vec3 &target, axis axis, sign sign)
+{
+	glm::mat4		rotation_matrix(1);
+	glm::vec3		rotation_axis;
+
+	switch (axis)
+	{
+		case axis::x :
+			rotation_axis = axis_x;
+			break ;
+
+		case axis::y :
+			rotation_axis = axis_y;
+			break ;
+
+		case axis::z :
+			rotation_axis = axis_z;
+			break ;
+	}
+	rotation_matrix = glm::rotate(rotation_matrix,
+		(float)sign * rotation_speed, rotation_axis);
+	target = glm::vec3(rotation_matrix * glm::vec4(target, 1));
 }
 
 void 				camera::update_transformation()
