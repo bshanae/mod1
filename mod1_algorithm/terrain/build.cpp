@@ -4,6 +4,7 @@ using namespace			mod1_algorithm;
 
 void					terrain::build()
 {
+	prepare();
 	normalize();
 	resize();
 
@@ -13,8 +14,13 @@ void					terrain::build()
 	noise_generator.SetNoiseType(FastNoise::Perlin);
 
 #if MOD1_ENABLED(MOD1_TERRAIN_HILLS)
-	for (auto const &iter_source : data_raw)
-		generate_hill(iter_source);
+	for (auto const &point : data_raw)
+		if (point.z < 0)
+			generate_hill(point);
+
+	for (auto const &point : data_raw)
+		if (point.z > 0)
+			generate_hill(point);
 #endif
 
 #if MOD1_ENABLED(MOD1_TERRAIN_NOISE_A)

@@ -43,9 +43,14 @@ private :
 	MOD1_TERRAIN_RAW_DATA		data_raw;
 	point3<double>				min_raw = point3<double>(std::numeric_limits<double>::max());
 	point3<double>				max_raw = point3<double>(std::numeric_limits<double>::min());
-	point3<double>				diff_raw;
+
+	point3<double>				min_prepared;
+	point3<double>				max_prepared;
+	point3<double>				diff_prepared;
 
 	static double				parse_coordinate(std::ifstream &stream, bool eat_delimiter);
+
+	void						prepare();
 	void						normalize();
 	void						resize();
 

@@ -14,7 +14,8 @@ void					terrain::generate_hill_helper(const point2<int> &iter, const float &hei
 			MOD1_TERRAIN_NOISE_HILL_OFFSET);
 		noise *= pow(interpolate_cosine(0, 1, height / max_raw.z), MOD1_TERRAIN_NOISE_HILL_ADD);
 #endif
-		if (height < 0 or (height > 0 and read_height(iter) < height))
+		if ((height < 0 and read_height(iter) > height) or
+			(height > 0 and read_height(iter) < height))
 			write_height(iter, height + noise);
 }
 
