@@ -10,7 +10,7 @@ void					water::update_model_helper_a(const point2<int> &iter)
 
 	water = get_water_depth(iter);
 
-	if (water < MOD1_WATER_EPSILON)
+	if (water < MOD1_EPSILON)
 		water = MOD1_WATER_INDENT;
 
 	height = get_terrain_height(iter) + water;

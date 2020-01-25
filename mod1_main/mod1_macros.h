@@ -13,6 +13,8 @@
 #define MOD1_MIN(a, b)							((a) < (b) ? (a) : (b))
 #define MOD1_MAX(a, b)							((a) > (b) ? (a) : (b))
 
+#define MOD1_EPSILON							0.01f
+
 //												PLANE
 
 #define MOD1_PLANE_POINT_SIZE					3
@@ -37,8 +39,6 @@
 #define MOD1_TERRAIN_RAW_DATA_RI				MOD1_TERRAIN_RAW_DATA::reverse_iterator
 
 //												WATER
-
-#define MOD1_WATER_EPSILON						0.01f
 
 #define MOD1_WATER_RIGHT						point2<int>(1, 0)
 #define MOD1_WATER_UPPER						point2<int>(0, -1)

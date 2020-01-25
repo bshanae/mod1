@@ -22,7 +22,6 @@ void	 				plane::update_normal_helper(
 	ptr_b = (float *)mod1_engine_gl::model::get_ptr(index_b, model_slot::point);
 	ptr_c = (float *)mod1_engine_gl::model::get_ptr(index_c, model_slot::point);
 
-
 	a = point3<float>(ptr_a, point3<float>::convention_xzy);
 	b = point3<float>(ptr_b, point3<float>::convention_xzy);
 	c = point3<float>(ptr_c, point3<float>::convention_xzy);

@@ -10,8 +10,6 @@ void					terrain::build()
 	set(point2<float>(), point2<float>(MOD1_TERRAIN_SIZE), MOD1_TERRAIN_DELTA);
 	plane::build();
 
-	//					Hills
-
 	noise_generator.SetNoiseType(FastNoise::Perlin);
 
 #if MOD1_ENABLED(MOD1_TERRAIN_HILLS)
@@ -34,18 +32,7 @@ void					terrain::build()
 		MOD1_TERRAIN_NOISE_B_OFFSET);
 #endif
 
-	update_normal();
 	update_final();
-
-	//					Colors
-
-	point2<int>			iter;
-	point3<float>		color;
-
-	for (iter.y = 0; iter.y < size().y - 1; iter.y++)
-		for (iter.x = 0; iter.x < size().x; iter.x++)
-		{
-			color = compute_color(read_height(iter));
-			write_color(iter, color);
-		}
+	update_normal();
+	update_color();
 }

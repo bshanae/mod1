@@ -2,28 +2,38 @@
 
 using namespace			mod1_algorithm;
 
-void					plane::add_color(const point3<float> &color)
+void					plane::add_color(const plane_color &type, const point3<float> &color)
 {
-	color_data.push_back(color);
+	if (type == plane_color::positive)
+		color_data_positive.push_back(color);
+	else if (type == plane_color::negative)
+		color_data_negative.push_back(color);
 }
 
-void					plane::add_color(const point3<int> &color)
+void					plane::add_color(const plane_color &type, const point3<int> &color)
 {
 	auto				color_f = (point3<float>)color;
 
 	color_f /= 255;
-	color_data.push_back(color_f);
+	if (type == plane_color::positive)
+		color_data_positive.push_back(color_f);
+	else if (type == plane_color::negative)
+		color_data_negative.push_back(color_f);
 }
 
 #define INTERPOLATE(a, b, r)	(a + (b - a) * r)
 
 point3<float>			plane::compute_color(const float &height) const
 {
+	auto 				&color_data =
+		height >= MOD1_EPSILON ?
+		color_data_positive : color_data_negative;
+
 	float				ratio;
 	int 				index_from;
 	int 				index_to;
 	float				ratio_normal;
-	point3<float>	result;
+	point3<float>		result;
 
 	if (color_data.empty())
 		throw (exception_color());
@@ -46,4 +56,18 @@ point3<float>			plane::compute_color(const float &height) const
 		result[i] = INTERPOLATE(color_data[index_from][i], color_data[index_to][i], ratio_normal);
 	result = point3<float>::min(result, point3<float>(1.f));
 	return (result);
+}
+
+void					plane::update_color()
+{
+	point2<int>			iter;
+	point3<float>		color;
+
+	for (iter.y = 0; iter.y < size_internal.y - 1; iter.y++)
+		for (iter.x = 0; iter.x < size_internal.x; iter.x++)
+		{
+			color = compute_color(read_height(iter));
+			write_color(iter, color);
+		}
+
 }

@@ -5,6 +5,12 @@
 
 #include "mod1_algorithm/namespace.h"
 
+enum class								mod1_algorithm::plane_color
+{
+	positive,
+	negative
+};
+
 class									mod1_algorithm::plane : protected mod1_engine_gl::model
 {
 public :
@@ -63,9 +69,9 @@ protected :
 
 	void 								update_final();
 
-	void								add_color(const point3<float> &color);
-	void 								add_color(const point3<int> &color);
-	point3<float>						compute_color(const float &height) const;
+	void								add_color(const plane_color &type, const point3<float> &color);
+	void 								add_color(const plane_color &type, const point3<int> &color);
+	void 								update_color();
 
 	enum class							cut_style
 	{
@@ -86,7 +92,8 @@ protected :
 
 private :
 
-	MOD1_PLANE_COLOR_DATA				color_data;
+	MOD1_PLANE_COLOR_DATA				color_data_positive;
+	MOD1_PLANE_COLOR_DATA				color_data_negative;
 	using 								mod1_engine_gl::model::data;
 	buffer2<cut_style>					cut_style_data;
 
@@ -108,5 +115,7 @@ private :
 										const int &index_a,
 										const int &index_b,
 										const int &index_c);
+
+	point3<float>						compute_color(const float &height) const;
 
 };
