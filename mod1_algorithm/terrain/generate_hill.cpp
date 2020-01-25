@@ -30,24 +30,25 @@ void					terrain::generate_hill_fix(const point2<int> &iter, const int &step)
 				switch_cut_style(i);
 }
 
-void					terrain::generate_hill(const point3<int> &summit)
+void					terrain::generate_hill(const point3<double> &summit)
 {
-	const auto			iter_const = find_point(summit);
+	const auto			iter_const = find_iter(summit);
 	point2<int>			iter;
 	float				height;
-	const int 			step_limit = (int)(summit.z / delta());
+	const int 			step_limit = (int)(fabs((summit).z) / delta());
 
 	generate_hill_helper(iter_const, (float)summit.z);
 	for (int step = 1; step <= step_limit; step++)
 	{
 		height = interpolate_smooth(0, summit.z, ((float)(step_limit - step) / (float)step_limit));
+		std::cout << "Height = " << height << std::endl;
 
 		generate_hill_fix(iter_const, step);
 
 		for (iter.x = iter_const.x - step; iter.x <= iter_const.x + step; iter.x++)
 		{
 			iter.y = iter_const.y - step;
-			 generate_hill_helper(iter, height);
+			generate_hill_helper(iter, height);
 
 			iter.y = iter_const.y + step;
 			generate_hill_helper(iter, height);
@@ -62,4 +63,6 @@ void					terrain::generate_hill(const point3<int> &summit)
 			generate_hill_helper(iter, height);
 		}
 	}
+
+	std::cout << std::endl;
 }

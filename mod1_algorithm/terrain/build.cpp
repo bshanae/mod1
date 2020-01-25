@@ -4,9 +4,10 @@ using namespace			mod1_algorithm;
 
 void					terrain::build()
 {
-	prepare();
+	normalize();
+	resize();
 
-	set((point2<float>)min_i, (point2<float>)max_i, (float)delta_i);
+	set(point2<float>(), point2<float>(MOD1_TERRAIN_SIZE), MOD1_TERRAIN_DELTA);
 	plane::build();
 
 	//					Hills

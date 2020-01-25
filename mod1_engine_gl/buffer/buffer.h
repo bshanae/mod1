@@ -6,7 +6,7 @@
 
 #include <string>
 
-MOD1_GENERATE_TEMPLATE(type)
+template				<typename type>
 class 					mod1_engine_gl::buffer
 {
 public :

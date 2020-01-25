@@ -4,9 +4,12 @@
 
 #include "mod1_engine_gl/namespace.h"
 
-#include <cmath>
+#include "mod1_engine_gl/point/point2.h"
 
-MOD1_GENERATE_TEMPLATE(type)
+#include <cmath>
+#include <iostream>
+
+template 					<typename type>
 class						mod1_engine_gl::point3
 {
 public :
@@ -19,11 +22,19 @@ public :
 	type					z = 0;
 
 							point3() = default;
-	explicit				point3(type value)
+
+	explicit				point3(const type &value)
 	{
 		this->x = value;
 		this->y = value;
 		this->z = value;
+	}
+
+	explicit				point3(const point2<type> &point)
+	{
+		this->x = point.x;
+		this->y = point.y;
+		this->z = 0;
 	}
 
 							point3(type x, type y, type z = 0)
@@ -32,7 +43,6 @@ public :
 		this->y = y;
 		this->z = z;
 	}
-
 
 	typedef enum
 	{
@@ -74,8 +84,8 @@ public :
 		return (point3<type>(this->x * other.x, this->y * other.y, this->z * other.z));
 	}
 
-	template 			<typename t2>
-	point3<type>			operator * (const t2 &other) const
+	template	 			<typename another_type>
+	point3<type>			operator * (const another_type &other) const
 	{
 		return (point3<type>(this->x * other, this->y * other, this->z * other));
 	}
@@ -85,8 +95,8 @@ public :
 		return (point3<type>(this->x / other.x, this->y / other.y, this->z / other.z));
 	}
 
-	template 			<typename t2>
-	point3<type>			operator / (const t2 &other) const
+	template 				<typename another_type>
+	point3<type>			operator / (const another_type &other) const
 	{
 		return (point3<type>(this->x / other, this->y / other, this->z / other));
 	}
@@ -112,8 +122,8 @@ public :
 		this->z *= other.z;
 	}
 
-	template 			<typename t2>
-	void					operator *= (const t2 &other)
+	template 				<typename another_type>
+	void					operator *= (const another_type &other)
 	{
 		this->x *= other;
 		this->y *= other;
@@ -127,8 +137,8 @@ public :
 		this->z /= other.z;
 	}
 
-	template 			<typename t2>
-	void					operator /= (const t2 &other)
+	template 				<typename another_type>
+	void					operator /= (const another_type &other)
 	{
 		this->x /= other;
 		this->y /= other;
@@ -198,17 +208,18 @@ public :
 	}
 
 
-	template 				<typename t2>
-	explicit				operator point3<t2> () const
+	template 				<typename another_type>
+	explicit				operator point3<another_type> () const
 	{
-		return (point3<t2>(this->x, this->y, this->z));
+		return (point3<another_type>(this->x, this->y, this->z));
 	}
 
-	template 			<class p2>
-	point3<type>			&operator = (const p2 &point2)
+	template 				<typename point_like>
+	point3<type>			&operator = (const point_like &point)
 	{
-		this->x = point2.x;
-		this->y = point2.y;
+		this->x = point.x;
+		this->y = point.y;
+		this->z = 0;
 		return (*this);
 	}
 
@@ -279,5 +290,17 @@ public :
 		type					length = this->length();
 
 		return (point3<type>(this->x / length, this->y / length, this->z / length));
+	}
+
+	friend std::ostream&	operator << (std::ostream& stream, const point3 &point)
+	{
+		stream << "(";
+		stream << point.x;
+		stream << ", ";
+		stream << point.y;
+		stream << ", ";
+		stream << point.z;
+		stream << ")";
+		return (stream);
 	}
 };

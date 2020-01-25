@@ -2,9 +2,9 @@
 
 using namespace					mod1_algorithm;
 
-float							terrain::parse_coordinate(std::ifstream &stream, bool eat_delimiter)
+double							terrain::parse_coordinate(std::ifstream &stream, bool eat_delimiter)
 {
-	float						temp;
+	double						temp;
 
 	if (eat_delimiter)
 		if (stream.get() != ',')
@@ -41,8 +41,8 @@ void							terrain::parse(const std::string &file)
 				iter->x = parse_coordinate(stream, false);
 				iter->y = parse_coordinate(stream, true);
 				iter->z = parse_coordinate(stream, true);
-				min_raw = point3<int>::min(min_raw, *iter);
-				max_raw = point3<int>::max(max_raw, *iter);
+				min_raw = point3<double>::min(min_raw, *iter);
+				max_raw = point3<double>::max(max_raw, *iter);
 				continue ;
 			}
 			default :
@@ -51,5 +51,7 @@ void							terrain::parse(const std::string &file)
 
 	stream.close();
 	if (data_raw.size() >= 50)
-		throw (exception_pattern());
+		throw (exception_point_number());
+
+	min_raw.z = min_raw.z <= 0 ? min_raw.z : 0;
 }

@@ -33,12 +33,8 @@
 
 //												TERRAIN
 
-#define MOD1_TERRAIN_RAW_DATA					std::vector<point3<int>>
+#define MOD1_TERRAIN_RAW_DATA					std::vector<point3<double>>
 #define MOD1_TERRAIN_RAW_DATA_RI				MOD1_TERRAIN_RAW_DATA::reverse_iterator
-#define MOD1_TERRAIN_DEFAULT_DELTA				10
-#define MOD1_TERRAIN_DEFAULT_SIZE				point3<int>(100)
-#define MOD1_TERRAIN_INDENT						0.3
-#define MOD1_TERRAIN_MIN_SIZE					10
 
 //												WATER
 

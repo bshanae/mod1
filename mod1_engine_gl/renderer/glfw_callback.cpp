@@ -8,8 +8,6 @@ void					renderer::glfw_callback(GLFWwindow* window, int key, int code, int acti
 	static bool			mod_line = false;
 	static bool			mod_light = false;
 
-
-
 	renderer = (mod1_engine_gl::renderer *)glfwGetWindowUserPointer(window);
 	for (const auto &callback : renderer->callback_array)
 		if (callback.run(key))

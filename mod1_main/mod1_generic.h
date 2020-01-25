@@ -47,11 +47,6 @@ TYPE(space::name##_internal)	space::name() const						\
 	return (name##_internal);											\
 }
 
-//		TEMPLATE
-
-#define MOD1_GENERATE_TEMPLATE(name)									\
-	template					<typename name>
-
 //		UNIFORM
 
 #define MOD1_GENERATE_UNIFORM(name, name_GL)							\

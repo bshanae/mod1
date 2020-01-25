@@ -4,100 +4,110 @@
 
 #include "mod1_engine_gl/namespace.h"
 
-MOD1_GENERATE_TEMPLATE(type)
-class					mod1_engine_gl::point2
+#include <iostream>
+
+template					<typename type>
+class						mod1_engine_gl::point2
 {
 public :
 
 	MOD1_GENERATE_EXCEPTION(exception_index, "Mod1 Engine GL, Point2 : Bad index")
 
-	type				x = 0;
-	type				y = 0;
+	type					x = 0;
+	type					y = 0;
 
-						point2() = default;
-	explicit			point2(type value)
+							point2() = default;
+
+	explicit				point2(type value)
 	{
 		this->x = value;
 		this->y = value;
 	}
-						point2(type x, type y)
+							point2(type x, type y)
 	{
 		this->x = x;
 		this->y = y;
 	}
-						~point2() = default;
 
-	point2<type>		operator + (const point2<type> &other) const
+	template 				<typename point_like>
+	explicit				point2(const point_like &point)
+	{
+		this->x = point.x;
+		this->y = point.y;
+	}
+							~point2() = default;
+
+	point2<type>			operator + (const point2<type> &other) const
 	{
 		return (point2<type>(this->x + other.x, this->y + other.y));
 	}
 
-	point2<type>		operator - (const point2<type> &other) const
+	point2<type>			operator - (const point2<type> &other) const
 	{
 		return (point2<type>(this->x - other.x, this->y - other.y));
 	}
 
-	point2<type>		operator * (const point2<type> &other) const
+	point2<type>			operator * (const point2<type> &other) const
 	{
 		return (point2<type>(this->x * other.x, this->y * other.y));
 	}
 
-	template 			<typename t2>
-	point2<type>		operator * (const t2 &other) const
+	template 				<typename another_type>
+	point2<type>			operator * (const another_type &other) const
 	{
 		return (point2<type>(this->x * other, this->y * other));
 	}
 
-	point2<type>		operator / (const point2<type> &other) const
+	point2<type>			operator / (const point2<type> &other) const
 	{
 		return (point2<type>(this->x / other.x, this->y / other.y));
 	}
 
-	template 			<typename t2>
-	point2<type>		operator / (const t2 &other) const
+	template 				<typename another_type>
+	point2<type>			operator / (const another_type &other) const
 	{
 		return (point2<type>(this->x / other, this->y / other));
 	}
 
-	void				operator += (const point2<type> &other)
+	void					operator += (const point2<type> &other)
 	{
 		this->x += other.x;
 		this->y += other.y;
 	}
 
-	void				operator -= (const point2<type> &other)
+	void					operator -= (const point2<type> &other)
 	{
 		this->x -= other.x;
 		this->y -= other.y;
 	}
 
-	void				operator *= (const point2<type> &other)
+	void					operator *= (const point2<type> &other)
 	{
 		this->x *= other.x;
 		this->y *= other.y;
 	}
 
-	template 			<typename t2>
-	void				operator *= (const t2 &other)
+	template 				<typename another_type>
+	void					operator *= (const another_type &other)
 	{
 		this->x *= other;
 		this->y *= other;
 	}
 
-	void				operator /= (const point2<type> &other)
+	void					operator /= (const point2<type> &other)
 	{
 		this->x /= other.x;
 		this->y /= other.y;
 	}
 
-	template 			<typename t2>
-	void				operator /= (const t2 &other)
+	template 				<typename another_type>
+	void					operator /= (const another_type &other)
 	{
 		this->x /= other;
 		this->y /= other;
 	}
 
-	type				&operator [] (int i)
+	type					&operator [] (int i)
 	{
 		switch (i)
 		{
@@ -110,7 +120,7 @@ public :
 		}
 	}
 
-	const type			&operator [] (int i) const
+	const type				&operator [] (int i) const
 	{
 		switch (i)
 		{
@@ -123,21 +133,21 @@ public :
 		}
 	}
 
-	template 			<typename t2>
-	explicit			operator point2<t2> () const
+	template 				<typename another_type>
+	explicit				operator point2<another_type> () const
 	{
-		return (point2<t2>(this->x, this->y));
+		return (point2<another_type>(this->x, this->y));
 	}
 
-	template 			<class point_like>
-	point2<type>		&operator = (const point_like &point)
+	template 				<class point_like>
+	point2<type>			&operator = (const point_like &point)
 	{
 		this->x = point.x;
 		this->y = point.y;
 		return (*this);
 	}
 
-	bool				operator == (const point2<type> &other)
+	bool					operator == (const point2<type> &other)
 	{
 		if (this->x != other.x)
 			return (false);
@@ -146,28 +156,38 @@ public :
 		return (true);
 	}
 
-	static point2<type>	min (const point2<type> &a, const point2<type> &b)
+	static point2<type>		min(const point2<type> &a, const point2<type> &b)
 	{
 		return (point2<type>(MOD1_MIN(a.x, b.x), MOD1_MIN(a.y, b.y)));
 	}
 
-	static point2<type>	max (const point2<type> &a, const point2<type> &b)
+	static point2<type>		max(const point2<type> &a, const point2<type> &b)
 	{
 		return (point2<type>(MOD1_MAX(a.x, b.x), MOD1_MAX(a.y, b.y)));
 	}
 
-	type				*data()
+	type					*data()
 	{
 		return (&x);
 	}
 
-	const type			*data() const
+	const type				*data() const
 	{
 		return (&x);
 	}
 
-	int 				size_in_bytes() const
+	int 					size_in_bytes() const
 	{
 		return (2 * sizeof(type));
+	}
+
+	friend std::ostream&	operator << (std::ostream& stream, const point2 &point)
+	{
+		stream << "(";
+		stream << point.x;
+		stream << ", ";
+		stream << point.y;
+		stream << ")";
+		return (stream);
 	}
 };

@@ -4,13 +4,13 @@
 
 namespace			mod1_engine_gl
 {
-	MOD1_GENERATE_TEMPLATE(type)
+	template		<typename type>
 	class			buffer;
-	MOD1_GENERATE_TEMPLATE(type)
+	template		<typename type>
 	class			buffer2;
-	MOD1_GENERATE_TEMPLATE(type)
+	template		<typename type>
 	class			point2;
-	MOD1_GENERATE_TEMPLATE(type)
+	template		<typename type>
 	class			point3;
 
 	class			core;

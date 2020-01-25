@@ -7,7 +7,7 @@
 #include "mod1_engine_gl/buffer/buffer.h"
 #include "mod1_engine_gl/point/point2.h"
 
-MOD1_GENERATE_TEMPLATE(type)
+template							<typename type>
 class 								mod1_engine_gl::buffer2
 {
 public :

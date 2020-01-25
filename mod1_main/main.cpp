@@ -12,8 +12,6 @@ void						main_unsafe(int argc, char **argv)
 
 	main.build();
 
-	main.terrain->info();
-
 	main.loop();
 }
 
