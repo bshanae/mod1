@@ -2,8 +2,9 @@
 
 using namespace			mod1_algorithm;
 
-void					terrain::generate_hill_helper(const point2<int> &iter, const float &height)
+void					terrain::generate_hill_helper(const point2<int> &iter, const float &new_height)
 {
+	const float			old_height = read_height(iter);
 	float				noise = 0;
 
 #if MOD1_ENABLED(MOD1_TERRAIN_NOISE_HILL)
@@ -14,9 +15,13 @@ void					terrain::generate_hill_helper(const point2<int> &iter, const float &hei
 			MOD1_TERRAIN_NOISE_HILL_OFFSET);
 		noise *= pow(interpolate_cosine(0, 1, height / max_raw.z), MOD1_TERRAIN_NOISE_HILL_ADD);
 #endif
-		if ((height < 0 and read_height(iter) > height) or
-			(height > 0 and read_height(iter) < height))
-			write_height(iter, height + noise);
+		if ((new_height < 0 and old_height > new_height))
+			write_height(iter, new_height + noise);
+		else if (new_height > 0 and old_height < new_height)
+			write_height(iter,
+				old_height < 0 ?
+				old_height / 2 + new_height  + noise :
+				new_height + noise);
 }
 
 void					terrain::generate_hill_fix(const point2<int> &iter, const int &step)
@@ -45,7 +50,7 @@ void					terrain::generate_hill(const point3<double> &summit)
 
 		generate_hill_fix(iter_const, step);
 
-		for (iter.x = iter_const.x - step; iter.x <= iter_const.x + step; iter.x++)
+		for (iter.x = iter_const.x - step + 1; iter.x <= iter_const.x + step - 1; iter.x++)
 		{
 			iter.y = iter_const.y - step;
 			generate_hill_helper(iter, height);
@@ -63,6 +68,4 @@ void					terrain::generate_hill(const point3<double> &summit)
 			generate_hill_helper(iter, height);
 		}
 	}
-
-	std::cout << std::endl;
 }

@@ -54,7 +54,7 @@ private :
 	void						normalize();
 	void						resize();
 
-	void						generate_hill_helper(const point2<int> &iter, const float &height);
+	void						generate_hill_helper(const point2<int> &iter, const float &new_height);
 	void						generate_hill_fix(const point2<int> &iter, const int &step);
 	void						generate_hill(const point3<double> &summit);
 
