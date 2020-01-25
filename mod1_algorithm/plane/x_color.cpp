@@ -25,9 +25,7 @@ void					plane::add_color(const plane_color &type, const point3<int> &color)
 
 point3<float>			plane::compute_color(const float &height) const
 {
-	auto 				&color_data =
-		height >= MOD1_EPSILON ?
-		color_data_positive : color_data_negative;
+	auto 				&color_data = height >= 0 ? color_data_positive : color_data_negative;
 
 	float				ratio;
 	int 				index_from;
