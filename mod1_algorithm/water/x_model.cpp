@@ -9,8 +9,10 @@ void					water::update_model_helper_a(const point2<int> &iter)
 	float				height;
 
 	water = get_water_depth(iter);
+
 	if (water < MOD1_WATER_EPSILON)
-		water = MOD1_WATER_HIDDEN;
+		water = MOD1_WATER_INDENT;
+
 	height = get_terrain_height(iter) + water;
 
 	iter_plane = point2<int>(iter.x, iter.y);
@@ -30,7 +32,7 @@ void					water::update_model_helper_b(const point2<int> &iter, const float &new_
 {
 	auto				old_height = read_height(iter);
 
-	if (new_height > old_height)
+	if (old_height == MOD1_WATER_HIDDEN)
 		write_height(iter, new_height);
 }
 

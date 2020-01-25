@@ -28,23 +28,19 @@ void							terrain::parse(const std::string &file)
 		switch (temp_char)
 		{
 			case ' ' : case ')' : case ',' : case '\n' :
-				continue ;
+				break ;
 			case '(' :
-			{
 				data_raw.emplace_back();
 				iter = data_raw.rbegin();
-				continue ;
-			}
-			case '0' ... '9' :
-			{
+				break ;
+			case '-' : case '0' ... '9' :
 				stream.unget();
 				iter->x = parse_coordinate(stream, false);
 				iter->y = parse_coordinate(stream, true);
 				iter->z = parse_coordinate(stream, true);
 				min_raw = point3<double>::min(min_raw, *iter);
 				max_raw = point3<double>::max(max_raw, *iter);
-				continue ;
-			}
+				break ;
 			default :
 				throw (exception_pattern());
 		}

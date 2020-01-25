@@ -11,13 +11,19 @@ void					terrain::normalize()
 
 	for (const auto &point : data_raw)
 	{
-		temp = point3<double>(point.x - point.z, point.y - point.z, point.z);
+		temp = point3<double>(
+			point.x - fabs(point.z),
+			point.y - fabs(point.z),
+			point.z);
 		min = point3<double>::min(min, temp);
 	}
 
 	for (const auto &point : data_raw)
 	{
-		temp = point3<double>(point.x + point.z, point.y + point.z, point.z);
+		temp = point3<double>(
+			point.x + fabs(point.z),
+			point.y + fabs(point.z),
+			point.z);
 		max = point3<double>::max(max, temp);
 	}
 
@@ -31,16 +37,10 @@ void					terrain::normalize()
 
 	diff = max - min;
 
-	std::cout << "min = " << min << std::endl;
-	std::cout << "max = " << max << std::endl;
-	std::cout << "diff = " << diff << std::endl;
-	std::cout << std::endl;
-
 	for (auto &point : data_raw)
 	{
-		point = (point - min) / diff;
-		std::cout << "Normalized : " << point << std::endl;
+		point[0] = (point[0] - min[0]) / diff[0];
+		point[1] = (point[1] - min[1]) / diff[1];
+		point[2] = point[2] / diff[2];
 	}
-
-	std::cout << std::endl;
 }
