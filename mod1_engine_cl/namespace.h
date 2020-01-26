@@ -1,6 +1,12 @@
 #pragma once
 
+#include "mod1_main/mod1_generic.h"
+
 #include "mod1_libraries/OpenCL/cl.hpp"
+
+#include <string>
+#include <fstream>
+#include <sstream>
 
 namespace			mod1_engine_cl
 {

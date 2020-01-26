@@ -1,9 +1,5 @@
 #pragma once
 
-#include "mod1_main/mod1_OpenGL.h"
-#include "mod1_main/mod1_control.h"
-#include "mod1_main/mod1_generic.h"
-
 #include "mod1_engine_gl/namespace.h"
 
 enum class				mod1_engine_gl::axis

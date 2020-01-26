@@ -4,6 +4,9 @@
 
 //											GLOBAL
 
+#define MOD1_WINDOW_WIDTH					720
+#define MOD1_WINDOW_HEIGHT					480
+
 #define MOD1_NORMAL_TEST					MOD1_DISABLE
 
 #if MOD1_ENABLED(MOD1_NORMAL_TEST)

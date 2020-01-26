@@ -42,6 +42,10 @@ set(ENGINE_GL
 	./mod1_engine_gl/renderer/render_x.cpp
 	./mod1_engine_gl/renderer/terminate.cpp
 
+	./mod1_engine_gl/texture/texture.cpp
+
+	./mod1_engine_gl/framebuffer/framebuffer.cpp
+
 	./mod1_engine_gl/program/program.cpp
 
 	./mod1_engine_gl/buffer/buffer.h

@@ -20,7 +20,7 @@ void					terrain::generate_hill_helper(const point2<int> &iter, const float &new
 		else if (new_height > 0 and old_height < new_height)
 			write_height(iter,
 				old_height < 0 ?
-				old_height / 2 + new_height  + noise :
+				old_height + new_height + noise :
 				new_height + noise);
 }
 

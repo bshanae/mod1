@@ -1,14 +1,8 @@
 #pragma once
 
-#include "mod1_main/mod1_OpenGL.h"
-#include "mod1_main/mod1_control.h"
-#include "mod1_main/mod1_generic.h"
-
 #include "mod1_engine_gl/namespace.h"
 
 #include "mod1_engine_gl/point/point3.h"
-
-#include <string>
 
 class					mod1_engine_gl::core
 {
@@ -40,6 +34,6 @@ private :
 
 	const std::string	window_name = "Mod1";
 	GLFWwindow			*window;
-	const int 			window_width_internal = 720;
-	const int 			window_height_internal = 480;
+	const int 			window_width_internal = MOD1_WINDOW_WIDTH;
+	const int 			window_height_internal = MOD1_WINDOW_HEIGHT;
 };

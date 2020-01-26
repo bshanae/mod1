@@ -1,22 +1,16 @@
 #pragma once
 
-#include "mod1_main/mod1_OpenGL.h"
-#include "mod1_main/mod1_control.h"
-
 #include "mod1_engine_gl/namespace.h"
 
 #include "mod1_engine_gl/core/core.h"
 #include "mod1_engine_gl/program/program.h"
+#include "mod1_engine_gl/framebuffer/framebuffer.h"
 #include "mod1_engine_gl/model/model.h"
 #include "mod1_engine_gl/loader/loader.h"
 #include "mod1_engine_gl/camera/camera.h"
 #include "mod1_engine_gl/callback/callback.h"
 #include "mod1_engine_gl/uniform/uniform.h"
 #include "mod1_engine_gl/point/point3.h"
-
-#include <fstream>
-#include <sstream>
-#include <cmath>
 
 class							mod1_engine_gl::renderer
 {
@@ -37,7 +31,18 @@ public :
 
 private :
 
-	class						program : public mod1_engine_gl::program
+	static void					glfw_callback(GLFWwindow* window, int key, int code, int action, int mode);
+
+	std::vector<model *>		model_array;
+	std::vector<callback>		callback_array;
+	bool						render_request = true;
+
+	core						core;
+	loader						loader;
+	camera						camera;
+	framebuffer					framebuffer;
+
+	class						: public mod1_engine_gl::program
 	{
 	public :
 		MOD1_GENERATE_UNIFORM(object_transformation, "object_transformation")
@@ -46,18 +51,10 @@ private :
 		MOD1_GENERATE_UNIFORM(light_ambient_intensity, "light_info.ambient_intensity")
 		MOD1_GENERATE_UNIFORM(light_direct_direction, "light_info.direct_direction")
 		MOD1_GENERATE_UNIFORM(light_direct_intensity, "light_info.direct_intensity")
-	};
+	}							main_program;
 
-	static void					glfw_callback(GLFWwindow* window, int key, int code, int action, int mode);
-
-	std::vector<model *>		model_array;
-	std::vector<callback>		callback_array;
-	bool						render_request = true;
-
-	core						core;
-	program						program;
-	loader						loader;
-	camera						camera;
+	class						: public mod1_engine_gl::program
+	{}							blur_program;
 
 	struct
 	{

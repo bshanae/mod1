@@ -1,8 +1,5 @@
 #pragma once
 
-#include "mod1_main/mod1_OpenGL.h"
-#include "mod1_main/mod1_generic.h"
-
 #include "mod1_engine_gl/namespace.h"
 
 class				mod1_engine_gl::uniform
@@ -21,7 +18,7 @@ public :
 	void 			upload(const glm::vec3 &data);
 	void 			upload(const glm::mat4 &data);
 
-//private :
+private :
 
 	bool 			is_set = false;
 

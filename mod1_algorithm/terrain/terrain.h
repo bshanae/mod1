@@ -1,17 +1,9 @@
 #pragma once
 
-#include "mod1_main/mod1_macros.h"
-#include "mod1_main/mod1_control.h"
-
-#include "mod1_libraries/FastNoise/FastNoise.h"
-
 #include "mod1_algorithm/namespace.h"
 
 #include "mod1_algorithm/plane/plane.h"
 
-#include <fstream>
-#include <vector>
-#include <iostream>
 
 class							mod1_algorithm::terrain : private plane
 {

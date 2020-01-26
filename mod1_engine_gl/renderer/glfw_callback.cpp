@@ -55,6 +55,14 @@ void					renderer::glfw_callback(GLFWwindow* window, int key, int code, int acti
 	}
 	else if (key == GLFW_KEY_L && action == GLFW_PRESS)
 		mod_light = !mod_light;
+	else if (key == GLFW_KEY_1 && action == GLFW_PRESS)
+	{
+		renderer->framebuffer.start();
+	}
+	else if (key == GLFW_KEY_2 && action == GLFW_PRESS)
+	{
+		renderer->framebuffer.stop();
+	}
 	else
 		return ;
 	renderer->render();

@@ -1,13 +1,8 @@
 #pragma once
 
-#include "mod1_main/mod1_generic.h"
-
 #include "mod1_engine_cl/namespace.h"
 
 #include "mod1_engine_cl/kenrel/kernel.h"
-
-#include <string>
-
 
 class							mod1_engine_cl::core
 {

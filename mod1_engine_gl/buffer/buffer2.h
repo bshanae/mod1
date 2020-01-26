@@ -1,7 +1,5 @@
 #pragma once
 
-#include "mod1_main/mod1_generic.h"
-
 #include "mod1_engine_gl/namespace.h"
 
 #include "mod1_engine_gl/buffer/buffer.h"

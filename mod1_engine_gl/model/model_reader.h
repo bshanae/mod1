@@ -1,8 +1,8 @@
 #pragma once
 
-#include "mod1_engine_gl/model/model.h"
-
 #include "mod1_engine_gl/namespace.h"
+
+#include "mod1_engine_gl/model/model.h"
 
 class						mod1_engine_gl::model_reader
 {

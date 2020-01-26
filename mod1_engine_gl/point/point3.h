@@ -1,13 +1,8 @@
 #pragma once
 
-#include "mod1_main/mod1_generic.h"
-
 #include "mod1_engine_gl/namespace.h"
 
 #include "mod1_engine_gl/point/point2.h"
-
-#include <cmath>
-#include <iostream>
 
 template 					<typename type>
 class						mod1_engine_gl::point3

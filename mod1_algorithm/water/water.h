@@ -1,8 +1,5 @@
 #pragma once
 
-#include "mod1_main/mod1_macros.h"
-#include "mod1_main/mod1_control.h"
-
 #include "mod1_algorithm/namespace.h"
 
 #include "mod1_algorithm/terrain/terrain.h"
