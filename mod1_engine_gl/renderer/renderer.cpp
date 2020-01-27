@@ -36,4 +36,23 @@ using namespace			mod1_engine_gl;
 	blur_program.link();
 
 	framebuffer.attach_texture(core.window_width(), core.window_height());
+
+	buffer<float>		buffer;
+
+	buffer.allocate(18);
+
+	const float			raw[] =
+	{
+		-1.0f, -1.0f, 0.0f,
+		1.0f, -1.0f, 0.0f,
+		-1.0f,  1.0f, 0.0f,
+		-1.0f,  1.0f, 0.0f,
+		1.0f, -1.0f, 0.0f,
+		1.0f,  1.0f, 0.0f
+	};
+
+	buffer.copy(raw);
+
+	blur_vao = loader.vao_build();
+	loader.vao_edit_attribute(blur_vao, 0, 3, GL_FLOAT, buffer);
 }

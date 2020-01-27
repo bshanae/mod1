@@ -26,7 +26,8 @@ public :
 	void 				terminate();
 	void				update();
 	void 				clear(const point3<float> &color);
-	void 				draw(const int &vertex_number);
+	void 				draw_elements(const int &count);
+	void				draw_arrays(const int &count);
 	void				swap_buffers();
 	void				set_callback(mod1_callback function, void *ptr);
 

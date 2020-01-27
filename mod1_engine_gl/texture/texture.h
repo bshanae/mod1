@@ -8,23 +8,20 @@ class				mod1_engine_gl::texture
 {
 public :
 
-MOD1_GENERATE_EXCEPTION_DECLARATION(exception_built,
-	"Mod1 Engine GL, Texture : Object is not built")
-
 					texture();
 					texture(const int &width, const int &height);
 					~texture();
 
 	void			build(const int &width, const int &height);
 
-	void			start();
-	void			stop();
+	void			start() const;
+	void			stop() const;
 
 	GLuint			object() const;
 
-private :
+	void			save(const char *file) const;
 
-	bool 			is_built = false;
+private :
 
 	point2<int>		resolution;
 	GLuint			object_internal = 0;

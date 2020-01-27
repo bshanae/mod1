@@ -2,7 +2,8 @@
 
 using namespace		mod1_engine_gl;
 
-MOD1_GENERATE_EXCEPTION_DEFINITION(framebuffer, exception_attachment)
+MOD1_GENERATE_EXCEPTION_DEFINITION(framebuffer, exception_attachment_a)
+MOD1_GENERATE_EXCEPTION_DEFINITION(framebuffer, exception_attachment_b)
 
 					framebuffer::framebuffer()
 {
@@ -12,7 +13,7 @@ MOD1_GENERATE_EXCEPTION_DEFINITION(framebuffer, exception_attachment)
 					framebuffer::~framebuffer()
 {
 	glDeleteFramebuffers(1, &object);
-	delete texture;
+	delete texture_internal;
 }
 
 void				framebuffer::start()
@@ -32,10 +33,20 @@ void				framebuffer::attach_texture(const int &width, const int &height)
 
 void				framebuffer::attach_texture(const class texture *attachment)
 {
-	if (texture)
-		throw (exception_attachment());
+	if (texture_internal)
+		throw (exception_attachment_b());
 
-	texture = attachment;
+	start();
+	texture_internal = attachment;
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-		GL_TEXTURE_2D, texture->object(), 0);
+		GL_TEXTURE_2D, texture_internal->object(), 0);
+	stop();
+}
+
+const texture		&framebuffer::texture() const
+{
+	if (not texture_internal)
+		throw (exception_attachment_a());
+
+	return (*texture_internal);
 }

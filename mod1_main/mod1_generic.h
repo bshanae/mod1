@@ -52,3 +52,6 @@ TYPE(space::name##_internal)	space::name() const						\
 #define MOD1_GENERATE_UNIFORM(name, name_GL)							\
 	uniform						name = uniform(name_GL);
 
+//		TEST
+
+#define MOD1_GENERATE_GL_TEST	if (glGetError()) printf("GL Error in function %s, line %d\n", __FUNCTION__, __LINE__);

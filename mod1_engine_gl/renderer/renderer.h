@@ -35,7 +35,7 @@ private :
 
 	std::vector<model *>		model_array;
 	std::vector<callback>		callback_array;
-	bool						render_request = true;
+	bool						render_request = false;
 
 	core						core;
 	loader						loader;
@@ -63,6 +63,9 @@ private :
 		float					direct_intensity;
 	}							light_info;
 
+	GLuint						blur_vao;
+
 	void						render_internal();
+	void						render_no_swap();
 };
 

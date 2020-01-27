@@ -19,7 +19,7 @@ public :
 	static void					vbo_unbind();
 
 	template					<typename type>
-	static void 				vbo_buffer(GLuint vbo, const buffer<type> &buffer, const bool &is_dynamic)
+	static void 				vbo_buffer(GLuint vbo, const buffer<type> &buffer, const bool &is_dynamic = false)
 	{
 		vbo_bind(vbo);
 		glBufferData(
@@ -41,7 +41,7 @@ public :
 								int element_size,
 								GLenum gl_type,
 								const buffer<type> &buffer,
-								const bool &is_dynamic)
+								const bool &is_dynamic = false)
 	{
 		GLuint					vbo;
 

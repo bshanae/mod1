@@ -55,13 +55,24 @@ void					renderer::glfw_callback(GLFWwindow* window, int key, int code, int acti
 	}
 	else if (key == GLFW_KEY_L && action == GLFW_PRESS)
 		mod_light = !mod_light;
-	else if (key == GLFW_KEY_1 && action == GLFW_PRESS)
+	else if (key == GLFW_KEY_4 && action == GLFW_PRESS)
 	{
 		renderer->framebuffer.start();
-	}
-	else if (key == GLFW_KEY_2 && action == GLFW_PRESS)
-	{
+//		renderer->framebuffer.texture().save("/Users/belchenkovova/workspace/21_mod1/test.ppm");
+		renderer->render_no_swap();
 		renderer->framebuffer.stop();
+	}
+	else if (key == GLFW_KEY_5 && action == GLFW_PRESS)
+	{
+		renderer->core.clear(point3<float>(0.2));
+
+		renderer->blur_program.start();
+		renderer->loader.vao_bind(renderer->blur_vao);
+		renderer->core.draw_arrays(6);
+		renderer->loader.vao_unbind();
+
+		renderer->blur_program.stop();
+		renderer->core.swap_buffers();
 	}
 	else
 		return ;
