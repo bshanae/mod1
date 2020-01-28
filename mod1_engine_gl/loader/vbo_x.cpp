@@ -2,16 +2,16 @@
 
 using namespace			mod1_engine_gl;
 
-GLuint					loader::vbo_build()
+unsigned int					loader::vbo_build()
 {
-	GLuint				result;
+	unsigned int				result;
 
 	glGenBuffers(1, &result);
 	vao_vector.push_back(result);
 	return (result);
 }
 
-void					loader::vbo_bind(GLuint vbo)
+void					loader::vbo_bind(unsigned int vbo)
 {
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 }

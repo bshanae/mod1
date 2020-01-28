@@ -6,11 +6,14 @@ MOD1_GENERATE_EXCEPTION_DEFINITION(model, exception_build)
 MOD1_GENERATE_EXCEPTION_DEFINITION(model, exception_load)
 MOD1_GENERATE_EXCEPTION_DEFINITION(model, exception_dynamic)
 
+MOD1_GENERATE_INTERNAL_READ_DEFINITION(model, vertex_number)
+MOD1_GENERATE_INTERNAL_READ_DEFINITION(model, transformation)
+
 void				model::load(loader &loader)
 {
 	is_loaded = true;
 	loader.load(data, is_dynamic);
-	vertex_number_internal = data.index_buffer.size() * 3;
+	MOD1_INTERNAL(vertex_number) = data.index_buffer.size() * 3;
 }
 
 void				model::start()
@@ -29,12 +32,12 @@ void				model::stop()
 
 int 				model::vertex_number()
 {
-	return (vertex_number_internal);
+	return (MOD1_INTERNAL(vertex_number));
 }
 
 glm::mat4			&model::transformation()
 {
-	return (transformation_internal);
+	return (MOD1_INTERNAL(transformation));
 }
 
 void				*model::get_ptr(const int &index, const model_data::slot_type &slot)

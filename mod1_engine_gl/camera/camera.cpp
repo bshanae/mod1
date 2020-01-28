@@ -4,21 +4,20 @@ using namespace		mod1_engine_gl;
 
 MOD1_GENERATE_EXCEPTION_DEFINITION(camera, exception_axis)
 
+MOD1_GENERATE_INTERNAL_READ_DEFINITION(camera, projection)
+MOD1_GENERATE_INTERNAL_READ_DEFINITION(camera, rotation)
+MOD1_GENERATE_INTERNAL_READ_DEFINITION(camera, view)
+
 					camera::camera(int screen_width, int screen_height, const glm::vec3 &position) :
-					projection(glm::perspective(
+					MOD1_INTERNAL(projection)(glm::perspective(
 						glm::radians(45.0f),
 						(float)screen_width / (float)screen_height,
 						0.5f,
 						100000.0f))
 {
 	this->position = position;
-	matrix_view = glm::mat4(1.0f);
+	MOD1_INTERNAL(view) = glm::mat4(1.0f);
 	update_transformation();
-}
-
-const glm::mat4		&camera::view()
-{
-	return (matrix_view);
 }
 
 void				camera::move(axis axis, sign sign)
@@ -57,10 +56,10 @@ void				camera::rotate(axis axis, sign sign)
 		angle_z += (float)sign * rotation_speed;
 	else
 		throw (exception_axis());
-	matrix_rotation = glm::eulerAngleYXZ(angle_y, angle_x, angle_z);
-	axis_x = glm::vec3(matrix_rotation * glm::vec4(axis_x_const, 1));
-	axis_y = glm::vec3(matrix_rotation * glm::vec4(axis_y_const, 1));
-	axis_z = glm::vec3(matrix_rotation * glm::vec4(axis_z_const, 1));
+	MOD1_INTERNAL(rotation) = glm::eulerAngleYXZ(angle_y, angle_x, angle_z);
+	axis_x = glm::vec3(MOD1_INTERNAL(rotation) * glm::vec4(axis_x_const, 1));
+	axis_y = glm::vec3(MOD1_INTERNAL(rotation) * glm::vec4(axis_y_const, 1));
+	axis_z = glm::vec3(MOD1_INTERNAL(rotation) * glm::vec4(axis_z_const, 1));
 	update_transformation();
 }
 
@@ -93,7 +92,7 @@ void 				camera::update_transformation()
 	glm::vec3		direction;
 	glm::vec3		up;
 
-	direction = glm::vec3(matrix_rotation * forward_const);
-	up = glm::vec3(matrix_rotation * up_const);
-	matrix_view = glm::lookAt(position, position + direction, up);
+	direction = glm::vec3(MOD1_INTERNAL(rotation) * forward_const);
+	up = glm::vec3(MOD1_INTERNAL(rotation) * up_const);
+	MOD1_INTERNAL(view) = glm::lookAt(position, position + direction, up);
 }

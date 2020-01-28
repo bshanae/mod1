@@ -15,6 +15,8 @@
 
 #define MOD1_EPSILON							0.01f
 
+#define MOD1_INTERNAL(name)						name##_internal
+
 //												PLANE
 
 #define MOD1_PLANE_POINT_SIZE					3

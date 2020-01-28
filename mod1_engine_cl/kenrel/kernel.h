@@ -10,9 +10,9 @@ class						mod1_engine_cl::kernel
 
 public :
 
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_source, "Mod1 Engine CL, Kernel : Invalid source file")
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_compilation, "Mod1 Engine CL, Kernel : Compilation error")
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_build, "Mod1 Engine CL, Kernel : Object is not built")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_source, "Mod1 Engine CL, Kernel : Invalid source file")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_compilation, "Mod1 Engine CL, Kernel : Compilation error")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_build, "Mod1 Engine CL, Kernel : Object is not built")
 
 							kernel() = default;
 							~kernel() = default;

@@ -5,21 +5,23 @@ using namespace		mod1_engine_gl;
 MOD1_GENERATE_EXCEPTION_DEFINITION(program, exception_compilation)
 MOD1_GENERATE_EXCEPTION_DEFINITION(program, exception_link)
 
+MOD1_GENERATE_INTERNAL_READ_DEFINITION(program, object)
+
 					program::program()
 {
-	object_internal = glCreateProgram();
+	MOD1_INTERNAL(object) = glCreateProgram();
 }
 
 					program::~program()
 {
-	glDeleteProgram(object_internal);
+	glDeleteProgram(MOD1_INTERNAL(object));
 }
 
 void				program::start()
 {
 	if (not is_linked)
 		throw (exception_link());
-	glUseProgram(object_internal);
+	glUseProgram(MOD1_INTERNAL(object));
 }
 
 void				program::stop()
@@ -32,24 +34,19 @@ void 				program::add_shader(const shader_type &type, const char *source)
 	shader			shader;
 
 	shader.build(type, source);
-	shader.link(object_internal);
+	shader.link(MOD1_INTERNAL(object));
 }
 
 void				program::link()
 {
-	glLinkProgram(object_internal);
+	glLinkProgram(MOD1_INTERNAL(object));
 	is_linked = true;
 	check_error();
 }
 
 void 				program::set_uniform(uniform &uniform)
 {
-	uniform.set(object_internal);
-}
-
-GLuint				program::object()
-{
-	return (object_internal);
+	uniform.set(MOD1_INTERNAL(object));
 }
 
 void				program::check_error()
@@ -57,10 +54,10 @@ void				program::check_error()
 	GLint			success;
 	GLchar			log[1024];
 
-	glGetProgramiv(object_internal, GL_LINK_STATUS, &success);
+	glGetProgramiv(MOD1_INTERNAL(object), GL_LINK_STATUS, &success);
 	if(!success)
 	{
-		glGetProgramInfoLog(object_internal, 1024, nullptr, log);
+		glGetProgramInfoLog(MOD1_INTERNAL(object), 1024, nullptr, log);
 		printf("Log : \n%s\n", log);
 		throw (exception_compilation());
 	}

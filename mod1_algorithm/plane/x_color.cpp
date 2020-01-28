@@ -26,8 +26,8 @@ void					plane::add_color(const plane_color &type, const point3<int> &color)
 point3<float>			plane::compute_color(const float &height) const
 {
 	auto 				&color_data = height >= 0 ? color_data_positive : color_data_negative;
-	auto 				min = height >= 0 ? 0 : final_min_internal.z;
-	auto 				max = height >= 0 ? final_max_internal.z : 0;
+	auto 				min = height >= 0 ? 0 : MOD1_INTERNAL(final_min).z;
+	auto 				max = height >= 0 ? MOD1_INTERNAL(final_max).z : 0;
 
 	float				ratio;
 	int 				index_from;
@@ -60,8 +60,8 @@ void					plane::update_color()
 	point2<int>			iter;
 	point3<float>		color;
 
-	for (iter.y = 0; iter.y < size_internal.y - 1; iter.y++)
-		for (iter.x = 0; iter.x < size_internal.x; iter.x++)
+	for (iter.y = 0; iter.y < MOD1_INTERNAL(size).y - 1; iter.y++)
+		for (iter.x = 0; iter.x < MOD1_INTERNAL(size).x; iter.x++)
 		{
 			color = compute_color(read_height(iter));
 			write_color(iter, color);

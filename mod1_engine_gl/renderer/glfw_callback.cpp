@@ -57,8 +57,15 @@ void					renderer::glfw_callback(GLFWwindow* window, int key, int code, int acti
 		mod_light = !mod_light;
 	else if (key == GLFW_KEY_4 && action == GLFW_PRESS)
 	{
+		glBindTexture(GL_TEXTURE_2D, 0);
 		renderer->framebuffer.start();
-//		renderer->framebuffer.texture().save("/Users/belchenkovova/workspace/21_mod1/test.ppm");
+		MOD1_GENERATE_GL_TEST
+
+		glEnable(GL_DEPTH_TEST);
+
+		const GLenum draw_buffer = GL_COLOR_ATTACHMENT0;
+		glDrawBuffers (1, &draw_buffer);
+
 		renderer->render_no_swap();
 		renderer->framebuffer.stop();
 	}
@@ -66,13 +73,25 @@ void					renderer::glfw_callback(GLFWwindow* window, int key, int code, int acti
 	{
 		renderer->core.clear(point3<float>(0.2));
 
+		glDisable(GL_DEPTH_TEST);
+
 		renderer->blur_program.start();
 		renderer->loader.vao_bind(renderer->blur_vao);
-		renderer->core.draw_arrays(6);
-		renderer->loader.vao_unbind();
+		renderer->framebuffer.texture()->start();
 
+		renderer->core.draw_arrays(6);
+
+		renderer->framebuffer.texture()->stop();
+		renderer->loader.vao_unbind();
 		renderer->blur_program.stop();
+
 		renderer->core.swap_buffers();
+	}
+	else if (key == GLFW_KEY_6 && action == GLFW_PRESS)
+	{
+		glEnable(GL_DEPTH_TEST);
+
+		renderer->render_internal();
 	}
 	else
 		return ;

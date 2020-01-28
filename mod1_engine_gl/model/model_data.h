@@ -9,6 +9,8 @@ class					mod1_engine_gl::model_data
 
 public :
 
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_unknown_slot, "Mod1 Engine GL, Model Data : Unknown slot")
+
 						model_data() = default;
 						~model_data() = default;
 
@@ -17,12 +19,10 @@ public :
 	buffer<float>		normal_buffer;
 	buffer<float>		color_buffer;
 
-	GLuint				vao = 0;
-	GLuint				vbo_point = 0;
-	GLuint				vbo_normal = 0;
-	GLuint				vbo_color = 0;
-
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_unknown_slot, "Mod1 Engine GL, Model Data : Unknown slot")
+	unsigned int		vao = 0;
+	unsigned int		vbo_point = 0;
+	unsigned int		vbo_normal = 0;
+	unsigned int		vbo_color = 0;
 
 	enum class			slot_type
 	{

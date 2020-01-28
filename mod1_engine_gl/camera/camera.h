@@ -19,21 +19,18 @@ class					mod1_engine_gl::camera
 {
 public :
 
-						camera(
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_axis, "Mod1 Engine GL, Camera : Unknown axis")
+
+	camera(
 						int screen_width,
 						int screen_height,
 						const glm::vec3 &position = glm::vec3(0, 0, 0));
 						~camera() = default;
 
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_axis, "Mod1 Engine GL, Camera : Unknown axis")
-
 	void				move(axis axis, sign sign);
 	void				move(glm::vec3 &target, axis axis, sign sign);
 	void				rotate(axis axis, sign sign);
 	void				rotate(glm::vec3 &target, axis axis, sign sign);
-
-	const glm::mat4		&view();
-	const glm::mat4		projection;
 
 private :
 
@@ -51,8 +48,9 @@ private :
 	glm::vec3			axis_z = glm::vec3(0, 0, 1);
 	glm::vec3			axis_y = glm::vec3(0, 1, 0);
 
-	glm::mat4			matrix_rotation = glm::mat4(1);
-	glm::mat4			matrix_view = glm::mat4();
+MOD1_GENERATE_INTERNAL_WITH_VALUE(glm::mat4, projection, glm::mat4(1))
+MOD1_GENERATE_INTERNAL_WITH_VALUE(glm::mat4, rotation, glm::mat4(1))
+MOD1_GENERATE_INTERNAL_WITH_VALUE(glm::mat4, view, glm::mat4(1))
 
 	glm::vec3			position = glm::vec3();
 
@@ -60,6 +58,13 @@ private :
 	const float			rotation_speed = MOD1_CAMERA_ROTATION_SPEED;
 
 	void 				update_transformation();
+
+public :
+
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(projection)
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(rotation)
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(view)
+
 };
 
 

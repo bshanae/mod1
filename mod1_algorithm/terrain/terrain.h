@@ -14,9 +14,9 @@ public :
 								terrain() = default;
 								~terrain() = default;
 
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_source, "Mod1 Terrain : Invalid source file")
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_pattern, "Mod1 Terrain : Invalid pattern")
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_point_number, "Mod1 Terrain : Map can't have more, than 50 points")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_source, "Mod1 Terrain : Invalid source file")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_pattern, "Mod1 Terrain : Invalid pattern")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_point_number, "Mod1 Terrain : Map can't have more, than 50 points")
 
 	void						parse(const std::string &file);
 	void						build() final;

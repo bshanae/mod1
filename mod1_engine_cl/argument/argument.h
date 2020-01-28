@@ -17,9 +17,9 @@ class						mod1_engine_cl::argument
 
 public :
 
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_build, "Mod1 Engine CL, Argument : Object is not built")
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_link, "Mod1 Engine CL, Argument : Object is not linked to kernel")
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_null, "Mod1 Engine CL, Argument : Host ptr is NULL")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_build, "Mod1 Engine CL, Argument : Object is not built")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_link, "Mod1 Engine CL, Argument : Object is not linked to kernel")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_null, "Mod1 Engine CL, Argument : Host ptr is NULL")
 
 							argument() = default;
 							~argument() = default;

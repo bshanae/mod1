@@ -9,7 +9,7 @@ MOD1_GENERATE_EXCEPTION_DEFINITION(uniform, exception_set)
 				name(name)
 {}
 
-void			uniform::set(const GLuint &program)
+void			uniform::set(const unsigned int &program)
 {
 	id = glGetUniformLocation(program, name);
 	is_set = true;

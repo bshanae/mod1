@@ -13,12 +13,12 @@ void					plane::build()
 
 	//					Points
 
-	data.point_buffer.allocate(MOD1_PLANE_POINT_SIZE * MOD1_PLANE_NUMBER_OF_POINTS(size_internal));
+	data.point_buffer.allocate(MOD1_PLANE_POINT_SIZE * MOD1_PLANE_NUMBER_OF_POINTS(MOD1_INTERNAL(size)));
 
-	for (iter.y = 0; iter.y < size_internal.y; iter.y++)
-		for (iter.x = 0; iter.x < size_internal.x; iter.x++)
+	for (iter.y = 0; iter.y < MOD1_INTERNAL(size).y; iter.y++)
+		for (iter.x = 0; iter.x < MOD1_INTERNAL(size).x; iter.x++)
 		{
-			temp = point3<float>(min_internal.x + delta_internal * iter.x, min_internal.y + delta_internal * iter.y);
+			temp = point3<float>(MOD1_INTERNAL(min).x + MOD1_INTERNAL(delta) * iter.x, MOD1_INTERNAL(min).y + MOD1_INTERNAL(delta) * iter.y);
 			ptr = (float *)get_ptr(iter, model_slot::point, index_convention::dual_first);
 			temp.write_to_ptr(ptr, point3<float>::convention_xzy);
 			if (is_dual(iter))
@@ -30,7 +30,7 @@ void					plane::build()
 
 	//					Indices
 
-	data.index_buffer.allocate(MOD1_PLANE_INDEX_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(size_internal));
+	data.index_buffer.allocate(MOD1_PLANE_INDEX_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(MOD1_INTERNAL(size)));
 	data.index_buffer.set(0);
 
 	int 				*index_ptr = data.index_buffer.data();
@@ -42,8 +42,8 @@ void					plane::build()
 	int					bottom_right;
 
 	index_i = 0;
-	for (iter.y = 0; iter.y < size_internal.y - 1; iter.y++)
-		for (iter.x = 0; iter.x < size_internal.x - 1; iter.x++)
+	for (iter.y = 0; iter.y < MOD1_INTERNAL(size).y - 1; iter.y++)
+		for (iter.x = 0; iter.x < MOD1_INTERNAL(size).x - 1; iter.x++)
 		{
 			top_left = get_index(point2<int>(iter.x, iter.y),
 			    is_dual(iter) ? index_convention::dual_second : index_convention::dual_first);
@@ -62,12 +62,12 @@ void					plane::build()
 
 	//					Normals
 
-	data.normal_buffer.allocate(MOD1_PLANE_NORMAL_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(size_internal));
+	data.normal_buffer.allocate(MOD1_PLANE_NORMAL_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(MOD1_INTERNAL(size)));
 
 	temp = point3<float>(0, 0, -1);
 
-	for (iter.y = 0; iter.y < size_internal.y - 1; iter.y++)
-		for (iter.x = 0; iter.x < size_internal.x; iter.x++)
+	for (iter.y = 0; iter.y < MOD1_INTERNAL(size).y - 1; iter.y++)
+		for (iter.x = 0; iter.x < MOD1_INTERNAL(size).x; iter.x++)
 		{
 			ptr = (float *)get_ptr(iter, model_slot::normal, index_convention::dual_first);
 			temp.write_to_ptr(ptr, point3<float>::convention_xzy);
@@ -80,17 +80,17 @@ void					plane::build()
 
 	//					Cut style
 
-	cut_style_data.allocate(size_internal.x - 1, size_internal.y - 1);
+	cut_style_data.allocate(MOD1_INTERNAL(size).x - 1, MOD1_INTERNAL(size).y - 1);
 	cut_style_data.set(cut_style::upwards);
 
 	//					Colors
 
-	data.color_buffer.allocate(MOD1_PLANE_COLOR_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(size_internal));
+	data.color_buffer.allocate(MOD1_PLANE_COLOR_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(MOD1_INTERNAL(size)));
 
 	temp = point3<float>(0, 0, 1);
 
-	for (iter.y = 0; iter.y < size_internal.y - 1; iter.y++)
-		for (iter.x = 0; iter.x < size_internal.x; iter.x++)
+	for (iter.y = 0; iter.y < MOD1_INTERNAL(size).y - 1; iter.y++)
+		for (iter.x = 0; iter.x < MOD1_INTERNAL(size).x; iter.x++)
 			write_color(iter, temp);
 
 	set_as_built();

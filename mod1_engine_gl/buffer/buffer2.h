@@ -21,120 +21,115 @@ public :
 
 	void 							allocate(int size_column, int size_row)
 	{
-		if (size_internal)
+		if (MOD1_INTERNAL(size))
 			throw (exception_logic_a());
 		if (size_column < 1)
 			throw (exception_size());
-		data_internal.allocate(size_column);
+		MOD1_INTERNAL(data).allocate(size_column);
 		for (int i = 0; i < size_column; i++)
-			data_internal[i].allocate(size_row);
-		this->size_internal = size_column;
-	}
-
-	type							*data() const
-	{
-		return (data_internal);
-	}
-
-	int 							size() const
-	{
-		return (size_internal);
+			MOD1_INTERNAL(data)[i].allocate(size_row);
+		this->MOD1_INTERNAL(size) = size_column;
 	}
 
 	void 							set(const type &value)
 	{
-		if (!size_internal)
+		if (!MOD1_INTERNAL(size))
 			throw (exception_allocation());
-		for (int i = 0; i < size_internal; i++)
-			data_internal[i].set(value);
+		for (int i = 0; i < MOD1_INTERNAL(size); i++)
+			MOD1_INTERNAL(data)[i].set(value);
 	}
 
 	void 							copy(const buffer2<type> &source)
 	{
-		if (!size_internal)
+		if (!MOD1_INTERNAL(size))
 			throw (exception_allocation());
-		if (size_internal != source.size())
+		if (MOD1_INTERNAL(size) != source.size())
 			throw (exception_logic_b());
-		for (int i = 0; i < size_internal; i++)
-			data_internal[i].copy(source[i]);
+		for (int i = 0; i < MOD1_INTERNAL(size); i++)
+			MOD1_INTERNAL(data)[i].copy(source[i]);
 	}
 
 	buffer<type>					&operator [] (int index)
 	{
 		if (!is_valid(index))
 			throw (exception_index());
-		return (data_internal[index]);
+		return (MOD1_INTERNAL(data)[index]);
 	}
 
 	const buffer<type>				&operator [] (int index) const
 	{
 		if (!is_valid(index))
 			throw (exception_index());
-		return (data_internal[index]);
+		return (MOD1_INTERNAL(data)[index]);
 	}
 
 	type							&operator [] (const point2<int> &iter)
 	{
 		if (!is_valid(iter))
 			throw (exception_index());
-		return (data_internal[iter.x][iter.y]);
+		return (MOD1_INTERNAL(data)[iter.x][iter.y]);
 	}
 
 	const type						&operator [] (const point2<int> &iter) const
 	{
 		if (!is_valid(iter))
 			throw (exception_index());
-		return (data_internal[iter.x][iter.y]);
+		return (MOD1_INTERNAL(data)[iter.x][iter.y]);
 	}
 
 	buffer<type>					*operator + (int index)
 	{
 		if (!is_valid(index))
 			throw (exception_index());
-		return (data_internal + index);
+		return (MOD1_INTERNAL(data) + index);
 	}
 
 	const buffer<type>				*operator + (int index) const
 	{
 		if (!is_valid(index))
 			throw (exception_index());
-		return (data_internal + index);
+		return (MOD1_INTERNAL(data) + index);
 	}
 
 	type							*operator + (const point2<int> &iter)
 	{
 		if (!is_valid(iter))
 			throw (exception_index());
-		return (data_internal[iter.x] + iter.y);
+		return (MOD1_INTERNAL(data)[iter.x] + iter.y);
 	}
 
 	const type						*operator + (const point2<int> &iter) const
 	{
 		if (!is_valid(iter))
 			throw (exception_index());
-		return (data_internal[iter.x] + iter.y);
+		return (MOD1_INTERNAL(data)[iter.x] + iter.y);
 	}
 
 	bool 							is_valid(const int &index) const
 	{
-		if (!size_internal)
+		if (!MOD1_INTERNAL(size))
 			throw (exception_allocation());
-		return (index >= 0 && index < size_internal);
+		return (index >= 0 && index < MOD1_INTERNAL(size));
 	}
 
 	bool 							is_valid(const point2<int> &iter) const
 	{
-		if (!size_internal)
+		if (!MOD1_INTERNAL(size))
 			throw (exception_allocation());
-		if (iter.x < 0 || iter.x >= size_internal)
+		if (iter.x < 0 || iter.x >= MOD1_INTERNAL(size))
 			return (false);
-		if (iter.y < 0 || iter.y >= data_internal[0].size())
+		if (iter.y < 0 || iter.y >= MOD1_INTERNAL(data)[0].size())
 			return (false);
 		return (true);
 	}
 
 private :
 
-	buffer<buffer<type>>			data_internal = buffer<buffer<type>>();
-	int								size_internal = 0;
+MOD1_GENERATE_INTERNAL(buffer<buffer<type>>, data)
+MOD1_GENERATE_INTERNAL_WITH_VALUE(int, size, 0)
+
+public :
+
+MOD1_GENERATE_INTERNAL_READ(size)
+MOD1_GENERATE_INTERNAL_READ(data)
 };

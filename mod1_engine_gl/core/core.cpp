@@ -7,6 +7,9 @@ MOD1_GENERATE_EXCEPTION_DEFINITION(core, exception_logic_callback)
 MOD1_GENERATE_EXCEPTION_DEFINITION(core, exception_window)
 MOD1_GENERATE_EXCEPTION_DEFINITION(core, exception_GLEW)
 
+MOD1_GENERATE_INTERNAL_READ_DEFINITION(core, window_width)
+MOD1_GENERATE_INTERNAL_READ_DEFINITION(core, window_height)
+
 					core::core()
 {
 	static int 		count;
@@ -21,7 +24,7 @@ MOD1_GENERATE_EXCEPTION_DEFINITION(core, exception_GLEW)
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-	window = glfwCreateWindow(window_width_internal, window_height_internal, window_name.c_str(), nullptr, nullptr);
+	window = glfwCreateWindow(MOD1_INTERNAL(window_width), MOD1_INTERNAL(window_height), window_name.c_str(), nullptr, nullptr);
 	if (!window)
 		throw (exception_window());
 	glfwMakeContextCurrent(window);
@@ -60,27 +63,17 @@ MOD1_GENERATE_EXCEPTION_DEFINITION(core, exception_GLEW)
 	glfwTerminate();
 }
 
-bool				core::is_working()
+bool				core::is_working() const
 {
 	return (glfwWindowShouldClose(window));
 }
 
-void				core::terminate()
+void				core::terminate() const
 {
 	glfwSetWindowShouldClose(window, GL_TRUE);
 }
 
-int					core::window_width()
-{
-	return (window_width_internal);
-}
-
-int					core::window_height()
-{
-	return (window_height_internal);
-}
-
-void				core::update()
+void				core::update() const
 {
 	glfwPollEvents();
 }

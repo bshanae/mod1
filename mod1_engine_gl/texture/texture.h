@@ -17,14 +17,17 @@ public :
 	void			start() const;
 	void			stop() const;
 
-	GLuint			object() const;
-
-	void			save(const char *file) const;
-
 private :
 
-	point2<int>		resolution;
-	GLuint			object_internal = 0;
+MOD1_GENERATE_INTERNAL_WITH_VALUE(int, width, 0)
+MOD1_GENERATE_INTERNAL_WITH_VALUE(int, height, 0)
+MOD1_GENERATE_INTERNAL_WITH_VALUE(unsigned int, object, 0)
+
+public :
+
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(width)
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(height)
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(object)
 
 };
 

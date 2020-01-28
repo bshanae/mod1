@@ -9,7 +9,7 @@ MOD1_GENERATE_EXCEPTION_DEFINITION(shader, exception_link)
 
 						shader::~shader()
 {
-	glDeleteShader(object_internal);
+	glDeleteShader(MOD1_INTERNAL(object));
 }
 
 void					shader::build(const shader_type &type, const char *source)
@@ -17,20 +17,20 @@ void					shader::build(const shader_type &type, const char *source)
 	std::string			string;
 	const char 			*ptr;
 
-	object_internal = glCreateShader((GLuint)type);
+	MOD1_INTERNAL(object) = glCreateShader((unsigned int)type);
 	string = read_source(source);
 	ptr = string.c_str();
 
-	glShaderSource(object_internal, 1, &ptr, nullptr);
-	glCompileShader(object_internal);
+	glShaderSource(MOD1_INTERNAL(object), 1, &ptr, nullptr);
+	glCompileShader(MOD1_INTERNAL(object));
 
 	GLint				success;
 	GLchar				log[1024];
 
-	glGetShaderiv(object_internal, GL_COMPILE_STATUS, &success);
+	glGetShaderiv(MOD1_INTERNAL(object), GL_COMPILE_STATUS, &success);
 	if(!success)
 	{
-		glGetShaderInfoLog(object_internal, 1024, nullptr, log);
+		glGetShaderInfoLog(MOD1_INTERNAL(object), 1024, nullptr, log);
 		printf("Log : \n%s\n", log);
 		throw (exception_compilation());
 	}
@@ -38,24 +38,24 @@ void					shader::build(const shader_type &type, const char *source)
 	is_built = true;
 }
 
-void					shader::link(const GLuint &program_id)
+void					shader::link(const unsigned int &program_id)
 {
 	if (!is_built)
 		throw (exception_build());
 
-	glAttachShader(program_id, object_internal);
+	glAttachShader(program_id, MOD1_INTERNAL(object));
 
 	is_linked = true;
 }
 
-GLuint					shader::object()
+unsigned int			shader::object() const
 {
 	if (!is_built)
 		throw (exception_build());
 	if (!is_linked)
 		throw (exception_link());
 
-	return (object_internal);
+	return (MOD1_INTERNAL(object));
 }
 
 std::string				shader::read_source(const char *path)

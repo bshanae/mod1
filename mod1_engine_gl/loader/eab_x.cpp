@@ -2,16 +2,16 @@
 
 using namespace			mod1_engine_gl;
 
-GLuint					loader::eab_build()
+unsigned int					loader::eab_build()
 {
-	GLuint				result;
+	unsigned int				result;
 
 	glGenBuffers(1, &result);
 	eab_vector.push_back(result);
 	return (result);
 }
 
-void					loader::eab_bind(GLuint eab)
+void					loader::eab_bind(unsigned int eab)
 {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, eab);
 }

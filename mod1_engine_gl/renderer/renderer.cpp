@@ -27,7 +27,7 @@ using namespace			mod1_engine_gl;
 	main_program.set_uniform(main_program.light_direct_direction);
 	main_program.set_uniform(main_program.light_direct_intensity);
 
-	main_program.camera_projection.upload(camera.projection);
+	main_program.camera_projection.upload(camera.projection());
 
 	main_program.stop();
 

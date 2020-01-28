@@ -14,11 +14,11 @@ public :
 										plane() = default;
 										~plane() = default;
 
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_coordinate, "Mod1 Plane : Bad coordinate")
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_logic, "Mod1 Plane : Object not set")
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_color, "Mod1 Plane : Too few colors defined")
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_index_convention, "Mod1 Plane : Unknown index convention")
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_cut_style, "Mod1 Plane : Unknown cut style")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_coordinate, "Mod1 Plane : Bad coordinate")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_logic, "Mod1 Plane : Object not set")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_color, "Mod1 Plane : Too few colors defined")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_index_convention, "Mod1 Plane : Unknown index convention")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_cut_style, "Mod1 Plane : Unknown cut style")
 
 	void								set(
 										const point2<float> &min,
@@ -28,18 +28,6 @@ public :
 
 	virtual mod1_engine_gl::model		*model();
 	virtual const mod1_engine_gl::model	*model() const;
-
-private :
-
-	point2<int>							size_internal;
-	point2<float>						min_internal;
-	point2<float>						max_internal;
-	float								delta_internal = 0;
-
-	point2<int>							real_size_internal;
-
-	point3<float>						final_min_internal;
-	point3<float>						final_max_internal;
 
 protected :
 
@@ -68,7 +56,7 @@ protected :
 
 	void								add_color(const plane_color &type, const point3<float> &color);
 	void 								add_color(const plane_color &type, const point3<int> &color);
-	void 								update_color();
+	virtual void 						update_color();
 
 	enum class							cut_style
 	{
@@ -79,15 +67,17 @@ protected :
 	cut_style							get_cut_style(const point2<int> &iter);
 	void								switch_cut_style(const point2<int> &iter);
 
-	MOD1_GENERATE_GET_DECLARATION(size)
-	MOD1_GENERATE_GET_DECLARATION(real_size)
-	MOD1_GENERATE_GET_DECLARATION(min)
-	MOD1_GENERATE_GET_DECLARATION(max)
-	MOD1_GENERATE_GET_DECLARATION(delta)
-	MOD1_GENERATE_GET_DECLARATION(final_min)
-	MOD1_GENERATE_GET_DECLARATION(final_max)
-
 private :
+
+MOD1_GENERATE_INTERNAL(point2<int>, size)
+MOD1_GENERATE_INTERNAL(point2<float>, min)
+MOD1_GENERATE_INTERNAL(point2<float>, max)
+MOD1_GENERATE_INTERNAL_WITH_VALUE(float, delta, 0)
+
+MOD1_GENERATE_INTERNAL(point2<int>, real_size)
+
+MOD1_GENERATE_INTERNAL(point3<float>, final_min)
+MOD1_GENERATE_INTERNAL(point3<float>, final_max)
 
 	MOD1_PLANE_COLOR_DATA				color_data_positive;
 	MOD1_PLANE_COLOR_DATA				color_data_negative;
@@ -114,5 +104,15 @@ private :
 										const int &index_c);
 
 	point3<float>						compute_color(const float &height) const;
+
+public :
+
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(size)
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(real_size)
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(min)
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(max)
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(delta)
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(final_min)
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(final_max)
 
 };

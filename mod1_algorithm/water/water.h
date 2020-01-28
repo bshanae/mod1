@@ -14,7 +14,7 @@ class								mod1_algorithm::water : private plane
 {
 public :
 
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_unknown_flow_type, "Mod1 Water : Unknown flow type")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_unknown_flow_type, "Mod1 Water : Unknown flow type")
 
 	explicit	 					water(terrain const *terrain);
 									~water() = default;
@@ -48,7 +48,7 @@ private :
 	void							update_model_helper_a(const point2<int> &iter);
 	void							update_model();
 
-	void							update_color();
+	void							update_color() override;
 
 	mod1_engine_cl::core			cl_core;
 

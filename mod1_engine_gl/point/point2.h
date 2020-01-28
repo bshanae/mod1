@@ -8,7 +8,7 @@ class						mod1_engine_gl::point2
 {
 public :
 
-	MOD1_GENERATE_EXCEPTION(exception_index, "Mod1 Engine GL, Point2 : Bad index")
+MOD1_GENERATE_EXCEPTION(exception_index, "Mod1 Engine GL, Point2 : Bad index")
 
 	type					x = 0;
 	type					y = 0;

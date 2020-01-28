@@ -63,7 +63,7 @@ private :
 		float					direct_intensity;
 	}							light_info;
 
-	GLuint						blur_vao;
+	unsigned int				blur_vao;
 
 	void						render_internal();
 	void						render_no_swap();

@@ -20,12 +20,14 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_attachment_b, "Mod1 Engine GL, Fra
 	void				attach_texture(const int &width, const int &height);
 	void				attach_texture(const texture *attachment);
 
-	const texture		&texture() const;
-
 private :
 
-	GLuint				object;
-	const class texture	*texture_internal = nullptr;
+MOD1_GENERATE_INTERNAL_WITH_VALUE(unsigned int, object, 0)
+MOD1_GENERATE_INTERNAL_WITH_VALUE(const class texture *, texture, nullptr)
+
+public :
+
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(object)
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(texture)
+
 };
-
-

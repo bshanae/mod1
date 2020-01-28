@@ -4,7 +4,7 @@ using namespace			mod1_engine_gl;
 
 						loader::~loader()
 {
-	const GLuint 		*object;
+	const unsigned int 		*object;
 
 	object = nullptr;
 	for (int i = 0; i < vbo_vector.size() && (object = &vbo_vector.at(i)); i++)
@@ -17,7 +17,7 @@ using namespace			mod1_engine_gl;
 
 void					loader::load(model_data &data, const bool &is_dynamic)
 {
-	GLuint 				eab = eab_build();
+	unsigned int 				eab = eab_build();
 
 	data.vao = vao_build();
 

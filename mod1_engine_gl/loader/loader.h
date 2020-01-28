@@ -14,12 +14,12 @@ public :
 
 	void 						load(model_data &data, const bool &is_dynamic);
 
-	GLuint						vbo_build();
-	static void					vbo_bind(GLuint vbo);
+	unsigned int						vbo_build();
+	static void					vbo_bind(unsigned int vbo);
 	static void					vbo_unbind();
 
 	template					<typename type>
-	static void 				vbo_buffer(GLuint vbo, const buffer<type> &buffer, const bool &is_dynamic = false)
+	static void 				vbo_buffer(unsigned int vbo, const buffer<type> &buffer, const bool &is_dynamic = false)
 	{
 		vbo_bind(vbo);
 		glBufferData(
@@ -30,20 +30,20 @@ public :
 		vbo_unbind();
 	}
 
-	GLuint						vao_build();
-	static void					vao_bind(GLuint vao);
+	unsigned int						vao_build();
+	static void					vao_bind(unsigned int vao);
 	static void					vao_unbind();
 
 	template					<typename type>
-	GLuint 						vao_edit_attribute(
-								GLuint vao,
+	unsigned int 						vao_edit_attribute(
+								unsigned int vao,
 								int attribute,
 								int element_size,
 								GLenum gl_type,
 								const buffer<type> &buffer,
 								const bool &is_dynamic = false)
 	{
-		GLuint					vbo;
+		unsigned int					vbo;
 
 		vbo = vbo_build();
 		vao_bind(vao);
@@ -57,12 +57,12 @@ public :
 		return (vbo);
 	}
 
-	GLuint						eab_build();
-	static void					eab_bind(GLuint eab);
+	unsigned int						eab_build();
+	static void					eab_bind(unsigned int eab);
 	static void					eab_unbind();
 
 	template					<typename type>
-	void 						eab_buffer(GLuint eab, const buffer<type> &buffer)
+	void 						eab_buffer(unsigned int eab, const buffer<type> &buffer)
 	{
 		eab_bind(eab);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, buffer.size_in_bytes(), buffer.data(), GL_STATIC_DRAW);
@@ -71,9 +71,9 @@ public :
 
 private :
 
-	std::vector<GLuint>			vbo_vector;
-	std::vector<GLuint>			vao_vector;
-	std::vector<GLuint>			eab_vector;
+	std::vector<unsigned int>			vbo_vector;
+	std::vector<unsigned int>			vao_vector;
+	std::vector<unsigned int>			eab_vector;
 };
 
 

@@ -41,8 +41,8 @@ void					plane::update_normal()
 	int					bottom_left;
 	int					bottom_right;
 
-	for (iter.y = 0; iter.y < size_internal.y - 1; iter.y++)
-		for (iter.x = 0; iter.x < size_internal.x - 1; iter.x++)
+	for (iter.y = 0; iter.y < MOD1_INTERNAL(size).y - 1; iter.y++)
+		for (iter.x = 0; iter.x < MOD1_INTERNAL(size).x - 1; iter.x++)
 		{
 			top_left = get_index(point2<int>(iter.x, iter.y),
 				is_dual(iter) ? index_convention::dual_second : index_convention::dual_first);
@@ -70,14 +70,14 @@ void 					plane::update_final()
 	point3<float>		point;
 
 
-	final_min_internal = point3<float>(std::numeric_limits<float>::max());
-	final_max_internal = point3<float>(std::numeric_limits<float>::min());
-	for (iter.y = 0; iter.y < size_internal.y - 1; iter.y++)
-		for (iter.x = 0; iter.x < size_internal.x - 1; iter.x++)
+	MOD1_INTERNAL(final_min) = point3<float>(std::numeric_limits<float>::max());
+	MOD1_INTERNAL(final_max) = point3<float>(std::numeric_limits<float>::min());
+	for (iter.y = 0; iter.y < MOD1_INTERNAL(size).y - 1; iter.y++)
+		for (iter.x = 0; iter.x < MOD1_INTERNAL(size).x - 1; iter.x++)
 		{
 			ptr = (float *)get_ptr(iter, model_slot::point);
 			point = point3<float>(ptr[0], ptr[2], ptr[1]);
-			final_min_internal = point3<float>::min(final_min_internal, point);
-			final_max_internal = point3<float>::max(final_max_internal, point);
+			MOD1_INTERNAL(final_min) = point3<float>::min(MOD1_INTERNAL(final_min), point);
+			MOD1_INTERNAL(final_max) = point3<float>::max(MOD1_INTERNAL(final_max), point);
 		}
 }
