@@ -41,6 +41,8 @@ float							calculate_light_intensity()
 
 void							main()
 {
+	gl_Position = vec4(position, 1);
+	return ;
 	float						visibilty;
 
 #if FOG

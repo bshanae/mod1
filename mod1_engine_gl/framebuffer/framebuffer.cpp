@@ -11,8 +11,31 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(framebuffer, object)
 {
 	glGenFramebuffers(1, &MOD1_INTERNAL(object));
 
+	attach_texture(MOD1_WINDOW_WIDTH, MOD1_WINDOW_HEIGHT);
+
 	start();
-	glDrawBuffer(GL_COLOR_ATTACHMENT0);
+
+//	GLuint colorRenderbuffer;
+//	glGenRenderbuffers(1, &colorRenderbuffer);
+//	glBindRenderbuffer(GL_RENDERBUFFER, colorRenderbuffer);
+//	glRenderbufferStorage(GL_RENDERBUFFER, GL_RGB, MOD1_WINDOW_WIDTH, MOD1_WINDOW_HEIGHT);
+//	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, colorRenderbuffer);
+
+	GLuint depthRenderbuffer;
+
+	glGenRenderbuffers(1, &depthRenderbuffer);
+	glBindRenderbuffer(GL_RENDERBUFFER, depthRenderbuffer);
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, MOD1_WINDOW_WIDTH, MOD1_WINDOW_HEIGHT);
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRenderbuffer);
+
+	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, texture_internal->object(), 0);
+
+	GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
+	glDrawBuffers(1, DrawBuffers);
+
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+		exit(1);
+
 	stop();
 }
 
@@ -45,12 +68,6 @@ void				framebuffer::attach_texture(const class texture *attachment)
 	MOD1_INTERNAL(texture) = attachment;
 
 	start();
-
-	unsigned int depthrenderbuffer;
-	glGenRenderbuffers(1, &depthrenderbuffer);
-	glBindRenderbuffer(GL_RENDERBUFFER, depthrenderbuffer);
-	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, MOD1_INTERNAL(texture)->width(), MOD1_INTERNAL(texture)->height());
-	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthrenderbuffer);
 
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
 		GL_TEXTURE_2D, MOD1_INTERNAL(texture)->object(), 0);

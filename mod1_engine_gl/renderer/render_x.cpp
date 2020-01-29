@@ -28,8 +28,6 @@ void 					renderer::render_internal()
 
 void 					renderer::render_no_swap()
 {
-	core.clear(MOD1_BACKGROUND);
-
 	main_program.start();
 
 	main_program.camera_view.upload(camera.view());

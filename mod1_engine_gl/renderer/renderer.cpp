@@ -35,7 +35,7 @@ using namespace			mod1_engine_gl;
 	blur_program.add_shader(shader_type::fragment, "./source_gl/blur_fragment.glsl");
 	blur_program.link();
 
-	framebuffer.attach_texture(core.window_width(), core.window_height());
+//	framebuffer.attach_texture(core.window_width(), core.window_height());
 
 	buffer<float>		buffer;
 
@@ -55,4 +55,7 @@ using namespace			mod1_engine_gl;
 
 	blur_vao = loader.vao_build();
 	loader.vao_edit_attribute(blur_vao, 0, 3, GL_FLOAT, buffer);
+
+	test.build();
+	load_model(&test);
 }
