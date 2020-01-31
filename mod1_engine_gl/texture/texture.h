@@ -2,8 +2,6 @@
 
 #include "mod1_engine_gl/namespace.h"
 
-#include "mod1_engine_gl/point/point2.h"
-
 enum class			mod1_engine_gl::texture_type
 {
 	color,
@@ -14,9 +12,6 @@ class				mod1_engine_gl::texture
 {
 public :
 
-MOD1_GENERATE_EXCEPTION_DECLARATION(exception_initialization, "Mod1 Engine GL, Texture : Object is not initialized")
-
-					texture() = default;
 					texture(const texture_type &type, const int &width, const int &height);
 					~texture();
 

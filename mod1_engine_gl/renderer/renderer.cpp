@@ -34,7 +34,9 @@ unsigned int			GenerateDepthTexture(unsigned int width, unsigned int height)
 }
 
 						renderer::renderer() :
-						camera(core.window_width(), core.window_height(), glm::vec3(MOD1_CAMERA_POSITION))
+						light_info(),
+						camera(core.window_width(), core.window_height(), glm::vec3(MOD1_CAMERA_POSITION)),
+						framebuffer(core.window_width(), core.window_height())
 {
 	core.set_callback(glfw_callback, this);
 
@@ -90,22 +92,24 @@ unsigned int			GenerateDepthTexture(unsigned int width, unsigned int height)
 //	test.build();
 //	load_model(&test);
 
-	glGenFramebuffers(1, &framebuffer);
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
-
-	texture_color = GenerateColorTexture(MOD1_WINDOW_WIDTH, MOD1_WINDOW_HEIGHT);
-	texture_depth = GenerateDepthTexture(MOD1_WINDOW_WIDTH, MOD1_WINDOW_HEIGHT);
-
-	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, texture_color, 0);
-	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, texture_depth, 0);
-
-	GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
-	glDrawBuffers(1, DrawBuffers);
-
-	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-	{
-		std::cout << "Error! FrameBuffer is not complete" << std::endl;
-	}
-
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+//	unsigned int		fbo, texture_color, texture_depth;
+//
+//	glGenFramebuffers(1, &fbo);
+//	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+//
+//	texture_color = GenerateColorTexture(MOD1_WINDOW_WIDTH, MOD1_WINDOW_HEIGHT);
+//	texture_depth = GenerateDepthTexture(MOD1_WINDOW_WIDTH, MOD1_WINDOW_HEIGHT);
+//
+//	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, texture_color, 0);
+//	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, texture_depth, 0);
+//
+//	GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
+//	glDrawBuffers(1, DrawBuffers);
+//
+//	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+//	{
+//		std::cout << "Error! FrameBuffer is not complete" << std::endl;
+//	}
+//
+//	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }

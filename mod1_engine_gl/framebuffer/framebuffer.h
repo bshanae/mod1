@@ -4,30 +4,28 @@
 
 #include "mod1_engine_gl/texture/texture.h"
 
-class					mod1_engine_gl::framebuffer
+class						mod1_engine_gl::framebuffer
 {
 public :
 
-MOD1_GENERATE_EXCEPTION_DECLARATION(exception_attachment_a, "Mod1 Engine GL, Framebuffer : No texture attached")
-MOD1_GENERATE_EXCEPTION_DECLARATION(exception_attachment_b, "Mod1 Engine GL, Framebuffer : A texture is already attached")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_complete, "Mod1 Engine GL, Framebuffer : Object is not complete")
 
-						framebuffer();
-						~framebuffer();
+							framebuffer(const int &width, const int &height);
+							~framebuffer();
 
-	void				start();
-	void 				stop();
+	void					start();
+	void 					stop();
 
-	void				attach_texture(const int &width, const int &height);
-	void				attach_texture(const texture *attachment);
+	const texture			&texture();
 
 private :
 
 MOD1_GENERATE_INTERNAL_WITH_VALUE(unsigned int, object, 0)
-MOD1_GENERATE_INTERNAL_WITH_VALUE(const class texture *, texture, nullptr)
+
+	class texture			*texture_color = nullptr;
+	class texture			*texture_depth = nullptr;
 
 public :
 
 MOD1_GENERATE_INTERNAL_READ_DECLARATION(object)
-MOD1_GENERATE_INTERNAL_READ_DECLARATION(texture)
-
 };
