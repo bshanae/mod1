@@ -30,6 +30,7 @@ void 					renderer::render_no_swap()
 {
 	main_program.start();
 
+	main_program.camera_projection.upload(camera.projection());
 	main_program.camera_view.upload(camera.view());
 
 	main_program.light_ambient_intensity.upload(light_info.ambient_intensity);

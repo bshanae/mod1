@@ -2,6 +2,37 @@
 
 using namespace			mod1_engine_gl;
 
+unsigned int			GenerateColorTexture(unsigned int width, unsigned int height)
+{
+	unsigned int		id;
+
+	glGenTextures(1, &id);
+	glBindTexture(GL_TEXTURE_2D, id);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+	return (id);
+}
+
+
+
+//generate an empty depth texture with 1 depth channel using bilinear filtering
+unsigned int			GenerateDepthTexture(unsigned int width, unsigned int height)
+{
+	unsigned int		id;
+
+	glGenTextures(1, &id);
+	glBindTexture(GL_TEXTURE_2D, id);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24, width, height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, 0);
+	return (id);
+}
+
 						renderer::renderer() :
 						camera(core.window_width(), core.window_height(), glm::vec3(MOD1_CAMERA_POSITION))
 {
@@ -56,6 +87,25 @@ using namespace			mod1_engine_gl;
 	blur_vao = loader.vao_build();
 	loader.vao_edit_attribute(blur_vao, 0, 3, GL_FLOAT, buffer);
 
-	test.build();
-	load_model(&test);
+//	test.build();
+//	load_model(&test);
+
+	glGenFramebuffers(1, &framebuffer);
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+
+	texture_color = GenerateColorTexture(MOD1_WINDOW_WIDTH, MOD1_WINDOW_HEIGHT);
+	texture_depth = GenerateDepthTexture(MOD1_WINDOW_WIDTH, MOD1_WINDOW_HEIGHT);
+
+	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, texture_color, 0);
+	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, texture_depth, 0);
+
+	GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
+	glDrawBuffers(1, DrawBuffers);
+
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+	{
+		std::cout << "Error! FrameBuffer is not complete" << std::endl;
+	}
+
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }

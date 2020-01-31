@@ -1,10 +1,10 @@
-#version 400 core
+#version 330 core
 
-in vec3				pass_color;
+in vec3					pass_color;
 
-out vec4			result_color;
+layout (location = 0) out vec4	result_color;
 
-void				main()
+void					main()
 {
 	result_color = vec4(pass_color, 1);
 }

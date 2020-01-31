@@ -13,7 +13,7 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(camera, view)
 						glm::radians(45.0f),
 						(float)screen_width / (float)screen_height,
 						0.5f,
-						100000.0f))
+						10000.0f))
 {
 	this->position = position;
 	MOD1_INTERNAL(view) = glm::mat4(1.0f);

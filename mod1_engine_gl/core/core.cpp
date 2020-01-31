@@ -24,9 +24,14 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(core, window_height)
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-	window = glfwCreateWindow(MOD1_INTERNAL(window_width), MOD1_INTERNAL(window_height), window_name.c_str(), nullptr, nullptr);
+	window = glfwCreateWindow(
+		MOD1_INTERNAL(window_width),
+		MOD1_INTERNAL(window_height),
+		window_name.c_str(),
+		nullptr, nullptr);
 	if (!window)
 		throw (exception_window());
+
 	glfwMakeContextCurrent(window);
 
 	glewExperimental = GL_TRUE;
@@ -38,6 +43,9 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(core, window_height)
 
 	glfwGetFramebufferSize(window, &width, &height);
 	glViewport(0, 0, width, height);
+
+	MOD1_INTERNAL(window_width) = width;
+	MOD1_INTERNAL(window_height) = height;
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glEnable(GL_BLEND);

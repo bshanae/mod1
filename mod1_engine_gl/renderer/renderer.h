@@ -71,7 +71,10 @@ private :
 	core						core;
 	loader						loader;
 	camera						camera;
-	framebuffer					framebuffer;
+	unsigned int				framebuffer;
+	unsigned int				texture_color;
+	unsigned int				texture_depth;
+
 
 	class						: public mod1_engine_gl::program
 	{

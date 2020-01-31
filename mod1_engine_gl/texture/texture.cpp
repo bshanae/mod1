@@ -2,19 +2,34 @@
 
 using namespace		mod1_engine_gl;
 
+MOD1_GENERATE_EXCEPTION_DEFINITION(texture, exception_initialization)
+
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(texture, width)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(texture, height)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(texture, object)
 
-					texture::texture()
+					texture::texture(
+					const int &width,
+					const int &height,
+					const GLenum &format_a,
+					const GLenum &format_b)
 {
-	glGenTextures(1, &MOD1_INTERNAL(object));
-}
+	MOD1_INTERNAL(width) = width;
+	MOD1_INTERNAL(height) = height;
 
-					texture::texture(const int &width, const int &height)
-{
 	glGenTextures(1, &MOD1_INTERNAL(object));
-	build(width, height);
+
+	is_empty = false;
+
+	start();
+
+	glTexImage2D(GL_TEXTURE_2D, 0, format_a, width, height,
+		0, format_b, GL_UNSIGNED_BYTE, nullptr);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	stop();
 }
 
 					texture::~texture()
@@ -22,31 +37,18 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(texture, object)
 	glDeleteTextures(1, &MOD1_INTERNAL(object));
 }
 
-void				texture::build(const int &width, const int &height)
-{
-	MOD1_INTERNAL(width) = width;
-	MOD1_INTERNAL(height) = height;
-
-	start();
-
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height,
-		0, GL_RGB, GL_UNSIGNED_BYTE, nullptr);
-
-//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
-	stop();
-}
-
 void				texture::start() const
 {
+	if (is_empty)
+		throw (exception_initialization());
+
 	glBindTexture(GL_TEXTURE_2D, MOD1_INTERNAL(object));
 }
 
 void				texture::stop() const
 {
+	if (is_empty)
+		throw (exception_initialization());
+
 	glBindTexture(GL_TEXTURE_2D, 0);
 }

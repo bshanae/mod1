@@ -8,16 +8,22 @@ class				mod1_engine_gl::texture
 {
 public :
 
-					texture();
-					texture(const int &width, const int &height);
-					~texture();
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_initialization, "Mod1 Engine GL, Texture : Object is not initialized")
 
-	void			build(const int &width, const int &height);
+					texture() = default;
+					texture(
+					const int &width,
+					const int &height,
+					const GLenum &format_a,
+					const GLenum &format_b);
+					~texture();
 
 	void			start() const;
 	void			stop() const;
 
 private :
+
+	bool			is_empty = true;
 
 MOD1_GENERATE_INTERNAL_WITH_VALUE(int, width, 0)
 MOD1_GENERATE_INTERNAL_WITH_VALUE(int, height, 0)

@@ -16,6 +16,7 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(framebuffer, object)
 	start();
 
 //	GLuint colorRenderbuffer;
+//
 //	glGenRenderbuffers(1, &colorRenderbuffer);
 //	glBindRenderbuffer(GL_RENDERBUFFER, colorRenderbuffer);
 //	glRenderbufferStorage(GL_RENDERBUFFER, GL_RGB, MOD1_WINDOW_WIDTH, MOD1_WINDOW_HEIGHT);
@@ -57,7 +58,7 @@ void 				framebuffer::stop()
 
 void				framebuffer::attach_texture(const int &width, const int &height)
 {
-	attach_texture(new class texture(width, height));
+//	attach_texture(new class texture(width, height));
 }
 
 void				framebuffer::attach_texture(const class texture *attachment)
@@ -68,7 +69,6 @@ void				framebuffer::attach_texture(const class texture *attachment)
 	MOD1_INTERNAL(texture) = attachment;
 
 	start();
-
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
 		GL_TEXTURE_2D, MOD1_INTERNAL(texture)->object(), 0);
 	stop();
