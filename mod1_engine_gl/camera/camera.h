@@ -19,8 +19,6 @@ class					mod1_engine_gl::camera
 {
 public :
 
-MOD1_GENERATE_EXCEPTION_DECLARATION(exception_axis, "Mod1 Engine GL, Camera : Unknown axis")
-
 	camera(
 						int screen_width,
 						int screen_height,

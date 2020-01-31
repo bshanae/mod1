@@ -4,6 +4,12 @@
 
 #include "mod1_engine_gl/point/point2.h"
 
+enum class			mod1_engine_gl::texture_type
+{
+	color,
+	depth
+};
+
 class				mod1_engine_gl::texture
 {
 public :
@@ -11,11 +17,7 @@ public :
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_initialization, "Mod1 Engine GL, Texture : Object is not initialized")
 
 					texture() = default;
-					texture(
-					const int &width,
-					const int &height,
-					const GLenum &format_a,
-					const GLenum &format_b);
+					texture(const texture_type &type, const int &width, const int &height);
 					~texture();
 
 	void			start() const;

@@ -71,5 +71,5 @@ void				model::upload_buffer(const model_data::slot_type &slot)
 	else if (slot == model_data::slot_type::color)
 		loader::vbo_buffer(data.vbo_color, data.color_buffer, is_dynamic);
 	else
-		throw (model_data::exception_unknown_slot());
+		throw (exception_enum());
 }

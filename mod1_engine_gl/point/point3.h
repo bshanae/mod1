@@ -10,7 +10,6 @@ class						mod1_engine_gl::point3
 public :
 
 MOD1_GENERATE_EXCEPTION(exception_index, "Mod1 Engine GL, Point3 : Bad index")
-MOD1_GENERATE_EXCEPTION(exception_axis_convetion, "Mod1 Engine GL, Point3 : Unknown axis convention")
 
 	type					x = 0;
 	type					y = 0;
@@ -60,7 +59,7 @@ MOD1_GENERATE_EXCEPTION(exception_axis_convetion, "Mod1 Engine GL, Point3 : Unkn
 			this->z = ptr[1];
 		}
 		else
-			throw (exception_axis_convetion());
+			throw (exception_enum());
 	}
 							~point3() = default;
 
@@ -253,7 +252,7 @@ MOD1_GENERATE_EXCEPTION(exception_axis_convetion, "Mod1 Engine GL, Point3 : Unkn
 			ptr[2] = this->y;
 		}
 		else
-			throw (exception_axis_convetion());
+			throw (exception_enum());
 	}
 
 	type					length() const

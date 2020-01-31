@@ -14,6 +14,9 @@
 
 namespace			mod1_engine_gl
 {
+
+MOD1_GENERATE_EXCEPTION(exception_enum, "Mod1 Engine GL : Unknown enum value")
+
 	template		<typename type>
 	class			buffer;
 	template		<typename type>
@@ -40,6 +43,7 @@ namespace			mod1_engine_gl
 	class			model_reader;
 
 	class			texture;
+	enum class		texture_type;
 	class 			framebuffer;
 
 	class			camera;

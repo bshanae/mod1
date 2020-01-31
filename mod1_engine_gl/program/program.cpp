@@ -46,7 +46,7 @@ void				program::link()
 
 void 				program::set_uniform(uniform &uniform)
 {
-	uniform.set(MOD1_INTERNAL(object));
+	uniform.connect(MOD1_INTERNAL(object));
 }
 
 void				program::check_error()

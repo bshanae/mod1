@@ -2,8 +2,6 @@
 
 using namespace		mod1_engine_gl;
 
-MOD1_GENERATE_EXCEPTION_DEFINITION(camera, exception_axis)
-
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(camera, projection)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(camera, rotation)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(camera, view)
@@ -29,7 +27,7 @@ void				camera::move(axis axis, sign sign)
 	else if (axis == axis::z)
 		position += axis_z * movement_speed * (float)sign;
 	else
-		throw (exception_axis());
+		throw (exception_enum());
 	update_transformation();
 }
 
@@ -42,7 +40,7 @@ void				camera::move(glm::vec3 &target, axis axis, sign sign)
 	else if (axis == axis::z)
 		target += axis_z * movement_speed * (float)sign;
 	else
-		throw (exception_axis());
+		throw (exception_enum());
 	update_transformation();
 }
 
@@ -55,7 +53,7 @@ void				camera::rotate(axis axis, sign sign)
 	else if (axis == axis::z)
 		angle_z += (float)sign * rotation_speed;
 	else
-		throw (exception_axis());
+		throw (exception_enum());
 	MOD1_INTERNAL(rotation) = glm::eulerAngleYXZ(angle_y, angle_x, angle_z);
 	axis_x = glm::vec3(MOD1_INTERNAL(rotation) * glm::vec4(axis_x_const, 1));
 	axis_y = glm::vec3(MOD1_INTERNAL(rotation) * glm::vec4(axis_y_const, 1));
@@ -81,6 +79,9 @@ void				camera::rotate(glm::vec3 &target, axis axis, sign sign)
 		case axis::z :
 			rotation_axis = axis_z;
 			break ;
+
+		default :
+			throw (exception_enum());
 	}
 	rotation_matrix = glm::rotate(rotation_matrix,
 		(float)sign * rotation_speed, rotation_axis);

@@ -6,12 +6,12 @@ class				mod1_engine_gl::uniform
 {
 public :
 
-MOD1_GENERATE_EXCEPTION_DECLARATION(exception_set, "Mod1 Engine GL, Uniform : Object is not set")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_set, "Mod1 Engine GL, Uniform : Object is not connected to program")
 
 	explicit		uniform(const char *name);
 					~uniform() = default;
 
-	void			set(const unsigned int &program);
+	void			connect(const unsigned int &program);
 
 	void 			upload(const int &data);
 	void 			upload(const float &data);
@@ -20,7 +20,7 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_set, "Mod1 Engine GL, Uniform : Ob
 
 private :
 
-	bool 			is_set = false;
+	bool 			is_connected = false;
 
 	unsigned int	id;
 	const char		*name;

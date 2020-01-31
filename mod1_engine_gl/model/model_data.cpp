@@ -2,8 +2,6 @@
 
 using namespace		mod1_engine_gl;
 
-MOD1_GENERATE_EXCEPTION_DEFINITION(model_data, exception_unknown_slot)
-
 void 				*model_data::get_ptr(const int &index, const slot_type &slot)
 {
 	if (slot == slot_type::point)
@@ -15,7 +13,7 @@ void 				*model_data::get_ptr(const int &index, const slot_type &slot)
 	else if (slot == slot_type::color)
 		return (&color_buffer[3 * index]);
 	else
-		throw (exception_unknown_slot());
+		throw (exception_enum());
 }
 
 void const			*model_data::get_ptr(const int &index, const slot_type &slot) const
@@ -29,7 +27,7 @@ void const			*model_data::get_ptr(const int &index, const slot_type &slot) const
 	else if (slot == slot_type::color)
 		return (&color_buffer[3 * index]);
 	else
-		throw (exception_unknown_slot());
+		throw (exception_enum());
 }
 
 bool				model_data::is_valid(const int &index, const slot_type &slot) const
@@ -43,5 +41,5 @@ bool				model_data::is_valid(const int &index, const slot_type &slot) const
 	else if (slot == slot_type::color)
 		return (color_buffer.is_valid(3 * index));
 	else
-		throw (exception_unknown_slot());
+		throw (exception_enum());
 }

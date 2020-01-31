@@ -9,8 +9,6 @@ class					mod1_engine_gl::model_data
 
 public :
 
-MOD1_GENERATE_EXCEPTION_DECLARATION(exception_unknown_slot, "Mod1 Engine GL, Model Data : Unknown slot")
-
 						model_data() = default;
 						~model_data() = default;
 
