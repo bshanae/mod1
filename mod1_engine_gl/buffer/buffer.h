@@ -21,6 +21,11 @@ MOD1_GENERATE_EXCEPTION(exception_logic_b, "Mod1 Engine GL, Buffer : Source buff
 MOD1_GENERATE_EXCEPTION(exception_size, "Mod1 Engine GL, Buffer : Bad size")
 MOD1_GENERATE_EXCEPTION(exception_index, "Mod1 Engine GL, Buffer : Bad index")
 
+	bool				is_allocated() const
+	{
+		return (MOD1_INTERNAL(data) != nullptr);
+	}
+
 	void 				allocate(int size)
 	{
 		if (MOD1_INTERNAL(data))

@@ -92,14 +92,9 @@ void 				core::clear(const point3<float> &color)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void 				core::draw_elements(const int &count)
+void 				core::draw(const int &count)
 {
 	glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_INT, nullptr);
-}
-
-void 				core::draw_arrays(const int &count)
-{
-	glDrawArrays(GL_TRIANGLES, 0, count);
 }
 
 void				core::swap_buffers()

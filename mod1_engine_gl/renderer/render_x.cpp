@@ -17,9 +17,7 @@ void 					renderer::render_internal()
 	for (auto &model : model_array)
 	{
 		main_program.object_transformation.upload(model->transformation());
-		model->start();
-		core.draw_elements(model->vertex_number());
-		model->stop();
+		model->draw(core);
 	}
 	main_program.stop();
 	core.swap_buffers();
@@ -40,9 +38,7 @@ void 					renderer::render_no_swap()
 	for (auto &model : model_array)
 	{
 		main_program.object_transformation.upload(model->transformation());
-		model->start();
-		core.draw_elements(model->vertex_number());
-		model->stop();
+		model->draw(core);
 	}
 	main_program.stop();
 }

@@ -2,37 +2,6 @@
 
 using namespace			mod1_engine_gl;
 
-unsigned int			GenerateColorTexture(unsigned int width, unsigned int height)
-{
-	unsigned int		id;
-
-	glGenTextures(1, &id);
-	glBindTexture(GL_TEXTURE_2D, id);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
-	return (id);
-}
-
-
-
-//generate an empty depth texture with 1 depth channel using bilinear filtering
-unsigned int			GenerateDepthTexture(unsigned int width, unsigned int height)
-{
-	unsigned int		id;
-
-	glGenTextures(1, &id);
-	glBindTexture(GL_TEXTURE_2D, id);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24, width, height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, 0);
-	return (id);
-}
-
 						renderer::renderer() :
 						light_info(),
 						camera(core.window_width(), core.window_height(), glm::vec3(MOD1_CAMERA_POSITION)),
@@ -85,4 +54,7 @@ unsigned int			GenerateDepthTexture(unsigned int width, unsigned int height)
 
 	blur_vao = loader.vao_build();
 	loader.vao_attribute(blur_vao, 0, 3, GL_FLOAT, buffer);
+
+	test.build();
+	test.load(loader);
 }

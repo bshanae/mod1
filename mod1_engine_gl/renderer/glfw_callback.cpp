@@ -67,7 +67,7 @@ void					renderer::glfw_callback(GLFWwindow* window, int key, int code, int acti
 		glActiveTexture(GL_TEXTURE0);
 		glUniform1i(glGetUniformLocation(renderer->blur_program.object(), "uniform_texture"), 0);
 		renderer->loader.vao_bind(renderer->blur_vao);
-		renderer->core.draw_arrays(6);
+		renderer->test.draw(renderer->core);
 		renderer->framebuffer.texture().stop();
 		renderer->loader.vao_unbind();
 		renderer->blur_program.stop();

@@ -26,8 +26,7 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_GLEW, "Mod1 Engine GL, Core : Can'
 	void 				terminate() const;
 
 	void 				clear(const point3<float> &color);
-	void 				draw_elements(const int &count);
-	void				draw_arrays(const int &count);
+	void 				draw(const int &count);
 	void				swap_buffers();
 
 private :

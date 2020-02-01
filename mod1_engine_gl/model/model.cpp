@@ -6,17 +6,23 @@ MOD1_GENERATE_EXCEPTION_DEFINITION(model, exception_build)
 MOD1_GENERATE_EXCEPTION_DEFINITION(model, exception_load)
 MOD1_GENERATE_EXCEPTION_DEFINITION(model, exception_dynamic)
 
-MOD1_GENERATE_INTERNAL_READ_DEFINITION(model, vertex_number)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(model, transformation)
 
 void				model::load(loader &loader)
 {
 	is_loaded = true;
 	loader.load(data, is_dynamic);
-	MOD1_INTERNAL(vertex_number) = data.index_buffer.size() * 3;
+	vertex_number = data.index_buffer.size() * 3;
 }
 
-void				model::start()
+void				model::draw(core &core)
+{
+	start();
+	core.draw(vertex_number);
+	stop();
+}
+
+void				model::start() const
 {
 	if (!is_built)
 		throw (exception_build());
@@ -25,19 +31,9 @@ void				model::start()
 	loader::vao_bind(data.vao);
 }
 
-void				model::stop()
+void				model::stop() const
 {
 	loader::vao_unbind();
-}
-
-int 				model::vertex_number()
-{
-	return (MOD1_INTERNAL(vertex_number));
-}
-
-glm::mat4			&model::transformation()
-{
-	return (MOD1_INTERNAL(transformation));
 }
 
 void				*model::get_ptr(const int &index, const model_data::slot_type &slot)

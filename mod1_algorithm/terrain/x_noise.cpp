@@ -14,9 +14,6 @@ float					terrain::generate_noise(
 #if MOD1_DISABLED(MOD1_TERRAIN_NOISE)
 	return (0);
 #else
-
-	// todo test
-
 	value = noise_generator.GetNoise(
 		offset.x + iter.x * frequency,
 		offset.y + iter.y * frequency);

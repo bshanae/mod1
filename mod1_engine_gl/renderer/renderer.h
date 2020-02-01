@@ -12,32 +12,30 @@
 #include "mod1_engine_gl/uniform/uniform.h"
 #include "mod1_engine_gl/point/point3.h"
 
-class 					test : public mod1_engine_gl::model
+class 					square : public mod1_engine_gl::model
 {
 public :
 	void				build() override
 	{
 
-		GLfloat vertices[] = {
-			0.5f,  0.5f, 0.0f,  // Верхний правый угол
-			0.5f, -0.5f, 0.0f,  // Нижний правый угол
-			-0.5f, -0.5f, 0.0f,  // Нижний левый угол
-			-0.5f,  0.5f, 0.0f   // Верхний левый угол
-		};
-		GLuint indices[] = {  // Помните, что мы начинаем с 0!
-			0, 1, 3,   // Первый треугольник
-			1, 2, 3    // Второй треугольник
+		float			vertices[] = {
+			-1, -1, 0,
+			-1, +1, 0,
+			+1, -1, 0,
+			+1, +1, 0
 		};
 
-		data.point_buffer.allocate(MOD1_PLANE_POINT_SIZE * 4);
+		int				indices[] =
+		{
+			2, 1, 0,
+			2, 3, 1
+		};
+
+		data.point_buffer.allocate(3 * 4);
 		data.point_buffer.copy(vertices);
 
-		data.index_buffer.allocate(MOD1_PLANE_INDEX_SIZE * 6);
-		data.index_buffer.copy((int *)indices);
-
-		data.normal_buffer.allocate(MOD1_PLANE_NORMAL_SIZE * 1);
-
-		data.color_buffer.allocate(MOD1_PLANE_COLOR_SIZE * 1);
+		data.index_buffer.allocate(3 * 2);
+		data.index_buffer.copy(indices);
 
 		set_as_built();
 	}
@@ -95,7 +93,7 @@ private :
 	}							light_info;
 
 	unsigned int				blur_vao;
-	class test					test;
+	class square					test;
 
 	void						render_internal();
 	void						render_no_swap();
