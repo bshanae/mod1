@@ -14,7 +14,7 @@ public :
 
 	void 						load(model_data &data, const bool &is_dynamic);
 
-	unsigned int						vbo_build();
+	unsigned int				vbo_build();
 	static void					vbo_bind(unsigned int vbo);
 	static void					vbo_unbind();
 
@@ -30,12 +30,12 @@ public :
 		vbo_unbind();
 	}
 
-	unsigned int						vao_build();
+	unsigned int				vao_build();
 	static void					vao_bind(unsigned int vao);
 	static void					vao_unbind();
 
 	template					<typename type>
-	unsigned int 						vao_edit_attribute(
+	unsigned int 				vao_attribute(
 								unsigned int vao,
 								int attribute,
 								int element_size,
@@ -57,7 +57,7 @@ public :
 		return (vbo);
 	}
 
-	unsigned int						eab_build();
+	unsigned int				eab_build();
 	static void					eab_bind(unsigned int eab);
 	static void					eab_unbind();
 

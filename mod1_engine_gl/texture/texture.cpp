@@ -11,44 +11,33 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(texture, object)
 	MOD1_INTERNAL(width) = width;
 	MOD1_INTERNAL(height) = height;
 
-	GLenum			format_a;
-	GLenum			format_b;
-	GLenum			type_gl;
+	glGenTextures(1, &MOD1_INTERNAL(object));
+
+	start();
 
 	switch (type_mod1)
 	{
 		case texture_type::color :
-			format_a = GL_RGBA8;
-			format_b = GL_RGBA;
-			type_gl = GL_UNSIGNED_BYTE;
-			break ;
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
+				width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, nullptr);
+			break;
 		case texture_type::depth :
-			format_a = GL_DEPTH_COMPONENT24;
-			format_b = GL_DEPTH_COMPONENT;
-			type_gl = GL_FLOAT;
-			break ;
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24,
+				width, height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, nullptr);
+			break;
 		default :
 			throw (exception_enum());
 	}
 
-	glGenTextures(1, &MOD1_INTERNAL(object));
-
-	is_empty = false;
-
-	start();
-
-	glTexImage2D(GL_TEXTURE_2D, 0, format_a, width, height, 0, format_b, type_gl, nullptr);
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
 	stop();
 }
 
 					texture::~texture()
 {
-	if (not is_empty)
-		glDeleteTextures(1, &MOD1_INTERNAL(object));
+	glDeleteTextures(1, &MOD1_INTERNAL(object));
 }
 
 void				texture::start() const

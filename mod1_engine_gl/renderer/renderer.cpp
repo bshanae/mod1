@@ -68,12 +68,6 @@ unsigned int			GenerateDepthTexture(unsigned int width, unsigned int height)
 	blur_program.add_shader(shader_type::fragment, "./source_gl/blur_fragment.glsl");
 	blur_program.link();
 
-//	framebuffer.attach_texture(core.window_width(), core.window_height());
-
-	buffer<float>		buffer;
-
-	buffer.allocate(18);
-
 	const float			raw[] =
 	{
 		-1.0f, -1.0f, 0.0f,
@@ -81,35 +75,14 @@ unsigned int			GenerateDepthTexture(unsigned int width, unsigned int height)
 		-1.0f,  1.0f, 0.0f,
 		-1.0f,  1.0f, 0.0f,
 		1.0f, -1.0f, 0.0f,
-		1.0f,  1.0f, 0.0f
+		1.0f,  1.0f, 0.0f,
 	};
 
+	buffer<float>		buffer;
+
+	buffer.allocate(sizeof(raw) / sizeof(float));
 	buffer.copy(raw);
 
 	blur_vao = loader.vao_build();
-	loader.vao_edit_attribute(blur_vao, 0, 3, GL_FLOAT, buffer);
-
-//	test.build();
-//	load_model(&test);
-
-//	unsigned int		fbo, texture_color, texture_depth;
-//
-//	glGenFramebuffers(1, &fbo);
-//	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-//
-//	texture_color = GenerateColorTexture(MOD1_WINDOW_WIDTH, MOD1_WINDOW_HEIGHT);
-//	texture_depth = GenerateDepthTexture(MOD1_WINDOW_WIDTH, MOD1_WINDOW_HEIGHT);
-//
-//	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, texture_color, 0);
-//	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, texture_depth, 0);
-//
-//	GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
-//	glDrawBuffers(1, DrawBuffers);
-//
-//	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-//	{
-//		std::cout << "Error! FrameBuffer is not complete" << std::endl;
-//	}
-//
-//	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	loader.vao_attribute(blur_vao, 0, 3, GL_FLOAT, buffer);
 }

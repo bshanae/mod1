@@ -20,8 +20,6 @@ public :
 
 private :
 
-	bool			is_empty = true;
-
 MOD1_GENERATE_INTERNAL_WITH_VALUE(int, width, 0)
 MOD1_GENERATE_INTERNAL_WITH_VALUE(int, height, 0)
 MOD1_GENERATE_INTERNAL_WITH_VALUE(unsigned int, object, 0)

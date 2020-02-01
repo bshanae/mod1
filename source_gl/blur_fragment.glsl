@@ -1,10 +1,13 @@
 #version 330 core
 
-in vec3					pass_color;
+in vec2					UV;
 
-layout (location = 0) out vec4	result_color;
+out vec4				result_color;
+
+uniform sampler2D		uniform_texture;
 
 void					main()
 {
-	result_color = vec4(pass_color, 1);
+//	result_color = texture(uniform_texture, UV).rgb;
+	result_color = vec4(texture(uniform_texture, UV).rgb, 1);
 }
