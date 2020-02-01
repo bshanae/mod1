@@ -49,3 +49,8 @@ void				texture::stop() const
 {
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
+
+void				texture::activate(const int &index)
+{
+	glActiveTexture(GL_TEXTURE0 + index);
+}

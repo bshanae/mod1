@@ -64,7 +64,7 @@ private :
 
 	std::vector<model *>		model_array;
 	std::vector<callback>		callback_array;
-	bool						render_request = false;
+	bool						render_request = true;
 
 	core						core;
 	loader						loader;
@@ -82,9 +82,6 @@ private :
 		MOD1_GENERATE_UNIFORM(light_direct_intensity, "light_info.direct_intensity")
 	}							main_program;
 
-	class						: public mod1_engine_gl::program
-	{}							blur_program;
-
 	struct
 	{
 		float 					ambient_intensity;
@@ -92,8 +89,12 @@ private :
 		float					direct_intensity;
 	}							light_info;
 
-	unsigned int				blur_vao;
-	class square					test;
+	class						: public mod1_engine_gl::program
+	{
+	public :
+		MOD1_GENERATE_UNIFORM(texture, "uniform_texture")
+	}							blur_program;
+	class square				blur_square;
 
 	void						render_internal();
 	void						render_no_swap();

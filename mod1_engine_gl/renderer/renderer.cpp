@@ -37,24 +37,8 @@ using namespace			mod1_engine_gl;
 	blur_program.add_shader(shader_type::fragment, "./source_gl/blur_fragment.glsl");
 	blur_program.link();
 
-	const float			raw[] =
-	{
-		-1.0f, -1.0f, 0.0f,
-		1.0f, -1.0f, 0.0f,
-		-1.0f,  1.0f, 0.0f,
-		-1.0f,  1.0f, 0.0f,
-		1.0f, -1.0f, 0.0f,
-		1.0f,  1.0f, 0.0f,
-	};
+	blur_program.set_uniform(blur_program.texture);
 
-	buffer<float>		buffer;
-
-	buffer.allocate(sizeof(raw) / sizeof(float));
-	buffer.copy(raw);
-
-	blur_vao = loader.vao_build();
-	loader.vao_attribute(blur_vao, 0, 3, GL_FLOAT, buffer);
-
-	test.build();
-	test.load(loader);
+	blur_square.build();
+	blur_square.load(loader);
 }

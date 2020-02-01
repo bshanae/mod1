@@ -18,6 +18,8 @@ public :
 	void			start() const;
 	void			stop() const;
 
+	static void		activate(const int &index = 0);
+
 private :
 
 MOD1_GENERATE_INTERNAL_WITH_VALUE(int, width, 0)

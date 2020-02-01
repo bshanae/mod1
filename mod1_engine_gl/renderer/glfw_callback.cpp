@@ -58,27 +58,21 @@ void					renderer::glfw_callback(GLFWwindow* window, int key, int code, int acti
 	else if (key == GLFW_KEY_5 && action == GLFW_PRESS)
 	{
 		renderer->framebuffer.start();
-		renderer->core.clear(point3<float>(0, 0, 1));
 		renderer->render_no_swap();
 		renderer->framebuffer.stop();
 
 		renderer->blur_program.start();
 		renderer->framebuffer.texture().start();
-		glActiveTexture(GL_TEXTURE0);
-		glUniform1i(glGetUniformLocation(renderer->blur_program.object(), "uniform_texture"), 0);
-		renderer->loader.vao_bind(renderer->blur_vao);
-		renderer->test.draw(renderer->core);
+		texture::activate();
+		renderer->blur_program.texture.upload(0);
+		renderer->blur_square.draw(renderer->core);
 		renderer->framebuffer.texture().stop();
-		renderer->loader.vao_unbind();
 		renderer->blur_program.stop();
 
 		renderer->core.swap_buffers();
 		return ;
 	}
-	else if (key == GLFW_KEY_6 && action == GLFW_PRESS)
-		;
 	else
 		return ;
-//	renderer->render();
-	renderer->render_internal();
+	renderer->render();
 }

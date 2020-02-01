@@ -26,6 +26,8 @@ void 					renderer::render_internal()
 
 void 					renderer::render_no_swap()
 {
+	core.clear(point3<float>(0.4));
+
 	main_program.start();
 
 	main_program.camera_projection.upload(camera.projection());
@@ -45,5 +47,5 @@ void 					renderer::render_no_swap()
 
 void					renderer::render()
 {
-//	render_request = true;
+	render_request = true;
 }
