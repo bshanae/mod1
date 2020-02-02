@@ -4,9 +4,9 @@ using namespace		mod1_engine_gl;
 
 void				model::start() const
 {
-	if (!is_built)
+	if (not MOD1_INTERNAL(is_built))
 		throw (exception_build());
-	if (!is_loaded)
+	if (not MOD1_INTERNAL(is_loaded))
 		throw (exception_load());
 	vao->bind();
 }

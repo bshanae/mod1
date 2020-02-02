@@ -129,7 +129,17 @@ void					renderer::glfw_callback(GLFWwindow* window, int key, int code, int acti
 		}
 		else
 		{
-			GLuint id = renderer->Characters['A'].textureID;
+			GLuint id = renderer->Characters['g'].textureID;
+
+			float			array[] = {
+				-0.5, -0.5,
+				-0.5, +0.5,
+				+0.5, -0.5,
+				+0.5, +0.5
+			};
+
+//			renderer->text_square.coordinate_buffer.copy(array);
+//			renderer->text_square.vbo_coordinate->buffer(renderer->text_square.coordinate_buffer);
 
 			renderer->blur_program.start();
 			glBindTexture(GL_TEXTURE_2D, id);

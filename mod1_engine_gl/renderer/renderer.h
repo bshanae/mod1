@@ -11,45 +11,68 @@
 #include "mod1_engine_gl/uniform/uniform.h"
 #include "mod1_engine_gl/point/point3.h"
 
+//								TEST START
+
 typedef struct
 {
-	GLuint				textureID;
-	glm::ivec2			size;
-	glm::ivec2			bearing;
-	GLuint				advance;
-}						Character;
+	GLuint						textureID;
+	glm::ivec2					size;
+	glm::ivec2					bearing;
+	GLuint						advance;
+}								Character;
 
 #include "mod1_main/mod1_freetype.h"
 #include <map>
 
-class 					square : public mod1_engine_gl::model
+#include "mod1_engine_gl/vbo/vbo.h"
+#include "mod1_engine_gl/vao/vao.h"
+#include "mod1_engine_gl/eab/eab.h"
+
+using namespace					mod1_engine_gl;
+
+class 							square : public mod1_engine_gl::model
 {
 public :
-	void				build() override
+	void						build() override
 	{
 
-		float			vertices[] = {
+		float					vertices[] = {
 			-1, -1, 0,
 			-1, +1, 0,
 			+1, -1, 0,
 			+1, +1, 0
 		};
 
-		int				indices[] =
+		float					texture[] = {
+			0, 0,
+			0, 1,
+			+1, 0,
+			+1, +1
+		};
+
+		int						indices[] =
 		{
 			2, 1, 0,
 			2, 3, 1
 		};
 
-		point_buffer.allocate(3 * 4);
-		point_buffer.copy(vertices);
+		buffer_point.allocate(3 * 4);
+		buffer_point.copy(vertices);
 
-		index_buffer.allocate(3 * 2);
-		index_buffer.copy(indices);
+		buffer_index.allocate(3 * 2);
+		buffer_index.copy(indices);
+
+		buffer_texture.allocate(2 * 4);
+		buffer_texture.copy(texture);
 
 		set_as_built();
 	}
+
+	using						model::update;
+	using						model::buffer_point;
 };
+
+//								TEST END
 
 class							mod1_engine_gl::renderer
 {

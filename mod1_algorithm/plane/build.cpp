@@ -13,7 +13,7 @@ void					plane::build()
 
 	//					Points
 
-	point_buffer.allocate(MOD1_PLANE_POINT_SIZE * MOD1_PLANE_NUMBER_OF_POINTS(MOD1_INTERNAL(size)));
+	buffer_point.allocate(MOD1_PLANE_POINT_SIZE * MOD1_PLANE_NUMBER_OF_POINTS(MOD1_INTERNAL(size)));
 
 	for (iter.y = 0; iter.y < MOD1_INTERNAL(size).y; iter.y++)
 		for (iter.x = 0; iter.x < MOD1_INTERNAL(size).x; iter.x++)
@@ -30,10 +30,10 @@ void					plane::build()
 
 	//					Indices
 
-	index_buffer.allocate(MOD1_PLANE_INDEX_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(MOD1_INTERNAL(size)));
-	index_buffer.set(0);
+	buffer_index.allocate(MOD1_PLANE_INDEX_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(MOD1_INTERNAL(size)));
+	buffer_index.set(0);
 
-	int 				*index_ptr = index_buffer.data();
+	int 				*index_ptr = buffer_index.data();
 	int					index_i = 0;
 
 	int					top_left;
@@ -62,7 +62,7 @@ void					plane::build()
 
 	//					Normals
 
-	normal_buffer.allocate(MOD1_PLANE_NORMAL_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(MOD1_INTERNAL(size)));
+	buffer_normal.allocate(MOD1_PLANE_NORMAL_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(MOD1_INTERNAL(size)));
 
 	temp = point3<float>(0, 0, -1);
 
@@ -85,7 +85,7 @@ void					plane::build()
 
 	//					Colors
 
-	color_buffer.allocate(MOD1_PLANE_COLOR_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(MOD1_INTERNAL(size)));
+	buffer_color.allocate(MOD1_PLANE_COLOR_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(MOD1_INTERNAL(size)));
 
 	temp = point3<float>(0, 0, 1);
 

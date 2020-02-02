@@ -10,19 +10,20 @@ void				model::load()
 	vao->bind();
 	eab->bind();
 
-	vbo_point = vao->attribute(3, point_buffer, is_dynamic);
+	vbo_point = vao->attribute(3, buffer_point, MOD1_INTERNAL(is_dynamic));
 
-	eab->buffer(index_buffer);
-
+	eab->buffer(buffer_index);
 	eab::unbind();
 
-	if (normal_buffer.is_allocated())
-		vbo_normal = vao->attribute(3, normal_buffer, is_dynamic);
-	if (color_buffer.is_allocated())
-		vbo_color = vao->attribute(3, color_buffer, is_dynamic);
+	if (buffer_normal.is_allocated())
+		vbo_normal = vao->attribute(3, buffer_normal, MOD1_INTERNAL(is_dynamic));
+	if (buffer_color.is_allocated())
+		vbo_color = vao->attribute(3, buffer_color, MOD1_INTERNAL(is_dynamic));
+	if (buffer_texture.is_allocated())
+		vbo_texture = vao->attribute(2, buffer_texture, MOD1_INTERNAL(is_dynamic));
 
 	vao::unbind();
 
-	is_loaded = true;
-	vertex_number = index_buffer.size() * 3;
+	set_as_loaded();
+	vertex_number = buffer_index.size() * 3;
 }

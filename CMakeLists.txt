@@ -57,7 +57,7 @@ set(ENGINE_GL
 	mod1_engine_gl/model/set_as_x.cpp
 	mod1_engine_gl/model/start.cpp
 	mod1_engine_gl/model/stop.cpp
-	mod1_engine_gl/model/upload_slot.cpp
+	mod1_engine_gl/model/upload.cpp
 
 	mod1_engine_gl/vbo/vbo.cpp
 	mod1_engine_gl/vao/vao.cpp

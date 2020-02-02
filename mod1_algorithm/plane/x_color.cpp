@@ -46,7 +46,7 @@ point3<float>			plane::compute_color(const float &height) const
 	index_to = index_from + 1;
 	ratio_normal = ratio - floor(ratio);
 
-	if (index_to == color_data.size())
+	if (index_to == (int)color_data.size())
 		return (color_data[index_from]);
 
 	for (int i = 0; i < 3; i++)

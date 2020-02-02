@@ -4,12 +4,18 @@ using namespace		mod1_engine_gl;
 
 void 				model::set_as_built()
 {
-	is_built = true;
+	MOD1_INTERNAL(is_built) = true;
+}
+
+void				model::set_as_loaded()
+{
+	MOD1_INTERNAL(is_loaded) = true;
 }
 
 void 				model::set_as_dynamic()
 {
-	if (is_built)
-		throw (exception_dynamic());
-	is_dynamic = true;
+	if (MOD1_INTERNAL(is_built))
+		throw (exception_dynamic_a());
+
+	MOD1_INTERNAL(is_dynamic) = true;
 }

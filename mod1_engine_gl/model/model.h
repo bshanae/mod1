@@ -12,7 +12,8 @@ enum class			mod1_engine_gl::model_slot
 	point,
 	index,
 	normal,
-	color
+	color,
+	texture
 };
 
 class				mod1_engine_gl::model
@@ -21,14 +22,15 @@ public :
 
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_build, "Mod1 Engine GL, Model : Object not built")
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_load, "Mod1 Engine GL, Model : Object not loaded")
-MOD1_GENERATE_EXCEPTION_DECLARATION(exception_dynamic, "Mod1 Engine GL, Model : Can't set object as dynamic after loading")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_dynamic_a, "Mod1 Engine GL, Model : Can't set object as dynamic after loading")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_dynamic_b, "Mod1 Engine GL, Model : Can't update static object")
 
 					model() = default;
 					~model() = default;
 
 	virtual void	build() = 0;
 
-	void			load();
+	virtual void	load();
 	void			draw() const;
 
 	void			start() const;
@@ -36,38 +38,45 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_dynamic, "Mod1 Engine GL, Model : 
 
 protected :
 
-	buffer<float>	point_buffer;
-	buffer<int>		index_buffer;
-	buffer<float>	normal_buffer;
-	buffer<float>	color_buffer;
+	buffer<float>	buffer_point;
+	buffer<int>		buffer_index;
+	buffer<float>	buffer_normal;
+	buffer<float>	buffer_color;
+	buffer<float>	buffer_texture;
 
 	vao				*vao = nullptr;
+	eab				*eab = nullptr;
 	vbo				*vbo_point = nullptr;
 	vbo				*vbo_normal = nullptr;
 	vbo				*vbo_color = nullptr;
-	eab				*eab = nullptr;
+	vbo				*vbo_texture = nullptr;
 
 	int				vertex_number = 0;
 
 	void 			*pointer(const int &index, const model_slot &slot);
 	void const		*pointer(const int &index, const model_slot &slot) const;
 
-	void 			upload_slot(const model_slot &slot);
+	void 			update(const model_slot &slot);
 
 	void			set_as_built();
+	void			set_as_loaded();
 	void			set_as_dynamic();
 
 MOD1_GENERATE_INTERNAL_WITH_VALUE(glm::mat4, transformation, glm::mat4(1))
 
 private :
 
-	bool			is_built = false;
-	bool			is_loaded = false;
-	bool 			is_dynamic = false;
+MOD1_GENERATE_INTERNAL_WITH_VALUE(bool, is_built, false)
+MOD1_GENERATE_INTERNAL_WITH_VALUE(bool, is_loaded, false)
+MOD1_GENERATE_INTERNAL_WITH_VALUE(bool, is_dynamic, false)
 
 public :
 
 MOD1_GENERATE_INTERNAL_READ_DECLARATION(transformation)
+
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(is_built)
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(is_loaded)
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(is_dynamic)
 };
 
 

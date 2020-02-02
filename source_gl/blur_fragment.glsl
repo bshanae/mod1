@@ -1,6 +1,6 @@
 #version 330 core
 
-in vec2					UV;
+in vec2					pass_UV;
 out vec4				result_color;
 
 uniform sampler2D		uniform_texture;
@@ -12,9 +12,9 @@ bool					is_valid_helper(float x)
 	return (true);
 }
 
-bool					is_valid(vec2 UV)
+bool					is_valid(vec2 pass_UV)
 {
-	return (is_valid_helper(UV.x) && is_valid_helper(UV.y));
+	return (is_valid_helper(pass_UV.x) && is_valid_helper(pass_UV.y));
 }
 
 vec3					blur()
@@ -31,14 +31,14 @@ vec3					blur()
 
 	dx = 1 / screen_width;
 	dy = 1 / screen_height;
-	sum = vec3(0,0,0);
+	sum = vec3(0, 0, 0);
 
 	for (int i = -10; i < 10; i++)
 		for (int j = -10; j < 10; j++)
 		{
-			if (!is_valid(UV + vec2(i * dx, j  * dy)))
+			if (!is_valid(pass_UV + vec2(i * dx, j  * dy)))
 				continue ;
-			sum += texture(uniform_texture, UV + vec2(i * dx, j  * dy)).xyz;
+			sum += texture(uniform_texture, pass_UV + vec2(i * dx, j  * dy)).xyz;
 			count++;
 		}
 	return (sum / count);
