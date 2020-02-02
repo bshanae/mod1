@@ -20,8 +20,8 @@ bool 					water::callback(int key, void *ptr)
 		water->water_data.set(0);
 		
 #ifdef MOD1_WATER_FLOOD_BORDER
-#define	HEIGHT			50
-#define WIDTH			3
+#define	HEIGHT			100
+#define WIDTH			10
 
 		point2<int>		iter;
 
