@@ -5,7 +5,7 @@
 #include "mod1_engine_gl/mod1_engine_gl.h"
 #include "mod1_engine_cl/mod1_engine_cl.h"
 
-#include "mod1_libraries/FastNoise/FastNoise.h"
+#include "mod1_extern/FastNoise/FastNoise.h"
 
 #include <fstream>
 #include <vector>

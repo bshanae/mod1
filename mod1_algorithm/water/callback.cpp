@@ -85,8 +85,8 @@ bool 					water::callback(int key, void *ptr)
 
 	water->update_model();
 	water->update_color();
-	water->upload_buffer(model_slot::point);
-	water->upload_buffer(model_slot::color);
+	water->upload_slot(model_slot::point);
+	water->upload_slot(model_slot::color);
 
 	return (true);
 }

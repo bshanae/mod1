@@ -52,7 +52,7 @@ protected :
 	void 			*pointer(const int &index, const model_slot &slot);
 	void const		*pointer(const int &index, const model_slot &slot) const;
 
-	void 			upload_buffer(const model_slot &slot);
+	void 			upload_slot(const model_slot &slot);
 
 	void			set_as_built();
 	void			set_as_dynamic();
