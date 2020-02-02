@@ -30,11 +30,11 @@ public :
 			2, 3, 1
 		};
 
-		data.point_buffer.allocate(3 * 4);
-		data.point_buffer.copy(vertices);
+		point_buffer.allocate(3 * 4);
+		point_buffer.copy(vertices);
 
-		data.index_buffer.allocate(3 * 2);
-		data.index_buffer.copy(indices);
+		index_buffer.allocate(3 * 2);
+		index_buffer.copy(indices);
 
 		set_as_built();
 	}

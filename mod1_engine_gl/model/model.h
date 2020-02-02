@@ -3,22 +3,28 @@
 #include "mod1_engine_gl/namespace.h"
 
 #include "mod1_engine_gl/core/core.h"
-#include "mod1_engine_gl/model/model_data.h"
-//#include "mod1_engine_gl/loader/loader.h"
-#include "mod1_engine_gl/point/point2.h"
+#include "mod1_engine_gl/vbo/vbo.h"
+#include "mod1_engine_gl/vao/vao.h"
+#include "mod1_engine_gl/eab/eab.h"
+
+enum class			mod1_engine_gl::model_slot
+{
+	point,
+	index,
+	normal,
+	color
+};
 
 class				mod1_engine_gl::model
 {
-	friend class 	model_reader;
-
 public :
-
-					model() = default;
-					~model() = default;
 
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_build, "Mod1 Engine GL, Model : Object not built")
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_load, "Mod1 Engine GL, Model : Object not loaded")
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_dynamic, "Mod1 Engine GL, Model : Can't set object as dynamic after loading")
+
+					model() = default;
+					~model() = default;
 
 	virtual void	build() = 0;
 
@@ -30,14 +36,23 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_dynamic, "Mod1 Engine GL, Model : 
 
 protected :
 
-	model_data		data;
+	buffer<float>	point_buffer;
+	buffer<int>		index_buffer;
+	buffer<float>	normal_buffer;
+	buffer<float>	color_buffer;
 
-	int				vertex_number = -1;
+	vao				*vao = nullptr;
+	vbo				*vbo_point = nullptr;
+	vbo				*vbo_normal = nullptr;
+	vbo				*vbo_color = nullptr;
+	eab				*eab = nullptr;
 
-	void			*get_ptr(const int &index, const model_data::slot_type &slot);
-	void const		*get_ptr(const int &index, const model_data::slot_type &slot) const;
+	int				vertex_number = 0;
 
-	void 			upload_buffer(const model_data::slot_type &slot);
+	void 			*pointer(const int &index, const model_slot &slot);
+	void const		*pointer(const int &index, const model_slot &slot) const;
+
+	void 			upload_buffer(const model_slot &slot);
 
 	void			set_as_built();
 	void			set_as_dynamic();

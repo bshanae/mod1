@@ -40,7 +40,7 @@ MOD1_GENERATE_EXCEPTION(exception_enum, "Mod1 Engine GL : Unknown enum value")
 	class			vao;
 	class			eab;
 
-	class			model_data;
+	enum class		model_slot;
 	class			model;
 
 	class			texture;

@@ -44,10 +44,6 @@ protected :
 	bool								write_height(const point2<int> &iter, const float &z);
 	void								write_color(const point2<int> &iter, const point3<float> &color);
 
-	bool								is_valid(
-										const point2<int> &iter,
-										const model_slot &slot,
-										const index_convention &convention = index_convention::dual_first) const;
 	bool 								is_dual(const point2<int> &iter) const;
 
 	void 								update_normal();
@@ -81,19 +77,18 @@ MOD1_GENERATE_INTERNAL(point3<float>, final_max)
 
 	MOD1_PLANE_COLOR_DATA				color_data_positive;
 	MOD1_PLANE_COLOR_DATA				color_data_negative;
-	using 								mod1_engine_gl::model::data;
 	buffer2<cut_style>					cut_style_data;
 
 	bool								is_set = false;
 
-	int 								get_index(
+	int 								pointer(
 										const point2<int> &iter,
 										const index_convention &convention = index_convention::dual_first) const;
-	void 								*get_ptr(
+	void 								*pointer(
 										const point2<int> &iter,
 										const model_slot &slot,
 										const index_convention &convention = index_convention::dual_first);
-	void const							*get_ptr(
+	void const							*pointer(
 										const point2<int> &iter,
 										const model_slot &slot,
 										const index_convention &convention = index_convention::dual_first) const;

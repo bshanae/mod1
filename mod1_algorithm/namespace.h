@@ -19,7 +19,7 @@ namespace			mod1_algorithm
 	using			mod1_engine_gl::buffer;
 	using			mod1_engine_gl::buffer2;
 
-	using			model_slot = mod1_engine_gl::model_data::slot_type;
+	using			model_slot = mod1_engine_gl::model_slot;
 
 	class 			plane;
 	enum class 		plane_color;

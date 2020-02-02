@@ -2,7 +2,7 @@
 
 using namespace		mod1_algorithm;
 
-int 				plane::get_index(
+int 				plane::pointer(
 					const point2<int> &iter,
 					const index_convention &convention) const
 {
@@ -39,18 +39,18 @@ int 				plane::get_index(
 	}
 }
 
-void 				*plane::get_ptr(
+void 				*plane::pointer(
 					const point2<int> &iter,
-					const mod1_engine_gl::model_data::slot_type &slot,
+					const model_slot &slot,
 					const index_convention &convention)
 {
-	return (mod1_engine_gl::model::get_ptr(get_index(iter, convention), slot));
+	return (mod1_engine_gl::model::pointer(pointer(iter, convention), slot));
 }
 
-void const			*plane::get_ptr(
+void const			*plane::pointer(
 					const point2<int> &iter,
-					const mod1_engine_gl::model_data::slot_type &slot,
+					const model_slot &slot,
 					const index_convention &convention) const
 {
-	return (mod1_engine_gl::model::get_ptr(get_index(iter, convention), slot));
+	return (mod1_engine_gl::model::pointer(pointer(iter, convention), slot));
 }

@@ -13,27 +13,27 @@ void					plane::build()
 
 	//					Points
 
-	data.point_buffer.allocate(MOD1_PLANE_POINT_SIZE * MOD1_PLANE_NUMBER_OF_POINTS(MOD1_INTERNAL(size)));
+	point_buffer.allocate(MOD1_PLANE_POINT_SIZE * MOD1_PLANE_NUMBER_OF_POINTS(MOD1_INTERNAL(size)));
 
 	for (iter.y = 0; iter.y < MOD1_INTERNAL(size).y; iter.y++)
 		for (iter.x = 0; iter.x < MOD1_INTERNAL(size).x; iter.x++)
 		{
 			temp = point3<float>(MOD1_INTERNAL(min).x + MOD1_INTERNAL(delta) * iter.x, MOD1_INTERNAL(min).y + MOD1_INTERNAL(delta) * iter.y);
-			ptr = (float *)get_ptr(iter, model_slot::point, index_convention::dual_first);
+			ptr = (float *) pointer(iter, model_slot::point, index_convention::dual_first);
 			temp.write_to_ptr(ptr, point3<float>::convention_xzy);
 			if (is_dual(iter))
 			{
-				ptr = (float *)get_ptr(iter, model_slot::point, index_convention::dual_second);
+				ptr = (float *) pointer(iter, model_slot::point, index_convention::dual_second);
 				temp.write_to_ptr(ptr, point3<float>::convention_xzy);
 			}
 		}
 
 	//					Indices
 
-	data.index_buffer.allocate(MOD1_PLANE_INDEX_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(MOD1_INTERNAL(size)));
-	data.index_buffer.set(0);
+	index_buffer.allocate(MOD1_PLANE_INDEX_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(MOD1_INTERNAL(size)));
+	index_buffer.set(0);
 
-	int 				*index_ptr = data.index_buffer.data();
+	int 				*index_ptr = index_buffer.data();
 	int					index_i = 0;
 
 	int					top_left;
@@ -45,11 +45,11 @@ void					plane::build()
 	for (iter.y = 0; iter.y < MOD1_INTERNAL(size).y - 1; iter.y++)
 		for (iter.x = 0; iter.x < MOD1_INTERNAL(size).x - 1; iter.x++)
 		{
-			top_left = get_index(point2<int>(iter.x, iter.y),
-			    is_dual(iter) ? index_convention::dual_second : index_convention::dual_first);
-			top_right = get_index(point2<int>(iter.x + 1, iter.y), index_convention::dual_first);
-			bottom_left = get_index(point2<int>(iter.x, iter.y + 1));
-			bottom_right = get_index(point2<int>(iter.x + 1, iter.y + 1));
+			top_left = pointer(point2<int>(iter.x, iter.y),
+							   is_dual(iter) ? index_convention::dual_second : index_convention::dual_first);
+			top_right = pointer(point2<int>(iter.x + 1, iter.y), index_convention::dual_first);
+			bottom_left = pointer(point2<int>(iter.x, iter.y + 1));
+			bottom_right = pointer(point2<int>(iter.x + 1, iter.y + 1));
 
 			index_ptr[index_i++] = top_left;
 			index_ptr[index_i++] = bottom_left;
@@ -62,18 +62,18 @@ void					plane::build()
 
 	//					Normals
 
-	data.normal_buffer.allocate(MOD1_PLANE_NORMAL_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(MOD1_INTERNAL(size)));
+	normal_buffer.allocate(MOD1_PLANE_NORMAL_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(MOD1_INTERNAL(size)));
 
 	temp = point3<float>(0, 0, -1);
 
 	for (iter.y = 0; iter.y < MOD1_INTERNAL(size).y - 1; iter.y++)
 		for (iter.x = 0; iter.x < MOD1_INTERNAL(size).x; iter.x++)
 		{
-			ptr = (float *)get_ptr(iter, model_slot::normal, index_convention::dual_first);
+			ptr = (float *) pointer(iter, model_slot::normal, index_convention::dual_first);
 			temp.write_to_ptr(ptr, point3<float>::convention_xzy);
 			if (is_dual(iter))
 			{
-				ptr = (float *)get_ptr(iter, model_slot::normal, index_convention::dual_second);
+				ptr = (float *) pointer(iter, model_slot::normal, index_convention::dual_second);
 				temp.write_to_ptr(ptr, point3<float>::convention_xzy);
 			}
 		}
@@ -85,7 +85,7 @@ void					plane::build()
 
 	//					Colors
 
-	data.color_buffer.allocate(MOD1_PLANE_COLOR_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(MOD1_INTERNAL(size)));
+	color_buffer.allocate(MOD1_PLANE_COLOR_SIZE * MOD1_PLANE_NUMBER_OF_TRIANGLES(MOD1_INTERNAL(size)));
 
 	temp = point3<float>(0, 0, 1);
 

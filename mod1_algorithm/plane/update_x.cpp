@@ -18,9 +18,9 @@ void	 				plane::update_normal_helper(
 
 	point3<float>		normal;
 
-	ptr_a = (float *)mod1_engine_gl::model::get_ptr(index_a, model_slot::point);
-	ptr_b = (float *)mod1_engine_gl::model::get_ptr(index_b, model_slot::point);
-	ptr_c = (float *)mod1_engine_gl::model::get_ptr(index_c, model_slot::point);
+	ptr_a = (float *) mod1_engine_gl::model::pointer(index_a, model_slot::point);
+	ptr_b = (float *) mod1_engine_gl::model::pointer(index_b, model_slot::point);
+	ptr_c = (float *) mod1_engine_gl::model::pointer(index_c, model_slot::point);
 
 	a = point3<float>(ptr_a, point3<float>::convention_xzy);
 	b = point3<float>(ptr_b, point3<float>::convention_xzy);
@@ -28,7 +28,7 @@ void	 				plane::update_normal_helper(
 
 	normal = point3<float>::cross(c - a, b - a).normalized();
 
-	ptr_n = (float *)mod1_engine_gl::model::get_ptr(index_a, model_slot::normal);
+	ptr_n = (float *) mod1_engine_gl::model::pointer(index_a, model_slot::normal);
 	normal.write_to_ptr(ptr_n, point3<float>::convention_xzy);
 }
 
@@ -44,11 +44,11 @@ void					plane::update_normal()
 	for (iter.y = 0; iter.y < MOD1_INTERNAL(size).y - 1; iter.y++)
 		for (iter.x = 0; iter.x < MOD1_INTERNAL(size).x - 1; iter.x++)
 		{
-			top_left = get_index(point2<int>(iter.x, iter.y),
-				is_dual(iter) ? index_convention::dual_second : index_convention::dual_first);
-			top_right = get_index(point2<int>(iter.x + 1, iter.y), index_convention::dual_first);
-			bottom_left = get_index(point2<int>(iter.x, iter.y + 1));
-			bottom_right = get_index(point2<int>(iter.x + 1, iter.y + 1));
+			top_left = pointer(point2<int>(iter.x, iter.y),
+							   is_dual(iter) ? index_convention::dual_second : index_convention::dual_first);
+			top_right = pointer(point2<int>(iter.x + 1, iter.y), index_convention::dual_first);
+			bottom_left = pointer(point2<int>(iter.x, iter.y + 1));
+			bottom_right = pointer(point2<int>(iter.x + 1, iter.y + 1));
 
 			if (get_cut_style(iter) == cut_style::upwards)
 			{
@@ -75,7 +75,7 @@ void 					plane::update_final()
 	for (iter.y = 0; iter.y < MOD1_INTERNAL(size).y - 1; iter.y++)
 		for (iter.x = 0; iter.x < MOD1_INTERNAL(size).x - 1; iter.x++)
 		{
-			ptr = (float *)get_ptr(iter, model_slot::point);
+			ptr = (float *) pointer(iter, model_slot::point);
 			point = point3<float>(ptr[0], ptr[2], ptr[1]);
 			MOD1_INTERNAL(final_min) = point3<float>::min(MOD1_INTERNAL(final_min), point);
 			MOD1_INTERNAL(final_max) = point3<float>::max(MOD1_INTERNAL(final_max), point);

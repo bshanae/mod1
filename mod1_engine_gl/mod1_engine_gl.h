@@ -16,5 +16,4 @@
 #include "mod1_engine_gl/vao/vao.h"
 #include "mod1_engine_gl/eab/eab.h"
 #include "mod1_engine_gl/model/model.h"
-#include "mod1_engine_gl/model/model_data.h"
 #include "mod1_engine_gl/camera/camera.h"
