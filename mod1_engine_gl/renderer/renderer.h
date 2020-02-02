@@ -11,6 +11,17 @@
 #include "mod1_engine_gl/uniform/uniform.h"
 #include "mod1_engine_gl/point/point3.h"
 
+typedef struct
+{
+	GLuint				textureID;
+	glm::ivec2			size;
+	glm::ivec2			bearing;
+	GLuint				advance;
+}						Character;
+
+#include "mod1_main/mod1_freetype.h"
+#include <map>
+
 class 					square : public mod1_engine_gl::model
 {
 public :
@@ -66,7 +77,6 @@ private :
 	bool						render_request = true;
 
 	core						core;
-//	loader						loader;
 	camera						camera;
 	framebuffer					framebuffer;
 
@@ -93,7 +103,21 @@ private :
 	public :
 		MOD1_GENERATE_UNIFORM(texture, "uniform_texture")
 	}							blur_program;
-	class square				blur_square;
+	square						blur_square;
+
+public :
+
+	std::map<char, Character>	Characters;
+	class						: public mod1_engine_gl::program
+	{
+	public :
+		MOD1_GENERATE_UNIFORM(projection, "uniform_projection")
+	}							text_program;
+	GLuint						text_VAO;
+	GLuint						text_VBO;
+	square						text_square;
+
+private :
 
 	void						render_internal();
 	void						render_no_swap();

@@ -29,7 +29,7 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_dynamic, "Mod1 Engine GL, Model : 
 	virtual void	build() = 0;
 
 	void			load();
-	void			draw(core &core);
+	void			draw() const;
 
 	void			start() const;
 	void			stop() const;

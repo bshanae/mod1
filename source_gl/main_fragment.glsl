@@ -1,7 +1,6 @@
 #version 330 core
 
 flat in vec3		pass_color;
-
 out vec4			result_color;
 
 void				main()

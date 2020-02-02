@@ -4,7 +4,7 @@ using namespace			mod1_engine_gl;
 
 void 					renderer::render_internal()
 {
-	core.clear(MOD1_BACKGROUND);
+	core::clear(MOD1_BACKGROUND);
 
 	main_program.start();
 
@@ -17,7 +17,7 @@ void 					renderer::render_internal()
 	for (auto &model : model_array)
 	{
 		main_program.object_transformation.upload(model->transformation());
-		model->draw(core);
+		model->draw();
 	}
 	main_program.stop();
 	core.swap_buffers();
@@ -26,7 +26,7 @@ void 					renderer::render_internal()
 
 void 					renderer::render_no_swap()
 {
-	core.clear(point3<float>(0.4));
+	core::clear(point3<float>(0.4));
 
 	main_program.start();
 
@@ -40,7 +40,7 @@ void 					renderer::render_no_swap()
 	for (auto &model : model_array)
 	{
 		main_program.object_transformation.upload(model->transformation());
-		model->draw(core);
+		model->draw();
 	}
 	main_program.stop();
 }

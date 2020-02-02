@@ -2,9 +2,9 @@
 
 using namespace		mod1_engine_gl;
 
-void				model::draw(core &core)
+void				model::draw() const
 {
 	start();
-	core.draw(vertex_number);
+	core::draw(vertex_number);
 	stop();
 }

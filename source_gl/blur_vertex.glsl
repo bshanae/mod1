@@ -1,7 +1,6 @@
 #version 330 core
 
 layout (location = 0) in vec3	coordinate;
-
 out vec2						UV;
 
 uniform sampler2D				uniform_texture;

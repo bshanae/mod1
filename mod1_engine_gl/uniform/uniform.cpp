@@ -19,7 +19,7 @@ void 			uniform::upload(const int &data)
 {
 	if (not is_connected)
 		throw (exception_set());
-	glUniform1i(id, 0);
+	glUniform1i(id, data);
 }
 
 void 			uniform::upload(const float &data)

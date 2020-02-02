@@ -71,17 +71,17 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(core, window_height)
 	glfwTerminate();
 }
 
-bool				core::is_working() const
+bool				core::is_working()
 {
 	return (glfwWindowShouldClose(window));
 }
 
-void				core::terminate() const
+void				core::terminate()
 {
 	glfwSetWindowShouldClose(window, GL_TRUE);
 }
 
-void				core::update() const
+void				core::update()
 {
 	glfwPollEvents();
 }

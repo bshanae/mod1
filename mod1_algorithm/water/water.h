@@ -17,7 +17,7 @@ public :
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_unknown_flow_type, "Mod1 Water : Unknown flow type")
 
 	explicit	 					water(terrain const *terrain);
-									~water() = default;
+									~water() final = default;
 
 	void							build() final;
 	mod1_engine_gl::model			*model() final;

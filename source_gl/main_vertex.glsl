@@ -10,13 +10,12 @@ struct								mod1_light_info
 layout (location = 0) in	vec3	position;
 layout (location = 1) in	vec3	normal;
 layout (location = 2) in	vec3	color;
+flat out vec3						pass_color;
 
 uniform mat4						object_transformation;
 uniform mat4						camera_view;
 uniform mat4						camera_projection;
 uniform mod1_light_info				light_info;
-
-flat out vec3						pass_color;
 
 float								calculate_light_intensity()
 {

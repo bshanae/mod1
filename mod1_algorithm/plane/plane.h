@@ -12,7 +12,7 @@ class									mod1_algorithm::plane : protected mod1_engine_gl::model
 {
 public :
 										plane() = default;
-										~plane() = default;
+	virtual								~plane() = default;
 
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_coordinate, "Mod1 Plane : Bad coordinate")
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_logic, "Mod1 Plane : Object not set")

@@ -21,13 +21,13 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_GLEW, "Mod1 Engine GL, Core : Can'
 
 	void				set_callback(mod1_callback function, void *ptr);
 
-	void				update() const;
-	bool 				is_working() const;
-	void 				terminate() const;
-
-	void 				clear(const point3<float> &color);
-	void 				draw(const int &count);
+	bool 				is_working();
+	void 				terminate();
 	void				swap_buffers();
+
+	static void			update();
+	static void 		clear(const point3<float> &color);
+	static void 		draw(const int &count);
 
 private :
 

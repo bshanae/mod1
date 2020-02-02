@@ -7,16 +7,8 @@
 #define MOD1_WINDOW_WIDTH					720
 #define MOD1_WINDOW_HEIGHT					480
 
-#define MOD1_NORMAL_TEST					MOD1_DISABLE
-
-#if MOD1_ENABLED(MOD1_NORMAL_TEST)
-#define MOD1_SOURCE_SHADER_VERTEX			"./shaders/test_vertex.glsl"
-#define MOD1_SOURCE_SHADER_GEOMETRY			"./shaders/test_geometry.glsl"
-#define MOD1_SOURCE_SHADER_FRAGMENT			"./shaders/test_fragment.glsl"
-#else
 #define MOD1_SOURCE_SHADER_VERTEX			"./source_gl/main_vertex.glsl"
 #define MOD1_SOURCE_SHADER_FRAGMENT			"./source_gl/main_fragment.glsl"
-#endif
 
 //											ENGINE
 

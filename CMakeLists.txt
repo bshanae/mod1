@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.15)
 project(21_mod1)
 
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 
 link_directories(
 	mod1_extern/freetype/2.10.1/lib
@@ -9,13 +10,14 @@ link_directories(
 	mod1_extern/glfw/3.3/lib)
 
 link_libraries(
+	"freetype"
 	"-framework OpenGL"
 	"-framework OpenCL"
 	"glfw.3"
 	"glew")
 
 include_directories(
-	mod1_extern/freetype/2.10.1/include
+	mod1_extern/freetype/2.10.1/include/freetype2
 	mod1_extern/glew/2.1.0/include/GL
 	mod1_extern/glfw/3.3/include/GLFW
 	mod1_extern/glm/0.9.9.5/include/glm

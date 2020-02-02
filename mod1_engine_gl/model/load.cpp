@@ -5,7 +5,6 @@ using namespace		mod1_engine_gl;
 void				model::load()
 {
 	eab = new class eab;
-
 	vao = new class vao;
 
 	vao->bind();

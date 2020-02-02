@@ -12,7 +12,7 @@ public :
 	friend class				water;
 
 								terrain() = default;
-								~terrain() = default;
+								~terrain() final = default;
 
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_source, "Mod1 Terrain : Invalid source file")
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_pattern, "Mod1 Terrain : Invalid pattern")
