@@ -36,11 +36,12 @@ MOD1_GENERATE_EXCEPTION(exception_enum, "Mod1 Engine GL : Unknown enum value")
 	class			callback;
 	class			renderer;
 
-	class			loader;
+	class			vbo;
+	class			vao;
+	class			eab;
 
 	class			model_data;
 	class			model;
-	class			model_reader;
 
 	class			texture;
 	enum class		texture_type;

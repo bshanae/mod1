@@ -52,13 +52,16 @@ set(ENGINE_GL
 
 	./mod1_engine_gl/model/model.cpp
 	./mod1_engine_gl/model/model_data.cpp
-	./mod1_engine_gl/model/model_reader.cpp
 
-	./mod1_engine_gl/loader/eab_x.cpp
-	./mod1_engine_gl/loader/vao_x.cpp
-	./mod1_engine_gl/loader/vbo_x.cpp
+#	./mod1_engine_gl/loader/eab_x.cpp
+#	./mod1_engine_gl/loader/vao_x.cpp
+#	./mod1_engine_gl/loader/vbo_x.cpp
 
-	./mod1_engine_gl/loader/loader.cpp
+	./mod1_engine_gl/vbo/vbo.cpp
+	./mod1_engine_gl/vao/vao.cpp
+	./mod1_engine_gl/eab/eab.cpp
+
+#	./mod1_engine_gl/loader/loader.cpp
 	./mod1_engine_gl/camera/camera.cpp
 
 	./mod1_engine_gl/callback/callback.cpp

@@ -15,8 +15,8 @@ public :
 					texture(const texture_type &type, const int &width, const int &height);
 					~texture();
 
-	void			start() const;
-	void			stop() const;
+	void			bind() const;
+	static void		unbind();
 
 	static void		activate(const int &index = 0);
 

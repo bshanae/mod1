@@ -40,5 +40,5 @@ using namespace			mod1_engine_gl;
 	blur_program.set_uniform(blur_program.texture);
 
 	blur_square.build();
-	blur_square.load(loader);
+	blur_square.load();
 }

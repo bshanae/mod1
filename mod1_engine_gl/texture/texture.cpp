@@ -13,7 +13,7 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(texture, object)
 
 	glGenTextures(1, &MOD1_INTERNAL(object));
 
-	start();
+	bind();
 
 	switch (type_mod1)
 	{
@@ -32,7 +32,7 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(texture, object)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-	stop();
+	unbind();
 }
 
 					texture::~texture()
@@ -40,12 +40,12 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(texture, object)
 	glDeleteTextures(1, &MOD1_INTERNAL(object));
 }
 
-void				texture::start() const
+void				texture::bind() const
 {
 	glBindTexture(GL_TEXTURE_2D, MOD1_INTERNAL(object));
 }
 
-void				texture::stop() const
+void				texture::unbind()
 {
 	glBindTexture(GL_TEXTURE_2D, 0);
 }

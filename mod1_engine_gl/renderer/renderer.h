@@ -6,7 +6,6 @@
 #include "mod1_engine_gl/program/program.h"
 #include "mod1_engine_gl/framebuffer/framebuffer.h"
 #include "mod1_engine_gl/model/model.h"
-#include "mod1_engine_gl/loader/loader.h"
 #include "mod1_engine_gl/camera/camera.h"
 #include "mod1_engine_gl/callback/callback.h"
 #include "mod1_engine_gl/uniform/uniform.h"
@@ -67,7 +66,7 @@ private :
 	bool						render_request = true;
 
 	core						core;
-	loader						loader;
+//	loader						loader;
 	camera						camera;
 	framebuffer					framebuffer;
 

@@ -13,10 +13,10 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_complete, "Mod1 Engine GL, Framebu
 							framebuffer(const int &width, const int &height);
 							~framebuffer();
 
-	void					start();
-	void 					stop();
+	void					bind() const;
+	static void 			unbind();
 
-	const texture			&texture();
+	const texture			&texture() const;
 
 private :
 

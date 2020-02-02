@@ -2,7 +2,9 @@
 
 #include "mod1_engine_gl/namespace.h"
 
-#include "mod1_engine_gl/buffer/buffer.h"
+#include "mod1_engine_gl/vbo/vbo.h"
+#include "mod1_engine_gl/vao/vao.h"
+#include "mod1_engine_gl/eab/eab.h"
 
 class					mod1_engine_gl::model_data
 {
@@ -17,10 +19,11 @@ public :
 	buffer<float>		normal_buffer;
 	buffer<float>		color_buffer;
 
-	unsigned int		vao = 0;
-	unsigned int		vbo_point = 0;
-	unsigned int		vbo_normal = 0;
-	unsigned int		vbo_color = 0;
+	vao					*vao = nullptr;
+	vbo					*vbo_point = nullptr;
+	vbo					*vbo_normal = nullptr;
+	vbo					*vbo_color = nullptr;
+	eab					*eab = nullptr;
 
 	enum class			slot_type
 	{

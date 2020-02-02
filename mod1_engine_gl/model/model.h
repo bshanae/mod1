@@ -4,7 +4,7 @@
 
 #include "mod1_engine_gl/core/core.h"
 #include "mod1_engine_gl/model/model_data.h"
-#include "mod1_engine_gl/loader/loader.h"
+//#include "mod1_engine_gl/loader/loader.h"
 #include "mod1_engine_gl/point/point2.h"
 
 class				mod1_engine_gl::model
@@ -22,7 +22,7 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_dynamic, "Mod1 Engine GL, Model : 
 
 	virtual void	build() = 0;
 
-	void			load(loader &loader);
+	void			load();
 	void			draw(core &core);
 
 	void			start() const;

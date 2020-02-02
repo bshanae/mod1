@@ -10,7 +10,7 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(framebuffer, object)
 {
 	glGenFramebuffers(1, &MOD1_INTERNAL(object));
 
-	start();
+	bind();
 
 	texture_color = new mod1_engine_gl::texture(texture_type::color, width, height);
 	texture_depth = new mod1_engine_gl::texture(texture_type::depth, width, height);
@@ -25,7 +25,7 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(framebuffer, object)
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 		throw (exception_complete());
 
-	stop();
+	unbind();
 }
 
 					framebuffer::~framebuffer()
@@ -33,17 +33,17 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(framebuffer, object)
 	glDeleteFramebuffers(1, &MOD1_INTERNAL(object));
 }
 
-void				framebuffer::start()
+void				framebuffer::bind() const
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, MOD1_INTERNAL(object));
 }
 
-void 				framebuffer::stop()
+void 				framebuffer::unbind()
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-const texture		&framebuffer::texture()
+const texture		&framebuffer::texture() const
 {
 	return (*texture_color);
 }

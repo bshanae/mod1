@@ -57,16 +57,16 @@ void					renderer::glfw_callback(GLFWwindow* window, int key, int code, int acti
 		mod_light = !mod_light;
 	else if (key == GLFW_KEY_5 && action == GLFW_PRESS)
 	{
-		renderer->framebuffer.start();
+		renderer->framebuffer.bind();
 		renderer->render_no_swap();
-		renderer->framebuffer.stop();
+		renderer->framebuffer.unbind();
 
 		renderer->blur_program.start();
-		renderer->framebuffer.texture().start();
+		renderer->framebuffer.texture().bind();
 		texture::activate();
 		renderer->blur_program.texture.upload(0);
 		renderer->blur_square.draw(renderer->core);
-		renderer->framebuffer.texture().stop();
+		renderer->framebuffer.texture().unbind();
 		renderer->blur_program.stop();
 
 		renderer->core.swap_buffers();
