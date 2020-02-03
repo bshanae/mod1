@@ -43,7 +43,7 @@ using namespace			mod1_engine_gl;
 		std::cout << "ERROR::FREETYPE: Failed to load font" << std::endl;
 	FT_Set_Pixel_Sizes(face, 0, 48);
 
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1); // Disable byte-alignment restriction
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 	for (GLubyte c = 0; c < 128; c++)
 	{
