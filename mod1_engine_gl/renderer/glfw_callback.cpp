@@ -2,50 +2,6 @@
 
 using namespace			mod1_engine_gl;
 
-void					RenderText(renderer *renderer, std::string text, GLfloat x, GLfloat y, GLfloat scale, glm::vec3 color)
-{
-	// Activate corresponding render state
-	renderer->text_program.start();
-	glUniform3f(glGetUniformLocation(renderer->text_program.object(), "uniform_color"), color.x, color.y, color.z);
-	glActiveTexture(GL_TEXTURE0);
-//	glUniform1i(glGetUniformLocation(renderer->text_program.object(), "uniform_texture"), 0);
-	glBindVertexArray(renderer->text_VAO);
-
-	// Iterate through all characters
-	std::string::const_iterator c;
-	for (c = text.begin(); c != text.end(); c++)
-	{
-		Character ch = renderer->Characters[*c];
-
-		GLfloat xpos = x + ch.bearing.x * scale;
-		GLfloat ypos = y - (ch.size.y - ch.bearing.y) * scale;
-
-		GLfloat w = ch.size.x * scale;
-		GLfloat h = ch.size.y * scale;
-		// Update VBO for each character
-		GLfloat vertices[6][4] = {
-			{ xpos, ypos + h, 0.0, 0.0 },
-			{ xpos, ypos, 0.0, 1.0 },
-			{ xpos + w, ypos, 1.0, 1.0 },
-			{ xpos, ypos + h, 0.0, 0.0 },
-			{ xpos + w, ypos, 1.0, 1.0 },
-			{ xpos + w, ypos + h, 1.0, 0.0 }
-		};
-		// Render glyph texture over quad
-		glBindTexture(GL_TEXTURE_2D, ch.textureID);
-		// Update content of VBO memory
-		glBindBuffer(GL_ARRAY_BUFFER, renderer->text_VBO);
-		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		// Render quad
-		glDrawArrays(GL_TRIANGLES, 0, 6);
-		// Now advance cursors for next glyph (note that advance is number of 1/64 pixels)
-		x += (ch.advance >> 6u) * scale; // Bitshift by 6 to get value in pixels (2^6 = 64)
-	}
-	glBindVertexArray(0);
-	glBindTexture(GL_TEXTURE_2D, 0);
-}
-
 void					renderer::glfw_callback(GLFWwindow* window, int key, int code, int action, int mode)
 {
 	renderer			*renderer;
@@ -111,7 +67,7 @@ void					renderer::glfw_callback(GLFWwindow* window, int key, int code, int acti
 		renderer->blur_program.texture.upload(0);
 		renderer->blur_square.draw();
 		texture::unbind();
-		renderer->blur_program.stop();
+		program::stop();
 
 		renderer->core.swap_buffers();
 		return ;
@@ -121,34 +77,30 @@ void					renderer::glfw_callback(GLFWwindow* window, int key, int code, int acti
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		if (false)
-		{
-			std::cout << "Text" << std::endl;
-			RenderText(renderer, "This is sample text", 25.0f, 25.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f));
+		Character c = renderer->Characters['j'];
 
-		}
-		else
-		{
-			GLuint id = renderer->Characters['g'].textureID;
+#define X_START				100.f
+#define Y_START				100.f
 
-			float			array[] = {
-				-0.5, -0.5,
-				-0.5, +0.5,
-				+0.5, -0.5,
-				+0.5, +0.5
-			};
+#define X_EXTEND			c.size.x
+#define Y_EXTEND			c.size.y
 
-//			renderer->text_square.coordinate_buffer.copy(array);
-//			renderer->text_square.vbo_coordinate->buffer(renderer->text_square.coordinate_buffer);
+		float			array[] = {
+			X_START, Y_START, 0,
+			X_START, Y_START + Y_EXTEND, 0,
+			X_START + X_EXTEND, Y_START, 0,
+			X_START + X_EXTEND, Y_START + Y_EXTEND, 0
+		};
 
-			renderer->blur_program.start();
-			glBindTexture(GL_TEXTURE_2D, id);
-			texture::activate();
-			renderer->blur_program.texture.upload(0);
-			renderer->text_square.draw();
-			glBindTexture(GL_TEXTURE_2D, 0);
-			renderer->blur_program.stop();
-		}
+		renderer->text_square.buffer_point.copy(array);
+		renderer->text_square.update(model_slot::point);
+
+		renderer->text_program.start();
+		glBindTexture(GL_TEXTURE_2D, c.textureID);
+		texture::activate();
+		renderer->text_square.draw();
+		glBindTexture(GL_TEXTURE_2D, 0);
+		program::stop();
 
 		renderer->core.swap_buffers();
 		return ;

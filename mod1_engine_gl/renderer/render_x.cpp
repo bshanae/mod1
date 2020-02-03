@@ -8,6 +8,7 @@ void 					renderer::render_internal()
 
 	main_program.start();
 
+	main_program.camera_projection.upload(camera.projection());
 	main_program.camera_view.upload(camera.view());
 
 	main_program.light_ambient_intensity.upload(light_info.ambient_intensity);
@@ -19,7 +20,7 @@ void 					renderer::render_internal()
 		main_program.object_transformation.upload(model->transformation());
 		model->draw();
 	}
-	main_program.stop();
+	program::stop();
 	core.swap_buffers();
 	render_request = false;
 }
@@ -42,7 +43,7 @@ void 					renderer::render_no_swap()
 		main_program.object_transformation.upload(model->transformation());
 		model->draw();
 	}
-	main_program.stop();
+	program::stop();
 }
 
 void					renderer::render()

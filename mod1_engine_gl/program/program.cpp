@@ -17,7 +17,7 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(program, object)
 	glDeleteProgram(MOD1_INTERNAL(object));
 }
 
-void				program::start()
+void				program::start() const
 {
 	if (not is_linked)
 		throw (exception_link());
@@ -44,7 +44,7 @@ void				program::link()
 	check_error();
 }
 
-void 				program::set_uniform(uniform &uniform)
+void 				program::connect_uniform(uniform &uniform)
 {
 	uniform.connect(MOD1_INTERNAL(object));
 }

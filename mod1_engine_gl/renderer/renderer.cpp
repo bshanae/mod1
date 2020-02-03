@@ -17,24 +17,18 @@ using namespace			mod1_engine_gl;
 	main_program.add_shader(shader_type::fragment, MOD1_SOURCE_SHADER_FRAGMENT);
 	main_program.link();
 
-	main_program.start();
-
-	main_program.set_uniform(main_program.object_transformation);
-	main_program.set_uniform(main_program.camera_view);
-	main_program.set_uniform(main_program.camera_projection);
-	main_program.set_uniform(main_program.light_ambient_intensity);
-	main_program.set_uniform(main_program.light_direct_direction);
-	main_program.set_uniform(main_program.light_direct_intensity);
-
-	main_program.camera_projection.upload(camera.projection());
-
-	main_program.stop();
+	MOD1_CONNECT_UNIFORM(main_program, object_transformation)
+	MOD1_CONNECT_UNIFORM(main_program, camera_view)
+	MOD1_CONNECT_UNIFORM(main_program, camera_projection)
+	MOD1_CONNECT_UNIFORM(main_program, light_ambient_intensity)
+	MOD1_CONNECT_UNIFORM(main_program, light_direct_direction)
+	MOD1_CONNECT_UNIFORM(main_program, light_direct_intensity)
 
 	blur_program.add_shader(shader_type::vertex, "./source_gl/blur_vertex.glsl");
 	blur_program.add_shader(shader_type::fragment, "./source_gl/blur_fragment.glsl");
 	blur_program.link();
 
-	blur_program.set_uniform(blur_program.texture);
+	MOD1_CONNECT_UNIFORM(blur_program, texture)
 
 	blur_square.build();
 	blur_square.load();
@@ -95,23 +89,19 @@ using namespace			mod1_engine_gl;
 	text_program.add_shader(shader_type::fragment, "./source_gl/text_fragment.glsl");
 	text_program.link();
 
-	glm::mat4 projection = glm::ortho(0, core.window_width(), 0, core.window_height());
+	MOD1_CONNECT_UNIFORM(text_program, texture)
+	MOD1_CONNECT_UNIFORM(text_program, color)
+	MOD1_CONNECT_UNIFORM(text_program, projection)
+
+	auto			temp = glm::ortho(0.f, static_cast<float>(core.window_width()), 0.f, static_cast<float>(core.window_height()));
 
 	text_program.start();
-	text_program.set_uniform(text_program.projection);
-	text_program.projection.upload(projection);
-	text_program.stop();
+	text_program.texture.upload((int)0);
+	text_program.color.upload(glm::vec3(1, 0, 0));
+	text_program.projection.upload(temp);
+	program::stop();
 
+	text_square.set_as_dynamic();
 	text_square.build();
 	text_square.load();
-
-	glGenVertexArrays(1, &text_VAO);
-	glGenBuffers(1, &text_VBO);
-	glBindVertexArray(text_VAO);
-	glBindBuffer(GL_ARRAY_BUFFER, text_VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * 6 * 4, nullptr, GL_DYNAMIC_DRAW);
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), nullptr);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
 }

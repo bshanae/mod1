@@ -16,12 +16,12 @@ public :
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_compilation, "Mod1 Engine GL, Program : Compilation error")
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_link, "Mod1 Engine GL, Program : Object is nit linked")
 
-	void				start();
-	void				stop();
+	void				start() const;
+	static void			stop();
 
 	void 				add_shader(const shader_type &type, const char *source);
 	void				link();
-	void 				set_uniform(uniform &uniform);
+	void 				connect_uniform(uniform &uniform);
 
 private :
 

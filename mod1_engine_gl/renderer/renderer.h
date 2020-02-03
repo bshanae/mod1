@@ -70,6 +70,8 @@ public :
 
 	using						model::update;
 	using						model::buffer_point;
+
+	using						model::set_as_dynamic;
 };
 
 //								TEST END
@@ -134,6 +136,8 @@ public :
 	class						: public mod1_engine_gl::program
 	{
 	public :
+		MOD1_GENERATE_UNIFORM(texture, "uniform_texture")
+		MOD1_GENERATE_UNIFORM(color, "uniform_color")
 		MOD1_GENERATE_UNIFORM(projection, "uniform_projection")
 	}							text_program;
 	GLuint						text_VAO;
