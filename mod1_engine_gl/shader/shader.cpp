@@ -48,7 +48,7 @@ void					shader::link(const unsigned int &program_id)
 	is_linked = true;
 }
 
-unsigned int			shader::object() const
+const unsigned int		&shader::object() const
 {
 	if (!is_built)
 		throw (exception_build());

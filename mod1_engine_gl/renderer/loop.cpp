@@ -6,8 +6,11 @@ void 					renderer::loop()
 {
 	while(!core.is_working())
 	{
-		core.update();
+		core::update();
 		if (render_request)
-			render_internal();
+		{
+			render_call();
+			render_request = false;
+		}
 	}
 }

@@ -21,7 +21,7 @@ typedef struct
 	GLuint						advance;
 }								Character;
 
-#include "mod1_main/mod1_freetype.h"
+#include "mod1_common/mod1_freetype.h"
 #include <map>
 
 #include "mod1_engine_gl/vbo/vbo.h"
@@ -82,71 +82,34 @@ class							mod1_engine_gl::renderer
 public :
 
 								renderer();
-								~renderer() = default;
+	virtual						~renderer() = default;
 
 	void						add_callback(callback::functor_type functor, void *ptr);
-
-	void						load_model(model *model);
+	void						add_model(model *model);
 
 	void						render();
 
 	void						loop();
 	void						terminate();
 
+protected :
+
+	core						core;
+	camera						camera;
+
+	virtual void				render_call() = 0;
+
 private :
 
 	static void					glfw_callback(GLFWwindow* window, int key, int code, int action, int mode);
 
-	std::vector<model *>		model_array;
 	std::vector<callback>		callback_array;
 	bool						render_request = true;
 
-	core						core;
-	camera						camera;
-	framebuffer					framebuffer;
+MOD1_GENERATE_INTERNAL(std::vector<model *>, model_array)
 
-	class						: public mod1_engine_gl::program
-	{
-	public :
-		MOD1_GENERATE_UNIFORM(object_transformation, "object_transformation")
-		MOD1_GENERATE_UNIFORM(camera_view, "camera_view")
-		MOD1_GENERATE_UNIFORM(camera_projection, "camera_projection")
-		MOD1_GENERATE_UNIFORM(light_ambient_intensity, "light_info.ambient_intensity")
-		MOD1_GENERATE_UNIFORM(light_direct_direction, "light_info.direct_direction")
-		MOD1_GENERATE_UNIFORM(light_direct_intensity, "light_info.direct_intensity")
-	}							main_program;
+protected :
 
-	struct
-	{
-		float 					ambient_intensity;
-		glm::vec3				direct_direction;
-		float					direct_intensity;
-	}							light_info;
-
-	class						: public mod1_engine_gl::program
-	{
-	public :
-		MOD1_GENERATE_UNIFORM(texture, "uniform_texture")
-	}							blur_program;
-	square						blur_square;
-
-public :
-
-	std::map<char, Character>	Characters;
-	class						: public mod1_engine_gl::program
-	{
-	public :
-		MOD1_GENERATE_UNIFORM(texture, "uniform_texture")
-		MOD1_GENERATE_UNIFORM(color, "uniform_color")
-		MOD1_GENERATE_UNIFORM(projection, "uniform_projection")
-	}							text_program;
-	GLuint						text_VAO;
-	GLuint						text_VBO;
-	square						text_square;
-
-private :
-
-	void						render_internal();
-	void						render_no_swap();
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(model_array)
 };
 

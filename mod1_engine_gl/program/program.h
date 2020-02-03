@@ -11,7 +11,7 @@ class					mod1_engine_gl::program
 public :
 
 						program();
-						~program();
+	virtual				~program();
 
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_compilation, "Mod1 Engine GL, Program : Compilation error")
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_link, "Mod1 Engine GL, Program : Object is nit linked")

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "mod1_main/mod1_generic.h"
+#include "mod1_common/mod1_generic.h"
 
 #include "mod1_engine_cl/namespace.h"
 

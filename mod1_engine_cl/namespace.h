@@ -1,8 +1,8 @@
 #pragma once
 
-#include "mod1_main/mod1_generic.h"
+#include "mod1_common/mod1_generic.h"
 
-#include "mod1_main/mod1_OpenCL.h"
+#include "mod1_common/mod1_OpenCL.h"
 
 #include <string>
 #include <fstream>

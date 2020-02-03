@@ -36,10 +36,10 @@ set(ENGINE_GL
 	mod1_engine_gl/renderer/renderer.cpp
 	mod1_engine_gl/renderer/glfw_callback.cpp
 	mod1_engine_gl/renderer/add_callback.cpp
-	mod1_engine_gl/renderer/load_model.cpp
+	mod1_engine_gl/renderer/add_model.cpp
 	mod1_engine_gl/renderer/loop.cpp
-	mod1_engine_gl/renderer/render_x.cpp
 	mod1_engine_gl/renderer/terminate.cpp
+	mod1_engine_gl/renderer/render.cpp
 
 	mod1_engine_gl/texture/texture.cpp
 
@@ -115,14 +115,18 @@ set(ALGORITHM
 	mod1_algorithm/water/cl_write.cpp)
 
 
-set(MAIN
-	./mod1_main/main.cpp
+set(GENERAL
+	mod1_general/program_x/program_x.cpp
 
-	./mod1_main/mod1_main/mod1_main.cpp)
+	mod1_general/renderer/renderer.cpp
+
+	mod1_general/general/general.cpp
+
+	mod1_general/main.cpp)
 
 add_executable(21_mod1
 	${EXTERN}
-	${MAIN}
 	${ENGINE_GL}
 	${ENGINE_CL}
-	${ALGORITHM})
+	${ALGORITHM}
+	${GENERAL})

@@ -1,41 +1,41 @@
-#include "mod1_main.h"
+#include "general.h"
 
-MOD1_GENERATE_EXCEPTION_DEFINITION(mod1_main, exception_invalid_arguments)
+MOD1_GENERATE_EXCEPTION_DEFINITION(general, exception_arguments)
 
-					mod1_main::mod1_main(int argc, char **argv)
+					general::general(int argc, char **argv)
 {
-	renderer = new mod1_engine_gl::renderer;
+	renderer = new ::renderer;
 	terrain = new mod1_algorithm::terrain;
 	water = new mod1_algorithm::water(terrain);
 	if (argc < 2)
-		throw (exception_invalid_arguments());
+		throw (exception_arguments());
 	source = argv[1];
 }
 
-					mod1_main::~mod1_main()
+					general::~general()
 {
 	delete renderer;
 	delete terrain;
 	delete water;
 }
 
-void				mod1_main::build()
+void				general::build()
 {
 	terrain->parse(source);
 	terrain->build();
 	water->build();
 }
 
-void				mod1_main::loop()
+void				general::loop()
 {
 	renderer->add_callback(mod1_algorithm::water::callback, water);
 
 #if MOD1_ENABLED(MOD1_USE_TERRAIN)
-	renderer->load_model(terrain->model());
+	renderer->add_model(terrain->model());
 #endif
 
 #if MOD1_ENABLED(MOD1_USE_WATER)
-	renderer->load_model(water->model());
+	renderer->add_model(water->model());
 #endif
 
 	renderer->loop();

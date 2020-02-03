@@ -16,6 +16,7 @@
 #define MOD1_EPSILON							0.01f
 
 #define MOD1_INTERNAL(name)						name##_internal
+#define MOD1_INTERNAL_RETURN(name)				const TYPE(MOD1_INTERNAL(name)) &
 
 //												PLANE
 

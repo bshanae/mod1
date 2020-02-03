@@ -44,14 +44,14 @@ const char							*space::name::what() const noexcept			\
 	type							MOD1_INTERNAL(name) = value;
 
 #define MOD1_GENERATE_INTERNAL_READ(name)										\
-TYPE(MOD1_INTERNAL(name))			name() const								\
+MOD1_INTERNAL_RETURN(name)			name() const								\
 {	return (MOD1_INTERNAL(name));	}
 
 #define MOD1_GENERATE_INTERNAL_READ_DECLARATION(name)							\
-TYPE(MOD1_INTERNAL(name))			name() const;
+MOD1_INTERNAL_RETURN(name)			name() const;
 
 #define MOD1_GENERATE_INTERNAL_READ_DEFINITION(space, name)						\
-TYPE(space::MOD1_INTERNAL(name))	space::name() const							\
+MOD1_INTERNAL_RETURN(space::name)	space::name() const							\
 {	return (MOD1_INTERNAL(name));	}
 
 //		UNIFORM
@@ -60,7 +60,7 @@ TYPE(space::MOD1_INTERNAL(name))	space::name() const							\
 	uniform							name = uniform(name_GL);
 
 #define MOD1_CONNECT_UNIFORM(program, uniform)									\
-	program.connect_uniform(program.uniform);
+	(program).connect_uniform((program).uniform);
 
 //		TEST
 

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "mod1_main/mod1_OpenGL.h"
-#include "mod1_main/mod1_macros.h"
-#include "mod1_main/mod1_control.h"
-#include "mod1_main/mod1_generic.h"
+#include "mod1_common/mod1_OpenGL.h"
+#include "mod1_common/mod1_macros.h"
+#include "mod1_common/mod1_control.h"
+#include "mod1_common/mod1_generic.h"
 
 #include <string>
 #include <vector>

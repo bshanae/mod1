@@ -7,8 +7,14 @@
 #define MOD1_WINDOW_WIDTH					720
 #define MOD1_WINDOW_HEIGHT					480
 
-#define MOD1_SOURCE_SHADER_VERTEX			"./source_gl/main_vertex.glsl"
-#define MOD1_SOURCE_SHADER_FRAGMENT			"./source_gl/main_fragment.glsl"
+#define MOD1_PROGRAM_MAIN_VERTEX			"source_gl/main_vertex.glsl"
+#define MOD1_PROGRAM_MAIN_FRAGMENT			"source_gl/main_fragment.glsl"
+
+#define MOD1_PROGRAM_BLUR_VERTEX			"source_gl/blur_vertex.glsl"
+#define MOD1_PROGRAM_BLUR_FRAGMENT			"source_gl/blur_fragment.glsl"
+
+#define MOD1_PROGRAM_TEXT_VERTEX			"source_gl/text_vertex.glsl"
+#define MOD1_PROGRAM_TEXT_FRAGMENT			"source_gl/text_fragment.glsl"
 
 //											ENGINE
 
