@@ -10,7 +10,7 @@ public :
 										system(const mod1_engine_gl::core &core);
 										~system();
 
-	void								write(const std::string &text);
+	void								write(const std::string &text, const point2<int> &position);
 
 private :
 

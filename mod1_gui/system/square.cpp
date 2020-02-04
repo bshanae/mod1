@@ -10,24 +10,24 @@ void				mod1_gui::system::square::build()
 {
 
 	float			vertices[] = {
-		-1, -1, 0,
 		-1, +1, 0,
-		+1, -1, 0,
-		+1, +1, 0
+		-1, -1, 0,
+		+1, +1, 0,
+		+1, -1, 0
 	};
 
 	float			texture[] = {
 		0, 0,
 		0, 1,
-		+1, 0,
-		+1, +1
+		1, 0,
+		1, 1
 	};
 
 	int				indices[] =
-		{
-			2, 1, 0,
-			2, 3, 1
-		};
+	{
+		2, 1, 0,
+		2, 3, 1
+	};
 
 	buffer_point.allocate(3 * 4);
 	buffer_point.copy(vertices);

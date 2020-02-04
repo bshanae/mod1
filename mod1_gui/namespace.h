@@ -10,6 +10,9 @@
 
 namespace			mod1_gui
 {
+	using			mod1_engine_gl::point2;
+	using			mod1_engine_gl::point3;
+
 	class			font;
 	class			symbol;
 	class			system;

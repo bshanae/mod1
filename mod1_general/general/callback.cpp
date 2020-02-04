@@ -24,10 +24,9 @@ void				general::callback(const mod1_engine_gl::event &event, void *ptr)
 	}
 	else if (event.read_key() == GLFW_KEY_6)
 	{
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		mod1_engine_gl::core::clear(mod1_engine_gl::point3<float>(0.5));
 
-		general->system.write("");
+		general->system.write("Hello there", mod1_engine_gl::point2<int>(100, 100));
 
 		general->core.swap_buffers();
 	}
