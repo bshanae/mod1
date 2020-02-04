@@ -76,6 +76,11 @@ set(ENGINE_CL
 	mod1_engine_cl/kenrel/kernel.cpp
 	mod1_engine_cl/argument/argument.cpp)
 
+set(GUI
+	mod1_gui/symbol/symbol.cpp
+
+	mod1_gui/font/font.cpp)
+
 set(ALGORITHM
 	mod1_algorithm/plane/plane.cpp
 	mod1_algorithm/plane/get_x.cpp
@@ -121,6 +126,8 @@ set(GENERAL
 	mod1_general/program_x/program_x.cpp
 
 	mod1_general/renderer/renderer.cpp
+	mod1_general/renderer/render_call.cpp
+	mod1_general/renderer/callback.cpp
 
 	mod1_general/square/square.cpp
 
@@ -132,5 +139,6 @@ add_executable(21_mod1
 	${EXTERN}
 	${ENGINE_GL}
 	${ENGINE_CL}
+	${GUI}
 	${ALGORITHM}
 	${GENERAL})

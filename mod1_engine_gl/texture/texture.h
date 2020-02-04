@@ -5,14 +5,15 @@
 enum class			mod1_engine_gl::texture_type
 {
 	color,
-	depth
+	depth,
+	custom
 };
 
 class				mod1_engine_gl::texture
 {
 public :
 
-					texture(const texture_type &type, const int &width, const int &height);
+	explicit		texture(const texture_type &type, const int &width = 0, const int &height = 0);
 					~texture();
 
 	void			bind() const;

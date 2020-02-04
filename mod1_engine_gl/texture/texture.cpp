@@ -25,6 +25,9 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(texture, object)
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24,
 				width, height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, nullptr);
 			break;
+		case texture_type::custom :
+			unbind();
+			return ;
 		default :
 			throw (exception_enum());
 	}

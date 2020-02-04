@@ -12,18 +12,6 @@
 #include "mod1_engine_gl/uniform/uniform.h"
 #include "mod1_engine_gl/point/point3.h"
 
-//								TEST START
-
-typedef struct
-{
-	GLuint						textureID;
-	glm::ivec2					size;
-	glm::ivec2					bearing;
-	GLuint						advance;
-}								Character;
-
-//								TEST END
-
 class							mod1_engine_gl::renderer
 {
 

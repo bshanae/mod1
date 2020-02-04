@@ -1,9 +1,12 @@
 #pragma once
 
 #include "mod1_engine_gl/mod1_engine_gl.h"
+#include "mod1_gui/mod1_gui.h"
 
 #include "mod1_general/program_x/program_x.h"
 #include "mod1_general/square/square.h"
+
+#include <map>
 
 using namespace		mod1_engine_gl;
 
@@ -34,6 +37,8 @@ private :
 	square			square_text;
 
 	static void		callback(const class event &event, void *ptr);
+
+	std::map<char, mod1_gui::symbol *>	symbol_map;
 };
 
 

@@ -56,39 +56,6 @@ void					renderer::glfw_callback(GLFWwindow* window, int key, int code, int acti
 	}
 	else if (key == GLFW_KEY_L && action == GLFW_PRESS)
 		mod_light = !mod_light;
-	else if (key == GLFW_KEY_6 && action == GLFW_PRESS)
-	{
-//		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-//		glClear(GL_COLOR_BUFFER_BIT);
-//
-//		Character c = renderer->Characters['j'];
-//
-//#define X_START				100.f
-//#define Y_START				100.f
-//
-//#define X_EXTEND			c.size.x
-//#define Y_EXTEND			c.size.y
-//
-//		float			array[] = {
-//			X_START, Y_START, 0,
-//			X_START, Y_START + Y_EXTEND, 0,
-//			X_START + X_EXTEND, Y_START, 0,
-//			X_START + X_EXTEND, Y_START + Y_EXTEND, 0
-//		};
-//
-//		renderer->text_square.buffer_point.copy(array);
-//		renderer->text_square.update(model_slot::point);
-//
-//		renderer->text_program.start();
-//		glBindTexture(GL_TEXTURE_2D, c.textureID);
-//		texture::activate();
-//		renderer->text_square.draw();
-//		glBindTexture(GL_TEXTURE_2D, 0);
-//		program::stop();
-//
-//		renderer->core.swap_buffers();
-//		return ;
-	}
 	else
 		return ;
 	renderer->render();

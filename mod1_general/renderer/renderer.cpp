@@ -21,49 +21,20 @@
 	square_text.load();
 
 	add_callback((mod1_engine_gl::callback::functor_type)(::renderer::callback), this);
-}
 
-void				::renderer::render_call()
-{
-	core::clear(MOD1_BACKGROUND);
+	mod1_gui::font	font("GillSans.ttc", 48);
 
-	program_main.start();
-
-	program_main.camera_projection.upload(camera.projection());
-	program_main.camera_view.upload(camera.view());
-
-	program_main.light_ambient_intensity.upload(light_info.ambient_intensity);
-	program_main.light_direct_direction.upload(light_info.direct_direction);
-	program_main.light_direct_intensity.upload(light_info.direct_intensity);
-
-	for (auto &model : model_array())
+	for (int i = 0; i < 128; i++)
 	{
-		program_main.object_transformation.upload(model->transformation());
-		model->draw();
+		char 		c = static_cast<char>(i);
+		symbol_map.emplace(c, font.generate_symbol(c));
 	}
+
+	auto			temp = glm::ortho(0.f, static_cast<float>(core.window_width()), 0.f, static_cast<float>(core.window_height()));
+
+	program_text.start();
+	program_text.texture.upload((int)0);
+	program_text.color.upload(glm::vec3(1, 0, 0));
+	program_text.projection.upload(temp);
 	program::stop();
-}
-
-void				::renderer::callback(const class event &event, void *ptr)
-{
-	auto 			*renderer = (::renderer *)ptr;
-
-	if (event.read_type() != event_type::press)
-		return ;
-	if (event.read_key() == GLFW_KEY_5)
-	{
-		renderer->framebuffer.bind();
-		renderer->render_call();
-		framebuffer::unbind();
-
-		renderer->program_blur.start();
-		renderer->framebuffer.texture().bind();
-		texture::activate();
-		renderer->program_blur.texture.upload(0);
-		renderer->square_blur.draw();
-		texture::unbind();
-		program::stop();
-
-		renderer->core.swap_buffers();
-	}
 }
