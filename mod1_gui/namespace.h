@@ -9,6 +9,7 @@
 
 namespace			mod1_gui
 {
+	class			square;
 	class			font;
 	class			symbol;
 };

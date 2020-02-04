@@ -4,7 +4,9 @@
 
 #include "mod1_gui/symbol/symbol.h"
 
-class				mod1_gui::font
+#include <map>
+
+class									mod1_gui::font
 {
 public :
 
@@ -12,15 +14,20 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_library, "Mod1 GUI, Font : Can't i
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_font, "Mod1 GUI, Font : Can't create font")
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_symbol, "Mod1 GUI, Font : Can't create symbol")
 
-	explicit		font(const std::string &source, const int &width);
-					~font();
+	explicit							font(const std::string &source, const int &width);
+										~font();
 
-	symbol			*generate_symbol(const char &task);
+	void								write(const std::string &text);
 
 private :
 
-	FT_Library		library;
-	FT_Face			face;
+	FT_Library							library;
+	FT_Face								face;
+
+	std::map<char, mod1_gui::symbol *>	symbol_map;
+
+	symbol								*generate_symbol(const char &task);
+
 };
 
 

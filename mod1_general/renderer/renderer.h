@@ -4,9 +4,7 @@
 #include "mod1_gui/mod1_gui.h"
 
 #include "mod1_general/program_x/program_x.h"
-#include "mod1_general/square/square.h"
-
-#include <map>
+#include "mod1_general/blur/blur.h"
 
 using namespace		mod1_engine_gl;
 
@@ -22,9 +20,21 @@ private :
 
 	framebuffer		framebuffer;
 
-	program_main	program_main;
-	program_blur	program_blur;
-	program_text	program_text;
+	class			program : public mod1_engine_gl::program
+	{
+	public :
+
+					program();
+
+	MOD1_GENERATE_UNIFORM(object_transformation, "object_transformation")
+	MOD1_GENERATE_UNIFORM(camera_view, "camera_view")
+	MOD1_GENERATE_UNIFORM(camera_projection, "camera_projection")
+	MOD1_GENERATE_UNIFORM(light_ambient_intensity, "light_info.ambient_intensity")
+	MOD1_GENERATE_UNIFORM(light_direct_direction, "light_info.direct_direction")
+	MOD1_GENERATE_UNIFORM(light_direct_intensity, "light_info.direct_intensity")
+	}				program;
+
+	blur			blur;
 
 	struct
 	{
@@ -33,12 +43,8 @@ private :
 		float		direct_intensity;
 	}				light_info;
 
-	square			square_blur;
-	square			square_text;
 
 	static void		callback(const class event &event, void *ptr);
-
-	std::map<char, mod1_gui::symbol *>	symbol_map;
 };
 
 

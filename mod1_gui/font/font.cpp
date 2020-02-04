@@ -18,6 +18,12 @@ MOD1_GENERATE_EXCEPTION_DEFINITION(font, exception_symbol)
 
 	FT_Set_Pixel_Sizes(face, 0, width);
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+	for (int i = 0; i < 128; i++)
+	{
+		char 		c = static_cast<char>(i);
+		symbol_map.emplace(c, generate_symbol(c));
+	}
 }
 
 					font::~font()
@@ -32,4 +38,9 @@ symbol				*font::generate_symbol(const char &task)
 		throw (exception_symbol());
 
 	return (new symbol(face));
+}
+
+void 				font::write(const std::string &text)
+{
+
 }

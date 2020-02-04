@@ -1,5 +1,7 @@
 #include "square.h"
 
+using namespace		mod1_gui;
+
 void 				square::build()
 {
 

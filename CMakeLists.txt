@@ -123,13 +123,14 @@ set(ALGORITHM
 
 
 set(GENERAL
-	mod1_general/program_x/program_x.cpp
+	mod1_general/blur/blur.cpp
 
 	mod1_general/renderer/renderer.cpp
 	mod1_general/renderer/render_call.cpp
 	mod1_general/renderer/callback.cpp
+	mod1_general/renderer/program.cpp
 
-	mod1_general/square/square.cpp
+	mod1_gui/square/square.cpp
 
 	mod1_general/general/general.cpp
 

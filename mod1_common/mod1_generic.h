@@ -57,7 +57,7 @@ MOD1_INTERNAL_RETURN(space::name)	space::name() const							\
 //		UNIFORM
 
 #define MOD1_GENERATE_UNIFORM(name, name_GL)									\
-	uniform							name = uniform(name_GL);
+	mod1_engine_gl::uniform			name = mod1_engine_gl::uniform(name_GL);
 
 #define MOD1_CONNECT_UNIFORM(program, uniform)									\
 	(program).connect_uniform((program).uniform);

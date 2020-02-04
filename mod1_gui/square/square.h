@@ -1,8 +1,8 @@
 #pragma once
 
-#include "mod1_engine_gl/mod1_engine_gl.h"
+#include "mod1_gui/namespace.h"
 
-class				square : public mod1_engine_gl::model
+class				mod1_gui::square : public mod1_engine_gl::model
 {
 public :
 
