@@ -13,7 +13,7 @@ class				mod1_engine_gl::texture
 {
 public :
 
-	explicit		texture(const texture_type &type, const int &width = 0, const int &height = 0);
+	explicit		texture(const texture_type &type, const int &width, const int &height);
 					~texture();
 
 	void			bind() const;

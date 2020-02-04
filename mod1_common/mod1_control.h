@@ -16,7 +16,10 @@
 #define MOD1_PROGRAM_TEXT_VERTEX			"source_gl/text_vertex.glsl"
 #define MOD1_PROGRAM_TEXT_FRAGMENT			"source_gl/text_fragment.glsl"
 
-//											ENGINE
+#define MOD1_FONT_SOURCE					"GillSans.ttc"
+#define MOD1_FONT_WIDTH						48
+
+//											ENGINE GL
 
 #define MOD1_DEPTH_TEST						MOD1_ENABLE
 #define MOD1_SHOW_BACK_OF_POLYGON			MOD1_ENABLE

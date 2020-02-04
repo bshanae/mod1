@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
 project(21_mod1)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 
 link_directories(
@@ -79,7 +79,12 @@ set(ENGINE_CL
 set(GUI
 	mod1_gui/symbol/symbol.cpp
 
-	mod1_gui/font/font.cpp)
+	mod1_gui/font/font.cpp
+
+	mod1_gui/system/program.cpp
+	mod1_gui/system/square.cpp
+	mod1_gui/system/write.cpp
+	mod1_gui/system/system.cpp)
 
 set(ALGORITHM
 	mod1_algorithm/plane/plane.cpp
@@ -130,8 +135,6 @@ set(GENERAL
 	mod1_general/general/callback.cpp
 	mod1_general/general/program.cpp
 	mod1_general/general/build.cpp
-
-	mod1_gui/square/square.cpp
 
 	mod1_general/main.cpp)
 

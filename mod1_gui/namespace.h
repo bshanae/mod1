@@ -6,10 +6,11 @@
 #include "mod1_engine_gl/mod1_engine_gl.h"
 
 #include <string>
+#include <map>
 
 namespace			mod1_gui
 {
-	class			square;
 	class			font;
 	class			symbol;
+	class			system;
 };

@@ -53,6 +53,8 @@ private :
 MOD1_GENERATE_INTERNAL_WITH_VALUE(mod1_algorithm::terrain, *terrain, nullptr)
 MOD1_GENERATE_INTERNAL_WITH_VALUE(mod1_algorithm::water, *water, nullptr)
 
+	mod1_gui::system			system;
+
 public :
 
 MOD1_GENERATE_INTERNAL_READ_DECLARATION(terrain)

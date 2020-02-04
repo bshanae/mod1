@@ -24,34 +24,11 @@ void				general::callback(const mod1_engine_gl::event &event, void *ptr)
 	}
 	else if (event.read_key() == GLFW_KEY_6)
 	{
-//		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-//		glClear(GL_COLOR_BUFFER_BIT);
-//
-//		auto				*symbol = renderer->symbol_map['j'];
-//
-//#define X_START				100.f
-//#define Y_START				100.f
-//
-//#define X_EXTEND			symbol->size().x
-//#define Y_EXTEND			symbol->size().y
-//
-//		float			array[] = {
-//			X_START, Y_START, 0,
-//			X_START, Y_START + Y_EXTEND, 0,
-//			X_START + X_EXTEND, Y_START, 0,
-//			X_START + X_EXTEND, Y_START + Y_EXTEND, 0
-//		};
-//
-//		renderer->square_text.buffer_point.copy(array);
-//		renderer->square_text.update(model_slot::point);
-//
-//		renderer->program_text.start();
-//		symbol->texture()->bind();
-//		texture::activate();
-//		renderer->square_text.draw();
-//		texture::unbind();
-//		program::stop();
-//
-//		renderer->core.swap_buffers();
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		general->system.write("");
+
+		general->core.swap_buffers();
 	}
 }

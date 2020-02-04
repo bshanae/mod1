@@ -4,6 +4,8 @@ using namespace		mod1_engine_gl;
 
 void				model::update(const model_slot &slot)
 {
+	if (not MOD1_INTERNAL(is_loaded))
+		throw (exception_load());
 	if (not MOD1_INTERNAL(is_dynamic))
 		throw (exception_dynamic_b());
 

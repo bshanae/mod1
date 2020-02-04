@@ -1,8 +1,12 @@
-#include "square.h"
+#include "system.h"
 
-using namespace		mod1_gui;
+					mod1_gui::system::square::square()
+{
+	set_as_dynamic();
+	mod1_gui::system::square::build();
+}
 
-void 				square::build()
+void				mod1_gui::system::square::build()
 {
 
 	float			vertices[] = {
@@ -20,10 +24,10 @@ void 				square::build()
 	};
 
 	int				indices[] =
-	{
-		2, 1, 0,
-		2, 3, 1
-	};
+		{
+			2, 1, 0,
+			2, 3, 1
+		};
 
 	buffer_point.allocate(3 * 4);
 	buffer_point.copy(vertices);
@@ -35,4 +39,6 @@ void 				square::build()
 	buffer_texture.copy(texture);
 
 	set_as_built();
+
+	load();
 }
