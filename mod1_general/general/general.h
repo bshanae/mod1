@@ -2,28 +2,61 @@
 
 #include "mod1_engine_gl/mod1_engine_gl.h"
 #include "mod1_algorithm/mod1_algorithm.h"
+#include "mod1_gui/mod1_gui.h"
 
-#include "mod1_general/renderer/renderer.h"
+#include "mod1_general/blur/blur.h"
 
-class 							general
+class							general : public mod1_engine_gl::renderer
 {
-
 public :
 
-								general(int argc, char **argv);
-								~general();
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_arguments, "Mod1 Main : Invalid number of arguments")
 
-	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_arguments, "Mod1 Main : Invalid number of arguments")
+								general(int argc, char **argv);
+								~general() final;
 
 	void						build();
-	void						loop();
 
-	::renderer					*renderer = nullptr;
-	mod1_algorithm::terrain		*terrain = nullptr;
-	mod1_algorithm::water		*water = nullptr;
+	void						render_call() final;
 
 private :
 
-	char						*source;
+	mod1_engine_gl::framebuffer	framebuffer;
 
+	class						program : public mod1_engine_gl::program
+	{
+	public :
+
+								program();
+
+	MOD1_GENERATE_UNIFORM(object_transformation, "object_transformation")
+	MOD1_GENERATE_UNIFORM(camera_view, "camera_view")
+	MOD1_GENERATE_UNIFORM(camera_projection, "camera_projection")
+	MOD1_GENERATE_UNIFORM(light_ambient_intensity, "light_info.ambient_intensity")
+	MOD1_GENERATE_UNIFORM(light_direct_direction, "light_info.direct_direction")
+	MOD1_GENERATE_UNIFORM(light_direct_intensity, "light_info.direct_intensity")
+	}							program;
+
+	blur						blur;
+
+	struct
+	{
+		float 					ambient_intensity;
+		glm::vec3				direct_direction;
+		float					direct_intensity;
+	}							light_info;
+
+	static void					callback(const mod1_engine_gl::event &event, void *ptr);
+
+	char 						*first_argument = nullptr;
+
+MOD1_GENERATE_INTERNAL_WITH_VALUE(mod1_algorithm::terrain, *terrain, nullptr)
+MOD1_GENERATE_INTERNAL_WITH_VALUE(mod1_algorithm::water, *water, nullptr)
+
+public :
+
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(terrain)
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(water)
 };
+
+

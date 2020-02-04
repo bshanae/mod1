@@ -30,7 +30,7 @@
 #define MOD1_CAMERA_MOVEMENT_SPEED			20
 #define MOD1_CAMERA_ROTATION_SPEED			0.04
 
-#define MOD1_BACKGROUND						point3<float>(0.8f)
+#define MOD1_BACKGROUND						mod1_engine_gl::point3<float>(0.8f)
 
 //											MAIN
 

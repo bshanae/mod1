@@ -1,26 +1,26 @@
-#include "renderer.h"
+#include "general.h"
 
-void				::renderer::callback(const class event &event, void *ptr)
+void				general::callback(const mod1_engine_gl::event &event, void *ptr)
 {
-	auto 			*renderer = (::renderer *)ptr;
+	auto 			*general = (::general *)ptr;
 
-	if (event.read_type() != event_type::press)
+	if (event.read_type() != mod1_engine_gl::event_type::press)
 		return ;
 	if (event.read_key() == GLFW_KEY_5)
 	{
-		renderer->framebuffer.bind();
-		renderer->render_call();
-		framebuffer::unbind();
+		general->framebuffer.bind();
+		general->render_call();
+		mod1_engine_gl::framebuffer::unbind();
 
-		renderer->blur.program.start();
-		renderer->framebuffer.texture().bind();
-		texture::activate();
-		renderer->blur.program.texture.upload(0);
-		renderer->blur.square.draw();
-		texture::unbind();
+		general->blur.program.start();
+		general->framebuffer.texture().bind();
+		mod1_engine_gl::texture::activate();
+		general->blur.program.texture.upload(0);
+		general->blur.square.draw();
+		mod1_engine_gl::texture::unbind();
 		program::stop();
 
-		renderer->core.swap_buffers();
+		general->core.swap_buffers();
 	}
 	else if (event.read_key() == GLFW_KEY_6)
 	{

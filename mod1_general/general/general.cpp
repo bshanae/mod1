@@ -2,41 +2,33 @@
 
 MOD1_GENERATE_EXCEPTION_DEFINITION(general, exception_arguments)
 
-					general::general(int argc, char **argv)
+MOD1_GENERATE_INTERNAL_READ_DEFINITION(general, terrain)
+MOD1_GENERATE_INTERNAL_READ_DEFINITION(general, water)
+
+					general::general(int argc, char **argv) :
+					mod1_engine_gl::renderer(),
+					framebuffer(core.window_width(), core.window_height()),
+					program(),
+					light_info()
+
 {
-	renderer = new ::renderer;
-	terrain = new mod1_algorithm::terrain;
-	water = new mod1_algorithm::water(terrain);
+	light_info.ambient_intensity = MOD1_LIGHT_AMBIENT_INTENSITY;
+	light_info.direct_direction = glm::vec3(MOD1_LIGHT_DIRECT_DIRECTION);
+	light_info.direct_intensity = MOD1_LIGHT_DIRECT_INTENSITY;
+
+	MOD1_INTERNAL(terrain) = new mod1_algorithm::terrain;
+	MOD1_INTERNAL(water) = new mod1_algorithm::water(MOD1_INTERNAL(terrain));
+
 	if (argc < 2)
 		throw (exception_arguments());
-	source = argv[1];
+	first_argument = argv[1];
+
+	add_callback(general::callback, this);
+	add_callback(mod1_algorithm::water::callback, MOD1_INTERNAL(water));
 }
 
 					general::~general()
 {
-	delete renderer;
-	delete terrain;
-	delete water;
-}
-
-void				general::build()
-{
-	terrain->parse(source);
-	terrain->build();
-	water->build();
-}
-
-void				general::loop()
-{
-	renderer->add_callback(mod1_algorithm::water::callback, water);
-
-#if MOD1_ENABLED(MOD1_USE_TERRAIN)
-	renderer->add_model(terrain->model());
-#endif
-
-#if MOD1_ENABLED(MOD1_USE_WATER)
-	renderer->add_model(water->model());
-#endif
-
-	renderer->loop();
+	delete MOD1_INTERNAL(terrain);
+	delete MOD1_INTERNAL(water);
 }

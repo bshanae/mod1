@@ -1,8 +1,8 @@
-#include "renderer.h"
+#include "general.h"
 
-void				::renderer::render_call()
+void				general::render_call()
 {
-	core::clear(MOD1_BACKGROUND);
+	mod1_engine_gl::core::clear(MOD1_BACKGROUND);
 
 	program.start();
 
