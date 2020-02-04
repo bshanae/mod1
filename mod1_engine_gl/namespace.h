@@ -33,6 +33,8 @@ MOD1_GENERATE_EXCEPTION(exception_enum, "Mod1 Engine GL : Unknown enum value")
 	class			uniform;
 	class			program;
 
+	enum class		event_type;
+	class			event;
 	class			callback;
 	class			renderer;
 

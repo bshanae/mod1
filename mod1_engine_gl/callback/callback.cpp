@@ -8,7 +8,7 @@ using namespace		mod1_engine_gl;
 	this->ptr = ptr;
 }
 
-bool				callback::run(int key) const
+void				callback::run(const event &event) const
 {
-	return (functor(key, ptr));
+	functor(event, ptr);
 }

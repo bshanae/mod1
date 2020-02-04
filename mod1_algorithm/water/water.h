@@ -22,7 +22,7 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_unknown_flow_type, "Mod1 Water : U
 	void							build() final;
 	mod1_engine_gl::model			*model() final;
 
-	static bool						callback(int key, void *ptr);
+	static void						callback(const mod1_engine_gl::event &event, void *ptr);
 
 private :
 

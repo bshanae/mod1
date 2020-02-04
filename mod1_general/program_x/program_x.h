@@ -2,7 +2,9 @@
 
 #include "mod1_engine_gl/mod1_engine_gl.h"
 
-class						program_main : public mod1_engine_gl::program
+using namespace				mod1_engine_gl;
+
+class						program_main : public program
 {
 public :
 
@@ -16,7 +18,7 @@ public :
 	MOD1_GENERATE_UNIFORM(light_direct_intensity, "light_info.direct_intensity")
 };
 
-class						program_blur : public mod1_engine_gl::program
+class						program_blur : public program
 {
 public :
 
@@ -25,7 +27,7 @@ public :
 	MOD1_GENERATE_UNIFORM(texture, "uniform_texture")
 };
 
-class						program_text : public mod1_engine_gl::program
+class						program_text : public program
 {
 public :
 

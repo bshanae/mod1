@@ -2,20 +2,14 @@
 
 using namespace			mod1_algorithm;
 
-bool 					water::callback(int key, void *ptr)
+void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 {
 	auto				water = (mod1_algorithm::water *)ptr;
 
-#define PRESS_ONLY		1
+	if (event.read_type() != mod1_engine_gl::event_type::press)
+		return ;
 
-#if PRESS_ONLY
-	static int kostyl = 0;
-
-	if (kostyl++ % 2 == 1)
-		return (false);
-#endif
-
-	if (key == GLFW_KEY_1)
+	if (event.read_key() == GLFW_KEY_1)
 	{
 		water->water_data.set(0);
 		
@@ -42,7 +36,7 @@ bool 					water::callback(int key, void *ptr)
 		water->cl_arg_water_data.write();
 #endif
 	}
-	else if (key == GLFW_KEY_2)
+	else if (event.read_key() == GLFW_KEY_2)
 	{
 
 #ifdef MOD1_WATER_FLOOD_POINT
@@ -75,10 +69,10 @@ bool 					water::callback(int key, void *ptr)
 		level += STEP;
 #endif
 	}
-	else if (key == GLFW_KEY_3)
+	else if (event.read_key() == GLFW_KEY_3)
 		;
 	else
-		return (false);
+		return ;
 #ifndef MOD1_WATER_FLOOD_UNIFORM
 	water->gravity();
 #endif
@@ -87,6 +81,4 @@ bool 					water::callback(int key, void *ptr)
 	water->update_color();
 	water->update(model_slot::point);
 	water->update(model_slot::color);
-
-	return (true);
 }

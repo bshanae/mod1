@@ -4,14 +4,15 @@ using namespace			mod1_engine_gl;
 
 void					renderer::glfw_callback(GLFWwindow* window, int key, int code, int action, int mode)
 {
-	renderer			*renderer;
 	static bool			mod_line = false;
 	static bool			mod_light = false;
 
-	renderer = (mod1_engine_gl::renderer *)glfwGetWindowUserPointer(window);
+	auto				renderer = (mod1_engine_gl::renderer *)core::get_callback_pointer(window);
+
+	renderer->event.set(key, code, action, mode);
+
 	for (const auto &callback : renderer->callback_array)
-		if (callback.run(key))
-			renderer->render_call();
+		callback.run(renderer->event);
 	if (key == GLFW_KEY_ESCAPE)
 	{
 		renderer->terminate();
@@ -55,23 +56,6 @@ void					renderer::glfw_callback(GLFWwindow* window, int key, int code, int acti
 	}
 	else if (key == GLFW_KEY_L && action == GLFW_PRESS)
 		mod_light = !mod_light;
-	else if (key == GLFW_KEY_5 && action == GLFW_PRESS)
-	{
-//		renderer->framebuffer.bind();
-//		renderer->render_no_swap();
-//		framebuffer::unbind();
-//
-//		renderer->blur_program.start();
-//		renderer->framebuffer.texture().bind();
-//		texture::activate();
-//		renderer->blur_program.texture.upload(0);
-//		renderer->blur_square.draw();
-//		texture::unbind();
-//		program::stop();
-//
-//		renderer->core.swap_buffers();
-//		return ;
-	}
 	else if (key == GLFW_KEY_6 && action == GLFW_PRESS)
 	{
 //		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -107,5 +91,5 @@ void					renderer::glfw_callback(GLFWwindow* window, int key, int code, int acti
 	}
 	else
 		return ;
-	renderer->render_call();
+	renderer->render();
 }

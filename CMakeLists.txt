@@ -65,6 +65,8 @@ set(ENGINE_GL
 
 	mod1_engine_gl/camera/camera.cpp
 
+	mod1_engine_gl/event/event.cpp
+
 	mod1_engine_gl/callback/callback.cpp
 
 	mod1_engine_gl/uniform/uniform.cpp)
@@ -119,6 +121,8 @@ set(GENERAL
 	mod1_general/program_x/program_x.cpp
 
 	mod1_general/renderer/renderer.cpp
+
+	mod1_general/square/square.cpp
 
 	mod1_general/general/general.cpp
 

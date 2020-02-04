@@ -26,7 +26,7 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_dynamic_a, "Mod1 Engine GL, Model 
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_dynamic_b, "Mod1 Engine GL, Model : Can't update static object")
 
 					model() = default;
-					~model() = default;
+	virtual			~model() = default;
 
 	virtual void	build() = 0;
 

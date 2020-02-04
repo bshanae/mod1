@@ -112,3 +112,8 @@ void				core::set_callback(mod1_callback function, void *ptr)
 	glfwSetWindowUserPointer(window, ptr);
 	glfwSetKeyCallback(window, function);
 }
+
+void				*core::get_callback_pointer(GLFWwindow* window)
+{
+	return (glfwGetWindowUserPointer(window));
+}

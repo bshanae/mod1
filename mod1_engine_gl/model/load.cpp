@@ -25,5 +25,5 @@ void				model::load()
 	vao::unbind();
 
 	set_as_loaded();
-	vertex_number = buffer_index.size() * 3;
+	vertex_number = buffer_index.size();
 }

@@ -22,6 +22,6 @@ private :
 
 	bool 			is_connected = false;
 
-	unsigned int	id;
-	const char		*name;
+	unsigned int	id = -1;
+	const char		*name = nullptr;
 };

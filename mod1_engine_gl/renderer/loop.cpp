@@ -10,6 +10,7 @@ void 					renderer::loop()
 		if (render_request)
 		{
 			render_call();
+			core.swap_buffers();
 			render_request = false;
 		}
 	}

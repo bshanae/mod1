@@ -7,6 +7,7 @@
 #include "mod1_engine_gl/framebuffer/framebuffer.h"
 #include "mod1_engine_gl/model/model.h"
 #include "mod1_engine_gl/camera/camera.h"
+#include "mod1_engine_gl/event/event.h"
 #include "mod1_engine_gl/callback/callback.h"
 #include "mod1_engine_gl/uniform/uniform.h"
 #include "mod1_engine_gl/point/point3.h"
@@ -20,59 +21,6 @@ typedef struct
 	glm::ivec2					bearing;
 	GLuint						advance;
 }								Character;
-
-#include "mod1_common/mod1_freetype.h"
-#include <map>
-
-#include "mod1_engine_gl/vbo/vbo.h"
-#include "mod1_engine_gl/vao/vao.h"
-#include "mod1_engine_gl/eab/eab.h"
-
-using namespace					mod1_engine_gl;
-
-class 							square : public mod1_engine_gl::model
-{
-public :
-	void						build() override
-	{
-
-		float					vertices[] = {
-			-1, -1, 0,
-			-1, +1, 0,
-			+1, -1, 0,
-			+1, +1, 0
-		};
-
-		float					texture[] = {
-			0, 0,
-			0, 1,
-			+1, 0,
-			+1, +1
-		};
-
-		int						indices[] =
-		{
-			2, 1, 0,
-			2, 3, 1
-		};
-
-		buffer_point.allocate(3 * 4);
-		buffer_point.copy(vertices);
-
-		buffer_index.allocate(3 * 2);
-		buffer_index.copy(indices);
-
-		buffer_texture.allocate(2 * 4);
-		buffer_texture.copy(texture);
-
-		set_as_built();
-	}
-
-	using						model::update;
-	using						model::buffer_point;
-
-	using						model::set_as_dynamic;
-};
 
 //								TEST END
 
@@ -96,6 +44,7 @@ protected :
 
 	core						core;
 	camera						camera;
+	event						event;
 
 	virtual void				render_call() = 0;
 

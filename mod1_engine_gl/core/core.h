@@ -20,6 +20,7 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_GLEW, "Mod1 Engine GL, Core : Can'
 						~core();
 
 	void				set_callback(mod1_callback function, void *ptr);
+	static void			*get_callback_pointer(GLFWwindow* window);
 
 	bool 				is_working();
 	void 				terminate();

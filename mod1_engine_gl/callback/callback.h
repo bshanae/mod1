@@ -2,16 +2,18 @@
 
 #include "mod1_engine_gl/namespace.h"
 
+#include "mod1_engine_gl/event/event.h"
+
 class				mod1_engine_gl::callback
 {
 public :
 
-	typedef	bool	(*functor_type)(int glwf_key, void *ptr);
+	typedef	void	(*functor_type)(const event &event, void *ptr);
 
 					callback(functor_type functor, void *ptr);
 					~callback() = default;
 
-	bool			run(int key) const;
+	void			run(const event &event) const;
 
 private :
 

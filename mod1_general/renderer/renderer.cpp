@@ -12,6 +12,15 @@
 	light_info.ambient_intensity = MOD1_LIGHT_AMBIENT_INTENSITY;
 	light_info.direct_direction = glm::vec3(MOD1_LIGHT_DIRECT_DIRECTION);
 	light_info.direct_intensity = MOD1_LIGHT_DIRECT_INTENSITY;
+
+	square_blur.build();
+	square_blur.load();
+
+	square_text.set_as_dynamic();
+	square_text.build();
+	square_text.load();
+
+	add_callback((mod1_engine_gl::callback::functor_type)(::renderer::callback), this);
 }
 
 void				::renderer::render_call()
@@ -33,7 +42,28 @@ void				::renderer::render_call()
 		model->draw();
 	}
 	program::stop();
-	core.swap_buffers();
+}
 
-	render();
+void				::renderer::callback(const class event &event, void *ptr)
+{
+	auto 			*renderer = (::renderer *)ptr;
+
+	if (event.read_type() != event_type::press)
+		return ;
+	if (event.read_key() == GLFW_KEY_5)
+	{
+		renderer->framebuffer.bind();
+		renderer->render_call();
+		framebuffer::unbind();
+
+		renderer->program_blur.start();
+		renderer->framebuffer.texture().bind();
+		texture::activate();
+		renderer->program_blur.texture.upload(0);
+		renderer->square_blur.draw();
+		texture::unbind();
+		program::stop();
+
+		renderer->core.swap_buffers();
+	}
 }
