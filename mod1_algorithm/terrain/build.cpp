@@ -8,12 +8,13 @@ void					terrain::build()
 	normalize();
 	resize();
 
-	set(point2<float>(), point2<float>(MOD1_TERRAIN_SIZE), MOD1_TERRAIN_DELTA);
+	set(MOD1_TERRAIN_START, MOD1_TERRAIN_END, MOD1_TERRAIN_DELTA);
 	plane::build();
 
-	noise_generator.SetNoiseType(FastNoise::Perlin);
 
 #if MOD1_ENABLED(MOD1_TERRAIN_HILLS)
+	noise_generator.SetNoiseType(FastNoise::Perlin);
+
 	for (auto const &point : data_raw)
 		if (point.z < 0)
 			generate_hill(point);
@@ -22,8 +23,6 @@ void					terrain::build()
 		if (point.z > 0)
 			generate_hill(point);
 #endif
-
-
 
 #if MOD1_ENABLED(MOD1_TERRAIN_NOISE_A)
 	apply_noise(
