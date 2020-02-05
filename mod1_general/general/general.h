@@ -46,7 +46,12 @@ private :
 		float					direct_intensity;
 	}							light_info;
 
-	static void					callback(const mod1_engine_gl::event &event, void *ptr);
+	const glm::vec3				rotation_axis = glm::vec3(0, 1, 0);
+	const float					rotation_speed = 300;
+	glm::mat4					rotation = glm::mat4(1);
+
+	static void					callback_key(const mod1_engine_gl::event &event, void *ptr);
+	static void					callback_drag(const mod1_engine_gl::event &event, void *ptr);
 
 	char 						*first_argument = nullptr;
 

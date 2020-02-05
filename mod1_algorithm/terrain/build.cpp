@@ -23,6 +23,8 @@ void					terrain::build()
 			generate_hill(point);
 #endif
 
+
+
 #if MOD1_ENABLED(MOD1_TERRAIN_NOISE_A)
 	apply_noise(
 		MOD1_TERRAIN_NOISE_A_FREQUENCY,

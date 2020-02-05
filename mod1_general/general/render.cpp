@@ -15,7 +15,7 @@ void				general::render()
 
 	for (auto &model : model_array())
 	{
-		program.object_transformation.upload(model->transformation());
+		program.object_transformation.upload(rotation);
 		model->draw();
 	}
 	program::stop();

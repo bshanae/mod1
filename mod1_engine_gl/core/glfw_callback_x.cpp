@@ -21,10 +21,12 @@ void				core::glfw_callback_key(GLFWwindow* window, int key, int code, int actio
 void				core::glfw_callback_mouse_movement(GLFWwindow* window, double x, double y)
 {
 	auto			*core = (mod1_engine_gl::core *)glfwGetWindowUserPointer(window);
+	auto			old = core->event.mouse;
 
 	core->event.reset();
-	core->event.type = event_type::mouse_move;
+	core->event.type = core->event.mouse_hold ? event_type::mouse_drag : event_type::mouse_move;
 	core->event.mouse = point2<int>((int)x, (int)y);
+	core->event.mouse_diff = old - core->event.mouse;
 }
 
 void				core::glfw_callback_mouse_key(GLFWwindow* window, int key, int action, int mode)
@@ -36,7 +38,13 @@ void				core::glfw_callback_mouse_key(GLFWwindow* window, int key, int action, i
 		return ;
 	core->event.type = event_type::none;
 	if (action == GLFW_PRESS)
+	{
 		core->event.type = event_type::mouse_press;
+		core->event.mouse_hold = true;
+	}
 	else if (action == GLFW_RELEASE)
+	{
 		core->event.type = event_type::mouse_release;
+		core->event.mouse_hold = false;
+	}
 }

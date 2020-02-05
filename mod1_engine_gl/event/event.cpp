@@ -27,3 +27,11 @@ const point2<int>	&event::read_mouse() const
 {
 	return (mouse);
 }
+
+const point2<int>	&event::read_diff() const
+{
+	if (type != event_type::mouse_drag)
+		throw (exception_type());
+
+	return (mouse_diff);
+}

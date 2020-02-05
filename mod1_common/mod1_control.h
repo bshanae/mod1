@@ -42,6 +42,7 @@
 //											TERRAIN
 
 #define MOD1_TERRAIN_SIZE					point2<double>(1000, 1000)
+#define MOD1_TERRAIN_SHIFT					point2<float>(-500, -500)
 #define MOD1_TERRAIN_DELTA					10
 #define MOD1_TERRAIN_INDENT					0.3
 

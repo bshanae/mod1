@@ -12,7 +12,8 @@ enum class				mod1_engine_gl::event_type
 	key_hold,
 	mouse_move,
 	mouse_press,
-	mouse_release
+	mouse_release,
+	mouse_drag
 };
 
 class					mod1_engine_gl::event
@@ -29,12 +30,15 @@ public :
 
 	const int			&read_key() const;
 	const point2<int>	&read_mouse() const;
+	const point2<int>	&read_diff() const;
 
 private :
 
 	event_type			type = event_type::none;
 	int 				key = 0;
 	point2<int> 		mouse;
+	bool 				mouse_hold = false;
+	point2<int> 		mouse_diff;
 
 						event() = default;
 

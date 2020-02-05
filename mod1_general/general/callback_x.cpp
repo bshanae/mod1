@@ -1,6 +1,6 @@
 #include "general.h"
 
-void				general::callback(const mod1_engine_gl::event &event, void *ptr)
+void				general::callback_key(const mod1_engine_gl::event &event, void *ptr)
 {
 	auto 			*general = (::general *)ptr;
 
@@ -26,7 +26,17 @@ void				general::callback(const mod1_engine_gl::event &event, void *ptr)
 	{
 		mod1_engine_gl::core::clear(mod1_engine_gl::point3<float>(0.5));
 		general->system.render();
-//		general->system.write("Hello", mod1_engine_gl::point2<int>(200, 100));
 		core::swap_buffers();
 	}
+}
+
+void				general::callback_drag(const mod1_engine_gl::event &event, void *ptr)
+{
+	auto 			*general = (::general *)ptr;
+	float			angle;
+
+	angle = -1 * (event.read_diff().x / (float)general->window_width()) * general->rotation_speed;
+	general->rotation = glm::rotate(general->rotation, glm::radians(angle), general->rotation_axis);
+
+	general->render();
 }
