@@ -7,21 +7,23 @@
 enum class				mod1_engine_gl::event_type
 {
 	none,
-	press,
-	release,
-	mouse
+	key_press,
+	key_release,
+	key_hold,
+	mouse_move,
+	mouse_press,
+	mouse_release
 };
 
 class					mod1_engine_gl::event
 {
+	friend class		core;
+
 public :
 
-MOD1_GENERATE_EXCEPTION_DECLARATION(exception_type, "Mod1 Engine GL, Event : Can't read event, incorrect request type")
-
-						event() = default;
 						~event() = default;
 
-	void				set(const int &key, const int &code, const int &action, const int &mode);
+	MOD1_GENERATE_EXCEPTION_DECLARATION(exception_type, "Mod1 Engine GL, Event : Can't read event, incorrect request type")
 
 	const event_type	&read_type() const;
 
@@ -33,6 +35,10 @@ private :
 	event_type			type = event_type::none;
 	int 				key = 0;
 	point2<int> 		mouse;
+
+						event() = default;
+
+	void				reset();
 };
 
 

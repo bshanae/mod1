@@ -6,7 +6,7 @@ void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 {
 	auto				water = (mod1_algorithm::water *)ptr;
 
-	if (event.read_type() != mod1_engine_gl::event_type::press)
+	if (event.read_type() != mod1_engine_gl::event_type::key_press)
 		return ;
 
 	if (event.read_key() == GLFW_KEY_1)

@@ -1,6 +1,6 @@
 #include "general.h"
 
-void				general::render_call()
+void				general::render()
 {
 	mod1_engine_gl::core::clear(MOD1_BACKGROUND);
 
@@ -19,4 +19,6 @@ void				general::render_call()
 		model->draw();
 	}
 	program::stop();
+
+	mod1_engine_gl::core::swap_buffers();
 }

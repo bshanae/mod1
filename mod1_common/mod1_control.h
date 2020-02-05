@@ -6,6 +6,7 @@
 
 #define MOD1_WINDOW_WIDTH					720
 #define MOD1_WINDOW_HEIGHT					480
+#define MOD1_WINDOW_NAME					"mod1"
 
 #define MOD1_PROGRAM_MAIN_VERTEX			"source_gl/main_vertex.glsl"
 #define MOD1_PROGRAM_MAIN_FRAGMENT			"source_gl/main_fragment.glsl"
@@ -21,8 +22,6 @@
 
 //											ENGINE GL
 
-#define MOD1_DEPTH_TEST						MOD1_ENABLE
-#define MOD1_SHOW_BACK_OF_POLYGON			MOD1_ENABLE
 #define MOD1_SRGB							MOD1_DISABLE
 
 #define MOD1_LIGHT_AMBIENT_INTENSITY		0.2

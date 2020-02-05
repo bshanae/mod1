@@ -12,36 +12,25 @@
 #include "mod1_engine_gl/uniform/uniform.h"
 #include "mod1_engine_gl/point/point3.h"
 
-class							mod1_engine_gl::renderer
+class							mod1_engine_gl::renderer : public core
 {
 
 public :
 
 								renderer();
-	virtual						~renderer() = default;
+								~renderer() override = default;
 
-	void						add_callback(callback::functor_type functor, void *ptr);
 	void						add_model(model *model);
-
-	void						render();
-
-	void						loop();
-	void						terminate();
 
 protected :
 
-	core						core;
 	camera						camera;
-	event						event;
 
-	virtual void				render_call() = 0;
+	virtual void				render() = 0;
 
 private :
 
-	static void					glfw_callback(GLFWwindow* window, int key, int code, int action, int mode);
-
-	std::vector<callback>		callback_array;
-	bool						render_request = true;
+	static void					callback_key(const class event &event, void *ptr);
 
 MOD1_GENERATE_INTERNAL(std::vector<model *>, model_array)
 

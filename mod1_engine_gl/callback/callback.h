@@ -4,19 +4,16 @@
 
 #include "mod1_engine_gl/event/event.h"
 
-class				mod1_engine_gl::callback
+class					mod1_engine_gl::callback
 {
 public :
+						callback(callback_functor functor, void *ptr);
+						~callback() = default;
 
-	typedef	void	(*functor_type)(const event &event, void *ptr);
-
-					callback(functor_type functor, void *ptr);
-					~callback() = default;
-
-	void			run(const event &event) const;
+	void				run(const event &event) const;
 
 private :
 
-	functor_type	functor;
-	void 			*ptr;
+	callback_functor	functor;
+	void 				*ptr;
 };

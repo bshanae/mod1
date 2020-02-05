@@ -6,6 +6,7 @@
 #include "mod1_common/mod1_generic.h"
 
 #include <string>
+#include <map>
 #include <vector>
 #include <iostream>
 #include <cmath>
@@ -26,6 +27,7 @@ MOD1_GENERATE_EXCEPTION(exception_enum, "Mod1 Engine GL : Unknown enum value")
 	template		<typename type>
 	class			point3;
 
+	typedef void	(* glfw_callback)(GLFWwindow *, int, int, int, int);
 	class			core;
 
 	class			shader;
@@ -35,7 +37,10 @@ MOD1_GENERATE_EXCEPTION(exception_enum, "Mod1 Engine GL : Unknown enum value")
 
 	enum class		event_type;
 	class			event;
+
+	typedef	void	(*callback_functor)(const event &event, void *ptr);
 	class			callback;
+
 	class			renderer;
 
 	class			vbo;

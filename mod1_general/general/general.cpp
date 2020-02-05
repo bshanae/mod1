@@ -7,10 +7,10 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(general, water)
 
 					general::general(int argc, char **argv) :
 					mod1_engine_gl::renderer(),
-					framebuffer(core.window_width(), core.window_height()),
+					framebuffer(window_width(), window_height()),
 					program(),
 					light_info(),
-					system(core)
+					system(*(core *)this)
 {
 	light_info.ambient_intensity = MOD1_LIGHT_AMBIENT_INTENSITY;
 	light_info.direct_direction = glm::vec3(MOD1_LIGHT_DIRECT_DIRECTION);
@@ -23,8 +23,8 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(general, water)
 		throw (exception_arguments());
 	first_argument = argv[1];
 
-	add_callback(general::callback, this);
-	add_callback(mod1_algorithm::water::callback, MOD1_INTERNAL(water));
+	add_callback(mod1_engine_gl::event_type::key_press, general::callback, this);
+	add_callback(mod1_engine_gl::event_type::key_press, mod1_algorithm::water::callback, MOD1_INTERNAL(water));
 }
 
 					general::~general()

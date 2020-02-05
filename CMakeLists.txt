@@ -30,16 +30,20 @@ set(EXTERN
 
 set(ENGINE_GL
 	mod1_engine_gl/core/core.cpp
+	mod1_engine_gl/core/add_callback.cpp
+	mod1_engine_gl/core/clear.cpp
+	mod1_engine_gl/core/draw.cpp
+	mod1_engine_gl/core/glfw_callback_x.cpp
+	mod1_engine_gl/core/start.cpp
+	mod1_engine_gl/core/stop.cpp
+	mod1_engine_gl/core/swap_buffers.cpp
+	mod1_engine_gl/core/x_signal.cpp
 
 	mod1_engine_gl/shader/shader.cpp
 
 	mod1_engine_gl/renderer/renderer.cpp
-	mod1_engine_gl/renderer/glfw_callback.cpp
-	mod1_engine_gl/renderer/add_callback.cpp
+	mod1_engine_gl/renderer/callback.cpp
 	mod1_engine_gl/renderer/add_model.cpp
-	mod1_engine_gl/renderer/loop.cpp
-	mod1_engine_gl/renderer/terminate.cpp
-	mod1_engine_gl/renderer/render.cpp
 
 	mod1_engine_gl/texture/texture.cpp
 
@@ -131,7 +135,7 @@ set(GENERAL
 	mod1_general/blur/blur.cpp
 
 	mod1_general/general/general.cpp
-	mod1_general/general/render_call.cpp
+	mod1_general/general/render.cpp
 	mod1_general/general/callback.cpp
 	mod1_general/general/program.cpp
 	mod1_general/general/build.cpp

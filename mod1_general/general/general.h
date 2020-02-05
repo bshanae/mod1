@@ -17,7 +17,7 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_arguments, "Mod1 Main : Invalid nu
 
 	void						build();
 
-	void						render_call() final;
+	void						render() final;
 
 private :
 

@@ -2,7 +2,7 @@
 
 using namespace		mod1_engine_gl;
 
-					callback::callback(functor_type functor, void *ptr)
+					callback::callback(callback_functor functor, void *ptr)
 {
 	this->functor = functor;
 	this->ptr = ptr;

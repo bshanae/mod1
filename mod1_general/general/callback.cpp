@@ -4,12 +4,12 @@ void				general::callback(const mod1_engine_gl::event &event, void *ptr)
 {
 	auto 			*general = (::general *)ptr;
 
-	if (event.read_type() != mod1_engine_gl::event_type::press)
+	if (event.read_type() != mod1_engine_gl::event_type::key_press)
 		return ;
 	if (event.read_key() == GLFW_KEY_5)
 	{
 		general->framebuffer.bind();
-		general->render_call();
+		general->render();
 		mod1_engine_gl::framebuffer::unbind();
 
 		general->blur.program.start();
@@ -20,7 +20,7 @@ void				general::callback(const mod1_engine_gl::event &event, void *ptr)
 		mod1_engine_gl::texture::unbind();
 		program::stop();
 
-		general->core.swap_buffers();
+		core::swap_buffers();
 	}
 	else if (event.read_key() == GLFW_KEY_6)
 	{
@@ -28,6 +28,6 @@ void				general::callback(const mod1_engine_gl::event &event, void *ptr)
 
 		general->system.write("Hello there", mod1_engine_gl::point2<int>(100, 100));
 
-		general->core.swap_buffers();
+		core::swap_buffers();
 	}
 }

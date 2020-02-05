@@ -17,7 +17,7 @@ void						main_unsafe(int argc, char **argv)
 	general.terrain()->add_color(plane_color::positive, mod1_engine_gl::point3<int>(120, 120, 120));
 
 	general.build();
-	general.loop();
+	general.start();
 }
 
 int							main(int argc, char **argv)

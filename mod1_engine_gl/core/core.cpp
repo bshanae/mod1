@@ -3,12 +3,15 @@
 using namespace		mod1_engine_gl;
 
 MOD1_GENERATE_EXCEPTION_DEFINITION(core, exception_logic_object)
-MOD1_GENERATE_EXCEPTION_DEFINITION(core, exception_logic_callback)
 MOD1_GENERATE_EXCEPTION_DEFINITION(core, exception_window)
 MOD1_GENERATE_EXCEPTION_DEFINITION(core, exception_GLEW)
 
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(core, window_width)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(core, window_height)
+
+
+GLFWwindow			*global_window = nullptr;
+bool				global_signal_block = false;
 
 					core::core()
 {
@@ -31,6 +34,7 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(core, window_height)
 		nullptr, nullptr);
 	if (!window)
 		throw (exception_window());
+	global_window = window;
 
 	glfwMakeContextCurrent(window);
 
@@ -51,69 +55,28 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(core, window_height)
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glProvokingVertex(GL_FIRST_VERTEX_CONVENTION);
-
-#if MOD1_ENABLED(MOD1_DEPTH_TEST)
 	glEnable(GL_DEPTH_TEST);
-#endif
-
-#if MOD1_DISABLED(MOD1_SHOW_BACK_OF_POLYGON)
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
-#endif
 
 #if MOD1_ENABLED(MOD1_SRGB)
 	glEnable(GL_FRAMEBUFFER_SRGB);
 #endif
+
+	glfwSetWindowUserPointer(window, this);
+	glfwSetKeyCallback(window, glfw_callback_key);
+	glfwSetMouseButtonCallback(window, glfw_callback_mouse_key);
+	glfwSetCursorPosCallback(window, glfw_callback_mouse_movement);
+
+	double			x;
+	double			y;
+
+	glfwGetCursorPos(window, &x, &y);
+	event.mouse = point2<int>(x, y);
 }
 
 					core::~core()
 {
 	glfwTerminate();
-}
-
-bool				core::is_working()
-{
-	return (glfwWindowShouldClose(window));
-}
-
-void				core::terminate()
-{
-	glfwSetWindowShouldClose(window, GL_TRUE);
-}
-
-void				core::update()
-{
-	glfwPollEvents();
-}
-
-void 				core::clear(const point3<float> &color)
-{
-	glClearColor(color.x, color.y, color.z, 1);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-}
-
-void 				core::draw(const int &count)
-{
-	glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_INT, nullptr);
-}
-
-void				core::swap_buffers()
-{
-	glfwSwapBuffers(window);
-}
-
-void				core::set_callback(mod1_callback function, void *ptr)
-{
-	static int 		count;
-
-	if (count++ > 0)
-		throw (exception_logic_callback());
-
-	glfwSetWindowUserPointer(window, ptr);
-	glfwSetKeyCallback(window, function);
-}
-
-void				*core::get_callback_pointer(GLFWwindow* window)
-{
-	return (glfwGetWindowUserPointer(window));
+	global_window = nullptr;
 }
