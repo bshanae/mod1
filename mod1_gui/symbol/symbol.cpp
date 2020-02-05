@@ -11,7 +11,7 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(symbol, advance)
 {
 	MOD1_INTERNAL(size) = mod1_engine_gl::point2<int>(face->glyph->bitmap.width, face->glyph->bitmap.rows);
 	MOD1_INTERNAL(bearing) = mod1_engine_gl::point2<int>(face->glyph->bitmap_left, face->glyph->bitmap_top);
-	MOD1_INTERNAL(advance) = face->glyph->advance.x;
+	MOD1_INTERNAL(advance) = (int)((unsigned int)face->glyph->advance.x >> 6u);
 
 	MOD1_INTERNAL(texture) = new mod1_engine_gl::texture(
 		mod1_engine_gl::texture_type::custom,

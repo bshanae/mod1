@@ -17,10 +17,10 @@ void				mod1_gui::system::square::build()
 	};
 
 	float			texture[] = {
-		0, 0,
 		0, 1,
-		1, 0,
-		1, 1
+		0, 0,
+		1, 1,
+		1, 0
 	};
 
 	int				indices[] =

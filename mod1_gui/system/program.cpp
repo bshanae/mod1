@@ -10,7 +10,11 @@
 	MOD1_CONNECT_UNIFORM(*this, color)
 	MOD1_CONNECT_UNIFORM(*this, projection)
 
-	auto			temp = glm::ortho(0.f, static_cast<float>(core.window_width()), 0.f, static_cast<float>(core.window_height()));
+	auto			temp = glm::ortho(
+		0.f,
+		(float)core.window_width(),
+		(float)core.window_height(),
+		0.f);
 
 	start();
 	texture.upload((int)0);

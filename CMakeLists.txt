@@ -30,6 +30,7 @@ set(EXTERN
 
 set(ENGINE_GL
 	mod1_engine_gl/core/core.cpp
+	mod1_engine_gl/core/show_polygon_back.cpp
 	mod1_engine_gl/core/add_callback.cpp
 	mod1_engine_gl/core/clear.cpp
 	mod1_engine_gl/core/draw.cpp
@@ -85,10 +86,15 @@ set(GUI
 
 	mod1_gui/font/font.cpp
 
+	mod1_gui/button/button.cpp
+
+	mod1_gui/system/system.cpp
 	mod1_gui/system/program.cpp
 	mod1_gui/system/square.cpp
 	mod1_gui/system/write.cpp
-	mod1_gui/system/system.cpp)
+	mod1_gui/system/add_button.cpp
+	mod1_gui/system/render.cpp
+	mod1_gui/system/callback.cpp)
 
 set(ALGORITHM
 	mod1_algorithm/plane/plane.cpp

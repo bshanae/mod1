@@ -25,9 +25,8 @@ void				general::callback(const mod1_engine_gl::event &event, void *ptr)
 	else if (event.read_key() == GLFW_KEY_6)
 	{
 		mod1_engine_gl::core::clear(mod1_engine_gl::point3<float>(0.5));
-
-		general->system.write("Hello there", mod1_engine_gl::point2<int>(100, 100));
-
+		general->system.render();
+//		general->system.write("Hello", mod1_engine_gl::point2<int>(200, 100));
 		core::swap_buffers();
 	}
 }

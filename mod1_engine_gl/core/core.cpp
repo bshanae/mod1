@@ -56,8 +56,6 @@ bool				global_signal_block = false;
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glProvokingVertex(GL_FIRST_VERTEX_CONVENTION);
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
 
 #if MOD1_ENABLED(MOD1_SRGB)
 	glEnable(GL_FRAMEBUFFER_SRGB);
@@ -73,6 +71,8 @@ bool				global_signal_block = false;
 
 	glfwGetCursorPos(window, &x, &y);
 	event.mouse = point2<int>(x, y);
+
+	show_polygon_back(false);
 }
 
 					core::~core()

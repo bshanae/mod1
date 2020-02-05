@@ -153,6 +153,16 @@ MOD1_GENERATE_EXCEPTION(exception_index, "Mod1 Engine GL, Point2 : Bad index")
 		return (true);
 	}
 
+	friend bool				operator < (const point2<type> &left, const point2<type> &right)
+	{
+		return (left.x < right.x and left.y < right.y);
+	}
+
+	friend bool				operator > (const point2<type> &left, const point2<type> &right)
+	{
+		return (left.x > right.x and left.y > right.y);
+	}
+
 	static point2<type>		min(const point2<type> &a, const point2<type> &b)
 	{
 		return (point2<type>(MOD1_MIN(a.x, b.x), MOD1_MIN(a.y, b.y)));

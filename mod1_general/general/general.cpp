@@ -5,6 +5,13 @@ MOD1_GENERATE_EXCEPTION_DEFINITION(general, exception_arguments)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(general, terrain)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(general, water)
 
+void				test(const mod1_engine_gl::event &event, void *ptr)
+{
+	static int 		s = 0;
+
+	std::cerr << "Hi" << s++ << std::endl;
+}
+
 					general::general(int argc, char **argv) :
 					mod1_engine_gl::renderer(),
 					framebuffer(window_width(), window_height()),
@@ -25,6 +32,8 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(general, water)
 
 	add_callback(mod1_engine_gl::event_type::key_press, general::callback, this);
 	add_callback(mod1_engine_gl::event_type::key_press, mod1_algorithm::water::callback, MOD1_INTERNAL(water));
+
+	system.add_button(100, 100, "Hi", test);
 }
 
 					general::~general()
