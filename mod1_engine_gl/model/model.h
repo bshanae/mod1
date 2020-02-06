@@ -65,6 +65,7 @@ protected :
 	void			set_as_dynamic();
 
 MOD1_GENERATE_INTERNAL_WITH_VALUE(glm::mat4, transformation, glm::mat4(1))
+MOD1_GENERATE_INTERNAL_WITH_VALUE(float, specular, 0)
 
 private :
 
@@ -75,6 +76,7 @@ MOD1_GENERATE_INTERNAL_WITH_VALUE(bool, is_dynamic, false)
 public :
 
 MOD1_GENERATE_INTERNAL_READ_DECLARATION(transformation)
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(specular)
 
 MOD1_GENERATE_INTERNAL_READ_DECLARATION(is_built)
 MOD1_GENERATE_INTERNAL_READ_DECLARATION(is_loaded)

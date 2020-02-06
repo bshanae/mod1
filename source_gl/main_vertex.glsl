@@ -1,25 +1,31 @@
 #version 330 core
 
-struct							mod1_light_info
-{
-	float 						ambient_intensity;
-	vec3						direct_direction;
-	float						direct_intensity;
-};
-
 layout (location = 0) in vec3	position;
 layout (location = 1) in vec3	normal;
 layout (location = 2) in vec3	color;
 flat out vec3					pass_color;
 
-uniform mat4					object_transformation;
+uniform struct
+{
+	float 						ambient_intensity;
+	vec3						direct_direction;
+	float						direct_intensity;
+}								light;
 
-uniform vec3					camera_position;
-uniform mat4					camera_view;
-uniform mat4					camera_projection;
-uniform mod1_light_info			light_info;
+uniform struct
+{
+	vec3						position;
+	mat4						view;
+	mat4						projection;
+}								camera;
 
-vec3							light(vec4 global_position)
+uniform struct
+{
+	mat4						transformation;
+	float						specular;
+}								object;
+
+vec3							compute_color(vec4 global_position)
 {
 	vec3						normal_global;
 	vec3						to_light;
@@ -34,18 +40,18 @@ vec3							light(vec4 global_position)
 	vec3						result;
 
 	normal_global = normalize(normal);
-	to_light = -light_info.direct_direction;
-	to_camera = normalize(camera_position - global_position.xyz);
+	to_light = -light.direct_direction;
+	to_camera = normalize(camera.position - global_position.xyz);
 
 	n_dot_l = clamp(dot(normal_global, to_light), 0, 1);
-	diffusion = light_info.direct_intensity * n_dot_l;
+	diffusion = light.direct_intensity * n_dot_l;
 
 	reflection = reflect(-to_light, normal_global);
-	specular = pow(max(dot(to_camera, reflection), 0.0), 2);
+	specular = pow(max(dot(to_camera, reflection), 0.0), 10);
 
-	result = color * light_info.ambient_intensity;
+	result = color * light.ambient_intensity;
 	result += color * diffusion;
-	result += 0.1 * vec3(1, 1, 1) * specular;
+	result += object.specular * vec3(1, 1, 1) * specular;
 
 	result = clamp(result, 0, 1);
 
@@ -54,8 +60,8 @@ vec3							light(vec4 global_position)
 
 void							main()
 {
-	vec4						global_position = object_transformation * vec4(position, 1);
+	vec4						global_position = object.transformation * vec4(position, 1);
 
-	pass_color = light(global_position);
-	gl_Position = camera_projection * camera_view * global_position;
+	pass_color = compute_color(global_position);
+	gl_Position = camera.projection * camera.view * global_position;
 }

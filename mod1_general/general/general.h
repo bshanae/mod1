@@ -31,13 +31,14 @@ private :
 
 								program();
 
-	MOD1_GENERATE_UNIFORM(object_transformation, "object_transformation")
-	MOD1_GENERATE_UNIFORM(camera_position, "camera_position")
-	MOD1_GENERATE_UNIFORM(camera_view, "camera_view")
-	MOD1_GENERATE_UNIFORM(camera_projection, "camera_projection")
-	MOD1_GENERATE_UNIFORM(light_ambient_intensity, "light_info.ambient_intensity")
-	MOD1_GENERATE_UNIFORM(light_direct_direction, "light_info.direct_direction")
-	MOD1_GENERATE_UNIFORM(light_direct_intensity, "light_info.direct_intensity")
+	MOD1_GENERATE_UNIFORM(object_transformation, "object.transformation")
+	MOD1_GENERATE_UNIFORM(object_specular, "object.specular")
+	MOD1_GENERATE_UNIFORM(camera_position, "camera.position")
+	MOD1_GENERATE_UNIFORM(camera_view, "camera.view")
+	MOD1_GENERATE_UNIFORM(camera_projection, "camera.projection")
+	MOD1_GENERATE_UNIFORM(light_ambient_intensity, "light.ambient_intensity")
+	MOD1_GENERATE_UNIFORM(light_direct_direction, "light.direct_direction")
+	MOD1_GENERATE_UNIFORM(light_direct_intensity, "light.direct_intensity")
 	}							program;
 
 	blur						blur;

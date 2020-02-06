@@ -17,6 +17,7 @@ void				general::render()
 	for (auto &model : model_array())
 	{
 		program.object_transformation.upload(rotation);
+		program.object_specular.upload(model->specular());
 		model->draw();
 	}
 	program::stop();

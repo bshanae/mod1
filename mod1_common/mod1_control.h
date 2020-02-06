@@ -73,5 +73,7 @@
 #define MOD1_WATER_CONST_g					10
 #define MOD1_WATER_CONST_dt					3
 
+#define MOD1_WATER_SPECULAR					0.25
+
 #define MOD1_WATER_UNDEFINED				std::numeric_limits<float>::min()
 #define MOD1_WATER_HIDDEN					-100

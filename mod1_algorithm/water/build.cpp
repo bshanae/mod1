@@ -6,6 +6,8 @@ void 					water::build()
 {
 	set_as_dynamic();
 
+	model::specular_internal = MOD1_WATER_SPECULAR;
+
 	set(
 		terrain->min() - point2<float>(terrain->delta() / 2),
 		terrain->max() + point2<float>(terrain->delta() / 2),
