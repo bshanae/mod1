@@ -48,7 +48,7 @@ void					terrain::generate_hill(const point3<double> &summit)
 	{
 		height = interpolate_smooth(0, summit.z, ((float)(step_limit - step) / (float)step_limit));
 
-		generate_hill_fix(iter_const, step);
+//		generate_hill_fix(iter_const, step);
 
 		for (iter.x = iter_const.x - step + 1; iter.x <= iter_const.x + step - 1; iter.x++)
 		{

@@ -38,7 +38,7 @@ private :
 
 		void							build() override;
 
-		using							model::update;
+		using							model::save;
 
 		using							model::buffer_point;
 		using							model::buffer_texture;

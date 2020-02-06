@@ -59,10 +59,11 @@ set(ENGINE_GL
 	mod1_engine_gl/model/load.cpp
 	mod1_engine_gl/model/model.cpp
 	mod1_engine_gl/model/pointer.cpp
+	mod1_engine_gl/model/is_valid.cpp
 	mod1_engine_gl/model/set_as_x.cpp
 	mod1_engine_gl/model/start.cpp
 	mod1_engine_gl/model/stop.cpp
-	mod1_engine_gl/model/upload.cpp
+	mod1_engine_gl/model/save.cpp
 
 	mod1_engine_gl/vbo/vbo.cpp
 	mod1_engine_gl/vao/vao.cpp
@@ -98,7 +99,8 @@ set(GUI
 
 set(ALGORITHM
 	mod1_algorithm/plane/plane.cpp
-	mod1_algorithm/plane/get_x.cpp
+	mod1_algorithm/plane/pointer.cpp
+	mod1_algorithm/plane/index.cpp
 	mod1_algorithm/plane/set.cpp
 	mod1_algorithm/plane/build.cpp
 	mod1_algorithm/plane/update_x.cpp
@@ -124,11 +126,10 @@ set(ALGORITHM
 	mod1_algorithm/water/water.cpp
 	mod1_algorithm/water/build.cpp
 	mod1_algorithm/water/model.cpp
-	mod1_algorithm/water/get_x.cpp
-	mod1_algorithm/water/set_x.cpp
+	mod1_algorithm/water/read_x.cpp
+	mod1_algorithm/water/write_x.cpp
 	mod1_algorithm/water/x_model.cpp
 	mod1_algorithm/water/gravity_x.cpp
-	mod1_algorithm/water/x_color.cpp
 	mod1_algorithm/water/callback.cpp
 	mod1_algorithm/water/data_x.cpp
 	mod1_algorithm/water/cl_build.cpp

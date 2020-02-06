@@ -73,9 +73,5 @@
 #define MOD1_WATER_CONST_g					10
 #define MOD1_WATER_CONST_dt					3
 
-#define MOD1_WATER_HIDDEN					std::numeric_limits<float>::min()
-#define MOD1_WATER_INDENT					-100
-
-#define MOD1_WATER_COLOR_A					0, 0.62, 1
-#define MOD1_WATER_COLOR_B					0, 0.05, 0.1
-#define MOD1_WATER_COLOR_RANGE				200
+#define MOD1_WATER_UNDEFINED				std::numeric_limits<float>::min()
+#define MOD1_WATER_HIDDEN					-100

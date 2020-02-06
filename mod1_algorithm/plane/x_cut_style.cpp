@@ -21,11 +21,11 @@ void				plane::switch_cut_style(const point2<int> &iter)
 	int				bottom_left;
 	int				bottom_right;
 
-	top_left = pointer(point2<int>(iter.x, iter.y),
-					   is_dual(iter) ? index_convention::dual_second : index_convention::dual_first);
-	top_right = pointer(point2<int>(iter.x + 1, iter.y), index_convention::dual_first);
-	bottom_left = pointer(point2<int>(iter.x, iter.y + 1));
-	bottom_right = pointer(point2<int>(iter.x + 1, iter.y + 1));
+	top_left = index(point2<int>(iter.x, iter.y),
+					 is_dual(iter) ? index_convention::dual_second : index_convention::dual_first);
+	top_right = index(point2<int>(iter.x + 1, iter.y), index_convention::dual_first);
+	bottom_left = index(point2<int>(iter.x, iter.y + 1));
+	bottom_right = index(point2<int>(iter.x + 1, iter.y + 1));
 
 	int				*ptr;
 

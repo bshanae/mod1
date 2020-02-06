@@ -45,14 +45,18 @@ protected :
 	void								write_color(const point2<int> &iter, const point3<float> &color);
 
 	bool 								is_dual(const point2<int> &iter) const;
+	bool								is_valid(
+										const point2<int> &iter,
+										const model_slot &slot,
+										const index_convention &convention = index_convention::dual_first) const;
 
-	void 								update_normal();
+	void 								update_normal(const bool &save = false);
 
 	void 								update_final();
 
 	void								add_color(const plane_color &type, const point3<float> &color);
 	void 								add_color(const plane_color &type, const point3<int> &color);
-	virtual void 						update_color();
+	void 								update_color();
 
 	enum class							cut_style
 	{
@@ -81,7 +85,7 @@ MOD1_GENERATE_INTERNAL(point3<float>, final_max)
 
 	bool								is_set = false;
 
-	int 								pointer(
+	int 								index(
 										const point2<int> &iter,
 										const index_convention &convention = index_convention::dual_first) const;
 	void 								*pointer(

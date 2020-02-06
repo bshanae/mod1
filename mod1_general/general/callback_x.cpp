@@ -40,3 +40,11 @@ void				general::callback_drag(const mod1_engine_gl::event &event, void *ptr)
 
 	general->render();
 }
+
+void				general::callback_water(const mod1_engine_gl::event &event, void *ptr)
+{
+	auto 			*general = (::general *)ptr;
+
+	mod1_algorithm::water::callback(event, general->MOD1_INTERNAL(water));
+	general->render();
+}

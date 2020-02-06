@@ -56,7 +56,9 @@ protected :
 	void 			*pointer(const int &index, const model_slot &slot);
 	void const		*pointer(const int &index, const model_slot &slot) const;
 
-	void 			update(const model_slot &slot);
+	bool			is_valid(const int &index, const model_slot &slot) const;
+
+	void 			save(const model_slot &slot);
 
 	void			set_as_built();
 	void			set_as_loaded();

@@ -31,8 +31,9 @@ void				test(const mod1_engine_gl::event &event, void *ptr)
 	first_argument = argv[1];
 
 	add_callback(mod1_engine_gl::event_type::key_press, general::callback_key, this);
+	add_callback(mod1_engine_gl::event_type::key_press, general::callback_water, this);
+	add_callback(mod1_engine_gl::event_type::key_hold, general::callback_water, this);
 	add_callback(mod1_engine_gl::event_type::mouse_drag, general::callback_drag, this);
-	add_callback(mod1_engine_gl::event_type::key_press, mod1_algorithm::water::callback, MOD1_INTERNAL(water));
 
 	system.add_button(100, 100, "Hi", test);
 }

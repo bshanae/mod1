@@ -45,11 +45,11 @@ void					plane::build()
 	for (iter.y = 0; iter.y < MOD1_INTERNAL(size).y - 1; iter.y++)
 		for (iter.x = 0; iter.x < MOD1_INTERNAL(size).x - 1; iter.x++)
 		{
-			top_left = pointer(point2<int>(iter.x, iter.y),
-							   is_dual(iter) ? index_convention::dual_second : index_convention::dual_first);
-			top_right = pointer(point2<int>(iter.x + 1, iter.y), index_convention::dual_first);
-			bottom_left = pointer(point2<int>(iter.x, iter.y + 1));
-			bottom_right = pointer(point2<int>(iter.x + 1, iter.y + 1));
+			top_left = index(point2<int>(iter.x, iter.y),
+							 is_dual(iter) ? index_convention::dual_second : index_convention::dual_first);
+			top_right = index(point2<int>(iter.x + 1, iter.y), index_convention::dual_first);
+			bottom_left = index(point2<int>(iter.x, iter.y + 1));
+			bottom_right = index(point2<int>(iter.x + 1, iter.y + 1));
 
 			index_ptr[index_i++] = top_left;
 			index_ptr[index_i++] = bottom_left;

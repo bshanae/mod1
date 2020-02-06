@@ -15,6 +15,7 @@ void 					water::build()
 	data_prepare();
 
 	update_model();
+	update_normal();
 	update_color();
 
 	cl_build();

@@ -5,11 +5,9 @@ using namespace			mod1_algorithm;
 void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 {
 	auto				water = (mod1_algorithm::water *)ptr;
+	const auto			key = event.read_key();
 
-	if (event.read_type() != mod1_engine_gl::event_type::key_press)
-		return ;
-
-	if (event.read_key() == GLFW_KEY_1)
+	if (key == GLFW_KEY_1)
 	{
 		water->water_data.set(0);
 		
@@ -21,22 +19,22 @@ void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 
 		for (iter.y = 0; iter.y < water->data_size.y; iter.y++)
 			for (iter.x = 0; iter.x < WIDTH; iter.x++)
-				water->set_water_depth(iter, HEIGHT);
+				water->write_water_depth(iter, HEIGHT);
 		for (iter.y = 0; iter.y < water->data_size.y; iter.y++)
 			for (iter.x = water->data_size.x - WIDTH; iter.x < water->data_size.x; iter.x++)
-				water->set_water_depth(iter, HEIGHT);
+				water->write_water_depth(iter, HEIGHT);
 
 		for (iter.x = 0; iter.x < water->data_size.x; iter.x++)
 			for (iter.y = 0; iter.y < WIDTH; iter.y++)
-				water->set_water_depth(iter, HEIGHT);
+				water->write_water_depth(iter, HEIGHT);
 		for (iter.x = 0; iter.x < water->data_size.x; iter.x++)
 			for (iter.y = water->data_size.y - WIDTH; iter.y < water->data_size.y; iter.y++)
-				water->set_water_depth(iter, HEIGHT);
+				water->write_water_depth(iter, HEIGHT);
 
 		water->cl_arg_water_data.write();
 #endif
 	}
-	else if (event.read_key() == GLFW_KEY_2)
+	else if (key == GLFW_KEY_2)
 	{
 
 #ifdef MOD1_WATER_FLOOD_POINT
@@ -69,7 +67,12 @@ void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 		level += STEP;
 #endif
 	}
-	else if (event.read_key() == GLFW_KEY_3)
+	else if (key == GLFW_KEY_3)
+	{
+		water->write_water_depth(point2<int>(10, 10), 2);
+		water->cl_arg_water_data.write();
+	}
+	else if (key == GLFW_KEY_4)
 		;
 	else
 		return ;
@@ -77,8 +80,6 @@ void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 	water->gravity();
 #endif
 
-	water->update_model();
-	water->update_color();
-	water->update(model_slot::point);
-	water->update(model_slot::color);
+	water->update_model(true);
+	water->update_normal(true);
 }

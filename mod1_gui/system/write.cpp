@@ -26,7 +26,7 @@ void				system::write(const std::string &text, const point2<int> &position)
 		};
 
 		square.buffer_point.copy(raw);
-		square.update(mod1_engine_gl::model_slot::point);
+		square.save(mod1_engine_gl::model_slot::point);
 
 		program.start();
 		symbol->texture()->bind();

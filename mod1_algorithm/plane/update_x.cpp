@@ -32,7 +32,7 @@ void	 				plane::update_normal_helper(
 	normal.write_to_ptr(ptr_n, point3<float>::convention_xzy);
 }
 
-void					plane::update_normal()
+void					plane::update_normal(const bool &save)
 {
 	point2<int>			iter;
 
@@ -44,11 +44,11 @@ void					plane::update_normal()
 	for (iter.y = 0; iter.y < MOD1_INTERNAL(size).y - 1; iter.y++)
 		for (iter.x = 0; iter.x < MOD1_INTERNAL(size).x - 1; iter.x++)
 		{
-			top_left = pointer(point2<int>(iter.x, iter.y),
-							   is_dual(iter) ? index_convention::dual_second : index_convention::dual_first);
-			top_right = pointer(point2<int>(iter.x + 1, iter.y), index_convention::dual_first);
-			bottom_left = pointer(point2<int>(iter.x, iter.y + 1));
-			bottom_right = pointer(point2<int>(iter.x + 1, iter.y + 1));
+			top_left = index(point2<int>(iter.x, iter.y),
+							 is_dual(iter) ? index_convention::dual_second : index_convention::dual_first);
+			top_right = index(point2<int>(iter.x + 1, iter.y), index_convention::dual_first);
+			bottom_left = index(point2<int>(iter.x, iter.y + 1));
+			bottom_right = index(point2<int>(iter.x + 1, iter.y + 1));
 
 			if (get_cut_style(iter) == cut_style::upwards)
 			{
@@ -61,6 +61,9 @@ void					plane::update_normal()
 				update_normal_helper(top_right, top_left, bottom_right);
 			}
 		}
+
+	if (save)
+		model::save(model_slot::normal);
 }
 
 void 					plane::update_final()

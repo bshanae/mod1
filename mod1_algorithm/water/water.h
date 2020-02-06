@@ -24,6 +24,8 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_unknown_flow_type, "Mod1 Water : U
 
 	static void						callback(const mod1_engine_gl::event &event, void *ptr);
 
+	using							plane::add_color;
+
 private :
 
 	terrain const					*terrain;
@@ -38,17 +40,15 @@ private :
 
 	void							data_prepare();
 
-	float							get_terrain_height(const point2<int> &iter);
-	float							get_water_depth(const point2<int> &iter);
-	float							get_total_height(const point2<int> &iter);
+	float							read_terrain_height(const point2<int> &iter);
+	float							read_water_depth(const point2<int> &iter);
+	float							read_total_height(const point2<int> &iter);
 
-	void							set_water_depth(const point2<int> &iter, const float &value);
+	void							write_water_depth(const point2<int> &iter, const float &value);
 
 	void							update_model_helper_b(const point2<int> &iter, const float &new_height);
 	void							update_model_helper_a(const point2<int> &iter);
-	void							update_model();
-
-	void							update_color() override;
+	void							update_model(const bool &save = false);
 
 	mod1_engine_cl::core			cl_core;
 

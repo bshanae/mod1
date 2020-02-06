@@ -12,5 +12,5 @@ point3<float>		plane::read_point(const point2<int> &iter) const
 
 float				plane::read_height(const point2<int> &iter) const
 {
-	return (((float *) pointer(iter, model_slot::point, index_convention::dual_first))[1]);
+	return (((float *)pointer(iter, model_slot::point, index_convention::dual_first))[1]);
 }

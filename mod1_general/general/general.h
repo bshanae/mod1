@@ -52,6 +52,7 @@ private :
 
 	static void					callback_key(const mod1_engine_gl::event &event, void *ptr);
 	static void					callback_drag(const mod1_engine_gl::event &event, void *ptr);
+	static void					callback_water(const mod1_engine_gl::event &event, void *ptr);
 
 	char 						*first_argument = nullptr;
 

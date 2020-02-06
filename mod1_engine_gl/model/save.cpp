@@ -2,7 +2,7 @@
 
 using namespace		mod1_engine_gl;
 
-void				model::update(const model_slot &slot)
+void				model::save(const model_slot &slot)
 {
 	if (not MOD1_INTERNAL(is_loaded))
 		throw (exception_load());
