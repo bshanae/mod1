@@ -19,7 +19,7 @@ class					mod1_engine_gl::camera
 {
 public :
 
-	camera(
+						camera(
 						int screen_width,
 						int screen_height,
 						const glm::vec3 &position = glm::vec3(0, 0, 0));
@@ -50,7 +50,7 @@ MOD1_GENERATE_INTERNAL_WITH_VALUE(glm::mat4, projection, glm::mat4(1))
 MOD1_GENERATE_INTERNAL_WITH_VALUE(glm::mat4, rotation, glm::mat4(1))
 MOD1_GENERATE_INTERNAL_WITH_VALUE(glm::mat4, view, glm::mat4(1))
 
-	glm::vec3			position = glm::vec3();
+MOD1_GENERATE_INTERNAL_WITH_VALUE(glm::vec3, position, glm::vec3())
 
 	const float			movement_speed = MOD1_CAMERA_MOVEMENT_SPEED;
 	const float			rotation_speed = MOD1_CAMERA_ROTATION_SPEED;
@@ -59,6 +59,7 @@ MOD1_GENERATE_INTERNAL_WITH_VALUE(glm::mat4, view, glm::mat4(1))
 
 public :
 
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(position)
 MOD1_GENERATE_INTERNAL_READ_DECLARATION(projection)
 MOD1_GENERATE_INTERNAL_READ_DECLARATION(rotation)
 MOD1_GENERATE_INTERNAL_READ_DECLARATION(view)

@@ -2,6 +2,7 @@
 
 using namespace		mod1_engine_gl;
 
+MOD1_GENERATE_INTERNAL_READ_DEFINITION(camera, position)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(camera, projection)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(camera, rotation)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(camera, view)
@@ -13,7 +14,7 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(camera, view)
 						0.5f,
 						10000.0f))
 {
-	this->position = position;
+	this->MOD1_INTERNAL(position) = position;
 	MOD1_INTERNAL(view) = glm::mat4(1.0f);
 	update_transformation();
 }
@@ -21,11 +22,11 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(camera, view)
 void				camera::move(axis axis, sign sign)
 {
 	if (axis == axis::x)
-		position += axis_x * movement_speed * (float)sign;
+		MOD1_INTERNAL(position) += axis_x * movement_speed * (float)sign;
 	else if (axis == axis::y)
-		position += axis_y * movement_speed * (float)sign;
+		MOD1_INTERNAL(position) += axis_y * movement_speed * (float)sign;
 	else if (axis == axis::z)
-		position += axis_z * movement_speed * (float)sign;
+		MOD1_INTERNAL(position) += axis_z * movement_speed * (float)sign;
 	else
 		throw (exception_enum());
 	update_transformation();
@@ -95,5 +96,5 @@ void 				camera::update_transformation()
 
 	direction = glm::vec3(MOD1_INTERNAL(rotation) * forward_const);
 	up = glm::vec3(MOD1_INTERNAL(rotation) * up_const);
-	MOD1_INTERNAL(view) = glm::lookAt(position, position + direction, up);
+	MOD1_INTERNAL(view) = glm::lookAt(MOD1_INTERNAL(position), MOD1_INTERNAL(position) + direction, up);
 }

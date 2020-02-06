@@ -6,6 +6,7 @@ void				general::render()
 
 	program.start();
 
+	program.camera_position.upload(camera.position());
 	program.camera_projection.upload(camera.projection());
 	program.camera_view.upload(camera.view());
 

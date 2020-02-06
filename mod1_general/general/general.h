@@ -32,6 +32,7 @@ private :
 								program();
 
 	MOD1_GENERATE_UNIFORM(object_transformation, "object_transformation")
+	MOD1_GENERATE_UNIFORM(camera_position, "camera_position")
 	MOD1_GENERATE_UNIFORM(camera_view, "camera_view")
 	MOD1_GENERATE_UNIFORM(camera_projection, "camera_projection")
 	MOD1_GENERATE_UNIFORM(light_ambient_intensity, "light_info.ambient_intensity")
