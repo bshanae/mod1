@@ -21,6 +21,8 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_arguments, "Mod1 Main : Invalid nu
 
 private :
 
+	mod1_engine_cl::core		cl_core;
+
 	mod1_engine_gl::framebuffer	framebuffer;
 
 	class						program : public mod1_engine_gl::program

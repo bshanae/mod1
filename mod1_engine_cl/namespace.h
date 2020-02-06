@@ -4,6 +4,7 @@
 
 #include "mod1_common/mod1_OpenCL.h"
 
+#include <iostream>
 #include <string>
 #include <fstream>
 #include <sstream>

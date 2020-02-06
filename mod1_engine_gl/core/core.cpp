@@ -17,6 +17,8 @@ bool				global_signal_block = false;
 {
 	static int 		count;
 
+MOD1_GENERATE_MESSAGE("")
+
 	if (count++ > 0)
 		throw (exception_logic_object());
 
@@ -26,6 +28,8 @@ bool				global_signal_block = false;
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+
+MOD1_GENERATE_MESSAGE("Mod1 Engine GL, Core : GLFW Launched")
 
 	window = glfwCreateWindow(
 		MOD1_INTERNAL(window_width),
@@ -42,6 +46,8 @@ bool				global_signal_block = false;
 	if (glewInit() != GLEW_OK)
 		throw (exception_GLEW());
 
+MOD1_GENERATE_MESSAGE("Mod1 Engine GL, Core : GLEW Launched")
+
 	int				width;
 	int 			height;
 
@@ -57,6 +63,8 @@ bool				global_signal_block = false;
 	glProvokingVertex(GL_FIRST_VERTEX_CONVENTION);
 	glEnable(GL_DEPTH_TEST);
 
+MOD1_GENERATE_MESSAGE("Mod1 Engine GL, Core : OpenGL is set")
+
 #if MOD1_ENABLED(MOD1_SRGB)
 	glEnable(GL_FRAMEBUFFER_SRGB);
 #endif
@@ -66,6 +74,8 @@ bool				global_signal_block = false;
 	glfwSetMouseButtonCallback(window, glfw_callback_mouse_key);
 	glfwSetCursorPosCallback(window, glfw_callback_mouse_movement);
 
+MOD1_GENERATE_MESSAGE("Mod1 Engine GL, Core : Event system is set")
+
 	double			x;
 	double			y;
 
@@ -73,6 +83,8 @@ bool				global_signal_block = false;
 	event.mouse = point2<int>(x, y);
 
 	show_polygon_back(false);
+
+MOD1_GENERATE_MESSAGE("Mod1 Engine GL, Core : Ready")
 }
 
 					core::~core()

@@ -16,7 +16,7 @@ public :
 
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_unknown_flow_type, "Mod1 Water : Unknown flow type")
 
-	explicit	 					water(terrain const *terrain);
+									water(mod1_engine_cl::core &core, terrain const *terrain);
 									~water() final = default;
 
 	void							build() final;
@@ -50,7 +50,7 @@ private :
 	void							update_model_helper_a(const point2<int> &iter);
 	void							update_model(const bool &save = false);
 
-	mod1_engine_cl::core			cl_core;
+	mod1_engine_cl::core			&cl_core;
 
 	mod1_engine_cl::kernel			cl_kernel_debug;
 	mod1_engine_cl::kernel			cl_kernel_update_flow;
