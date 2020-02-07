@@ -106,7 +106,7 @@ MOD1_GENERATE_EXCEPTION(exception_index, "Mod1 Engine GL, Point3 : Bad index")
 	{
 		this->x -= other.x;
 		this->y -= other.y;
-		this->z += other.z;
+		this->z -= other.z;
 	}
 
 	void					operator *= (const point3<type> &other)

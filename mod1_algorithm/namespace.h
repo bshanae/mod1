@@ -1,6 +1,6 @@
 #pragma once
 
-#include "mod1_common/mod1_macros.h"
+#include "mod1_common/mod1_definition.h"
 #include "mod1_common/mod1_control.h"
 #include "mod1_engine_gl/mod1_engine_gl.h"
 #include "mod1_engine_cl/mod1_engine_cl.h"
@@ -15,6 +15,7 @@ namespace			mod1_algorithm
 {
 	using			mod1_engine_gl::point2;
 	using			mod1_engine_gl::point3;
+	using			mod1_engine_gl::point4;
 
 	using			mod1_engine_gl::buffer;
 	using			mod1_engine_gl::buffer2;

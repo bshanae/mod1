@@ -6,7 +6,9 @@ void 					water::build()
 {
 	set_as_dynamic();
 
-	model::specular_internal = MOD1_WATER_SPECULAR;
+	model::MOD1_INTERNAL(ambient_receptivity) = 1.5;
+	model::MOD1_INTERNAL(diffuse_receptivity) = 0.5;
+	model::MOD1_INTERNAL(specular_receptivity) = 0.1;//MOD1_WATER_SPECULAR;
 
 	set(
 		terrain->min() - point2<float>(terrain->delta() / 2),

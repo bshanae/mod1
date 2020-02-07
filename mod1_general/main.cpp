@@ -17,6 +17,8 @@ void						main_unsafe(int argc, char **argv)
 	general.water()->add_color(plane_color::negative, mod1_engine_gl::point3<int>(0, 0, 255));
 	general.water()->add_color(plane_color::positive, mod1_engine_gl::point3<int>(0, 0, 255));
 
+	general.water()->define_alpha(0.7f);
+
 	general.build();
 	general.start();
 }

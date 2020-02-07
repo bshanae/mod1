@@ -65,7 +65,9 @@ protected :
 	void			set_as_dynamic();
 
 MOD1_GENERATE_INTERNAL_WITH_VALUE(glm::mat4, transformation, glm::mat4(1))
-MOD1_GENERATE_INTERNAL_WITH_VALUE(float, specular, 0)
+MOD1_GENERATE_INTERNAL_WITH_VALUE(float, ambient_receptivity, 1)
+MOD1_GENERATE_INTERNAL_WITH_VALUE(float, diffuse_receptivity, 1)
+MOD1_GENERATE_INTERNAL_WITH_VALUE(float, specular_receptivity, 0)
 
 private :
 
@@ -76,7 +78,9 @@ MOD1_GENERATE_INTERNAL_WITH_VALUE(bool, is_dynamic, false)
 public :
 
 MOD1_GENERATE_INTERNAL_READ_DECLARATION(transformation)
-MOD1_GENERATE_INTERNAL_READ_DECLARATION(specular)
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(ambient_receptivity)
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(diffuse_receptivity)
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(specular_receptivity)
 
 MOD1_GENERATE_INTERNAL_READ_DECLARATION(is_built)
 MOD1_GENERATE_INTERNAL_READ_DECLARATION(is_loaded)

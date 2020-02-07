@@ -32,7 +32,9 @@ private :
 								program();
 
 	MOD1_GENERATE_UNIFORM(object_transformation, "object.transformation")
-	MOD1_GENERATE_UNIFORM(object_specular, "object.specular")
+	MOD1_GENERATE_UNIFORM(object_ambient_receptivity, "object.ambient_receptivity")
+	MOD1_GENERATE_UNIFORM(object_diffuse_receptivity, "object.diffuse_receptivity")
+	MOD1_GENERATE_UNIFORM(object_specular_receptivity, "object.specular_receptivity")
 	MOD1_GENERATE_UNIFORM(camera_position, "camera.position")
 	MOD1_GENERATE_UNIFORM(camera_view, "camera.view")
 	MOD1_GENERATE_UNIFORM(camera_projection, "camera.projection")

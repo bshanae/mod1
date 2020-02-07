@@ -4,6 +4,7 @@
 
 #include "mod1_engine_gl/point/point2.h"
 #include "mod1_engine_gl/point/point3.h"
+#include "mod1_engine_gl/point/point4.h"
 #include "mod1_engine_gl/buffer/buffer.h"
 #include "mod1_engine_gl/buffer/buffer2.h"
 

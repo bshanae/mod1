@@ -7,7 +7,9 @@
 	link();
 
 	MOD1_CONNECT_UNIFORM(*this, object_transformation)
-	MOD1_CONNECT_UNIFORM(*this, object_specular)
+	MOD1_CONNECT_UNIFORM(*this, object_ambient_receptivity)
+	MOD1_CONNECT_UNIFORM(*this, object_diffuse_receptivity)
+	MOD1_CONNECT_UNIFORM(*this, object_specular_receptivity)
 	MOD1_CONNECT_UNIFORM(*this, camera_position)
 	MOD1_CONNECT_UNIFORM(*this, camera_view)
 	MOD1_CONNECT_UNIFORM(*this, camera_projection)

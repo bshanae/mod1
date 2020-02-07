@@ -104,6 +104,7 @@ set(ALGORITHM
 	mod1_algorithm/plane/set.cpp
 	mod1_algorithm/plane/build.cpp
 	mod1_algorithm/plane/update_x.cpp
+	mod1_algorithm/plane/define_alpha.cpp
 	mod1_algorithm/plane/model.cpp
 	mod1_algorithm/plane/is_x.cpp
 	mod1_algorithm/plane/read_x.cpp

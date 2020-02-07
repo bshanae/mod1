@@ -2,8 +2,8 @@
 
 layout (location = 0) in vec3	position;
 layout (location = 1) in vec3	normal;
-layout (location = 2) in vec3	color;
-flat out vec3					pass_color;
+layout (location = 2) in vec4	color;
+flat out vec4					pass_color;
 
 uniform struct
 {
@@ -22,10 +22,12 @@ uniform struct
 uniform struct
 {
 	mat4						transformation;
-	float						specular;
+	float						ambient_receptivity;
+	float						diffuse_receptivity;
+	float						specular_receptivity;
 }								object;
 
-vec3							compute_color(vec4 global_position)
+vec4							compute_color(vec4 global_position)
 {
 	vec3						normal_global;
 	vec3						to_light;
@@ -49,13 +51,13 @@ vec3							compute_color(vec4 global_position)
 	reflection = reflect(-to_light, normal_global);
 	specular = pow(max(dot(to_camera, reflection), 0.0), 10);
 
-	result = color * light.ambient_intensity;
-	result += color * diffusion;
-	result += object.specular * vec3(1, 1, 1) * specular;
+	result = object.ambient_receptivity * color.rgb * light.ambient_intensity;
+	result += object.diffuse_receptivity * color.rgb * diffusion;
+	result += object.specular_receptivity * vec3(1, 1, 1) * specular;
 
 	result = clamp(result, 0, 1);
 
-	return (result);
+	return (vec4(result.rgb, color.a));
 }
 
 void							main()

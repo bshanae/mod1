@@ -17,7 +17,9 @@ void				general::render()
 	for (auto &model : model_array())
 	{
 		program.object_transformation.upload(rotation);
-		program.object_specular.upload(model->specular());
+		program.object_ambient_receptivity.upload(model->ambient_receptivity());
+		program.object_diffuse_receptivity.upload(model->diffuse_receptivity());
+		program.object_specular_receptivity.upload(model->specular_receptivity());
 		model->draw();
 	}
 	program::stop();

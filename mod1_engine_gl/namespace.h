@@ -1,7 +1,7 @@
 #pragma once
 
 #include "mod1_common/mod1_OpenGL.h"
-#include "mod1_common/mod1_macros.h"
+#include "mod1_common/mod1_definition.h"
 #include "mod1_common/mod1_control.h"
 #include "mod1_common/mod1_generic.h"
 
@@ -26,6 +26,8 @@ MOD1_GENERATE_EXCEPTION(exception_enum, "Mod1 Engine GL : Unknown enum value")
 	class			point2;
 	template		<typename type>
 	class			point3;
+	template		<typename type>
+	class			point4;
 
 	typedef void	(* glfw_callback)(GLFWwindow *, int, int, int, int);
 	class			core;

@@ -25,6 +25,7 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_unknown_flow_type, "Mod1 Water : U
 	static void						callback(const mod1_engine_gl::event &event, void *ptr);
 
 	using							plane::add_color;
+	using							plane::define_alpha;
 
 private :
 

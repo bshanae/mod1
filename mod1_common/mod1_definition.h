@@ -18,12 +18,16 @@
 #define MOD1_INTERNAL(name)						name##_internal
 #define MOD1_INTERNAL_RETURN(name)				const TYPE(MOD1_INTERNAL(name)) &
 
-//												PLANE
+//												MODEL
 
-#define MOD1_PLANE_POINT_SIZE					3
-#define MOD1_PLANE_INDEX_SIZE					3
-#define MOD1_PLANE_NORMAL_SIZE					3
-#define MOD1_PLANE_COLOR_SIZE					3
+#define MOD1_MODEL_POINT_GROUP					3
+#define MOD1_MODEL_INDEX_GROUP					3
+#define MOD1_MODEL_NORMAL_GROUP					3
+#define MOD1_MODEL_COLOR_GROUP					4
+#define MOD1_MODEL_TEXTURE_GROUP				2
+
+
+//												PLANE
 
 #define MOD1_PLANE_REAL_SIZE_X(size_x)			((size_x) * 2 - 2)
 #define MOD1_PLANE_REAL_SIZE(size)				point2<int>(MOD1_PLANE_REAL_SIZE_X(size.x), size.y)
@@ -40,10 +44,3 @@
 
 #define MOD1_TERRAIN_RAW_DATA					std::vector<point3<double>>
 #define MOD1_TERRAIN_RAW_DATA_RI				MOD1_TERRAIN_RAW_DATA::reverse_iterator
-
-//												WATER
-
-#define MOD1_WATER_RIGHT						point2<int>(1, 0)
-#define MOD1_WATER_UPPER						point2<int>(0, -1)
-#define MOD1_WATER_LEFT							point2<int>(-1, 0)
-#define MOD1_WATER_DOWN							point2<int>(0, 1)

@@ -23,7 +23,7 @@ void					plane::add_color(const plane_color &type, const point3<int> &color)
 
 #define INTERPOLATE(a, b, r)	(a + (b - a) * r)
 
-point3<float>			plane::compute_color(const float &height) const
+point4<float>			plane::compute_color(const float &height) const
 {
 	auto 				&color_data = height >= 0 ? color_data_positive : color_data_negative;
 	auto 				min = height >= 0 ? 0 : MOD1_INTERNAL(final_min).z;
@@ -38,7 +38,7 @@ point3<float>			plane::compute_color(const float &height) const
 	if (color_data.empty())
 		throw (exception_color());
 	if (color_data.size() == 1)
-		return (color_data[0]);
+		return (point4<float>(color_data[0], color_alpha));
 
 	ratio = (height - min) / (max - min) * (float)(color_data.size() - 1);
 
@@ -47,18 +47,18 @@ point3<float>			plane::compute_color(const float &height) const
 	ratio_normal = ratio - floor(ratio);
 
 	if (index_to == (int)color_data.size())
-		return (color_data[index_from]);
+		return (point4<float>(color_data[index_from], color_alpha));
 
 	for (int i = 0; i < 3; i++)
 		result[i] = INTERPOLATE(color_data[index_from][i], color_data[index_to][i], ratio_normal);
 	result = point3<float>::min(result, point3<float>(1.f));
-	return (result);
+	return (point4<float>(result, color_alpha));
 }
 
 void					plane::update_color()
 {
 	point2<int>			iter;
-	point3<float>		color;
+	point4<float>		color;
 
 	for (iter.y = 0; iter.y < MOD1_INTERNAL(size).y - 1; iter.y++)
 		for (iter.x = 0; iter.x < MOD1_INTERNAL(size).x; iter.x++)
@@ -66,5 +66,4 @@ void					plane::update_color()
 			color = compute_color(read_height(iter));
 			write_color(iter, color);
 		}
-
 }

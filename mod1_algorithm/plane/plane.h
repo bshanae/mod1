@@ -12,7 +12,7 @@ class									mod1_algorithm::plane : protected mod1_engine_gl::model
 {
 public :
 										plane() = default;
-	virtual								~plane() = default;
+										~plane() override = default;
 
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_coordinate, "Mod1 Plane : Bad coordinate")
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_logic, "Mod1 Plane : Object not set")
@@ -42,7 +42,7 @@ protected :
 	float								read_height(const point2<int> &iter) const;
 
 	bool								write_height(const point2<int> &iter, const float &z);
-	void								write_color(const point2<int> &iter, const point3<float> &color);
+	void								write_color(const point2<int> &iter, const point4<float> &color);
 
 	bool 								is_dual(const point2<int> &iter) const;
 	bool								is_valid(
@@ -56,6 +56,8 @@ protected :
 
 	void								add_color(const plane_color &type, const point3<float> &color);
 	void 								add_color(const plane_color &type, const point3<int> &color);
+	void								define_alpha(const float &alpha);
+	void								define_alpha(const int &alpha);
 	void 								update_color();
 
 	enum class							cut_style
@@ -81,6 +83,7 @@ MOD1_GENERATE_INTERNAL(point3<float>, final_max)
 
 	MOD1_PLANE_COLOR_DATA				color_data_positive;
 	MOD1_PLANE_COLOR_DATA				color_data_negative;
+	float								color_alpha = 1;
 	buffer2<cut_style>					cut_style_data;
 
 	bool								is_set = false;
@@ -102,7 +105,7 @@ MOD1_GENERATE_INTERNAL(point3<float>, final_max)
 										const int &index_b,
 										const int &index_c);
 
-	point3<float>						compute_color(const float &height) const;
+	point4<float>						compute_color(const float &height) const;
 
 public :
 
