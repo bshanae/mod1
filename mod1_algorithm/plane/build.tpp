@@ -1,8 +1,9 @@
-#include "plane.h"
+#pragma once
 
 using namespace			mod1_algorithm;
 
-void					plane::build()
+template				<typename color_type>
+void					plane<color_type>::build()
 {
 	if (!is_set)
 		throw (exception_logic());

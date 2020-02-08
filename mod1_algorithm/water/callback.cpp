@@ -81,8 +81,4 @@ void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 #ifndef MOD1_WATER_FLOOD_UNIFORM
 	water->gravity();
 #endif
-
-	water->update_model(true);
-	water->update_normal(true);
-	water->_update_color(true);
 }

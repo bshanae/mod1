@@ -4,8 +4,13 @@
 
 #include "mod1_algorithm/plane/plane.h"
 
+enum class						mod1_algorithm::terrain_color_type
+{
+	positive,
+	negative
+};
 
-class							mod1_algorithm::terrain : private plane
+class							mod1_algorithm::terrain : private plane<terrain_color_type>
 {
 public :
 
@@ -28,9 +33,12 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_point_number, "Mod1 Terrain : Map 
 	static float				interpolate_cosine(float min, float max, float ratio);
 	static float				interpolate_smooth(float min, float max, float ratio);
 
-	using						plane::add_color;
+	void						add_color(const point3<float> &color, const terrain_color_type &type) final;
+	void 						add_color(const point3<int> &color, const terrain_color_type &type) final;
 
 private :
+
+//								GENERAL
 
 	MOD1_TERRAIN_RAW_DATA		data_raw;
 	point3<double>				min_raw = point3<double>(std::numeric_limits<double>::max());
@@ -46,9 +54,13 @@ private :
 	void						normalize();
 	void						resize();
 
+//								HILL
+
 	void						generate_hill_helper(const point2<int> &iter, const float &new_height);
 	void						generate_hill_fix(const point2<int> &iter, const int &step);
 	void						generate_hill(const point3<double> &summit);
+
+//								NOISE
 
 	FastNoise					noise_generator;
 
@@ -71,6 +83,16 @@ private :
 								const float &power = 1);
 
 	point2<int>					find_iter(const point3<double> &object) const;
+
+//								COLOR
+
+	std::vector<point3<float>>	color_data_positive;
+	std::vector<point3<float>>	color_data_negative;
+
+	point4<float>				compute_color(const float &height) const;
+	void 						update_color(const bool &save = false) final;
+
+//								PARENT
 
 	using						plane::size;
 	using						plane::real_size;

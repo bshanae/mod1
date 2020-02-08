@@ -1,8 +1,9 @@
-#include "plane.h"
+#pragma once
 
 using namespace		mod1_algorithm;
 
-void 				*plane::pointer(
+template			<typename color_type>
+void 				*plane<color_type>::pointer(
 					const point2<int> &iter,
 					const model_slot &slot,
 					const index_convention &convention)
@@ -10,7 +11,8 @@ void 				*plane::pointer(
 	return (mod1_engine_gl::model::pointer(index(iter, convention), slot));
 }
 
-void const			*plane::pointer(
+template			<typename color_type>
+void const			*plane<color_type>::pointer(
 					const point2<int> &iter,
 					const model_slot &slot,
 					const index_convention &convention) const

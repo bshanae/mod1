@@ -11,6 +11,7 @@ void					water::gravity()
 
 	cl_arg_water_data.read();
 
-	update_model();
-//	_update_color(true);
+	update_model(true);
+	update_normal(true);
+	_update_color(true);
 }

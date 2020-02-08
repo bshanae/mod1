@@ -1,12 +1,13 @@
-#include "plane.h"
+#pragma once
 
-using namespace			mod1_algorithm;
+using namespace		mod1_algorithm;
 
-void 					plane::update_final()
+template			<typename color_type>
+void 				plane<color_type>::update_final()
 {
-	point2<int>			iter;
-	float				*ptr;
-	point3<float>		point;
+	point2<int>		iter;
+	float			*ptr;
+	point3<float>	point;
 
 	MOD1_INTERNAL(final_min) = point3<float>(std::numeric_limits<float>::max());
 	MOD1_INTERNAL(final_max) = point3<float>(std::numeric_limits<float>::min());

@@ -1,8 +1,9 @@
-#include "plane.h"
+#pragma once
 
 using namespace		mod1_algorithm;
 
-int 				plane::index(
+template			<typename color_type>
+int 				plane<color_type>::index(
 					const point2<int> &iter,
 					const index_convention &convention) const
 {

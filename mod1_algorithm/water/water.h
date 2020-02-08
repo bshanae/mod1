@@ -5,12 +5,18 @@
 #include "mod1_algorithm/terrain/terrain.h"
 
 /*
- * 		FLOW :
- * 			f < 0 -> outcoming
- * 			f > 0 -> incoming
+ * 	FLOW :
+ * 		f < 0 : outcoming
+ * 		f > 0 : incoming
  */
 
-class								mod1_algorithm::water : private plane
+enum class							mod1_algorithm::water_color_type
+{
+	min,
+	max
+};
+
+class								mod1_algorithm::water : private plane<water_color_type>
 {
 public :
 
@@ -24,16 +30,9 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_unknown_flow_type, "Mod1 Water : U
 
 	static void						callback(const mod1_engine_gl::event &event, void *ptr);
 
-	using							plane::define_alpha;
-
-	enum class						color_type
-	{
-		min,
-		max
-	};
-
-
-
+	void							add_color(const point3<float> &color, const water_color_type &type) final;
+	void							add_color(const point3<int> &color, const water_color_type &type) final;
+	void							update_color(const bool &save) final;
 
 private :
 

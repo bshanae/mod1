@@ -2,17 +2,18 @@
 
 #include "mod1_algorithm/namespace.h"
 
+template								<typename color_type>
 class									mod1_algorithm::plane : protected mod1_engine_gl::model
 {
 public :
 										plane() = default;
 										~plane() override = default;
 
-MOD1_GENERATE_EXCEPTION_DECLARATION(exception_coordinate, "Mod1 Plane : Bad coordinate")
-MOD1_GENERATE_EXCEPTION_DECLARATION(exception_logic, "Mod1 Plane : Object not set")
-MOD1_GENERATE_EXCEPTION_DECLARATION(exception_color, "Mod1 Plane : Too few colors defined")
-MOD1_GENERATE_EXCEPTION_DECLARATION(exception_index_convention, "Mod1 Plane : Unknown index convention")
-MOD1_GENERATE_EXCEPTION_DECLARATION(exception_cut_style, "Mod1 Plane : Unknown cut style")
+MOD1_GENERATE_EXCEPTION(exception_coordinate, "Mod1 Plane : Bad coordinate")
+MOD1_GENERATE_EXCEPTION(exception_logic, "Mod1 Plane : Object not set")
+MOD1_GENERATE_EXCEPTION(exception_color, "Mod1 Plane : Too few colors defined")
+MOD1_GENERATE_EXCEPTION(exception_index_convention, "Mod1 Plane : Unknown index convention")
+MOD1_GENERATE_EXCEPTION(exception_cut_style, "Mod1 Plane : Unknown cut style")
 
 	void								set(
 										const point2<float> &min,
@@ -22,12 +23,6 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_cut_style, "Mod1 Plane : Unknown c
 
 	virtual mod1_engine_gl::model		*model();
 	virtual const mod1_engine_gl::model	*model() const;
-
-	enum class							color_type
-	{
-		positive,
-		negative
-	};
 
 protected :
 
@@ -54,12 +49,9 @@ protected :
 
 	void 								update_final();
 
-	void								add_color(const point3<float> &color, const color_type &type);
-	void 								add_color(const point3<int> &color, const color_type &type);
-	void 								update_color(const bool &save = false);
-
-	void								define_alpha(const float &alpha);
-	void								define_alpha(const int &alpha);
+	virtual void						add_color(const point3<float> &color, const color_type &type) = 0;
+	virtual void 						add_color(const point3<int> &color, const color_type &type) = 0;
+	virtual void 						update_color(const bool &save) = 0;
 
 	enum class							cut_style
 	{
@@ -82,9 +74,6 @@ MOD1_GENERATE_INTERNAL(point2<int>, real_size)
 MOD1_GENERATE_INTERNAL(point3<float>, final_min)
 MOD1_GENERATE_INTERNAL(point3<float>, final_max)
 
-	std::vector<point3<float>>			color_data_positive;
-	std::vector<point3<float>>			color_data_negative;
-	float								color_alpha = 1;
 	buffer2<cut_style>					cut_style_data;
 
 	bool								is_set = false;
@@ -106,16 +95,26 @@ MOD1_GENERATE_INTERNAL(point3<float>, final_max)
 										const int &index_b,
 										const int &index_c);
 
-	point4<float>						compute_color(const float &height) const;
-
 public :
 
-MOD1_GENERATE_INTERNAL_READ_DECLARATION(size)
-MOD1_GENERATE_INTERNAL_READ_DECLARATION(real_size)
-MOD1_GENERATE_INTERNAL_READ_DECLARATION(min)
-MOD1_GENERATE_INTERNAL_READ_DECLARATION(max)
-MOD1_GENERATE_INTERNAL_READ_DECLARATION(delta)
-MOD1_GENERATE_INTERNAL_READ_DECLARATION(final_min)
-MOD1_GENERATE_INTERNAL_READ_DECLARATION(final_max)
-
+MOD1_GENERATE_INTERNAL_READ(size)
+MOD1_GENERATE_INTERNAL_READ(real_size)
+MOD1_GENERATE_INTERNAL_READ(min)
+MOD1_GENERATE_INTERNAL_READ(max)
+MOD1_GENERATE_INTERNAL_READ(delta)
+MOD1_GENERATE_INTERNAL_READ(final_min)
+MOD1_GENERATE_INTERNAL_READ(final_max)
 };
+
+#include "mod1_algorithm/plane/build.tpp"
+#include "mod1_algorithm/plane/pointer.tpp"
+#include "mod1_algorithm/plane/index.tpp"
+#include "mod1_algorithm/plane/is_x.tpp"
+#include "mod1_algorithm/plane/model.tpp"
+#include "mod1_algorithm/plane/pointer.tpp"
+#include "mod1_algorithm/plane/read_x.tpp"
+#include "mod1_algorithm/plane/set.tpp"
+#include "mod1_algorithm/plane/write_x.tpp"
+#include "mod1_algorithm/plane/x_cut_style.tpp"
+#include "mod1_algorithm/plane/x_final.tpp"
+#include "mod1_algorithm/plane/x_normal.tpp"

@@ -1,8 +1,9 @@
-#include "plane.h"
+#pragma once
 
 using namespace			mod1_algorithm;
 
-void					plane::set(
+template				<typename color_type>
+void					plane<color_type>::set(
 						const point2<float> &min,
 						const point2<float> &max,
 						const float &delta)

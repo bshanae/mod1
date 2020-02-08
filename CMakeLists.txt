@@ -98,20 +98,6 @@ set(GUI
 	mod1_gui/system/callback.cpp)
 
 set(ALGORITHM
-	mod1_algorithm/plane/plane.cpp
-	mod1_algorithm/plane/pointer.cpp
-	mod1_algorithm/plane/index.cpp
-	mod1_algorithm/plane/set.cpp
-	mod1_algorithm/plane/build.cpp
-	mod1_algorithm/plane/x_final.cpp
-	mod1_algorithm/plane/x_alpha.cpp
-	mod1_algorithm/plane/x_normal.cpp
-	mod1_algorithm/plane/model.cpp
-	mod1_algorithm/plane/is_x.cpp
-	mod1_algorithm/plane/read_x.cpp
-	mod1_algorithm/plane/write_x.cpp
-	mod1_algorithm/plane/x_cut_style.cpp
-
 	mod1_algorithm/terrain/terrain.cpp
 	mod1_algorithm/terrain/parse_x.cpp
 	mod1_algorithm/terrain/build.cpp
@@ -121,9 +107,9 @@ set(ALGORITHM
 	mod1_algorithm/terrain/resize.cpp
 	mod1_algorithm/terrain/find_iter.cpp
 	mod1_algorithm/terrain/interpolate_x.cpp
-	mod1_algorithm/plane/x_color.cpp
 	mod1_algorithm/terrain/model.cpp
 	mod1_algorithm/terrain/x_noise.cpp
+	mod1_algorithm/terrain/x_color.cpp
 
 	mod1_algorithm/water/water.cpp
 	mod1_algorithm/water/build.cpp
@@ -137,7 +123,8 @@ set(ALGORITHM
 	mod1_algorithm/water/cl_build.cpp
 	mod1_algorithm/water/cl_set_x.cpp
 	mod1_algorithm/water/cl_link_x.cpp
-	mod1_algorithm/water/cl_write.cpp)
+	mod1_algorithm/water/cl_write.cpp
+	mod1_algorithm/water/x_color.cpp)
 
 
 set(GENERAL

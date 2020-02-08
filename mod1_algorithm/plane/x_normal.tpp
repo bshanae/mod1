@@ -1,8 +1,9 @@
-#include "plane.h"
+#pragma once
 
 using namespace			mod1_algorithm;
 
-void	 				plane::update_normal_helper(
+template				<typename color_type>
+void	 				plane<color_type>::update_normal_helper(
 						const int &index_a,
 						const int &index_b,
 						const int &index_c)
@@ -32,7 +33,8 @@ void	 				plane::update_normal_helper(
 	normal.write_to_ptr(ptr_n, point3<float>::convention_xzy);
 }
 
-void					plane::update_normal(const bool &save)
+template				<typename color_type>
+void					plane<color_type>::update_normal(const bool &save)
 {
 	point2<int>			iter;
 

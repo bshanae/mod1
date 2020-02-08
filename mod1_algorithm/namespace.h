@@ -22,7 +22,12 @@ namespace			mod1_algorithm
 
 	using			model_slot = mod1_engine_gl::model_slot;
 
+	template		<typename color_type>
 	class 			plane;
+
+	enum class 		terrain_color_type;
 	class 			terrain;
+
+	enum class 		water_color_type;
 	class 			water;
 }

@@ -1,8 +1,9 @@
-#include "plane.h"
+#pragma once
 
-using namespace		mod1_algorithm;
+using namespace							mod1_algorithm;
 
-void				plane::switch_cut_style(const point2<int> &iter)
+template								<typename color_type>
+void									plane<color_type>::switch_cut_style(const point2<int> &iter)
 {
 	switch (cut_style_data[iter])
 	{
@@ -16,18 +17,18 @@ void				plane::switch_cut_style(const point2<int> &iter)
 			throw (exception_cut_style());
 	}
 
-	int				top_left;
-	int				top_right;
-	int				bottom_left;
-	int				bottom_right;
+	int									top_left;
+	int									top_right;
+	int									bottom_left;
+	int									bottom_right;
 
 	top_left = index(point2<int>(iter.x, iter.y),
-					 is_dual(iter) ? index_convention::dual_second : index_convention::dual_first);
+		is_dual(iter) ? index_convention::dual_second : index_convention::dual_first);
 	top_right = index(point2<int>(iter.x + 1, iter.y), index_convention::dual_first);
 	bottom_left = index(point2<int>(iter.x, iter.y + 1));
 	bottom_right = index(point2<int>(iter.x + 1, iter.y + 1));
 
-	int				*ptr;
+	int									*ptr;
 
 	ptr = is_dual(iter) ?
 		(int *) pointer(iter, model_slot::index, index_convention::dual_second) :
@@ -55,7 +56,8 @@ void				plane::switch_cut_style(const point2<int> &iter)
 	}
 }
 
-plane::cut_style 	plane::get_cut_style(const point2<int> &iter)
+template								<typename color_type>
+typename plane<color_type>::cut_style 	plane<color_type>::get_cut_style(const point2<int> &iter)
 {
 	return (cut_style_data[iter]);
 }

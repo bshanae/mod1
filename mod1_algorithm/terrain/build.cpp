@@ -41,5 +41,5 @@ void					terrain::build()
 
 	update_final();
 	update_normal();
-	update_color();
+	update_color(false);
 }

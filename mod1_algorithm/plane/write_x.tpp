@@ -1,8 +1,9 @@
-#include "plane.h"
+#pragma once
 
 using namespace		mod1_algorithm;
 
-bool				plane::write_height(const point2<int> &iter, const float &z)
+template			<typename color_type>
+bool				plane<color_type>::write_height(const point2<int> &iter, const float &z)
 {
 	float 			*ptr;
 
@@ -19,7 +20,8 @@ bool				plane::write_height(const point2<int> &iter, const float &z)
 	return (false);
 }
 
-void				plane::write_color(const point2<int> &iter, const point4<float> &color)
+template			<typename color_type>
+void				plane<color_type>::write_color(const point2<int> &iter, const point4<float> &color)
 {
 	float 			*ptr;
 
