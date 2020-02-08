@@ -14,8 +14,9 @@ void						main_unsafe(int argc, char **argv)
 	general.terrain()->add_color(mod1_engine_gl::point3<int>(80, 171, 93), terrain_color_type::positive);
 	general.terrain()->add_color(mod1_engine_gl::point3<int>(120, 120, 120), terrain_color_type::positive);
 
-//	general.water()->add_color(plane::color::negative, mod1_engine_gl::point3<int>(0, 0, 255));
-//	general.water()->add_color(plane::color::positive, mod1_engine_gl::point3<int>(0, 0, 255));
+	general.water()->add_color(point3<int>(15, 94, 156), water_color_type::min);
+	general.water()->add_color(point3<int>(116, 204, 244), water_color_type::max);
+	general.water()->set_alpha(0.7f);
 
 	general.build();
 	general.start();

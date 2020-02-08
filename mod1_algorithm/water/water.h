@@ -21,6 +21,9 @@ class								mod1_algorithm::water : private plane<water_color_type>
 public :
 
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_unknown_flow_type, "Mod1 Water : Unknown flow type")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_color_redefinition, "Mod1 Water : Can't redefine color")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_color_min, "Mod1 Water : Min color is not defined")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_color_max, "Mod1 Water : Max color is not defined")
 
 									water(mod1_engine_cl::core &core, terrain const *terrain);
 									~water() final = default;
@@ -32,7 +35,9 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_unknown_flow_type, "Mod1 Water : U
 
 	void							add_color(const point3<float> &color, const water_color_type &type) final;
 	void							add_color(const point3<int> &color, const water_color_type &type) final;
-	void							update_color(const bool &save) final;
+
+	void							set_alpha(const float &alpha);
+	void							set_alpha(const int &alpha);
 
 private :
 
@@ -58,7 +63,11 @@ private :
 	void							update_model_helper_a(const point2<int> &iter);
 	void							update_model(const bool &save = false);
 
-	void							_update_color(const bool &save = false);
+	point3<float>					color_min = point3<float>(std::numeric_limits<float>::infinity());
+	point3<float>					color_max = point3<float>(std::numeric_limits<float>::infinity());
+	float							color_alpha = 1;
+
+	void							update_color(const bool &save) final;
 
 	mod1_engine_cl::core			&cl_core;
 

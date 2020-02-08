@@ -124,7 +124,8 @@ set(ALGORITHM
 	mod1_algorithm/water/cl_set_x.cpp
 	mod1_algorithm/water/cl_link_x.cpp
 	mod1_algorithm/water/cl_write.cpp
-	mod1_algorithm/water/x_color.cpp)
+	mod1_algorithm/water/x_color.cpp
+	mod1_algorithm/water/x_alpha.cpp)
 
 
 set(GENERAL

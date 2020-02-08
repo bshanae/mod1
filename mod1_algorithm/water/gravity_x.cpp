@@ -13,5 +13,5 @@ void					water::gravity()
 
 	update_model(true);
 	update_normal(true);
-	_update_color(true);
+	update_color(true);
 }
