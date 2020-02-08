@@ -24,8 +24,16 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_unknown_flow_type, "Mod1 Water : U
 
 	static void						callback(const mod1_engine_gl::event &event, void *ptr);
 
-	using							plane::add_color;
 	using							plane::define_alpha;
+
+	enum class						color_type
+	{
+		min,
+		max
+	};
+
+
+
 
 private :
 
@@ -50,6 +58,8 @@ private :
 	void							update_model_helper_b(const point2<int> &iter, const float &new_height);
 	void							update_model_helper_a(const point2<int> &iter);
 	void							update_model(const bool &save = false);
+
+	void							_update_color(const bool &save = false);
 
 	mod1_engine_cl::core			&cl_core;
 

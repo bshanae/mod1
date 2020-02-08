@@ -2,12 +2,6 @@
 
 #include "mod1_algorithm/namespace.h"
 
-enum class								mod1_algorithm::plane_color
-{
-	positive,
-	negative
-};
-
 class									mod1_algorithm::plane : protected mod1_engine_gl::model
 {
 public :
@@ -28,6 +22,12 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_cut_style, "Mod1 Plane : Unknown c
 
 	virtual mod1_engine_gl::model		*model();
 	virtual const mod1_engine_gl::model	*model() const;
+
+	enum class							color_type
+	{
+		positive,
+		negative
+	};
 
 protected :
 
@@ -54,11 +54,12 @@ protected :
 
 	void 								update_final();
 
-	void								add_color(const plane_color &type, const point3<float> &color);
-	void 								add_color(const plane_color &type, const point3<int> &color);
+	void								add_color(const point3<float> &color, const color_type &type);
+	void 								add_color(const point3<int> &color, const color_type &type);
+	void 								update_color(const bool &save = false);
+
 	void								define_alpha(const float &alpha);
 	void								define_alpha(const int &alpha);
-	void 								update_color();
 
 	enum class							cut_style
 	{
@@ -81,8 +82,8 @@ MOD1_GENERATE_INTERNAL(point2<int>, real_size)
 MOD1_GENERATE_INTERNAL(point3<float>, final_min)
 MOD1_GENERATE_INTERNAL(point3<float>, final_max)
 
-	MOD1_PLANE_COLOR_DATA				color_data_positive;
-	MOD1_PLANE_COLOR_DATA				color_data_negative;
+	std::vector<point3<float>>			color_data_positive;
+	std::vector<point3<float>>			color_data_negative;
 	float								color_alpha = 1;
 	buffer2<cut_style>					cut_style_data;
 

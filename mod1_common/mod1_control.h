@@ -67,7 +67,7 @@
 
 //											WATER
 
-#define MOD1_WATER_FLOOD_BORDER
+//#define MOD1_WATER_FLOOD_BORDER
 
 #define MOD1_WATER_CONST_A					0.5
 #define MOD1_WATER_CONST_g					10

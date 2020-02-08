@@ -2,22 +2,22 @@
 
 using namespace			mod1_algorithm;
 
-void					plane::add_color(const plane_color &type, const point3<float> &color)
+void					plane::add_color(const point3<float> &color, const color_type &type)
 {
-	if (type == plane_color::positive)
+	if (type == color_type::positive)
 		color_data_positive.push_back(color);
-	else if (type == plane_color::negative)
+	else if (type == color_type::negative)
 		color_data_negative.push_back(color);
 }
 
-void					plane::add_color(const plane_color &type, const point3<int> &color)
+void					plane::add_color(const point3<int> &color, const color_type &type)
 {
 	auto				color_f = (point3<float>)color;
 
 	color_f /= 255;
-	if (type == plane_color::positive)
+	if (type == color_type::positive)
 		color_data_positive.push_back(color_f);
-	else if (type == plane_color::negative)
+	else if (type == color_type::negative)
 		color_data_negative.push_back(color_f);
 }
 
@@ -55,7 +55,7 @@ point4<float>			plane::compute_color(const float &height) const
 	return (point4<float>(result, color_alpha));
 }
 
-void					plane::update_color()
+void					plane::update_color(const bool &save)
 {
 	point2<int>			iter;
 	point4<float>		color;
@@ -66,4 +66,7 @@ void					plane::update_color()
 			color = compute_color(read_height(iter));
 			write_color(iter, color);
 		}
+
+	if (save)
+		model::save(model_slot::color);
 }

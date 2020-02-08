@@ -2,6 +2,8 @@
 
 using namespace			mod1_algorithm;
 
+#define MOD1_WATER_FLOOD_BORDER
+
 void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 {
 	auto				water = (mod1_algorithm::water *)ptr;
@@ -20,16 +22,16 @@ void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 		for (iter.y = 0; iter.y < water->data_size.y; iter.y++)
 			for (iter.x = 0; iter.x < WIDTH; iter.x++)
 				water->write_water_depth(iter, HEIGHT);
-		for (iter.y = 0; iter.y < water->data_size.y; iter.y++)
-			for (iter.x = water->data_size.x - WIDTH; iter.x < water->data_size.x; iter.x++)
-				water->write_water_depth(iter, HEIGHT);
-
-		for (iter.x = 0; iter.x < water->data_size.x; iter.x++)
-			for (iter.y = 0; iter.y < WIDTH; iter.y++)
-				water->write_water_depth(iter, HEIGHT);
-		for (iter.x = 0; iter.x < water->data_size.x; iter.x++)
-			for (iter.y = water->data_size.y - WIDTH; iter.y < water->data_size.y; iter.y++)
-				water->write_water_depth(iter, HEIGHT);
+//		for (iter.y = 0; iter.y < water->data_size.y; iter.y++)
+//			for (iter.x = water->data_size.x - WIDTH; iter.x < water->data_size.x; iter.x++)
+//				water->write_water_depth(iter, HEIGHT);
+//
+//		for (iter.x = 0; iter.x < water->data_size.x; iter.x++)
+//			for (iter.y = 0; iter.y < WIDTH; iter.y++)
+//				water->write_water_depth(iter, HEIGHT);
+//		for (iter.x = 0; iter.x < water->data_size.x; iter.x++)
+//			for (iter.y = water->data_size.y - WIDTH; iter.y < water->data_size.y; iter.y++)
+//				water->write_water_depth(iter, HEIGHT);
 
 		water->cl_arg_water_data.write();
 #endif
@@ -82,4 +84,5 @@ void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 
 	water->update_model(true);
 	water->update_normal(true);
+	water->_update_color(true);
 }
