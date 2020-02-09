@@ -52,6 +52,9 @@ private :
 	buffer<float>					water_data;
 
 	void							data_prepare();
+	void							gravity();
+
+//									READ-WRITE
 
 	float							read_terrain_height(const point2<int> &iter);
 	float							read_water_depth(const point2<int> &iter);
@@ -59,15 +62,21 @@ private :
 
 	void							write_water_depth(const point2<int> &iter, const float &value);
 
+//									MODEL
+
 	void							update_model_helper_b(const point2<int> &iter, const float &new_height);
 	void							update_model_helper_a(const point2<int> &iter);
 	void							update_model(const bool &save = false);
+
+//									COLOR
 
 	point3<float>					color_min = point3<float>(std::numeric_limits<float>::infinity());
 	point3<float>					color_max = point3<float>(std::numeric_limits<float>::infinity());
 	float							color_alpha = 1;
 
 	void							update_color(const bool &save) final;
+
+//									CL
 
 	mod1_engine_cl::core			&cl_core;
 
@@ -104,8 +113,6 @@ private :
 	void							cl_link_update_depth();
 
 	void							cl_write();
-
-	void							gravity();
 };
 
 

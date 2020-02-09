@@ -71,7 +71,6 @@
 #define MOD1_WATER_DIFFUSE_RECEPTIVITY		0.8
 #define MOD1_WATER_SPECULAR_RECEPTIVITY		0.2
 
-#define MOD1_WATER_UNDEFINED				std::numeric_limits<float>::min()
 #define MOD1_WATER_HIDDEN					-100
 
 //											GENERAL

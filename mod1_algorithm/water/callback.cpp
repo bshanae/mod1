@@ -50,7 +50,7 @@ void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 
 		for (int y = 0; y < D_Y; y++)
 			for (int x = 0; x < D_X; x++)
-				water->set_water_depth(point2<int>(A_X + x, A_Y + y), Q);
+				water->write_water_depth(point2<int>(A_X + x, A_Y + y), Q);
 
 		water->cl_arg_water_data.write();
 #endif
@@ -81,4 +81,8 @@ void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 #ifndef MOD1_WATER_FLOOD_UNIFORM
 	water->gravity();
 #endif
+
+//	water->update_model(true);
+//	water->update_normal(true);
+//	water->update_color(true);
 }
