@@ -34,6 +34,8 @@ void					renderer::callback_key(const class event &event, void *ptr)
 		renderer->camera.rotate(axis::x, sign::positive);
 	else if (key == GLFW_KEY_DOWN)
 		renderer->camera.rotate(axis::x, sign::negative);
+	else if (key == GLFW_KEY_P)
+		renderer->camera.switch_projection();
 #endif
 	else
 		return ;
