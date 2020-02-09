@@ -2,8 +2,10 @@
 
 void					general::build()
 {
-	MOD1_INTERNAL(terrain)->parse(first_argument);
+	MOD1_INTERNAL(terrain)->parse_map(first_argument);
+	MOD1_INTERNAL(terrain)->parse_noise(second_argument);
 	MOD1_INTERNAL(terrain)->build();
+
 	MOD1_INTERNAL(water)->build();
 
 #if MOD1_ENABLED(MOD1_USE_TERRAIN)

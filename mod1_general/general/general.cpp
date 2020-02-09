@@ -34,6 +34,7 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Water is created")
 	if (argc < 2)
 		throw (exception_arguments());
 	first_argument = argv[1];
+	second_argument = argc >= 3 ? argv[2] : nullptr;
 
 	add_callback(mod1_engine_gl::event_type::key_press, general::callback_key, this);
 	add_callback(mod1_engine_gl::event_type::key_press, general::callback_water, this);

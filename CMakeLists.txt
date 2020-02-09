@@ -99,7 +99,8 @@ set(GUI
 
 set(ALGORITHM
 	mod1_algorithm/terrain/terrain.cpp
-	mod1_algorithm/terrain/parse_x.cpp
+	mod1_algorithm/terrain/parse_map_x.cpp
+	mod1_algorithm/terrain/parse_noise_x.cpp
 	mod1_algorithm/terrain/build.cpp
 	mod1_algorithm/terrain/generate_hill.cpp
 	mod1_algorithm/terrain/prepare.cpp

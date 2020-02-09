@@ -188,13 +188,23 @@ MOD1_GENERATE_EXCEPTION(exception_index, "Mod1 Engine GL, Point2 : Bad index")
 		return (2 * sizeof(type));
 	}
 
-	friend std::ostream&	operator << (std::ostream& stream, const point2 &point)
+	friend std::ostream		&operator << (std::ostream& stream, const point2 &point)
 	{
 		stream << "(";
 		stream << point.x;
 		stream << ", ";
 		stream << point.y;
 		stream << ")";
+		return (stream);
+	}
+
+	friend std::istream		&operator >> (std::istream& stream, point2 &point)
+	{
+		char 				pattern[3];
+
+		stream >> pattern[0] >> point.x >> pattern[1] >> point.y >> pattern[2];
+		if (pattern[0] != '(' or pattern[1] != ',' or pattern[2] != ')')
+			stream.setstate(std::ios::failbit);
 		return (stream);
 	}
 };

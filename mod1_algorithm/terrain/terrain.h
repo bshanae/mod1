@@ -23,7 +23,8 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_source, "Mod1 Terrain : Invalid so
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_pattern, "Mod1 Terrain : Invalid pattern")
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_point_number, "Mod1 Terrain : Map can't have more, than 50 points")
 
-	void						parse(const std::string &file);
+	void						parse_map(const std::string &file);
+	void						parse_noise(const std::string &file);
 	void						build() final;
 
 	mod1_engine_gl::model		*model() override;
@@ -48,7 +49,7 @@ private :
 	point3<double>				max_prepared;
 	point3<double>				diff_prepared;
 
-	static double				parse_coordinate(std::ifstream &stream, bool eat_delimiter);
+	static double				parse_map_coordinate(std::ifstream &stream, bool eat_delimiter);
 
 	void						prepare();
 	void						normalize();
@@ -62,6 +63,19 @@ private :
 
 //								NOISE
 
+	typedef struct
+	{
+		float					frequency;
+		float					range;
+		point2<float>			offset;
+		float					power;
+	}							noise_config;
+
+	std::vector<noise_config>	noise_hill;
+	std::vector<noise_config>	noise_general;
+
+	static void					parse_noise_line(std::vector<noise_config> &target, std::stringstream &stream);
+
 	FastNoise					noise_generator;
 
 	float						generate_noise(
@@ -70,6 +84,10 @@ private :
 								const float &range,
 								const point2<float> &offset = point2<float>(),
 								const float &power = 1) const;
+	float						generate_noise(
+								const point2<int> &iter,
+								const noise_config &config);
+
 	void						apply_noise(
 								const point2<int> &iter,
 								const float &frequency,
@@ -81,6 +99,12 @@ private :
 								const float &range,
 								const point2<float> &offset = point2<float>(),
 								const float &power = 1);
+
+	void						apply_noise(
+								const point2<int> &iter,
+								const noise_config &config);
+	void						apply_noise(
+								const noise_config &config);
 
 	point2<int>					find_iter(const point3<double> &object) const;
 

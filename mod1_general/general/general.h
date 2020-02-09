@@ -61,6 +61,7 @@ private :
 	static void					callback_water(const mod1_engine_gl::event &event, void *ptr);
 
 	char 						*first_argument = nullptr;
+	char 						*second_argument = nullptr;
 
 MOD1_GENERATE_INTERNAL_WITH_VALUE(mod1_algorithm::terrain, *terrain, nullptr)
 MOD1_GENERATE_INTERNAL_WITH_VALUE(mod1_algorithm::water, *water, nullptr)

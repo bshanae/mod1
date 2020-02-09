@@ -46,7 +46,7 @@ void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 #define D_X               	3
 #define D_Y               	3
 
-#define Q					10
+#define Q					100
 
 		for (int y = 0; y < D_Y; y++)
 			for (int x = 0; x < D_X; x++)

@@ -1,0 +1,13 @@
+In this project format .noise is used to define Perlin noise applied to terrain, expressed in .mod1 file.
+
+There are two types of noise application :
+	general - used on whole map
+	hill - used on hill only (and scaled, when generating hill)
+
+The pattern for describing one noise configuration goes like this :
+[type : general, hill] : [frequency] [range] (offset) (power)
+
+frequency - frequency of Perlin noise
+range - scale of result noise
+offset - offset used for Perlin noise generation, should be passed like "([x],[y])"
+power - power, applied to result noise

@@ -7,21 +7,16 @@ void					terrain::generate_hill_helper(const point2<int> &iter, const float &new
 	const float			old_height = read_height(iter);
 	float				noise = 0;
 
-#if MOD1_ENABLED(MOD1_TERRAIN_NOISE_HILL)
-		noise = generate_noise(
-			iter,
-			MOD1_TERRAIN_NOISE_HILL_FREQUENCY,
-			MOD1_TERRAIN_NOISE_HILL_RANGE,
-			MOD1_TERRAIN_NOISE_HILL_OFFSET);
-		noise *= pow(interpolate_cosine(0, 1, height / max_raw.z), MOD1_TERRAIN_NOISE_HILL_ADD);
-#endif
-		if ((new_height < 0 and old_height > new_height))
-			write_height(iter, new_height + noise);
-		else if (new_height > 0 and old_height < new_height)
-			write_height(iter,
-				old_height < 0 ?
-				old_height + new_height + noise :
-				new_height + noise);
+	for (const auto &config : noise_hill)
+		noise += generate_noise(iter, config);
+	noise *= interpolate_cosine(0, 1, new_height / (float)max_prepared.z);
+
+	if ((new_height < 0 and old_height > new_height))
+		write_height(iter, new_height + noise);
+	else if (new_height > 0 and old_height < new_height)
+		write_height(iter,
+			old_height < 0 ?
+			old_height + new_height + noise : new_height + noise);
 }
 
 void					terrain::generate_hill_fix(const point2<int> &iter, const int &step)

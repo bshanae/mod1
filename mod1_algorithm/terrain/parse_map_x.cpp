@@ -2,7 +2,7 @@
 
 using namespace					mod1_algorithm;
 
-double							terrain::parse_coordinate(std::ifstream &stream, bool eat_delimiter)
+double							terrain::parse_map_coordinate(std::ifstream &stream, bool eat_delimiter)
 {
 	double						temp;
 
@@ -13,7 +13,7 @@ double							terrain::parse_coordinate(std::ifstream &stream, bool eat_delimiter
 	return (temp);
 }
 
-void							terrain::parse(const std::string &file)
+void							terrain::parse_map(const std::string &file)
 {
 	std::ifstream				stream;
 	int 						temp_char;
@@ -35,9 +35,9 @@ void							terrain::parse(const std::string &file)
 				break ;
 			case '-' : case '0' ... '9' :
 				stream.unget();
-				iter->x = parse_coordinate(stream, false);
-				iter->y = parse_coordinate(stream, true);
-				iter->z = parse_coordinate(stream, true);
+				iter->x = parse_map_coordinate(stream, false);
+				iter->y = parse_map_coordinate(stream, true);
+				iter->z = parse_map_coordinate(stream, true);
 				min_raw = point3<double>::min(min_raw, *iter);
 				max_raw = point3<double>::max(max_raw, *iter);
 				break ;

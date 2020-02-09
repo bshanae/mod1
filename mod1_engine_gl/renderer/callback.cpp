@@ -4,6 +4,10 @@ using namespace			mod1_engine_gl;
 
 void					renderer::callback_key(const class event &event, void *ptr)
 {
+#if MOD1_ENABLED(MOD1_DEVELOPER_MODE)
+	static bool			line_mod = false;
+#endif
+
 	const int 			key = event.read_key();
 
 	auto				renderer = (mod1_engine_gl::renderer *)ptr;
@@ -36,6 +40,14 @@ void					renderer::callback_key(const class event &event, void *ptr)
 		renderer->camera.rotate(axis::x, sign::negative);
 	else if (key == GLFW_KEY_P)
 		renderer->camera.switch_projection();
+	else if (key == GLFW_KEY_R)
+	{
+		line_mod = !line_mod;
+		if (line_mod)
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		else
+			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	}
 #endif
 	else
 		return ;
