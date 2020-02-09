@@ -16,7 +16,7 @@ void kernel							debug(
     		if (iter.x)
     			printf(" : ");
     		printf("[%+7.2f] : %+7.2f ",
-				GET_WATER_BALANCED(iter),
+				GET_WATER(iter),
     			GET_FLOW(iter, flow_right));
     	}
     	printf("\n");

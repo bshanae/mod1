@@ -9,6 +9,8 @@ void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 	auto				water = (mod1_algorithm::water *)ptr;
 	const auto			key = event.read_key();
 
+	water->gravity();
+
 	if (key == GLFW_KEY_1)
 	{
 		water->water_data.set(0);
@@ -40,13 +42,13 @@ void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 	{
 
 #ifdef MOD1_WATER_FLOOD_POINT
-#define A_X               	45
-#define A_Y                	45
+#define A_X               	4
+#define A_Y                	5
 
 #define D_X               	3
 #define D_Y               	3
 
-#define Q					10
+#define Q					2
 
 		for (int y = 0; y < D_Y; y++)
 			for (int x = 0; x < D_X; x++)
@@ -78,11 +80,4 @@ void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 		;
 	else
 		return ;
-#ifndef MOD1_WATER_FLOOD_UNIFORM
-	water->gravity();
-#endif
-
-//	water->update_model(true);
-//	water->update_normal(true);
-//	water->update_color(true);
 }

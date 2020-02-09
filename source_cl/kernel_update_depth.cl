@@ -1,6 +1,7 @@
 void kernel							update_depth(
 									global const float *const_flow,
 									global const float *const_depth,
+									global const float *const_limit,
 									global const point2 *size,
 									global const float *terrain_data,
 									global float *water_data,
@@ -16,4 +17,6 @@ void kernel							update_depth(
 		total_flow += GET_FLOW(task, i);
 
 	ADD_WATER_DIFFUSED(task, total_flow * CONST_DEPTH, 0.5);
+	if (GET_WATER(task) > *const_limit)
+		SET_WATER(task, *const_limit);
 }

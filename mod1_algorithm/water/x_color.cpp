@@ -37,9 +37,7 @@ void					water::update_color(const bool &save)
 			total = read_water_depth(iter);
 			for (int i = 0; i < 3; i++)
 				color[i] = terrain::interpolate_cosine(
-					color_max[i],
-					color_min[i],
-					total / 100);
+					color_max[i], color_min[i], total / terrain_range);
 			write_color(iter, point4<float>(color, color_alpha));
 		}
 

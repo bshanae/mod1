@@ -43,9 +43,11 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_color_max, "Mod1 Water : Max color
 private :
 
 	terrain const					*terrain;
+	float							terrain_range;
 
 	float							constant_flow = 0;
 	float							constant_depth = 0;
+	float 							constant_limit = 0;
 
 	point2<int>						data_size;
 	buffer<float>					empty_data;
@@ -85,6 +87,7 @@ private :
 
 	mod1_engine_cl::argument		cl_arg_const_flow;
 	mod1_engine_cl::argument		cl_arg_const_depth;
+	mod1_engine_cl::argument		cl_arg_const_limit;
 	mod1_engine_cl::argument		cl_arg_size;
 	mod1_engine_cl::argument		cl_arg_terrain_data;
 	mod1_engine_cl::argument		cl_arg_water_data;
@@ -110,6 +113,7 @@ private :
 	void							cl_link_limit_flow();
 	void							cl_link_update_depth();
 
+	void							cl_write_const();
 	void							cl_write();
 };
 

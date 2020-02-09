@@ -19,6 +19,9 @@ void					water::cl_set_const()
 	cl_arg_const_depth = cl_kernel_update_flow.generate_argument(
 		&constant_depth, sizeof(float),
 		mod1_engine_cl::argument_type::read_only, false);
+	cl_arg_const_limit = cl_kernel_update_flow.generate_argument(
+		&constant_limit, sizeof(float),
+		mod1_engine_cl::argument_type::read_only, false);
 }
 
 void					water::cl_set_size()

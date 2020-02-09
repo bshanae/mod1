@@ -47,6 +47,7 @@ void					water::cl_link_update_depth()
 {
 	cl_kernel_update_depth.link_argument(cl_arg_const_flow);
 	cl_kernel_update_depth.link_argument(cl_arg_const_depth);
+	cl_kernel_update_depth.link_argument(cl_arg_const_limit);
 	cl_kernel_update_depth.link_argument(cl_arg_size);
 	cl_kernel_update_depth.link_argument(cl_arg_terrain_data);
 	cl_kernel_update_depth.link_argument(cl_arg_water_data);
