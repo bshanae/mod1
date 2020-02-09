@@ -111,6 +111,7 @@ set(ALGORITHM
 	mod1_algorithm/terrain/model.cpp
 	mod1_algorithm/terrain/x_noise.cpp
 	mod1_algorithm/terrain/x_color.cpp
+	mod1_algorithm/terrain/check_file_extension.cpp
 
 	mod1_algorithm/water/water.cpp
 	mod1_algorithm/water/build.cpp

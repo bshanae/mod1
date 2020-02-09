@@ -12,16 +12,17 @@ enum class						mod1_algorithm::terrain_color_type
 
 class							mod1_algorithm::terrain : private plane<terrain_color_type>
 {
+	friend class				water;
+
 public :
 
-	friend class				water;
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_source, "Mod1 Terrain : Invalid source file")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_extension, "Mod1 Terrain : Source file has invalid extension")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_pattern, "Mod1 Terrain : Invalid pattern")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_point_number, "Mod1 Terrain : Map can't have more, than 50 points")
 
 								terrain() = default;
 								~terrain() final = default;
-
-MOD1_GENERATE_EXCEPTION_DECLARATION(exception_source, "Mod1 Terrain : Invalid source file")
-MOD1_GENERATE_EXCEPTION_DECLARATION(exception_pattern, "Mod1 Terrain : Invalid pattern")
-MOD1_GENERATE_EXCEPTION_DECLARATION(exception_point_number, "Mod1 Terrain : Map can't have more, than 50 points")
 
 	void						parse_map(const std::string &file);
 	void						parse_noise(const std::string &file);
@@ -54,6 +55,8 @@ private :
 	void						prepare();
 	void						normalize();
 	void						resize();
+
+	static void					check_extension(const std::string &path, const std::string &extension);
 
 //								HILL
 

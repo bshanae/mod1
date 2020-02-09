@@ -33,6 +33,8 @@ void							terrain::parse_noise(const std::string &file_source)
 	if (file_source.empty())
 		return ;
 
+	check_extension(file_source, ".noise");
+
 	file_stream.open(file_source);
 	if (!file_stream.is_open())
 		throw (exception_source());

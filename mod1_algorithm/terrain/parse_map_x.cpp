@@ -19,6 +19,8 @@ void							terrain::parse_map(const std::string &file)
 	int 						temp_char;
 	MOD1_TERRAIN_RAW_DATA_RI	iter;
 
+	check_extension(file, ".mod1");
+
 	stream.open(file);
 
 	if (!stream.is_open())
