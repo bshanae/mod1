@@ -10,10 +10,7 @@ void 					water::build()
 	MOD1_INTERNAL(diffuse_receptivity) = MOD1_WATER_DIFFUSE_RECEPTIVITY;
 	MOD1_INTERNAL(specular_receptivity) = MOD1_WATER_SPECULAR_RECEPTIVITY;
 
-	set(
-		terrain->min() - point2<float>(terrain->delta() / 2),
-		terrain->max() + point2<float>(terrain->delta() / 2),
-		terrain->delta());
+	set(terrain->min(), terrain->max(), terrain->delta());
 	plane::build();
 
 	data_prepare();

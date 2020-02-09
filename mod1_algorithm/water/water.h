@@ -20,6 +20,7 @@ class								mod1_algorithm::water : private plane<water_color_type>
 {
 public :
 
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_logic, "Mod1 Water : Logic error")
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_unknown_flow_type, "Mod1 Water : Unknown flow type")
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_color_redefinition, "Mod1 Water : Can't redefine color")
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_color_min, "Mod1 Water : Min color is not defined")
@@ -54,19 +55,15 @@ private :
 	void							data_prepare();
 	void							gravity();
 
-//									READ-WRITE
-
 	float							read_terrain_height(const point2<int> &iter);
-	float							read_water_depth(const point2<int> &iter);
 	float							read_total_height(const point2<int> &iter);
 
+	float							read_water_depth(const point2<int> &iter);
 	void							write_water_depth(const point2<int> &iter, const float &value);
 	void							increment_water_depth(const point2<int> &iter, const float &value);
 
 //									MODEL
 
-	void							update_model_helper_b(const point2<int> &iter, const float &new_height);
-	void							update_model_helper_a(const point2<int> &iter);
 	void							update_model(const bool &save = false);
 
 //									COLOR

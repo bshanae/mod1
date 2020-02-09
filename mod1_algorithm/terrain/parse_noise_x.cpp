@@ -19,8 +19,6 @@ void							terrain::parse_noise_line(std::vector<noise_config> &target, std::str
 	if (not (stream >> noise.power))
 		noise.power = 1;
 
-	std::cerr << noise.frequency << "/" << noise.range << "/" << noise.offset << "/" << noise.power << std::endl;
-
 	target.push_back(noise);
 }
 

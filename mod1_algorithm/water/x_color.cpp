@@ -2,6 +2,8 @@
 
 using namespace			mod1_algorithm;
 
+
+
 void					water::add_color(const point3<float> &color, const water_color_type &type)
 {
 	if (type == water_color_type::min)
@@ -29,8 +31,8 @@ void					water::update_color(const bool &save)
 	point3<float>		color;
 	float				total;
 
-	for (iter.y = 0; iter.y < data_size.y; iter.y++)
-		for (iter.x = 0; iter.x < data_size.x; iter.x++)
+	for (iter.y = 0; iter.y < size().y - 1; iter.y++)
+		for (iter.x = 0; iter.x < size().x; iter.x++)
 		{
 			total = read_water_depth(iter);
 			for (int i = 0; i < 3; i++)

@@ -22,10 +22,10 @@ void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 		for (iter.y = 0; iter.y < water->data_size.y; iter.y++)
 			for (iter.x = 0; iter.x < WIDTH; iter.x++)
 				water->write_water_depth(iter, HEIGHT);
-//		for (iter.y = 0; iter.y < water->data_size.y; iter.y++)
-//			for (iter.x = water->data_size.x - WIDTH; iter.x < water->data_size.x; iter.x++)
-//				water->write_water_depth(iter, HEIGHT);
-//
+		for (iter.y = 0; iter.y < water->data_size.y; iter.y++)
+			for (iter.x = water->data_size.x - WIDTH; iter.x < water->data_size.x; iter.x++)
+				water->write_water_depth(iter, HEIGHT);
+
 //		for (iter.x = 0; iter.x < water->data_size.x; iter.x++)
 //			for (iter.y = 0; iter.y < WIDTH; iter.y++)
 //				water->write_water_depth(iter, HEIGHT);
@@ -40,13 +40,13 @@ void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 	{
 
 #ifdef MOD1_WATER_FLOOD_POINT
-#define A_X               	5
-#define A_Y                	5
+#define A_X               	45
+#define A_Y                	45
 
 #define D_X               	3
 #define D_Y               	3
 
-#define Q					100
+#define Q					10
 
 		for (int y = 0; y < D_Y; y++)
 			for (int x = 0; x < D_X; x++)
