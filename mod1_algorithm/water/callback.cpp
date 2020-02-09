@@ -2,7 +2,7 @@
 
 using namespace			mod1_algorithm;
 
-#define MOD1_WATER_FLOOD_BORDER
+#define MOD1_WATER_FLOOD_POINT
 
 void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 {
@@ -40,17 +40,17 @@ void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 	{
 
 #ifdef MOD1_WATER_FLOOD_POINT
-#define A_X               	2
-#define A_Y                	2
+#define A_X               	5
+#define A_Y                	5
 
-#define D_X               	1
-#define D_Y               	1
+#define D_X               	3
+#define D_Y               	3
 
 #define Q					10
 
 		for (int y = 0; y < D_Y; y++)
 			for (int x = 0; x < D_X; x++)
-				water->write_water_depth(point2<int>(A_X + x, A_Y + y), Q);
+				water->increment_water_depth(point2<int>(A_X + x, A_Y + y), Q);
 
 		water->cl_arg_water_data.write();
 #endif

@@ -115,7 +115,7 @@ set(ALGORITHM
 	mod1_algorithm/water/build.cpp
 	mod1_algorithm/water/model.cpp
 	mod1_algorithm/water/read_x.cpp
-	mod1_algorithm/water/write_x.cpp
+	mod1_algorithm/water/x_water_depth.cpp
 	mod1_algorithm/water/x_model.cpp
 	mod1_algorithm/water/gravity_x.cpp
 	mod1_algorithm/water/callback.cpp

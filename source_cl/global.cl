@@ -1,5 +1,6 @@
 #define NULL						0
 #define EPSILON						0.01
+#define WATER_RESERVE				0.5
 
 typedef enum
 {

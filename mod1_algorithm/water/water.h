@@ -61,6 +61,7 @@ private :
 	float							read_total_height(const point2<int> &iter);
 
 	void							write_water_depth(const point2<int> &iter, const float &value);
+	void							increment_water_depth(const point2<int> &iter, const float &value);
 
 //									MODEL
 
