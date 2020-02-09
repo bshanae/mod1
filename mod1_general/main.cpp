@@ -1,10 +1,10 @@
 #include "mod1_general/general/general.h"
 
-using namespace				mod1_algorithm;
+using namespace		mod1_algorithm;
 
-void						main_unsafe(int argc, char **argv)
+void				main_unsafe(int argc, char **argv)
 {
-	general					general(argc, argv);
+	general			general(argc, argv);
 
 	general.terrain()->add_color(mod1_engine_gl::point3<int>(77, 51, 25), terrain_color_type::negative);
 	general.terrain()->add_color(mod1_engine_gl::point3<int>(101, 67, 33), terrain_color_type::negative);
@@ -22,10 +22,15 @@ void						main_unsafe(int argc, char **argv)
 	general.start();
 }
 
-int							main(int argc, char **argv)
+#if MOD1_ENABLED(MOD1_DEVELOPER_MODE)
+int					main(int argc, char **argv)
 {
 	main_unsafe(argc, argv);
 	return (0);
+}
+#else
+int					main(int argc, char **argv)
+{
 	try
 	{
 		main_unsafe(argc, argv);
@@ -37,3 +42,4 @@ int							main(int argc, char **argv)
 		std::cerr << exception.what() << std::endl;
 	}
 }
+#endif

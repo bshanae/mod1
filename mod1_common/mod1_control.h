@@ -4,6 +4,8 @@
 
 //											GLOBAL
 
+#define MOD1_DEVELOPER_MODE					MOD1_ENABLE
+
 #define MOD1_WINDOW_WIDTH					720
 #define MOD1_WINDOW_HEIGHT					480
 #define MOD1_WINDOW_NAME					"mod1"

@@ -13,6 +13,7 @@ void					renderer::callback_key(const class event &event, void *ptr)
 		renderer->stop();
 		return ;
 	}
+#if MOD1_ENABLED(MOD1_DEVELOPER_MODE)
 	else if (key == GLFW_KEY_A)
 		renderer->camera.move(axis::x, sign::negative);
 	else if (key == GLFW_KEY_D)
@@ -33,6 +34,7 @@ void					renderer::callback_key(const class event &event, void *ptr)
 		renderer->camera.rotate(axis::x, sign::positive);
 	else if (key == GLFW_KEY_DOWN)
 		renderer->camera.rotate(axis::x, sign::negative);
+#endif
 	else
 		return ;
 	renderer->render();
