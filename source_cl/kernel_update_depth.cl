@@ -16,7 +16,8 @@ void kernel							update_depth(
 	for (int i = 0; i < flow_end; i++)
 		total_flow += GET_FLOW(task, i);
 
-	ADD_WATER_DIFFUSED(task, total_flow * CONST_DEPTH, 0.5);
+	ADD_WATER_DIFFUSED(task, total_flow * CONST_DEPTH);
+
 	if (GET_WATER(task) > *const_limit)
 		SET_WATER(task, *const_limit);
 }

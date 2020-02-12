@@ -1,6 +1,8 @@
-#define NULL						0
-#define EPSILON						0.01
-#define WATER_RESERVE				0.5
+#define NULL				0
+#define EPSILON				0.01
+#define DIFFUSION			0.5
+
+#define MOD(x)				(x < 0 ? -x : x)
 
 typedef enum
 {
@@ -9,15 +11,15 @@ typedef enum
 	flow_left,
 	flow_down,
 	flow_end
-}									flow_type;
+}							flow_type;
 
 typedef struct
 {
-	int								x;
-	int								y;
-}									point2;
+	int						x;
+	int						y;
+}							point2;
 
-#define RIGHT(point)				(point2){(point).x + 1, (point).y + 0}
-#define UP(point)					(point2){(point).x + 0, (point).y - 1}
-#define LEFT(point)					(point2){(point).x - 1, (point).y + 0}
-#define DOWN(point)					(point2){(point).x + 0, (point).y + 1}
+#define RIGHT(point)		(point2){(point).x + 1, (point).y + 0}
+#define UP(point)			(point2){(point).x + 0, (point).y - 1}
+#define LEFT(point)			(point2){(point).x - 1, (point).y + 0}
+#define DOWN(point)			(point2){(point).x + 0, (point).y + 1}
