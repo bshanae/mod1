@@ -8,5 +8,6 @@ void 					core::start()
 	{
 		glfwPollEvents();
 		launch_signal();
+		test_timer();
 	}
 }

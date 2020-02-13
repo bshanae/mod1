@@ -10,9 +10,9 @@ void				core::add_callback(
 }
 
 void				core::add_callback(
-	const event_type &type,
-	functor_ptr_event functor,
-	void *ptr)
+					const event_type &type,
+					functor_ptr_event functor,
+					void *ptr)
 {
 	callback_map[type].emplace_back(functor, ptr);
 }

@@ -2,7 +2,7 @@
 
 using namespace			mod1_algorithm;
 
-#define MOD1_WATER_FLOOD_POINT
+#define MOD1_WATER_FLOOD_BORDER
 
 void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 {
@@ -26,12 +26,12 @@ void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 			for (iter.x = water->data_size.x - WIDTH; iter.x < water->data_size.x; iter.x++)
 				water->write_water_depth(iter, HEIGHT);
 
-//		for (iter.x = 0; iter.x < water->data_size.x; iter.x++)
-//			for (iter.y = 0; iter.y < WIDTH; iter.y++)
-//				water->write_water_depth(iter, HEIGHT);
-//		for (iter.x = 0; iter.x < water->data_size.x; iter.x++)
-//			for (iter.y = water->data_size.y - WIDTH; iter.y < water->data_size.y; iter.y++)
-//				water->write_water_depth(iter, HEIGHT);
+		for (iter.x = 0; iter.x < water->data_size.x; iter.x++)
+			for (iter.y = 0; iter.y < WIDTH; iter.y++)
+				water->write_water_depth(iter, HEIGHT);
+		for (iter.x = 0; iter.x < water->data_size.x; iter.x++)
+			for (iter.y = water->data_size.y - WIDTH; iter.y < water->data_size.y; iter.y++)
+				water->write_water_depth(iter, HEIGHT);
 
 		water->cl_arg_water_data.write();
 #endif
@@ -54,8 +54,6 @@ void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 
 		water->cl_arg_water_data.write();
 
-		water->gravity();
-
 #endif
 
 #ifdef MOD1_WATER_FLOOD_UNIFORM
@@ -77,8 +75,6 @@ void 					water::callback(const mod1_engine_gl::event &event, void *ptr)
 		water->write_water_depth(point2<int>(10, 10), 2);
 		water->cl_arg_water_data.write();
 	}
-	else if (key == GLFW_KEY_4)
-		water->gravity();
 	else
 		return ;
 }

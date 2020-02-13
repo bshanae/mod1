@@ -16,8 +16,12 @@ enum class							mod1_algorithm::water_color_type
 	max
 };
 
+class								general;
+
 class								mod1_algorithm::water : private plane<water_color_type>
 {
+	friend class					::general;
+
 public :
 
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_logic, "Mod1 Water : Logic error")
@@ -116,5 +120,3 @@ private :
 	void							cl_write_const();
 	void							cl_write();
 };
-
-

@@ -5,6 +5,7 @@
 #include "mod1_engine_gl/point/point3.h"
 #include "mod1_engine_gl/event/event.h"
 #include "mod1_engine_gl/callback/callback.h"
+#include "mod1_engine_gl/timer/timer.h"
 #include "mod1_engine_gl/core/global.h"
 
 class					mod1_engine_gl::core
@@ -25,12 +26,13 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_GLEW, "Mod1 Engine GL, Core : Can'
 	void				add_callback(const event_type &type, const callback &callback);
 	void				add_callback(const event_type &type, functor_ptr_event functor, void *ptr);
 
+	timer				*add_timer(const double &period, functor_ptr functor, void *ptr);
+
 	static void 		show_polygon_back(const bool &state);
 	static void 		clear(const point3<float> &color);
 	static void 		draw(const int &count);
 	static void			swap_buffers();
 	static void			terminate_signal();
-	static double		time();
 
 private :
 
@@ -50,6 +52,11 @@ MOD1_GENERATE_INTERNAL_WITH_VALUE(int, window_height, MOD1_WINDOW_HEIGHT)
 	CALLBACK_MAP		callback_map;
 
 	void 				launch_signal();
+
+#define TIMER_VECTOR	std::vector<timer>
+	TIMER_VECTOR		timer_vector;
+
+	void				test_timer();
 
 public :
 

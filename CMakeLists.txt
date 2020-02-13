@@ -39,6 +39,7 @@ set(ENGINE_GL
 	mod1_engine_gl/core/stop.cpp
 	mod1_engine_gl/core/swap_buffers.cpp
 	mod1_engine_gl/core/x_signal.cpp
+	mod1_engine_gl/core/x_timer.cpp
 
 	mod1_engine_gl/shader/shader.cpp
 
@@ -75,11 +76,13 @@ set(ENGINE_GL
 
 	mod1_engine_gl/callback/callback.cpp
 
+	mod1_engine_gl/timer/timer.cpp
+
 	mod1_engine_gl/uniform/uniform.cpp)
 
 set(ENGINE_CL
 	mod1_engine_cl/core/core.cpp
-	mod1_engine_cl/kenrel/kernel.cpp
+	mod1_engine_cl/kernel/kernel.cpp
 	mod1_engine_cl/argument/argument.cpp)
 
 set(GUI
@@ -135,7 +138,7 @@ set(GENERAL
 
 	mod1_general/general/general.cpp
 	mod1_general/general/render.cpp
-	mod1_general/general/callback_x.cpp
+	mod1_general/general/functor_x.cpp
 	mod1_general/general/program.cpp
 	mod1_general/general/build.cpp
 

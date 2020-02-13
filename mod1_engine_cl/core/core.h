@@ -2,7 +2,7 @@
 
 #include "mod1_engine_cl/namespace.h"
 
-#include "mod1_engine_cl/kenrel/kernel.h"
+#include "mod1_engine_cl/kernel/kernel.h"
 
 class							mod1_engine_cl::core
 {

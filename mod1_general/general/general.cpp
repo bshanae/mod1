@@ -36,12 +36,16 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Water is created")
 	first_argument = argv[1];
 	second_argument = argc >= 3 ? argv[2] : nullptr;
 
-	add_callback(mod1_engine_gl::event_type::key_press, general::callback_key, this);
-	add_callback(mod1_engine_gl::event_type::key_press, general::callback_water, this);
-	add_callback(mod1_engine_gl::event_type::key_hold, general::callback_water, this);
-	add_callback(mod1_engine_gl::event_type::mouse_drag, general::callback_drag, this);
+	add_callback(mod1_engine_gl::event_type::key_press, general::functor_key, this);
+	add_callback(mod1_engine_gl::event_type::key_press, general::functor_water, this);
+	add_callback(mod1_engine_gl::event_type::key_hold, general::functor_water, this);
+	add_callback(mod1_engine_gl::event_type::mouse_drag, general::functor_drag, this);
 
 MOD1_GENERATE_MESSAGE("Mod1 General : Callbacks are set")
+
+	timer = add_timer(1. / 35., functor_timer, this);
+
+MOD1_GENERATE_MESSAGE("Mod1 General : Timers are set")
 
 	system.add_button(100, 100, "Hi", test);
 
