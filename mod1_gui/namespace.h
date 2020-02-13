@@ -14,7 +14,7 @@ namespace			mod1_gui
 	using			mod1_engine_gl::point2;
 	using			mod1_engine_gl::point3;
 
-	using			mod1_engine_gl::callback_functor;
+	using			mod1_engine_gl::functor_ptr_event;
 	using			mod1_engine_gl::callback;
 
 	class			font;

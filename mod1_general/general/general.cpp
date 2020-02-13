@@ -5,7 +5,7 @@ MOD1_GENERATE_EXCEPTION_DEFINITION(general, exception_arguments)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(general, terrain)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(general, water)
 
-void				test(const mod1_engine_gl::event &event, void *ptr)
+void				test(void *ptr, const mod1_engine_gl::event &event)
 {
 	static int 		s = 0;
 

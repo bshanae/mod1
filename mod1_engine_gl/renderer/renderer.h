@@ -30,7 +30,7 @@ protected :
 
 private :
 
-	static void					callback_key(const class event &event, void *ptr);
+	static void					callback_key(void *ptr, const class event &event);
 
 MOD1_GENERATE_INTERNAL(std::vector<model *>, model_array)
 

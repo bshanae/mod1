@@ -1,6 +1,6 @@
 #include "general.h"
 
-void				general::callback_key(const mod1_engine_gl::event &event, void *ptr)
+void				general::callback_key(void *ptr, const mod1_engine_gl::event &event)
 {
 	auto 			*general = (::general *)ptr;
 
@@ -30,7 +30,7 @@ void				general::callback_key(const mod1_engine_gl::event &event, void *ptr)
 	}
 }
 
-void				general::callback_drag(const mod1_engine_gl::event &event, void *ptr)
+void				general::callback_drag(void *ptr, const mod1_engine_gl::event &event)
 {
 	auto 			*general = (::general *)ptr;
 	float			angle;
@@ -41,7 +41,7 @@ void				general::callback_drag(const mod1_engine_gl::event &event, void *ptr)
 	general->render();
 }
 
-void				general::callback_water(const mod1_engine_gl::event &event, void *ptr)
+void				general::callback_water(void *ptr, const mod1_engine_gl::event &event)
 {
 	auto 			*general = (::general *)ptr;
 

@@ -3,20 +3,20 @@
 using namespace			mod1_gui;
 
 void 					system::add_button(
-						const int &center_x,
-						const int &center_y,
-						const std::string &text,
-						callback_functor functor,
-						void *ptr)
+	const int &center_x,
+	const int &center_y,
+	const std::string &text,
+	functor_ptr_event functor,
+	void *ptr)
 {
 	add_button(point2<int>(center_x, center_y), text, functor, ptr);
 }
 
 void					system::add_button(
-						const point2<int> &center,
-						const std::string &text,
-						callback_functor functor,
-						void *ptr)
+	const point2<int> &center,
+	const std::string &text,
+	functor_ptr_event functor,
+	void *ptr)
 {
 	point2<int>			size;
 

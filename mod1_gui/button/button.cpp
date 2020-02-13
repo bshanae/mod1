@@ -8,11 +8,11 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(button, text)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(button, callback)
 
 					button::button(
-					const point2<int> &center,
-					const point2<int> &size,
-					const std::string &text,
-					callback_functor functor,
-					void *ptr) :
+						const point2<int> &center,
+						const point2<int> &size,
+						const std::string &text,
+						functor_ptr_event functor,
+						void *ptr) :
 					MOD1_INTERNAL(center)(center),
 					MOD1_INTERNAL(size)(size),
 					MOD1_INTERNAL(text)(text),

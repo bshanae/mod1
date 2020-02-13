@@ -2,7 +2,7 @@
 
 using namespace			mod1_engine_gl;
 
-void					renderer::callback_key(const class event &event, void *ptr)
+void					renderer::callback_key(void *ptr, const class event &event)
 {
 #if MOD1_ENABLED(MOD1_DEVELOPER_MODE)
 	static bool			line_mod = false;

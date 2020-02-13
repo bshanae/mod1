@@ -4,16 +4,33 @@
 
 #include "mod1_engine_gl/event/event.h"
 
-class					mod1_engine_gl::callback
+enum class					mod1_engine_gl::functor_type
+{
+	ptr,
+	ptr_event
+};
+
+class						mod1_engine_gl::callback
 {
 public :
-						callback(callback_functor functor, void *ptr);
-						~callback() = default;
 
-	void				run(const event &event) const;
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_run, "Mod1 Engine GL, Callback : Can't run functor")
+
+							callback(functor_ptr functor, void *ptr);
+							callback(functor_ptr_event functor, void *ptr);
+							~callback() = default;
+
+	void					run() const;
+	void					run(const event &event) const;
 
 private :
 
-	callback_functor	functor;
-	void 				*ptr;
+	const functor_type		type;
+	union
+	{
+		functor_ptr 		ptr;
+		functor_ptr_event	ptr_event;
+	}						functor;
+
+	void 					*ptr;
 };

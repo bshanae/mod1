@@ -7,11 +7,11 @@ class					mod1_gui::button
 public :
 
 						button(
-						const point2<int> &center,
-						const point2<int> &size,
-						const std::string &text,
-						callback_functor functor,
-						void *ptr);
+							const point2<int> &center,
+							const point2<int> &size,
+							const std::string &text,
+							functor_ptr_event functor,
+							void *ptr);
 						~button() = default;
 
 	void				test(const mod1_engine_gl::event &event) const;

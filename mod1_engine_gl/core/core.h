@@ -23,13 +23,14 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_GLEW, "Mod1 Engine GL, Core : Can'
 	void				stop();
 
 	void				add_callback(const event_type &type, const callback &callback);
-	void				add_callback(const event_type &type, callback_functor functor, void *ptr);
+	void				add_callback(const event_type &type, functor_ptr_event functor, void *ptr);
 
 	static void 		show_polygon_back(const bool &state);
 	static void 		clear(const point3<float> &color);
 	static void 		draw(const int &count);
 	static void			swap_buffers();
 	static void			terminate_signal();
+	static double		time();
 
 private :
 

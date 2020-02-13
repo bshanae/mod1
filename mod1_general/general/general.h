@@ -56,9 +56,9 @@ private :
 	const float					rotation_speed = 300;
 	glm::mat4					rotation = glm::mat4(1);
 
-	static void					callback_key(const mod1_engine_gl::event &event, void *ptr);
-	static void					callback_drag(const mod1_engine_gl::event &event, void *ptr);
-	static void					callback_water(const mod1_engine_gl::event &event, void *ptr);
+	static void					callback_key(void *ptr, const mod1_engine_gl::event &event);
+	static void					callback_drag(void *ptr, const mod1_engine_gl::event &event);
+	static void					callback_water(void *ptr, const mod1_engine_gl::event &event);
 
 	char 						*first_argument = nullptr;
 	char 						*second_argument = nullptr;

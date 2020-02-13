@@ -2,7 +2,7 @@
 
 using namespace		mod1_gui;
 
-void				system::callback(const mod1_engine_gl::event &event, void *ptr)
+void				system::callback(void *ptr, const mod1_engine_gl::event &event)
 {
 	auto			*system = (mod1_gui::system *)ptr;
 
