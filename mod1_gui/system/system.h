@@ -15,16 +15,16 @@ public :
 	void								render();
 
 	void 								add_button(
-		const int &center_x,
-		const int &center_y,
-		const std::string &text,
-		functor_ptr_event functor,
-		void *ptr = nullptr);
+										const int &center_x,
+										const int &center_y,
+										const std::string &text,
+										functor_ptr functor,
+										void *ptr = nullptr);
 	void 								add_button(
-		const point2<int> &center,
-		const std::string &text,
-		functor_ptr_event functor,
-		void *ptr = nullptr);
+										const point2<int> &center,
+										const std::string &text,
+										functor_ptr functor,
+										void *ptr = nullptr);
 
 	void								write(const std::string &text, const point2<int> &position);
 

@@ -10,7 +10,7 @@ public :
 							const point2<int> &center,
 							const point2<int> &size,
 							const std::string &text,
-							functor_ptr_event functor,
+							functor_ptr functor,
 							void *ptr);
 						~button() = default;
 

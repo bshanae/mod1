@@ -141,6 +141,7 @@ set(GENERAL
 	mod1_general/general/functor_x.cpp
 	mod1_general/general/program.cpp
 	mod1_general/general/build.cpp
+	mod1_general/general/render_x.cpp
 
 	mod1_general/main.cpp)
 

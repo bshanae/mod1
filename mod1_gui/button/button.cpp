@@ -11,7 +11,7 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(button, callback)
 						const point2<int> &center,
 						const point2<int> &size,
 						const std::string &text,
-						functor_ptr_event functor,
+						functor_ptr functor,
 						void *ptr) :
 					MOD1_INTERNAL(center)(center),
 					MOD1_INTERNAL(size)(size),
@@ -25,7 +25,7 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(button, callback)
 void				button::test(const mod1_engine_gl::event &event) const
 {
 	if (is_inside(event.read_mouse()))
-		MOD1_INTERNAL(callback).run(event);
+		MOD1_INTERNAL(callback).run();
 }
 
 bool 				button::is_inside(const point2<int> &point) const

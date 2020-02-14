@@ -5,13 +5,6 @@ MOD1_GENERATE_EXCEPTION_DEFINITION(general, exception_arguments)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(general, terrain)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(general, water)
 
-void				test(void *ptr, const mod1_engine_gl::event &event)
-{
-	static int 		s = 0;
-
-	std::cerr << "Hi" << s++ << std::endl;
-}
-
 					general::general(int argc, char **argv) :
 					mod1_engine_gl::renderer(),
 					cl_core(),
@@ -37,8 +30,6 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Water is created")
 	second_argument = argc >= 3 ? argv[2] : nullptr;
 
 	add_callback(mod1_engine_gl::event_type::key_press, general::functor_key, this);
-	add_callback(mod1_engine_gl::event_type::key_press, general::functor_water, this);
-	add_callback(mod1_engine_gl::event_type::key_hold, general::functor_water, this);
 	add_callback(mod1_engine_gl::event_type::mouse_drag, general::functor_drag, this);
 
 MOD1_GENERATE_MESSAGE("Mod1 General : Callbacks are set")
@@ -47,7 +38,7 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Callbacks are set")
 
 MOD1_GENERATE_MESSAGE("Mod1 General : Timers are set")
 
-	system.add_button(100, 100, "Hi", test);
+	system.add_button(100, 100, "Exit", functor_stop, this);
 
 MOD1_GENERATE_MESSAGE("Mod1 General : Ready")
 }

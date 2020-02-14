@@ -58,8 +58,8 @@ private :
 
 	static void					functor_key(void *ptr, const mod1_engine_gl::event &event);
 	static void					functor_drag(void *ptr, const mod1_engine_gl::event &event);
-	static void					functor_water(void *ptr, const mod1_engine_gl::event &event);
 	static void					functor_timer(void *ptr);
+	static void					functor_stop(void *ptr);
 
 	char 						*first_argument = nullptr;
 	char 						*second_argument = nullptr;
@@ -70,6 +70,9 @@ MOD1_GENERATE_INTERNAL_WITH_VALUE(mod1_algorithm::water, *water, nullptr)
 	mod1_gui::system			system;
 
 	mod1_engine_gl::timer		*timer = nullptr;
+
+	void						render_blur();
+	void						render_gui();
 
 public :
 

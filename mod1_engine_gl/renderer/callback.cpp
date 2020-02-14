@@ -12,13 +12,8 @@ void					renderer::callback_key(void *ptr, const class event &event)
 
 	auto				renderer = (mod1_engine_gl::renderer *)ptr;
 
-	if (key == GLFW_KEY_ESCAPE)
-	{
-		renderer->stop();
-		return ;
-	}
 #if MOD1_ENABLED(MOD1_DEVELOPER_MODE)
-	else if (key == GLFW_KEY_A)
+	if (key == GLFW_KEY_A)
 		renderer->camera.move(axis::x, sign::negative);
 	else if (key == GLFW_KEY_D)
 		renderer->camera.move(axis::x, sign::positive);

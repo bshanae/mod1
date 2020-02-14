@@ -12,11 +12,12 @@ public :
 					~timer() = default;
 
 	void			test(const double &current_timestamp);
+	void			block(const bool &state);
 
 private :
 
 	const double	period;
 	const callback	callback;
-
 	double			last_timestamp = 0;
+	bool			is_blocked = false;
 };
