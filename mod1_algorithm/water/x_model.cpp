@@ -14,9 +14,7 @@ void					water::update_model(const bool &save)
 				new_height = MOD1_WATER_HIDDEN;
 			else
 			{
-				new_height =
-					new_height < MOD1_WATER_MINIMUN_LEVEL ?
-					MOD1_WATER_MINIMUN_LEVEL : new_height;
+				new_height = new_height < MOD1_WATER_MINIMUN_LEVEL ? 0 : new_height;
 				new_height += read_terrain_height(iter);
 			}
 			write_height(iter, new_height);
