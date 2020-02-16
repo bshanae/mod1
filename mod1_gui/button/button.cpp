@@ -22,7 +22,7 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(button, callback)
 	max = center + size / 2;
 }
 
-void				button::test(const mod1_engine_gl::event &event) const
+void				button::test(const mod1_engine_gl::event &event)
 {
 	if (is_inside(event.read_mouse()))
 		MOD1_INTERNAL(callback).run();

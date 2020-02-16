@@ -11,7 +11,7 @@
 #include "mod1_engine_gl/core/core.h"
 #include "mod1_engine_gl/shader/shader.h"
 #include "mod1_engine_gl/program/program.h"
-#include "mod1_engine_gl/callback/functor_x.h"
+#include "mod1_engine_gl/callback/callback.h"
 #include "mod1_engine_gl/renderer/renderer.h"
 #include "mod1_engine_gl/vbo/vbo.h"
 #include "mod1_engine_gl/vao/vao.h"

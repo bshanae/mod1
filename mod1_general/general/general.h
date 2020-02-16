@@ -83,13 +83,20 @@ private :
 //								FUNCTORS
 
 	static void					functor_key(void *ptr, const mod1_engine_gl::event &event);
-	static void					functor_drag(void *ptr, const mod1_engine_gl::event &event);
+	static void					functor_rotate_start(void *ptr, const mod1_engine_gl::event &event);
+	static void					functor_rotate_finish(void *ptr, const mod1_engine_gl::event &event);
 	static void					functor_gravity(void *ptr);
-	static void					functor_fps(void *ptr);
 
 	static void					functor_continue(void *ptr);
 	static void					functor_scenarios(void *ptr);
 	static void					functor_exit(void *ptr);
+
+//								CALLBACKS
+
+	mod1_engine_gl::callback	*callback_rotate_start = nullptr;
+	mod1_engine_gl::callback	*callback_rotate_finish = nullptr;
+
+//								TIMERS
 
 	mod1_engine_gl::timer		*timer_gravity = nullptr;
 

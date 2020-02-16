@@ -2,7 +2,7 @@
 
 #include "mod1_engine_gl/namespace.h"
 
-#include "mod1_engine_gl/callback/functor_x.h"
+#include "mod1_engine_gl/callback/callback.h"
 
 class				mod1_engine_gl::timer
 {
@@ -17,7 +17,6 @@ public :
 private :
 
 	const double	period;
-	const callback	callback;
+	callback		callback;
 	double			last_timestamp = 0;
-	bool			is_blocked = false;
 };

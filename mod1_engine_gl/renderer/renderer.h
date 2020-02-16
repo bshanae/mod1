@@ -8,7 +8,7 @@
 #include "mod1_engine_gl/model/model.h"
 #include "mod1_engine_gl/camera/camera.h"
 #include "mod1_engine_gl/event/event.h"
-#include "mod1_engine_gl/callback/functor_x.h"
+#include "mod1_engine_gl/callback/callback.h"
 #include "mod1_engine_gl/uniform/uniform.h"
 #include "mod1_engine_gl/point/point3.h"
 

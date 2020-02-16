@@ -31,6 +31,8 @@ void 				general::render_block(const bool &state)
 {
 	if (state)
 	{
+		callback_rotate_start->block(true);
+		callback_rotate_finish->block(true);
 		timer_gravity->block(true);
 		run_blur();
 		run_gui_front();
@@ -38,6 +40,8 @@ void 				general::render_block(const bool &state)
 	}
 	else
 	{
+		callback_rotate_start->block(false);
+		callback_rotate_finish->block(false);
 		timer_gravity->block(false);
 		gui_level = level::render;
 		request_render();

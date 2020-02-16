@@ -2,17 +2,11 @@
 
 using namespace		mod1_engine_gl;
 
-void				core::add_callback(
-					const event_type &type,
-					const callback &callback)
-{
-	callback_map[type].push_back(callback);
-}
-
-void				core::add_callback(
+callback			*core::add_callback(
 					const event_type &type,
 					functor_ptr_event functor,
 					void *ptr)
 {
-	callback_map[type].emplace_back(functor, ptr);
+	callback_map[type].push_back(new callback(functor, ptr));
+	return (callback_map[type].back());
 }

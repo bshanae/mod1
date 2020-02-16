@@ -4,7 +4,7 @@
 
 #include "mod1_engine_gl/point/point3.h"
 #include "mod1_engine_gl/event/event.h"
-#include "mod1_engine_gl/callback/functor_x.h"
+#include "mod1_engine_gl/callback/callback.h"
 #include "mod1_engine_gl/timer/timer.h"
 #include "mod1_engine_gl/core/global.h"
 
@@ -23,8 +23,7 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_GLEW, "Mod1 Engine GL, Core : Can'
 	void				start();
 	void				finish();
 
-	void				add_callback(const event_type &type, const callback &callback);
-	void				add_callback(const event_type &type, functor_ptr_event functor, void *ptr);
+	callback			*add_callback(const event_type &type, functor_ptr_event functor, void *ptr);
 
 	timer				*add_timer(const double &period, functor_ptr functor, void *ptr);
 
@@ -48,7 +47,7 @@ MOD1_GENERATE_INTERNAL_WITH_VALUE(int, window_height, MOD1_WINDOW_HEIGHT)
 
 	event				event;
 
-#define CALLBACK_MAP	std::map<event_type, std::vector<callback>>
+#define CALLBACK_MAP	std::map<event_type, std::vector<callback *>>
 	CALLBACK_MAP		callback_map;
 
 	void 				launch_signal();

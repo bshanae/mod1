@@ -20,8 +20,10 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_run, "Mod1 Engine GL, Callback : C
 							callback(functor_ptr_event functor, void *ptr);
 							~callback() = default;
 
-	void					run() const;
-	void					run(const event &event) const;
+	void					run();
+	void					run(const event &event);
+
+	void 					block(const bool &state);
 
 private :
 
@@ -33,4 +35,6 @@ private :
 	}						functor;
 
 	void 					*ptr;
+
+	bool 					is_blocked = false;
 };

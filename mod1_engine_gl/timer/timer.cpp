@@ -9,8 +9,6 @@ using namespace		mod1_engine_gl;
 
 void				timer::test(const double &current_timestamp)
 {
-	if (is_blocked)
-		return ;
 	if (current_timestamp - last_timestamp >= period)
 	{
 		callback.run();
@@ -20,5 +18,5 @@ void				timer::test(const double &current_timestamp)
 
 void				timer::block(const bool &state)
 {
-	is_blocked = state;
+	callback.block(state);
 }

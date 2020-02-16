@@ -29,16 +29,16 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Water is created")
 	first_argument = argv[1];
 	second_argument = argc >= 3 ? argv[2] : nullptr;
 
+	gui_level = level::render;
+
 	add_callback(mod1_engine_gl::event_type::key_press, general::functor_key, this);
-	add_callback(mod1_engine_gl::event_type::mouse_drag, general::functor_drag, this);
+	callback_rotate_start = add_callback(mod1_engine_gl::event_type::mouse_drag, general::functor_rotate_start, this);
+	callback_rotate_finish = add_callback(mod1_engine_gl::event_type::mouse_release, general::functor_rotate_finish, this);
 
 MOD1_GENERATE_MESSAGE("Mod1 General : Callbacks are set")
 
-	add_timer(1 / 1000., functor_fps, this);
-
 	timer_gravity = add_timer(1. / 35., functor_gravity, this);
 	timer_gravity->block(true);
-
 
 MOD1_GENERATE_MESSAGE("Mod1 General : Timers are set")
 

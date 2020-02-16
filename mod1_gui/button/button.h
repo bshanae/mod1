@@ -14,14 +14,14 @@ public :
 							void *ptr);
 						~button() = default;
 
-	void				test(const mod1_engine_gl::event &event) const;
+	void				test(const mod1_engine_gl::event &event);
 
 private :
 
 MOD1_GENERATE_INTERNAL(const point2<int>, center)
 MOD1_GENERATE_INTERNAL(const point2<int>, size)
 MOD1_GENERATE_INTERNAL(const std::string, text)
-MOD1_GENERATE_INTERNAL(const callback, callback)
+MOD1_GENERATE_INTERNAL(callback, callback)
 
 	point2<int>			min;
 	point2<int>			max;

@@ -13,7 +13,7 @@ void				general::functor_key(void *ptr, const mod1_engine_gl::event &event)
 		general->run_gui_front();
 }
 
-void				general::functor_drag(void *ptr, const mod1_engine_gl::event &event)
+void				general::functor_rotate_start(void *ptr, const mod1_engine_gl::event &event)
 {
 	auto 			*general = (::general *)ptr;
 	float			angle;
@@ -22,6 +22,15 @@ void				general::functor_drag(void *ptr, const mod1_engine_gl::event &event)
 	general->rotation = glm::rotate(general->rotation, glm::radians(angle), general->rotation_axis);
 
 	general->request_render();
+	general->timer_gravity->block(true);
+}
+
+void				general::functor_rotate_finish(void *ptr, const mod1_engine_gl::event &event)
+{
+	auto 			*general = (::general *)ptr;
+
+	general->request_render();
+	general->timer_gravity->block(false);
 }
 
 void				general::functor_gravity(void *ptr)
@@ -30,22 +39,6 @@ void				general::functor_gravity(void *ptr)
 
 	general->MOD1_INTERNAL(water)->gravity();
 	general->request_render();
-}
-
-void				general::functor_fps(void *ptr)
-{
-	static int 		number_of_frames = 0;
-	static double	last_time;
-
-	const double	currentTime = glfwGetTime();
-
-	number_of_frames++;
-	if (currentTime - last_time >= 1.)
-	{
-		std::cout << "FPS : " << 1000.0 / (double)number_of_frames << std::endl;
-		number_of_frames = 0;
-		last_time += 1.;
-	}
 }
 
 //					GUI
