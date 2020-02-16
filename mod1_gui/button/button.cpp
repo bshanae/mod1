@@ -6,20 +6,31 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(button, center)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(button, size)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(button, text)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(button, callback)
+MOD1_GENERATE_INTERNAL_READ_DEFINITION(button, font)
 
 					button::button(
-						const point2<int> &center,
-						const point2<int> &size,
-						const std::string &text,
-						functor_ptr functor,
-						void *ptr) :
+					const point2<int> &center,
+					const std::string &text,
+					const class font *font,
+					functor_ptr functor,
+					void *ptr) :
 					MOD1_INTERNAL(center)(center),
-					MOD1_INTERNAL(size)(size),
 					MOD1_INTERNAL(text)(text),
-					MOD1_INTERNAL(callback)(functor, ptr)
+					MOD1_INTERNAL(callback)(functor, ptr),
+					MOD1_INTERNAL(font)(font)
 {
-	min = center - size / 2;
-	max = center + size / 2;
+	const symbol	*symbol;
+
+	for (const char &iter : text)
+	{
+		symbol = font->find_symbol(iter);
+
+		MOD1_INTERNAL(size).x += symbol->advance();
+		MOD1_INTERNAL(size).y = MOD1_MAX(MOD1_INTERNAL(size).y, symbol->size().y);
+	}
+
+	min = center - MOD1_INTERNAL(size) / 2;
+	max = center + MOD1_INTERNAL(size) / 2;
 }
 
 void				button::test(const mod1_engine_gl::event &event)

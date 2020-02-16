@@ -66,6 +66,9 @@ private :
 
 	blur						blur;
 	mod1_gui::system			system;
+
+	mod1_gui::font				*font_gill_sans;
+
 	mod1_gui::layout			layout_front;
 	mod1_gui::layout			layout_scenarios;
 
@@ -102,6 +105,7 @@ private :
 
 //								SCENARIOS
 
+	static void					scenario_rain(void *ptr);
 	static void					scenario_wave(void *ptr);
 
 public :

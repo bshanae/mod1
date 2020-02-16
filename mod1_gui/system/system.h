@@ -22,15 +22,20 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_symbol, "Mod1 GUI, System : Symbol
 										const int &center_x,
 										const int &center_y,
 										const std::string &text,
+										const font *font,
 										functor_ptr functor,
 										void *ptr = nullptr);
 	const button 						*generate_button(
 										const point2<int> &center,
 										const std::string &text,
+										const font *font,
 										functor_ptr functor,
 										void *ptr = nullptr);
 
-	void								write(const std::string &text, const point2<int> &position);
+	void								write(
+										const point2<int> &position,
+										const std::string &text,
+										const font *font);
 
 private :
 
@@ -57,11 +62,6 @@ private :
 	MOD1_GENERATE_UNIFORM(color, "uniform_color")
 	MOD1_GENERATE_UNIFORM(projection, "uniform_projection")
 	}									program;
-
-
-	font								font = mod1_gui::font(MOD1_FONT_SOURCE, MOD1_FONT_WIDTH);
-	std::map<char, mod1_gui::symbol *>	symbol_map;
-	mod1_gui::symbol					*find_symbol(const char &task);
 
 	std::vector<button *>				button_vector;
 

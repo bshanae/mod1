@@ -102,7 +102,7 @@ set(GUI
 	mod1_gui/system/generate_button.cpp
 	mod1_gui/system/render.cpp
 	mod1_gui/system/callback.cpp
-	mod1_gui/system/find_symbol.cpp)
+	)
 
 set(ALGORITHM
 	mod1_algorithm/terrain/terrain.cpp

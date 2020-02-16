@@ -2,8 +2,8 @@
 
 					general::program::program()
 {
-	add_shader(mod1_engine_gl::shader_type::vertex, MOD1_PROGRAM_MAIN_VERTEX);
-	add_shader(mod1_engine_gl::shader_type::fragment, MOD1_PROGRAM_MAIN_FRAGMENT);
+	add_shader(mod1_engine_gl::shader_type::vertex, MOD1_GENERAL_PROGRAM_MAIN_VERTEX);
+	add_shader(mod1_engine_gl::shader_type::fragment, MOD1_GENERAL_PROGRAM_MAIN_FRAGMENT);
 	link();
 
 	MOD1_CONNECT_UNIFORM(*this, object_transformation)

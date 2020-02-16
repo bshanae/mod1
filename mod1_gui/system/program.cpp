@@ -2,8 +2,8 @@
 
 					mod1_gui::system::program::program(const mod1_engine_gl::core &core)
 {
-	add_shader(mod1_engine_gl::shader_type::vertex, MOD1_PROGRAM_TEXT_VERTEX);
-	add_shader(mod1_engine_gl::shader_type::fragment, MOD1_PROGRAM_TEXT_FRAGMENT);
+	add_shader(mod1_engine_gl::shader_type::vertex, MOD1_GUI_PROGRAM_TEXT_VERTEX);
+	add_shader(mod1_engine_gl::shader_type::fragment, MOD1_GUI_PROGRAM_TEXT_FRAGMENT);
 	link();
 
 	MOD1_CONNECT_UNIFORM(*this, texture)

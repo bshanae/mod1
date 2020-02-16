@@ -2,7 +2,7 @@
 
 void				general::render()
 {
-	mod1_engine_gl::core::clear(MOD1_BACKGROUND);
+	mod1_engine_gl::core::clear(MOD1_GENERAL_BACKGROUND);
 
 	program.start();
 
