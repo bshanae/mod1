@@ -13,6 +13,6 @@ void				system::render(const button &button)
 	point2<int>		start;
 
 	start.x = button.center().x - button.size().x / 2;
-	start.y = button.center().y;
+	start.y = button.center().y + button.size().y / 2;;
 	write(button.text(), start);
 }
