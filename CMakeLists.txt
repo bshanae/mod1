@@ -40,6 +40,7 @@ set(ENGINE_GL
 	mod1_engine_gl/core/swap_buffers.cpp
 	mod1_engine_gl/core/x_signal.cpp
 	mod1_engine_gl/core/x_timer.cpp
+	mod1_engine_gl/core/use_depth_test.cpp
 
 	mod1_engine_gl/shader/shader.cpp
 

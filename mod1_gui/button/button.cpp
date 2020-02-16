@@ -7,6 +7,9 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(button, size)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(button, text)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(button, callback)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(button, font)
+MOD1_GENERATE_INTERNAL_READ_DEFINITION(button, is_active)
+
+//					PUBLIC
 
 					button::button(
 					const point2<int> &center,
@@ -35,9 +38,22 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(button, font)
 
 void				button::test(const mod1_engine_gl::event &event)
 {
-	if (is_inside(event.read_mouse()))
+	if (MOD1_INTERNAL(is_active) and is_inside(event.read_mouse()))
 		MOD1_INTERNAL(callback).run();
 }
+
+void				button::activate()
+{
+	MOD1_INTERNAL(is_active) = true;
+}
+
+void				button::deactivate()
+{
+	MOD1_INTERNAL(is_active) = false;
+}
+
+
+//					PRIVATE
 
 bool 				button::is_inside(const point2<int> &point) const
 {

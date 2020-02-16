@@ -6,6 +6,7 @@ void				system::render(const layout &layout)
 {
 	for (const button *button : layout.data)
 		render(*button);
+	mod1_engine_gl::core::swap_buffers();
 }
 
 void				system::render(const button &button)

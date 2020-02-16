@@ -31,15 +31,17 @@ void 				general::render_block(const bool &state)
 {
 	if (state)
 	{
+		run_blur();
+		run_gui_front();
 		callback_rotate_start->block(true);
 		callback_rotate_finish->block(true);
 		timer_gravity->block(true);
-		run_blur();
-		run_gui_front();
 		request_render(false);
 	}
 	else
 	{
+		layout_front.deactivate();
+		layout_scenarios.deactivate();
 		callback_rotate_start->block(false);
 		callback_rotate_finish->block(false);
 		timer_gravity->block(false);

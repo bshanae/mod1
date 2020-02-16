@@ -5,13 +5,13 @@ MOD1_GENERATE_EXCEPTION_DEFINITION(general, exception_arguments)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(general, terrain)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(general, water)
 
-							general::general(int argc, char **argv) :
-							mod1_engine_gl::renderer(),
-							cl_core(),
-							framebuffer(window_width(), window_height()),
-							program(),
-							light_info(),
-							system(*(mod1_engine_gl::core *)this)
+						general::general(int argc, char **argv) :
+						mod1_engine_gl::renderer(),
+						cl_core(),
+						framebuffer(window_width(), window_height()),
+						program(),
+						light_info(),
+						system(*(mod1_engine_gl::core *)this)
 {
 MOD1_GENERATE_MESSAGE("")
 
@@ -43,7 +43,7 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Callbacks are set")
 
 MOD1_GENERATE_MESSAGE("Mod1 General : Timers are set")
 
-	const mod1_gui::button	*button[10];
+	mod1_gui::button	*button[10];
 
 	button[0] = system.generate_button(window_width() / 2, window_height() * 1 / 5, "Continue", font_gill_sans, functor_continue, this);
 	button[1] = system.generate_button(window_width() / 2, window_height() * 2 / 5, "Scenario", font_gill_sans, functor_scenarios, this);
@@ -68,7 +68,7 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Buttons are set")
 MOD1_GENERATE_MESSAGE("Mod1 General : Ready")
 }
 
-							general::~general()
+					general::~general()
 {
 	delete MOD1_INTERNAL(terrain);
 	delete MOD1_INTERNAL(water);

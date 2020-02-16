@@ -13,11 +13,14 @@ public :
 						layout() = default;
 						~layout() = default;
 
-	void				push(const button *button);
+	void				push(button *button);
+
+	void 				activate();
+	void 				deactivate();
 
 private :
 
-#define DATA			std::vector<const button *>
+#define DATA			std::vector<button *>
     DATA				data;
 };
 

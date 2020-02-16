@@ -12,6 +12,7 @@ void				system::write(
 	const symbol	*symbol;
 
 	mod1_engine_gl::core::show_polygon_back(true);
+	mod1_engine_gl::core::use_depth_test(false);
 
 	for (const auto &text_iterator : text)
 	{
@@ -42,4 +43,5 @@ void				system::write(
 	}
 
 	mod1_engine_gl::core::show_polygon_back(false);
+	mod1_engine_gl::core::use_depth_test(true);
 }

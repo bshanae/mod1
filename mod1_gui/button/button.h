@@ -18,6 +18,9 @@ public :
 
 	void				test(const mod1_engine_gl::event &event);
 
+	void				activate();
+	void				deactivate();
+
 private :
 
 MOD1_GENERATE_INTERNAL(point2<int>, center)
@@ -25,6 +28,7 @@ MOD1_GENERATE_INTERNAL(point2<int>, size)
 MOD1_GENERATE_INTERNAL(std::string, text)
 MOD1_GENERATE_INTERNAL(callback, callback)
 MOD1_GENERATE_INTERNAL(const font *, font)
+MOD1_GENERATE_INTERNAL_WITH_VALUE(bool, is_active, false)
 
 	point2<int>			min;
 	point2<int>			max;
@@ -37,6 +41,7 @@ MOD1_GENERATE_INTERNAL_READ_DECLARATION(size)
 MOD1_GENERATE_INTERNAL_READ_DECLARATION(text)
 MOD1_GENERATE_INTERNAL_READ_DECLARATION(callback)
 MOD1_GENERATE_INTERNAL_READ_DECLARATION(font)
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(is_active)
 };
 
 

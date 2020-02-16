@@ -6,7 +6,7 @@ void				general::run_blur()
 	render();
 	mod1_engine_gl::framebuffer::unbind();
 
-	glDisable(GL_DEPTH_TEST);
+	mod1_engine_gl::core::use_depth_test(false);
 
 	blur.program.start();
 	framebuffer.texture().bind();
@@ -16,25 +16,21 @@ void				general::run_blur()
 	mod1_engine_gl::texture::unbind();
 	program::stop();
 
-	glEnable(GL_DEPTH_TEST);
+	mod1_engine_gl::core::use_depth_test(true);
 }
 
 void				general::run_gui_front()
 {
-	glDisable(GL_DEPTH_TEST);
+	layout_scenarios.deactivate();
+	layout_front.activate();
 	system.render(layout_front);
-	core::swap_buffers();
-	glEnable(GL_DEPTH_TEST);
-
 	gui_level = level::menu_a;
 }
 
 void				general::run_gui_scenarios()
 {
-	glDisable(GL_DEPTH_TEST);
+	layout_front.deactivate();
+	layout_scenarios.activate();
 	system.render(layout_scenarios);
-	core::swap_buffers();
-	glEnable(GL_DEPTH_TEST);
-
 	gui_level = level::menu_b;
 }
