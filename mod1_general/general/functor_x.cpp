@@ -8,7 +8,7 @@ void				general::functor_key(void *ptr, const mod1_engine_gl::event &event)
 	{
 		general->timer->block(true);
 		general->render_blur();
-		general->render_gui();
+		general->render_gui_front();
 	}
 	else if (event.read_key() == GLFW_KEY_5)
 	{
@@ -35,6 +35,16 @@ void				general::functor_timer(void *ptr)
 
 	general->MOD1_INTERNAL(water)->gravity();
 	general->render();
+}
+
+//					GUI
+
+void				general::functor_scenarios(void *ptr)
+{
+	auto 			*general = (::general *)ptr;
+
+	general->render_blur();
+	general->render_gui_scenarios();
 }
 
 void				general::functor_stop(void *ptr)

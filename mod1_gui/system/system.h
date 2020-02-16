@@ -5,22 +5,26 @@
 #include "mod1_gui/symbol/symbol.h"
 #include "mod1_gui/font/font.h"
 #include "mod1_gui/button/button.h"
+#include "mod1_gui/layout/layout.h"
 
 class									mod1_gui::system
 {
 public :
+
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_symbol, "Mod1 GUI, System : Symbol not found")
+
 	explicit							system(mod1_engine_gl::core &core);
 										~system();
 
-	void								render();
+	void								render(const layout &layout);
 
-	void 								add_button(
+	const button 						*generate_button(
 										const int &center_x,
 										const int &center_y,
 										const std::string &text,
 										functor_ptr functor,
 										void *ptr = nullptr);
-	void 								add_button(
+	const button 						*generate_button(
 										const point2<int> &center,
 										const std::string &text,
 										functor_ptr functor,
@@ -57,8 +61,9 @@ private :
 
 	font								font = mod1_gui::font(MOD1_FONT_SOURCE, MOD1_FONT_WIDTH);
 	std::map<char, mod1_gui::symbol *>	symbol_map;
+	mod1_gui::symbol					*find_symbol(const char &task);
 
-	std::vector<button>					button_vector;
+	std::vector<button *>				button_vector;
 
 	void								render(const button &button);
 

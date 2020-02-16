@@ -21,5 +21,6 @@ namespace			mod1_gui
 	class			font;
 	class			symbol;
 	class 			button;
+	class 			layout;
 	class			system;
 };

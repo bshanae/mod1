@@ -2,6 +2,8 @@
 
 using namespace		mod1_gui;
 
+MOD1_GENERATE_EXCEPTION_DEFINITION(system, exception_symbol)
+
 					system::system(mod1_engine_gl::core &core) :
 					program(core)
 {
@@ -20,4 +22,6 @@ MOD1_GENERATE_MESSAGE("Mod1 GUI, System : Ready")
 {
 	for (const auto &[key, value] : symbol_map)
 		delete value;
+	for (button *button : button_vector)
+		delete button;
 }

@@ -2,10 +2,10 @@
 
 using namespace		mod1_gui;
 
-void				system::render()
+void				system::render(const layout &layout)
 {
-	for (const auto &button : button_vector)
-		render(button);
+	for (const button *button : layout.data)
+		render(*button);
 }
 
 void				system::render(const button &button)

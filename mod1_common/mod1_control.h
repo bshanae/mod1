@@ -19,7 +19,7 @@
 #define MOD1_PROGRAM_TEXT_VERTEX			"source_gl/text_vertex.glsl"
 #define MOD1_PROGRAM_TEXT_FRAGMENT			"source_gl/text_fragment.glsl"
 
-#define MOD1_FONT_SOURCE					"GillSans.ttc"
+#define MOD1_FONT_SOURCE					"source_gui/GillSans.ttc"
 #define MOD1_FONT_WIDTH						48
 
 //											ENGINE GL : CORE

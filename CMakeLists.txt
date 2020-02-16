@@ -92,13 +92,16 @@ set(GUI
 
 	mod1_gui/button/button.cpp
 
+	mod1_gui/layout/layout.cpp
+
 	mod1_gui/system/system.cpp
 	mod1_gui/system/program.cpp
 	mod1_gui/system/square.cpp
 	mod1_gui/system/write.cpp
-	mod1_gui/system/add_button.cpp
+	mod1_gui/system/generate_button.cpp
 	mod1_gui/system/render.cpp
-	mod1_gui/system/callback.cpp)
+	mod1_gui/system/callback.cpp
+	mod1_gui/system/find_symbol.cpp)
 
 set(ALGORITHM
 	mod1_algorithm/terrain/terrain.cpp

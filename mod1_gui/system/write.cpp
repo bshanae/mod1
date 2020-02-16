@@ -12,10 +12,10 @@ void				system::write(const std::string &text, const point2<int> &position)
 
 	for (const auto &text_iterator : text)
 	{
-		symbol = symbol_map[text_iterator];
+		symbol = find_symbol(text_iterator);
 
 		position_single.x = position_iterator.x + symbol->bearing().x;
-		position_single.y = position_iterator.y - symbol->size().y;
+		position_single.y = position_iterator.y - symbol->bearing().y;
 
 		float		raw[] =
 		{

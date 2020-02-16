@@ -5,13 +5,13 @@ MOD1_GENERATE_EXCEPTION_DEFINITION(general, exception_arguments)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(general, terrain)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(general, water)
 
-					general::general(int argc, char **argv) :
-					mod1_engine_gl::renderer(),
-					cl_core(),
-					framebuffer(window_width(), window_height()),
-					program(),
-					light_info(),
-					system(*(mod1_engine_gl::core *)this)
+							general::general(int argc, char **argv) :
+							mod1_engine_gl::renderer(),
+							cl_core(),
+							framebuffer(window_width(), window_height()),
+							program(),
+							light_info(),
+							system(*(mod1_engine_gl::core *)this)
 {
 MOD1_GENERATE_MESSAGE("")
 
@@ -38,12 +38,32 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Callbacks are set")
 
 MOD1_GENERATE_MESSAGE("Mod1 General : Timers are set")
 
-	system.add_button(100, 100, "Exit", functor_stop, this);
+	const mod1_gui::button	*button[10];
+
+	button[0] = system.generate_button(window_width() / 2, window_height() * 1 / 5, "Continue", nullptr, this);
+	button[1] = system.generate_button(window_width() / 2, window_height() * 2 / 5, "Scenario", functor_scenarios, this);
+	button[2] = system.generate_button(window_width() / 2, window_height() * 3 / 5, "Controls", nullptr, this);
+	button[3] = system.generate_button(window_width() / 2, window_height() * 4 / 5, "Exit", functor_stop, this);
+
+	button[4] = system.generate_button(window_width() / 2, window_height() * 1 / 7, "RainY", nullptr, this);
+	button[5] = system.generate_button(window_width() / 2, window_height() * 2 / 7, "Heavy rain", nullptr, this);
+	button[6] = system.generate_button(window_width() / 2, window_height() * 3 / 7, "Rain", nullptr, this);
+	button[7] = system.generate_button(window_width() / 2, window_height() * 4 / 7, "Wave", nullptr, this);
+	button[8] = system.generate_button(window_width() / 2, window_height() * 5 / 7, "4 waves", nullptr, this);
+	button[9] = system.generate_button(window_width() / 2, window_height() * 6 / 7, "Flood", nullptr, this);
+
+	for (int i = 0; i < 4; i++)
+		layout_front.push(button[i]);
+
+	for (int i = 4; i < 10; i++)
+		layout_scenarios.push(button[i]);
+
+MOD1_GENERATE_MESSAGE("Mod1 General : Buttons are set")
 
 MOD1_GENERATE_MESSAGE("Mod1 General : Ready")
 }
 
-					general::~general()
+							general::~general()
 {
 	delete MOD1_INTERNAL(terrain);
 	delete MOD1_INTERNAL(water);

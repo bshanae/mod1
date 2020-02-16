@@ -21,8 +21,15 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_arguments, "Mod1 Main : Invalid nu
 
 private :
 
-	mod1_engine_cl::core		cl_core;
+	char 						*first_argument = nullptr;
+	char 						*second_argument = nullptr;
 
+	MOD1_GENERATE_INTERNAL_WITH_VALUE(mod1_algorithm::terrain, *terrain, nullptr)
+	MOD1_GENERATE_INTERNAL_WITH_VALUE(mod1_algorithm::water, *water, nullptr)
+
+//								RENDERING
+
+	mod1_engine_cl::core		cl_core;
 	mod1_engine_gl::framebuffer	framebuffer;
 
 	class						program : public mod1_engine_gl::program
@@ -43,8 +50,6 @@ private :
 	MOD1_GENERATE_UNIFORM(light_direct_intensity, "light.direct_intensity")
 	}							program;
 
-	blur						blur;
-
 	struct
 	{
 		float 					ambient_intensity;
@@ -56,23 +61,26 @@ private :
 	const float					rotation_speed = 300;
 	glm::mat4					rotation = glm::mat4(1);
 
+//								GUI
+
+	blur						blur;
+	mod1_gui::system			system;
+	mod1_gui::layout			layout_front;
+	mod1_gui::layout			layout_scenarios;
+
+	void						render_blur();
+	void						render_gui_front();
+	void						render_gui_scenarios();
+
+//								FUNCTORS
+
 	static void					functor_key(void *ptr, const mod1_engine_gl::event &event);
 	static void					functor_drag(void *ptr, const mod1_engine_gl::event &event);
 	static void					functor_timer(void *ptr);
+	static void					functor_scenarios(void *ptr);
 	static void					functor_stop(void *ptr);
 
-	char 						*first_argument = nullptr;
-	char 						*second_argument = nullptr;
-
-MOD1_GENERATE_INTERNAL_WITH_VALUE(mod1_algorithm::terrain, *terrain, nullptr)
-MOD1_GENERATE_INTERNAL_WITH_VALUE(mod1_algorithm::water, *water, nullptr)
-
-	mod1_gui::system			system;
-
 	mod1_engine_gl::timer		*timer = nullptr;
-
-	void						render_blur();
-	void						render_gui();
 
 public :
 
