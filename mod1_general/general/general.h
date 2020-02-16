@@ -17,8 +17,6 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_arguments, "Mod1 Main : Invalid nu
 
 	void						build();
 
-	void						render() final;
-
 private :
 
 	char 						*first_argument = nullptr;
@@ -28,6 +26,9 @@ private :
 	MOD1_GENERATE_INTERNAL_WITH_VALUE(mod1_algorithm::water, *water, nullptr)
 
 //								RENDERING
+
+	void						render() final;
+	void						render_block(const bool &state);
 
 	mod1_engine_cl::core		cl_core;
 	mod1_engine_gl::framebuffer	framebuffer;
@@ -68,19 +69,33 @@ private :
 	mod1_gui::layout			layout_front;
 	mod1_gui::layout			layout_scenarios;
 
-	void						render_blur();
-	void						render_gui_front();
-	void						render_gui_scenarios();
+	void						run_blur();
+	void						run_gui_front();
+	void						run_gui_scenarios();
+
+	enum class					level
+	{
+		render,
+		menu_a,
+		menu_b
+	}							gui_level;
 
 //								FUNCTORS
 
 	static void					functor_key(void *ptr, const mod1_engine_gl::event &event);
 	static void					functor_drag(void *ptr, const mod1_engine_gl::event &event);
-	static void					functor_timer(void *ptr);
-	static void					functor_scenarios(void *ptr);
-	static void					functor_stop(void *ptr);
+	static void					functor_gravity(void *ptr);
+	static void					functor_fps(void *ptr);
 
-	mod1_engine_gl::timer		*timer = nullptr;
+	static void					functor_continue(void *ptr);
+	static void					functor_scenarios(void *ptr);
+	static void					functor_exit(void *ptr);
+
+	mod1_engine_gl::timer		*timer_gravity = nullptr;
+
+//								SCENARIOS
+
+	static void					scenario_wave(void *ptr);
 
 public :
 

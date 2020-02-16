@@ -34,21 +34,24 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Water is created")
 
 MOD1_GENERATE_MESSAGE("Mod1 General : Callbacks are set")
 
-	timer = add_timer(1. / 35., functor_timer, this);
+	timer_gravity = add_timer(1. / 35., functor_gravity, this);
+	timer_gravity->block(true);
+
+//	add_timer(1 / 1000., functor_fps, this);
 
 MOD1_GENERATE_MESSAGE("Mod1 General : Timers are set")
 
 	const mod1_gui::button	*button[10];
 
-	button[0] = system.generate_button(window_width() / 2, window_height() * 1 / 5, "Continue", nullptr, this);
+	button[0] = system.generate_button(window_width() / 2, window_height() * 1 / 5, "Continue", functor_continue, this);
 	button[1] = system.generate_button(window_width() / 2, window_height() * 2 / 5, "Scenario", functor_scenarios, this);
 	button[2] = system.generate_button(window_width() / 2, window_height() * 3 / 5, "Controls", nullptr, this);
-	button[3] = system.generate_button(window_width() / 2, window_height() * 4 / 5, "Exit", functor_stop, this);
+	button[3] = system.generate_button(window_width() / 2, window_height() * 4 / 5, "Exit", functor_exit, this);
 
-	button[4] = system.generate_button(window_width() / 2, window_height() * 1 / 7, "RainY", nullptr, this);
+	button[4] = system.generate_button(window_width() / 2, window_height() * 1 / 7, "Rain", nullptr, this);
 	button[5] = system.generate_button(window_width() / 2, window_height() * 2 / 7, "Heavy rain", nullptr, this);
-	button[6] = system.generate_button(window_width() / 2, window_height() * 3 / 7, "Rain", nullptr, this);
-	button[7] = system.generate_button(window_width() / 2, window_height() * 4 / 7, "Wave", nullptr, this);
+	button[6] = system.generate_button(window_width() / 2, window_height() * 3 / 7, "Spring", nullptr, this);
+	button[7] = system.generate_button(window_width() / 2, window_height() * 4 / 7, "Wave", scenario_wave, this);
 	button[8] = system.generate_button(window_width() / 2, window_height() * 5 / 7, "4 waves", nullptr, this);
 	button[9] = system.generate_button(window_width() / 2, window_height() * 6 / 7, "Flood", nullptr, this);
 

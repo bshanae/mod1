@@ -4,7 +4,7 @@
 
 #include "mod1_engine_gl/point/point3.h"
 #include "mod1_engine_gl/event/event.h"
-#include "mod1_engine_gl/callback/callback.h"
+#include "mod1_engine_gl/callback/functor_x.h"
 #include "mod1_engine_gl/timer/timer.h"
 #include "mod1_engine_gl/core/global.h"
 
@@ -21,7 +21,7 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_GLEW, "Mod1 Engine GL, Core : Can'
 	virtual				~core();
 
 	void				start();
-	void				stop();
+	void				finish();
 
 	void				add_callback(const event_type &type, const callback &callback);
 	void				add_callback(const event_type &type, functor_ptr_event functor, void *ptr);

@@ -8,7 +8,7 @@
 #include "mod1_engine_gl/model/model.h"
 #include "mod1_engine_gl/camera/camera.h"
 #include "mod1_engine_gl/event/event.h"
-#include "mod1_engine_gl/callback/callback.h"
+#include "mod1_engine_gl/callback/functor_x.h"
 #include "mod1_engine_gl/uniform/uniform.h"
 #include "mod1_engine_gl/point/point3.h"
 
@@ -21,6 +21,7 @@ public :
 								~renderer() override = default;
 
 	void						add_model(model *model);
+	void 						request_render(const bool &task = true);
 
 protected :
 
@@ -30,9 +31,13 @@ protected :
 
 private :
 
-	static void					callback_key(void *ptr, const class event &event);
-
 MOD1_GENERATE_INTERNAL(std::vector<model *>, model_array)
+
+	static void					functor_key(void *ptr, const class event &event);
+	static void					functor_render(void *ptr);
+
+	bool						render_request = false;
+	timer						*timer = nullptr;
 
 protected :
 

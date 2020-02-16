@@ -1,16 +1,16 @@
 #include "renderer.h"
 
-using namespace			mod1_engine_gl;
+using namespace		mod1_engine_gl;
 
-void					renderer::callback_key(void *ptr, const class event &event)
+void				renderer::functor_key(void *ptr, const class event &event)
 {
 #if MOD1_ENABLED(MOD1_DEVELOPER_MODE)
-	static bool			line_mod = false;
+	static bool		line_mod = false;
 #endif
 
-	const int 			key = event.read_key();
+	const int 		key = event.read_key();
 
-	auto				renderer = (mod1_engine_gl::renderer *)ptr;
+	auto			renderer = (mod1_engine_gl::renderer *)ptr;
 
 #if MOD1_ENABLED(MOD1_DEVELOPER_MODE)
 	if (key == GLFW_KEY_A)
@@ -46,5 +46,14 @@ void					renderer::callback_key(void *ptr, const class event &event)
 #endif
 	else
 		return ;
-	renderer->render();
+	renderer->request_render();
+}
+
+void				renderer::functor_render(void *ptr)
+{
+	auto			renderer = (mod1_engine_gl::renderer *)ptr;
+
+	if (renderer->render_request)
+		renderer->render();
+	renderer->render_request = false;
 }

@@ -1,40 +1,45 @@
 #include "general.h"
 
-void				general::render_blur()
+void				general::render()
 {
-	framebuffer.bind();
-	render();
-	mod1_engine_gl::framebuffer::unbind();
+	mod1_engine_gl::core::clear(MOD1_BACKGROUND);
 
-	glDisable(GL_DEPTH_TEST);
+	program.start();
 
-	blur.program.start();
-	framebuffer.texture().bind();
-	mod1_engine_gl::texture::activate();
-	blur.program.texture.upload(0);
-	blur.square.draw();
-	mod1_engine_gl::texture::unbind();
+	program.camera_position.upload(camera.position());
+	program.camera_projection.upload(camera.projection());
+	program.camera_view.upload(camera.view());
+
+	program.light_ambient_intensity.upload(light_info.ambient_intensity);
+	program.light_direct_direction.upload(light_info.direct_direction);
+	program.light_direct_intensity.upload(light_info.direct_intensity);
+
+	for (auto &model : model_array())
+	{
+		program.object_transformation.upload(rotation);
+		program.object_ambient_receptivity.upload(model->ambient_receptivity());
+		program.object_diffuse_receptivity.upload(model->diffuse_receptivity());
+		program.object_specular_receptivity.upload(model->specular_receptivity());
+		model->draw();
+	}
 	program::stop();
 
-	glEnable(GL_DEPTH_TEST);
+	mod1_engine_gl::core::swap_buffers();
 }
 
-void				general::render_gui_front()
+void 				general::render_block(const bool &state)
 {
-	glDisable(GL_DEPTH_TEST);
-
-	system.render(layout_front);
-	core::swap_buffers();
-
-	glEnable(GL_DEPTH_TEST);
-}
-
-void				general::render_gui_scenarios()
-{
-	glDisable(GL_DEPTH_TEST);
-
-	system.render(layout_scenarios);
-	core::swap_buffers();
-
-	glEnable(GL_DEPTH_TEST);
+	if (state)
+	{
+		timer_gravity->block(true);
+		request_render(false);
+		run_blur();
+		run_gui_front();
+	}
+	else
+	{
+		timer_gravity->block(false);
+		gui_level = level::render;
+		request_render();
+	}
 }

@@ -2,7 +2,7 @@
 
 #include "mod1_engine_gl/namespace.h"
 
-#include "mod1_engine_gl/callback/callback.h"
+#include "mod1_engine_gl/callback/functor_x.h"
 
 class				mod1_engine_gl::timer
 {
