@@ -7,12 +7,12 @@ timer				*core::add_timer(
 					functor_ptr functor,
 					void *ptr)
 {
-	timer_vector.emplace_back(period, functor, ptr);
-	return (&timer_vector.back());
+	timer_vector.push_back(new timer(period, functor, ptr));
+	return (timer_vector.back());
 }
 
 void 				core::test_timer()
 {
-	for (auto &timer : timer_vector)
-		timer.test(glfwGetTime());
+	for (auto *timer : timer_vector)
+		timer->test(glfwGetTime());
 }

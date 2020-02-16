@@ -18,6 +18,4 @@ void				general::scenario_wave(void *ptr)
 	general->MOD1_INTERNAL(water)->cl_arg_water_data.write();
 
 	general->render_block(false);
-
-	std::cerr << "Wave" << std::endl;
 }

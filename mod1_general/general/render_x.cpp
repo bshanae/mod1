@@ -32,9 +32,9 @@ void 				general::render_block(const bool &state)
 	if (state)
 	{
 		timer_gravity->block(true);
-		request_render(false);
 		run_blur();
 		run_gui_front();
+		request_render(false);
 	}
 	else
 	{

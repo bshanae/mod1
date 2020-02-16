@@ -5,14 +5,12 @@ void				general::functor_key(void *ptr, const mod1_engine_gl::event &event)
 	auto 			*general = (::general *)ptr;
 	const int 		key = event.read_key();
 
-	std::cerr << (int)general->gui_level << std::endl;
 	if (key == GLFW_KEY_ESCAPE && general->gui_level == level::render)
 		general->render_block(true);
 	else if (key == GLFW_KEY_ESCAPE && general->gui_level == level::menu_a)
 		general->render_block(false);
 	else if (key == GLFW_KEY_ESCAPE && general->gui_level == level::menu_b)
 		general->run_gui_front();
-	std::cerr << (int)general->gui_level << std::endl << std::endl;
 }
 
 void				general::functor_drag(void *ptr, const mod1_engine_gl::event &event)
@@ -29,8 +27,6 @@ void				general::functor_drag(void *ptr, const mod1_engine_gl::event &event)
 void				general::functor_gravity(void *ptr)
 {
 	auto 			*general = (::general *)ptr;
-
-	std::cerr << "Gravity" << std::endl;
 
 	general->MOD1_INTERNAL(water)->gravity();
 	general->request_render();

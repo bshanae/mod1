@@ -23,14 +23,12 @@ const button			*system::generate_button(
 						void *ptr)
 {
 	point2<int>			size;
-	button				*button = nullptr;
 
 	for (const char &iter : text)
 	{
 		size.x += symbol_map[iter]->advance();
 		size.y = MOD1_MAX(size.y, symbol_map[iter]->size().y);
 	}
-	button = new class button(center, size, text, functor, ptr);
-	button_vector.push_back(button);
+	button_vector.push_back(new button(center, size, text, functor, ptr));
 	return (button_vector.back());
 }

@@ -34,10 +34,11 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Water is created")
 
 MOD1_GENERATE_MESSAGE("Mod1 General : Callbacks are set")
 
+	add_timer(1 / 1000., functor_fps, this);
+
 	timer_gravity = add_timer(1. / 35., functor_gravity, this);
 	timer_gravity->block(true);
 
-//	add_timer(1 / 1000., functor_fps, this);
 
 MOD1_GENERATE_MESSAGE("Mod1 General : Timers are set")
 

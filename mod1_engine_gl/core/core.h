@@ -53,7 +53,7 @@ MOD1_GENERATE_INTERNAL_WITH_VALUE(int, window_height, MOD1_WINDOW_HEIGHT)
 
 	void 				launch_signal();
 
-#define TIMER_VECTOR	std::vector<timer>
+#define TIMER_VECTOR	std::vector<timer *>
 	TIMER_VECTOR		timer_vector;
 
 	void				test_timer();
