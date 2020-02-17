@@ -36,10 +36,13 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(button, is_active)
 	max = center + MOD1_INTERNAL(size) / 2;
 }
 
-void				button::test(const mod1_engine_gl::event &event)
+bool				button::test(const mod1_engine_gl::event &event)
 {
 	if (MOD1_INTERNAL(is_active) and is_inside(event.read_mouse()))
 		MOD1_INTERNAL(callback).run();
+	else
+		return (false);
+	return (true);
 }
 
 void				button::activate()

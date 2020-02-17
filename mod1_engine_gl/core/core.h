@@ -36,8 +36,6 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_GLEW, "Mod1 Engine GL, Core : Can'
 	static void 		draw(const int &count);
 	static void			swap_buffers();
 
-	static void			terminate_signal();
-
 private :
 
 	const std::string	window_name = MOD1_WINDOW_NAME;

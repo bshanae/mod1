@@ -16,7 +16,7 @@ public :
 							void *ptr);
 						~button() = default;
 
-	void				test(const mod1_engine_gl::event &event);
+	bool				test(const mod1_engine_gl::event &event);
 
 	void				activate();
 	void				deactivate();
