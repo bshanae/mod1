@@ -113,7 +113,10 @@ private :
 	std::uniform_int_distribution<int>	distribution_water_x;
 	std::uniform_int_distribution<int>	distribution_water_y;
 
+	mod1_engine_gl::timer				*timer_scenario = nullptr;
+
 	static void							scenario_rain(void *ptr);
+	static void							scenario_heavy_rain(void *ptr);
 	static void							scenario_wave(void *ptr);
 
 public :

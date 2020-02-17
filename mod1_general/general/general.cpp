@@ -50,8 +50,8 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Timers are set")
 	button[2] = system.generate_button(window_width() / 2, window_height() * 3 / 5, "Controls", font_gill_sans, nullptr, this);
 	button[3] = system.generate_button(window_width() / 2, window_height() * 4 / 5, "Exit", font_gill_sans, functor_exit, this);
 
-	button[4] = system.generate_button(window_width() / 2, window_height() * 1 / 7, "Rain", font_gill_sans, nullptr, this);
-	button[5] = system.generate_button(window_width() / 2, window_height() * 2 / 7, "Heavy rain", font_gill_sans, nullptr, this);
+	button[4] = system.generate_button(window_width() / 2, window_height() * 1 / 7, "Rain", font_gill_sans, scenario_rain, this);
+	button[5] = system.generate_button(window_width() / 2, window_height() * 2 / 7, "Heavy rain", font_gill_sans, scenario_heavy_rain, this);
 	button[6] = system.generate_button(window_width() / 2, window_height() * 3 / 7, "Spring", font_gill_sans, nullptr, this);
 	button[7] = system.generate_button(window_width() / 2, window_height() * 4 / 7, "Wave", font_gill_sans, scenario_wave, this);
 	button[8] = system.generate_button(window_width() / 2, window_height() * 5 / 7, "4 waves", font_gill_sans, nullptr, this);

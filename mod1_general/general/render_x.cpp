@@ -33,18 +33,28 @@ void 				general::render_block(const bool &state)
 	{
 		run_blur();
 		run_gui_front();
+
 		callback_rotate_start->block(true);
 		callback_rotate_finish->block(true);
+
+		if (timer_scenario)
+			timer_scenario->block(true);
 		timer_gravity->block(true);
+
 		request_render(false);
 	}
 	else
 	{
 		layout_front.deactivate();
 		layout_scenarios.deactivate();
+
 		callback_rotate_start->block(false);
 		callback_rotate_finish->block(false);
+
+		if (timer_scenario)
+			timer_scenario->block(false);
 		timer_gravity->block(false);
+
 		gui_level = level::render;
 		request_render();
 	}

@@ -23,6 +23,8 @@ void				general::functor_rotate_start(void *ptr, const mod1_engine_gl::event &ev
 
 	general->request_render();
 	general->timer_gravity->block(true);
+	if (general->timer_scenario)
+		general->timer_scenario->block(true);
 }
 
 void				general::functor_rotate_finish(void *ptr, const mod1_engine_gl::event &event)
@@ -31,6 +33,8 @@ void				general::functor_rotate_finish(void *ptr, const mod1_engine_gl::event &e
 
 	general->request_render();
 	general->timer_gravity->block(false);
+	if (general->timer_scenario)
+		general->timer_scenario->block(false);
 }
 
 //					WATER
@@ -49,10 +53,23 @@ void				general::functor_rain(void *ptr)
 	point2<int>		point;
 
 	point.x = general->distribution_water_x(general->generator);
-	point.x = general->distribution_water_y(general->generator);
+	point.y = general->distribution_water_y(general->generator);
+
+	point2<int>		neighbors[] =
+	{
+		point2<int>(0, 0),
+		point2<int>(1, 0),
+		point2<int>(0, 1),
+		point2<int>(1, 1)
+	};
+
+	for (auto neighbor : neighbors)
+		general->MOD1_INTERNAL(water)->increment_water_depth(point + neighbor, 10);
+
+	general->MOD1_INTERNAL(water)->update_data();
+	general->MOD1_INTERNAL(water)->update_model(true);
+
 }
-
-
 
 //					GUI
 

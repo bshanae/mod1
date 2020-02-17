@@ -59,6 +59,7 @@ private :
 	buffer<float>					water_data;
 
 	void							data_prepare();
+
 	void							gravity();
 
 	float							read_terrain_height(const point2<int> &iter);
@@ -68,8 +69,10 @@ private :
 	void							write_water_depth(const point2<int> &iter, const float &value);
 	void							increment_water_depth(const point2<int> &iter, const float &value);
 
-//									MODEL
+//									UPDATE
 
+	void 							update_time_constant(const float &multiplier = 1.f);
+	void 							update_data();
 	void							update_model(const bool &save = false);
 
 //									COLOR

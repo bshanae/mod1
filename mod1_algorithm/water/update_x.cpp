@@ -2,6 +2,17 @@
 
 using namespace			mod1_algorithm;
 
+void 					water::update_time_constant(const float &multiplier)
+{
+	constant_depth = MOD1_WATER_CONST_dt * multiplier / (terrain->delta() * terrain->delta());
+	cl_arg_const_depth.write();
+}
+
+void 					water::update_data()
+{
+	cl_arg_water_data.write();
+}
+
 void					water::update_model(const bool &save)
 {
 	point2<int>			iter;
@@ -22,4 +33,7 @@ void					water::update_model(const bool &save)
 
 	if (save)
 		model::save(model_slot::point);
+
+	update_normal(save);
+	update_color(save);
 }

@@ -69,4 +69,6 @@
 #define MOD1_GENERAL_WAVE_HEIGHT				150
 #define MOD1_GENERAL_WAVE_WIDTH					15
 
+#define MOD1_GENERAL_RAINDROP_VOLUME			5
+
 #define MOD1_GENERAL_BACKGROUND					mod1_engine_gl::point3<float>(0.8f)

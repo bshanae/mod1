@@ -2,8 +2,6 @@
 
 using namespace			mod1_algorithm;
 
-
-
 void					water::add_color(const point3<float> &color, const water_color_type &type)
 {
 	if (type == water_color_type::min)
