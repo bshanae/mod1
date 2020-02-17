@@ -19,4 +19,9 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Terrain is built")
 	add_model(MOD1_INTERNAL(water)->model());
 MOD1_GENERATE_MESSAGE("Mod1 General : Water is built")
 #endif
+
+	point2<int>			range = MOD1_INTERNAL(water)->size() - point2<int>(1);
+
+	distribution_water_x = std::uniform_int_distribution<int>(0, range.x);
+	distribution_water_y = std::uniform_int_distribution<int>(0, range.y);
 }

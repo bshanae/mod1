@@ -64,7 +64,6 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Timers are set")
 		layout_scenarios.push(button[i]);
 
 MOD1_GENERATE_MESSAGE("Mod1 General : Buttons are set")
-
 MOD1_GENERATE_MESSAGE("Mod1 General : Ready")
 }
 

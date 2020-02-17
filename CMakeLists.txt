@@ -31,7 +31,7 @@ set(EXTERN
 set(ENGINE_GL
 	mod1_engine_gl/core/core.cpp
 	mod1_engine_gl/core/show_polygon_back.cpp
-	mod1_engine_gl/core/add_callback.cpp
+	mod1_engine_gl/core/x_callback.cpp
 	mod1_engine_gl/core/clear.cpp
 	mod1_engine_gl/core/draw.cpp
 	mod1_engine_gl/core/glfw_callback_x.cpp

@@ -11,6 +11,16 @@ timer				*core::add_timer(
 	return (timer_vector.back());
 }
 
+void 				core::remove_timer(timer *timer)
+{
+	for (auto iter = timer_vector.begin(); iter < timer_vector.end(); iter++)
+		if (*iter == timer)
+		{
+			timer_vector.erase(iter);
+			return;
+		}
+}
+
 void 				core::test_timer()
 {
 	for (auto *timer : timer_vector)

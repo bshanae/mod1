@@ -24,8 +24,10 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_GLEW, "Mod1 Engine GL, Core : Can'
 	void				finish();
 
 	callback			*add_callback(const event_type &type, functor_ptr_event functor, void *ptr);
+	void				remove_callback(callback *callback);
 
 	timer				*add_timer(const double &period, functor_ptr functor, void *ptr);
+	void 				remove_timer(timer *timer);
 
 	static void 		show_polygon_back(const bool &state);
 	static void 		use_depth_test(const bool &state);

@@ -33,6 +33,8 @@ void				general::functor_rotate_finish(void *ptr, const mod1_engine_gl::event &e
 	general->timer_gravity->block(false);
 }
 
+//					WATER
+
 void				general::functor_gravity(void *ptr)
 {
 	auto 			*general = (::general *)ptr;
@@ -40,6 +42,17 @@ void				general::functor_gravity(void *ptr)
 	general->MOD1_INTERNAL(water)->gravity();
 	general->request_render();
 }
+
+void				general::functor_rain(void *ptr)
+{
+	auto 			*general = (::general *)ptr;
+	point2<int>		point;
+
+	point.x = general->distribution_water_x(general->generator);
+	point.x = general->distribution_water_y(general->generator);
+}
+
+
 
 //					GUI
 

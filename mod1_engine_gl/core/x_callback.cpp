@@ -10,3 +10,14 @@ callback			*core::add_callback(
 	callback_map[type].push_back(new callback(functor, ptr));
 	return (callback_map[type].back());
 }
+
+void 				core::remove_callback(callback *callback)
+{
+	for (auto [key, value] : callback_map)
+		for (auto iter = value.begin(); iter < value.end(); iter++)
+			if (*iter == callback)
+			{
+				value.erase(iter);
+				return ;
+			}
+}
