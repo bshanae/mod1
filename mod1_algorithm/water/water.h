@@ -36,8 +36,6 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_color_max, "Mod1 Water : Max color
 	void							build() final;
 	mod1_engine_gl::model			*model() final;
 
-	static void						callback(const mod1_engine_gl::event &event, void *ptr);
-
 	void							add_color(const point3<float> &color, const water_color_type &type) final;
 	void							add_color(const point3<int> &color, const water_color_type &type) final;
 

@@ -9,7 +9,7 @@ MOD1_GENERATE_EXCEPTION_DEFINITION(system, exception_symbol)
 {
 MOD1_GENERATE_MESSAGE("")
 
-	core.add_callback(mod1_engine_gl::event_type::mouse_press, callback, this);
+	core.add_callback(mod1_engine_gl::event_type::mouse_release, callback, this);
 
 MOD1_GENERATE_MESSAGE("Mod1 GUI, System : Ready")
 }

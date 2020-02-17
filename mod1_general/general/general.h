@@ -92,6 +92,7 @@ private :
 	static void							functor_rotate_finish(void *ptr, const mod1_engine_gl::event &event);
 
 	static void							functor_gravity(void *ptr);
+	static void							functor_well(void *ptr);
 	static void							functor_rain(void *ptr);
 
 	static void							functor_continue(void *ptr);
@@ -109,15 +110,22 @@ private :
 
 //										SCENARIOS
 
-	std::default_random_engine			generator;
-	std::uniform_int_distribution<int>	distribution_water_x;
-	std::uniform_int_distribution<int>	distribution_water_y;
-
 	mod1_engine_gl::timer				*timer_scenario = nullptr;
+	std::default_random_engine			generator;
+
+	std::uniform_int_distribution<int>	rain_distribution_x;
+	std::uniform_int_distribution<int>	rain_distribution_y;
+
+	std::uniform_int_distribution<int>	well_distribution_x;
+	std::uniform_int_distribution<int>	well_distribution_y;
+	point2<int>							well_position;
 
 	static void							scenario_rain(void *ptr);
 	static void							scenario_heavy_rain(void *ptr);
+	static void							scenario_well(void *ptr);
 	static void							scenario_wave(void *ptr);
+	static void							scenario_4_waves(void *ptr);
+
 
 public :
 

@@ -47,13 +47,28 @@ void				general::functor_gravity(void *ptr)
 	general->request_render();
 }
 
+void				general::functor_well(void *ptr)
+{
+	auto 			*general = (::general *)ptr;
+	auto 			*water = general->MOD1_INTERNAL(water);
+
+	point2<int>		iter;
+
+	for (iter.y = 0; iter.y < MOD1_GENERAL_WELL_SIZE.y; iter.y++)
+		for (iter.x = 0; iter.x < MOD1_GENERAL_WELL_SIZE.x; iter.x++)
+			water->increment_water_depth(general->well_position + iter, MOD1_GENERAL_WELL_VOLUME);
+
+	water->update_data();
+}
+
 void				general::functor_rain(void *ptr)
 {
 	auto 			*general = (::general *)ptr;
+	auto 			*water = general->MOD1_INTERNAL(water);
 	point2<int>		point;
 
-	point.x = general->distribution_water_x(general->generator);
-	point.y = general->distribution_water_y(general->generator);
+	point.x = general->rain_distribution_x(general->generator);
+	point.y = general->rain_distribution_y(general->generator);
 
 	point2<int>		neighbors[] =
 	{
@@ -64,10 +79,10 @@ void				general::functor_rain(void *ptr)
 	};
 
 	for (auto neighbor : neighbors)
-		general->MOD1_INTERNAL(water)->increment_water_depth(point + neighbor, 10);
+		water->increment_water_depth(point + neighbor, MOD1_GENERAL_RAINDROP_VOLUME);
 
-	general->MOD1_INTERNAL(water)->update_data();
-	general->MOD1_INTERNAL(water)->update_model(true);
+	water->update_data();
+	water->update_model(true);
 
 }
 

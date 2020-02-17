@@ -12,16 +12,20 @@ MOD1_GENERATE_MESSAGE("")
 
 #if MOD1_ENABLED(MOD1_GENERAL_USE_TERRAIN)
 	add_model(MOD1_INTERNAL(terrain)->model());
-MOD1_GENERATE_MESSAGE("Mod1 General : Terrain is built")
+MOD1_GENERATE_MESSAGE("Mod1 General : Terrain object is built")
 #endif
 
 #if MOD1_ENABLED(MOD1_GENERAL_USE_WATER)
 	add_model(MOD1_INTERNAL(water)->model());
-MOD1_GENERATE_MESSAGE("Mod1 General : Water is built")
+MOD1_GENERATE_MESSAGE("Mod1 General : Water object is built")
 #endif
 
-	point2<int>			range = MOD1_INTERNAL(water)->size() - point2<int>(2);
+	point2<int>			rain_range = MOD1_INTERNAL(water)->size() - point2<int>(2);
+	point2<int>			spring_range = MOD1_INTERNAL(water)->size() - MOD1_GENERAL_WELL_SIZE;
 
-	distribution_water_x = std::uniform_int_distribution<int>(0, range.x);
-	distribution_water_y = std::uniform_int_distribution<int>(0, range.y);
+	rain_distribution_x = std::uniform_int_distribution<int>(0, rain_range.x);
+	rain_distribution_y = std::uniform_int_distribution<int>(0, rain_range.y);
+
+	well_distribution_x = std::uniform_int_distribution<int>(0, spring_range.x);
+	well_distribution_y = std::uniform_int_distribution<int>(0, spring_range.y);
 }
