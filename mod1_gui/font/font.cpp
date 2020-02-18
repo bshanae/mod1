@@ -9,7 +9,8 @@ MOD1_GENERATE_EXCEPTION_DEFINITION(font, exception_symbol_search)
 
 //					PUBLIC
 
-					font::font(const std::string &source, const int &width) :
+					font::font(const std::string &source, const int &width, const point3<float> &color) :
+					color(color),
 					library(),
 					face()
 {
@@ -25,6 +26,10 @@ MOD1_GENERATE_EXCEPTION_DEFINITION(font, exception_symbol_search)
 	for (int i = 0; i < MOD1_FONT_SIZE; i++)
 		map.emplace(i, build_symbol(static_cast<char>(i)));
 }
+
+					font::font(const std::string &source, const int &width, const point3<int> &color) :
+					font(source, width, point3<float>(color) / 255.f)
+{}
 
 					font::~font()
 {

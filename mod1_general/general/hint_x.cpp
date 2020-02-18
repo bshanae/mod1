@@ -37,5 +37,5 @@ void 						general::hint_render()
 	if (hint_remain < 0)
 		hint_mod = false;
 
-	system.write(hint_position, hint_text, font_gill_sans);
+	system.write(hint_position, hint_text, hint_font);
 }

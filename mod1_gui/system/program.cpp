@@ -18,7 +18,6 @@
 
 	start();
 	texture.upload((int)0);
-	color.upload(glm::vec3(1, 0, 0));
 	projection.upload(temp);
 	program::stop();
 }

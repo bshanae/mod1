@@ -279,14 +279,14 @@ MOD1_GENERATE_EXCEPTION(exception_index, "Mod1 Engine GL, Point3 : Bad index")
 
 	static point3<type>		normalize(const point3<type> &point)
 	{
-		type					length = point->length();
+		type				length = point->length();
 
 		return (point3<type>(point->x / length, point->y / length, point->z / length));
 	}
 
 	point3<type>			normalized() const
 	{
-		type					length = this->length();
+		type				length = this->length();
 
 		return (point3<type>(this->x / length, this->y / length, this->z / length));
 	}
@@ -301,5 +301,10 @@ MOD1_GENERATE_EXCEPTION(exception_index, "Mod1 Engine GL, Point3 : Bad index")
 		stream << point.z;
 		stream << ")";
 		return (stream);
+	}
+
+	auto					glm() const
+	{
+		return (glm::vec3(x, y, z));
 	}
 };

@@ -59,8 +59,7 @@
 #define MOD1_GENERAL_PROGRAM_BLUR_VERTEX		"source_gl/blur_vertex.glsl"
 #define MOD1_GENERAL_PROGRAM_BLUR_FRAGMENT		"source_gl/blur_fragment.glsl"
 
-#define MOD1_GENERAL_FONT_SOURCE				"source_gui/GillSans.ttc"
-#define MOD1_GENERAL_FONT_WIDTH					48
+#define MOD1_GENERAL_GILL_SANS					"source_gui/GillSans.ttc"
 
 #define MOD1_GENERAL_LIGHT_AMBIENT_INTENSITY	0.2
 #define MOD1_GENERAL_LIGHT_DIRECT_DIRECTION		0, -1, 0

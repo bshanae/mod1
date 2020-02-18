@@ -14,6 +14,10 @@ void				system::write(
 	mod1_engine_gl::core::show_polygon_back(true);
 	mod1_engine_gl::core::use_depth_test(false);
 
+	program.start();
+
+	program.color.upload(font->color.glm());
+
 	for (const auto &text_iterator : text)
 	{
 		symbol = font->find_symbol(text_iterator);
@@ -32,15 +36,15 @@ void				system::write(
 		square.buffer_point.copy(raw);
 		square.save(mod1_engine_gl::model_slot::point);
 
-		program.start();
 		symbol->texture()->bind();
 		mod1_engine_gl::texture::activate();
 		square.draw();
 		mod1_engine_gl::texture::unbind();
-		mod1_engine_gl::program::stop();
 
 		position_iterator.x += symbol->advance();
 	}
+
+	mod1_engine_gl::program::stop();
 
 	mod1_engine_gl::core::show_polygon_back(false);
 	mod1_engine_gl::core::use_depth_test(true);

@@ -70,6 +70,7 @@ private :
 	mod1_gui::system					system;
 
 	mod1_gui::font						*font_gill_sans;
+	mod1_gui::font						*font_gill_sans_light;
 
 	mod1_gui::layout					layout_front;
 	mod1_gui::layout					layout_scenarios;

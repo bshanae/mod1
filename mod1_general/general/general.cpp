@@ -29,10 +29,11 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Water is created")
 	first_argument = argv[1];
 	second_argument = argc >= 3 ? argv[2] : nullptr;
 
-	font_gill_sans = new mod1_gui::font(MOD1_GENERAL_FONT_SOURCE, MOD1_GENERAL_FONT_WIDTH);
+	font_gill_sans = new mod1_gui::font(MOD1_GENERAL_GILL_SANS, 48, point3<int>(48));
+	font_gill_sans_light = new mod1_gui::font(MOD1_GENERAL_GILL_SANS, 48, point3<int>(110));
 	gui_level = level::render;
 
-	hint_font = font_gill_sans;
+	hint_font = font_gill_sans_light;
 
 	add_callback(mod1_engine_gl::event_type::key_press, general::functor_key, this);
 	callback_rotate_start = add_callback(mod1_engine_gl::event_type::mouse_drag, general::functor_rotate_start, this);
