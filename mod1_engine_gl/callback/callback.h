@@ -14,8 +14,6 @@ class						mod1_engine_gl::callback
 {
 public :
 
-MOD1_GENERATE_EXCEPTION_DECLARATION(exception_run, "Mod1 Engine GL, Callback : Can't run functor")
-
 							callback(functor_ptr functor, void *ptr);
 							callback(functor_ptr_event functor, void *ptr);
 							~callback() = default;

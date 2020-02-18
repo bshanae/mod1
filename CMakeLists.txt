@@ -40,6 +40,7 @@ set(ENGINE_GL
 	mod1_engine_gl/core/swap_buffers.cpp
 	mod1_engine_gl/core/x_signal.cpp
 	mod1_engine_gl/core/x_timer.cpp
+	mod1_engine_gl/core/time.cpp
 	mod1_engine_gl/core/use_depth_test.cpp
 
 	mod1_engine_gl/shader/shader.cpp
@@ -102,8 +103,7 @@ set(GUI
 	mod1_gui/system/write.cpp
 	mod1_gui/system/generate_button.cpp
 	mod1_gui/system/render.cpp
-	mod1_gui/system/callback.cpp
-	)
+	mod1_gui/system/callback.cpp)
 
 set(ALGORITHM
 	mod1_algorithm/terrain/terrain.cpp
@@ -141,12 +141,13 @@ set(GENERAL
 	mod1_general/blur/blur.cpp
 
 	mod1_general/general/general.cpp
-	mod1_general/general/render_x.cpp
+	mod1_general/general/render.cpp
 	mod1_general/general/functor_x.cpp
 	mod1_general/general/scenario_x.cpp
 	mod1_general/general/program.cpp
 	mod1_general/general/build.cpp
-	mod1_general/general/run_x.cpp
+	mod1_general/general/script_x.cpp
+	mod1_general/general/hint_x.cpp
 
 	mod1_general/main.cpp)
 

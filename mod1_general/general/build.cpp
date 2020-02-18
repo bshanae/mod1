@@ -30,4 +30,9 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Water object is built")
 
 	well_distribution_x = std::uniform_int_distribution<int>(0, spring_range.x);
 	well_distribution_y = std::uniform_int_distribution<int>(0, spring_range.y);
+
+//						INITIAL HINT
+
+	hint_init(window_width() / 2, window_height() * 8 / 10, "Drag mouse to rotate terrain", font_gill_sans, 4);
+	hint_drag = true;
 }

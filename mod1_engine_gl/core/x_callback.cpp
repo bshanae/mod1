@@ -11,6 +11,15 @@ callback			*core::add_callback(
 	return (callback_map[type].back());
 }
 
+callback			*core::add_callback(
+					const event_type &type,
+					functor_ptr functor,
+					void *ptr)
+{
+	callback_map[type].push_back(new callback(functor, ptr));
+	return (callback_map[type].back());
+}
+
 void 				core::remove_callback(callback *callback)
 {
 	for (auto [key, value] : callback_map)

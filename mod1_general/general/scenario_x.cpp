@@ -12,7 +12,7 @@ void				general::scenario_rain(void *ptr)
 	water->update_time_constant(0.1);
 	water->update_data();
 	water->update_model(true);
-	general->render_block(false);
+	general->script_esc(false);
 }
 
 void				general::scenario_heavy_rain(void *ptr)
@@ -27,7 +27,7 @@ void				general::scenario_heavy_rain(void *ptr)
 	water->update_time_constant(0.15);
 	water->update_data();
 	water->update_model(true);
-	general->render_block(false);
+	general->script_esc(false);
 }
 
 void				general::scenario_well(void *ptr)
@@ -45,7 +45,7 @@ void				general::scenario_well(void *ptr)
 	water->update_time_constant();
 	water->update_data();
 	water->update_model(true);
-	general->render_block(false);
+	general->script_esc(false);
 }
 
 void				general::scenario_wave(void *ptr)
@@ -65,7 +65,7 @@ void				general::scenario_wave(void *ptr)
 	water->update_time_constant();
 	water->update_data();
 	water->update_model(true);
-	general->render_block(false);
+	general->script_esc(false);
 }
 
 void				general::scenario_4_waves(void *ptr)
@@ -95,7 +95,7 @@ void				general::scenario_4_waves(void *ptr)
 	water->update_time_constant();
 	water->update_data();
 	water->update_model(true);
-	general->render_block(false);
+	general->script_esc(false);
 }
 
 void				general::scenario_flood(void *ptr)
@@ -112,7 +112,7 @@ void				general::scenario_flood(void *ptr)
 	water->update_time_constant();
 	water->update_data();
 	water->update_model(true);
-	general->render_block(false);
+	general->script_esc(false);
 
 	general->timer_gravity->block(true);
 }

@@ -30,7 +30,7 @@ private :
 //										RENDERING
 
 	void								render() final;
-	void								render_block(const bool &state);
+	void								script_esc(const bool &state);
 
 	mod1_engine_cl::core				cl_core;
 	mod1_engine_gl::framebuffer			framebuffer;
@@ -58,7 +58,7 @@ private :
 		float 							ambient_intensity;
 		glm::vec3						direct_direction;
 		float							direct_intensity;
-	}									light_info;
+	}									light;
 
 	const glm::vec3						rotation_axis = glm::vec3(0, 1, 0);
 	const float							rotation_speed = 300;
@@ -74,9 +74,9 @@ private :
 	mod1_gui::layout					layout_front;
 	mod1_gui::layout					layout_scenarios;
 
-	void								run_blur();
-	void								run_gui_front();
-	void								run_gui_scenarios();
+	void								script_blur();
+	void								script_gui_front();
+	void								script_gui_scenarios();
 
 	enum class							level
 	{
@@ -85,28 +85,53 @@ private :
 		menu_b
 	}									gui_level;
 
+	void								hint_init(
+										const int &center_x,
+										const int &center_y,
+										const std::string &text,
+										const mod1_gui::font *font,
+										const double &timeout);
+	void								hint_render();
+
+	bool								hint_mod = false;
+	point2<int>							hint_position;
+	std::string							hint_text;
+	double								hint_remain;
+	double								hint_last_time;
+
+	bool								hint_drag = false;
+	bool								hint_light = false;
+
 //										FUNCTORS
 
 	static void							functor_key(void *ptr, const mod1_engine_gl::event &event);
 	static void							functor_rotate_start(void *ptr, const mod1_engine_gl::event &event);
-	static void							functor_rotate_finish(void *ptr, const mod1_engine_gl::event &event);
+	static void							functor_rotate_finish(void *ptr);
+	static void 						functor_default_render(void *ptr);
+
+	static void							functor_continue(void *ptr);
+	static void							functor_scenarios(void *ptr);
+	static void							functor_light_control(void *ptr);
+	static void							functor_exit(void *ptr);
+
+	static void							functor_light_rotate(void *ptr, const mod1_engine_gl::event &event);
 
 	static void							functor_gravity(void *ptr);
 	static void							functor_well(void *ptr);
 	static void							functor_rain(void *ptr);
 	static void							functor_flood(void *ptr);
 
-	static void							functor_continue(void *ptr);
-	static void							functor_scenarios(void *ptr);
-	static void							functor_exit(void *ptr);
-
 //										CALLBACKS
 
 	mod1_engine_gl::callback			*callback_rotate_start = nullptr;
 	mod1_engine_gl::callback			*callback_rotate_finish = nullptr;
 
+	mod1_engine_gl::callback			*callback_light_a = nullptr;
+	mod1_engine_gl::callback			*callback_light_b = nullptr;
+
 //										TIMERS
 
+	mod1_engine_gl::timer				*timer_default_render = nullptr;
 	mod1_engine_gl::timer				*timer_gravity = nullptr;
 
 //										SCENARIOS

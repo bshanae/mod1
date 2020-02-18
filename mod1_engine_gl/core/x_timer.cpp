@@ -24,5 +24,5 @@ void 				core::remove_timer(timer *timer)
 void 				core::test_timer()
 {
 	for (auto *timer : timer_vector)
-		timer->test(glfwGetTime());
+		timer->test(time());
 }

@@ -6,11 +6,11 @@ void				general::functor_key(void *ptr, const mod1_engine_gl::event &event)
 	const int 		key = event.read_key();
 
 	if (key == GLFW_KEY_ESCAPE && general->gui_level == level::render)
-		general->render_block(true);
+		general->script_esc(true);
 	else if (key == GLFW_KEY_ESCAPE && general->gui_level == level::menu_a)
-		general->render_block(false);
+		general->script_esc(false);
 	else if (key == GLFW_KEY_ESCAPE && general->gui_level == level::menu_b)
-		general->run_gui_front();
+		general->script_gui_front();
 }
 
 void				general::functor_rotate_start(void *ptr, const mod1_engine_gl::event &event)
@@ -21,13 +21,16 @@ void				general::functor_rotate_start(void *ptr, const mod1_engine_gl::event &ev
 	angle = -1 * (event.read_diff().x / (float)general->window_width()) * general->rotation_speed;
 	general->rotation = glm::rotate(general->rotation, glm::radians(angle), general->rotation_axis);
 
+	if (general->hint_drag)
+		general->hint_mod = false;
+
 	general->request_render();
 	general->timer_gravity->block(true);
 	if (general->timer_scenario)
 		general->timer_scenario->block(true);
 }
 
-void				general::functor_rotate_finish(void *ptr, const mod1_engine_gl::event &event)
+void				general::functor_rotate_finish(void *ptr)
 {
 	auto 			*general = (::general *)ptr;
 
@@ -36,6 +39,76 @@ void				general::functor_rotate_finish(void *ptr, const mod1_engine_gl::event &e
 	if (general->timer_scenario)
 		general->timer_scenario->block(false);
 }
+
+void 				general::functor_default_render(void *ptr)
+{
+	auto 			*general = (::general *)ptr;
+
+	general->request_render();
+}
+
+//					GUI
+
+void				general::functor_continue(void *ptr)
+{
+	auto 			*general = (::general *)ptr;
+
+	general->script_esc(false);
+}
+
+void				general::functor_scenarios(void *ptr)
+{
+	auto 			*general = (::general *)ptr;
+
+	general->script_blur();
+	general->script_gui_scenarios();
+}
+
+void				general::functor_light_control(void *ptr)
+{
+	auto 			*general = (::general *)ptr;
+
+	general->callback_light_a->block(false);
+	general->callback_light_b->block(false);
+
+	general->hint_init(
+		general->window_width() / 2, general->window_height() * 8 / 10,
+		"Use W/A/S/D keys to control light direction", general->font_gill_sans, 4);
+	general->hint_light = true;
+	general->script_esc(false);
+}
+
+void				general::functor_exit(void *ptr)
+{
+	auto 			*general = (::general *)ptr;
+
+	general->finish();
+}
+
+//					LIGHT
+
+void				general::functor_light_rotate(void *ptr, const mod1_engine_gl::event &event)
+{
+	auto 			*general = (::general *)ptr;
+	const int 		key = event.read_key();
+
+	if (key == GLFW_KEY_J)
+		general->camera.rotate(general->light.direct_direction, mod1_engine_gl::axis::y, mod1_engine_gl::sign::positive);
+	else if (key == GLFW_KEY_L)
+		general->camera.rotate(general->light.direct_direction, mod1_engine_gl::axis::y, mod1_engine_gl::sign::negative);
+	else if (key == GLFW_KEY_I)
+		general->camera.rotate(general->light.direct_direction, mod1_engine_gl::axis::x, mod1_engine_gl::sign::positive);
+	else if (key == GLFW_KEY_K)
+		general->camera.rotate(general->light.direct_direction, mod1_engine_gl::axis::x, mod1_engine_gl::sign::negative);
+	else
+		return ;
+
+	if (general->hint_light)
+		general->hint_mod = false;
+
+	general->request_render();
+}
+
 
 //					WATER
 
@@ -93,27 +166,3 @@ void				general::functor_flood(void *ptr)
 	water->update_model(true);
 }
 
-
-//					GUI
-
-void				general::functor_continue(void *ptr)
-{
-	auto 			*general = (::general *)ptr;
-
-	general->render_block(false);
-}
-
-void				general::functor_scenarios(void *ptr)
-{
-	auto 			*general = (::general *)ptr;
-
-	general->run_blur();
-	general->run_gui_scenarios();
-}
-
-void				general::functor_exit(void *ptr)
-{
-	auto 			*general = (::general *)ptr;
-
-	general->finish();
-}
