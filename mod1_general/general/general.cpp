@@ -55,7 +55,7 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Timers are set")
 	button[6] = system.generate_button(window_width() / 2, window_height() * 3 / 7, "Well", font_gill_sans, scenario_well, this);
 	button[7] = system.generate_button(window_width() / 2, window_height() * 4 / 7, "Wave", font_gill_sans, scenario_wave, this);
 	button[8] = system.generate_button(window_width() / 2, window_height() * 5 / 7, "4 waves", font_gill_sans, scenario_4_waves, this);
-	button[9] = system.generate_button(window_width() / 2, window_height() * 6 / 7, "Flood", font_gill_sans, nullptr, this);
+	button[9] = system.generate_button(window_width() / 2, window_height() * 6 / 7, "Flood", font_gill_sans, scenario_flood, this);
 
 	for (int i = 0; i < 4; i++)
 		layout_front.push(button[i]);

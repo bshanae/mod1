@@ -94,6 +94,7 @@ private :
 	static void							functor_gravity(void *ptr);
 	static void							functor_well(void *ptr);
 	static void							functor_rain(void *ptr);
+	static void							functor_flood(void *ptr);
 
 	static void							functor_continue(void *ptr);
 	static void							functor_scenarios(void *ptr);
@@ -120,12 +121,14 @@ private :
 	std::uniform_int_distribution<int>	well_distribution_y;
 	point2<int>							well_position;
 
+	float								flood_level = 0;
+
 	static void							scenario_rain(void *ptr);
 	static void							scenario_heavy_rain(void *ptr);
 	static void							scenario_well(void *ptr);
 	static void							scenario_wave(void *ptr);
 	static void							scenario_4_waves(void *ptr);
-
+	static void							scenario_flood(void *ptr);
 
 public :
 

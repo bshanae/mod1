@@ -10,9 +10,12 @@ enum class						mod1_algorithm::terrain_color_type
 	negative
 };
 
+class							general;
+
 class							mod1_algorithm::terrain : private plane<terrain_color_type>
 {
 	friend class				water;
+	friend class				::general;
 
 public :
 

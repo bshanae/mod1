@@ -20,6 +20,8 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Terrain object is built")
 MOD1_GENERATE_MESSAGE("Mod1 General : Water object is built")
 #endif
 
+//						SCENARIOS PREPARATION
+
 	point2<int>			rain_range = MOD1_INTERNAL(water)->size() - point2<int>(2);
 	point2<int>			spring_range = MOD1_INTERNAL(water)->size() - MOD1_GENERAL_WELL_SIZE;
 

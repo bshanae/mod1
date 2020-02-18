@@ -42,8 +42,9 @@ void				general::functor_rotate_finish(void *ptr, const mod1_engine_gl::event &e
 void				general::functor_gravity(void *ptr)
 {
 	auto 			*general = (::general *)ptr;
+	auto 			*water = general->MOD1_INTERNAL(water);
 
-	general->MOD1_INTERNAL(water)->gravity();
+	water->gravity();
 	general->request_render();
 }
 
@@ -70,21 +71,28 @@ void				general::functor_rain(void *ptr)
 	point.x = general->rain_distribution_x(general->generator);
 	point.y = general->rain_distribution_y(general->generator);
 
-	point2<int>		neighbors[] =
-	{
-		point2<int>(0, 0),
-		point2<int>(1, 0),
-		point2<int>(0, 1),
-		point2<int>(1, 1)
-	};
+	water->increment_water_depth(point, MOD1_GENERAL_RAINDROP_VOLUME);
 
-	for (auto neighbor : neighbors)
-		water->increment_water_depth(point + neighbor, MOD1_GENERAL_RAINDROP_VOLUME);
+	water->update_data();
+}
+
+void				general::functor_flood(void *ptr)
+{
+	auto 			*general = (::general *)ptr;
+	auto 			*water = general->MOD1_INTERNAL(water);
+	point2<int>		iter;
+
+	general->flood_level += 0.1;
+
+	for (iter.y = 0; iter.y < water->size().y; iter.y++)
+		for (iter.x = 0; iter.x < water->size().x; iter.x++)
+			if (water->read_total_height(iter) < general->flood_level)
+				water->write_water_depth(iter,  general->flood_level - water->read_terrain_height(iter));
 
 	water->update_data();
 	water->update_model(true);
-
 }
+
 
 //					GUI
 
