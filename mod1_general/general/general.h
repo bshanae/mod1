@@ -85,13 +85,12 @@ private :
 		menu_b
 	}									gui_level;
 
-	void								hint_init(
-										const int &center_x,
-										const int &center_y,
-										const std::string &text,
-										const mod1_gui::font *font,
-										const double &timeout);
+	void								hint_init(const std::string &text);
 	void								hint_render();
+
+	const point2<int>					hint_center = point2<int>(window_width() / 2, window_height() * 9 / 10);
+	const mod1_gui::font				*hint_font;
+	const double						hint_timeout = 4;
 
 	bool								hint_mod = false;
 	point2<int>							hint_position;

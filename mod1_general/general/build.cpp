@@ -33,6 +33,6 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Water object is built")
 
 //						INITIAL HINT
 
-	hint_init(window_width() / 2, window_height() * 8 / 10, "Drag mouse to rotate terrain", font_gill_sans, 4);
+	hint_init("Drag mouse to rotate terrain");
 	hint_drag = true;
 }

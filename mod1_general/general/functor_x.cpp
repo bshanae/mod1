@@ -71,9 +71,7 @@ void				general::functor_light_control(void *ptr)
 	general->callback_light_a->block(false);
 	general->callback_light_b->block(false);
 
-	general->hint_init(
-		general->window_width() / 2, general->window_height() * 8 / 10,
-		"Use W/A/S/D keys to control light direction", general->font_gill_sans, 4);
+	general->hint_init("Use W/A/S/D keys to control light direction");
 	general->hint_light = true;
 	general->script_esc(false);
 }
