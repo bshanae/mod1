@@ -1,7 +1,6 @@
 #include "general.h"
 
-void						general::hint_init(
-							const std::string &text)
+void						general::hint_init(const std::string &text)
 {
 	hint_mod = true;
 	hint_text = text;
@@ -9,19 +8,7 @@ void						general::hint_init(
 	hint_last_time = 0;
 	hint_remain = hint_timeout;
 
-	point2<int>				size;
-	const mod1_gui::symbol	*symbol;
-
-	for (const char &iter : text)
-	{
-		symbol = hint_font->find_symbol(iter);
-
-		size.x += symbol->advance();
-		size.y = MOD1_MAX(size.y, symbol->size().y);
-	}
-
-	hint_position.x = hint_center.x - size.x / 2;
-	hint_position.y = hint_center.y + size.y / 2;
+	hint_label->change_text(text);
 }
 
 void 						general::hint_render()
@@ -37,5 +24,5 @@ void 						general::hint_render()
 	if (hint_remain < 0)
 		hint_mod = false;
 
-	system.write(hint_position, hint_text, hint_font);
+	system.render(hint_layout, false);
 }

@@ -2,18 +2,19 @@
 
 using namespace		mod1_gui;
 
-void				system::render(const layout &layout)
+void				system::render(const layout &layout, const bool &swap)
 {
-	for (const button *button : layout.data)
-		render(*button);
-	mod1_engine_gl::core::swap_buffers();
+	for (const label *label : layout.data)
+		render(*label);
+	if (swap)
+		mod1_engine_gl::core::swap_buffers();
 }
 
-void				system::render(const button &button)
+void				system::render(const label &label)
 {
 	point2<int>		start;
 
-	start.x = button.center().x - button.size().x / 2;
-	start.y = button.center().y + button.size().y / 2;
-	write(start, button.text(), button.font());
+	start.x = label.center().x - label.size().x / 2;
+	start.y = label.center().y + label.size().y / 2;
+	write(start, label.text(), label.font());
 }

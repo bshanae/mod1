@@ -16,7 +16,7 @@ void				system::write(
 
 	program.start();
 
-	program.color.upload(font->color.glm());
+	program.color.upload(font->color().glm());
 
 	for (const auto &text_iterator : text)
 	{

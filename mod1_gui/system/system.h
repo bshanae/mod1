@@ -4,6 +4,7 @@
 
 #include "mod1_gui/symbol/symbol.h"
 #include "mod1_gui/font/font.h"
+#include "mod1_gui/label/label.h"
 #include "mod1_gui/button/button.h"
 #include "mod1_gui/layout/layout.h"
 
@@ -16,7 +17,7 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_symbol, "Mod1 GUI, System : Symbol
 	explicit				system(mod1_engine_gl::core &core);
 							~system();
 
-	void					render(const layout &layout);
+	void					render(const layout &layout, const bool &swap = true);
 
 	button		 			*generate_button(
 							const int &center_x,
@@ -65,7 +66,7 @@ private :
 
 	std::vector<button *>	button_vector;
 
-	void					render(const button &button);
+	void					render(const label &label);
 
 	static void				callback(void *ptr, const mod1_engine_gl::event &event);
 };

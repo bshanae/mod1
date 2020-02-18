@@ -2,19 +2,25 @@
 
 using namespace		mod1_gui;
 
-void				layout::push(button *button)
+void				layout::push(label *label)
 {
-	data.push_back(button);
+	data.push_back(label);
 }
 
 void 				layout::activate()
 {
-	for (button *iter : data)
-		iter->activate();
+	button			*button;
+
+	for (label *label : data)
+		if ((button = dynamic_cast<class button *>(label)) != nullptr)
+			button->activate();
 
 }
 void 				layout::deactivate()
 {
-	for (button *iter : data)
-		iter->deactivate();
+	button			*button;
+
+	for (label *label : data)
+		if ((button = dynamic_cast<class button *>(label)) != nullptr)
+			button->deactivate();
 }

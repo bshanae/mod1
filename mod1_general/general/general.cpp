@@ -33,7 +33,10 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Water is created")
 	font_gill_sans_light = new mod1_gui::font(MOD1_GENERAL_GILL_SANS, 48, point3<int>(110));
 	gui_level = level::render;
 
-	hint_font = font_gill_sans_light;
+	hint_label = new mod1_gui::label(point2<int>(window_width() / 2, window_height() * 9 / 10), "", font_gill_sans_light);
+	hint_layout.push(hint_label);
+	hint_drag = true;
+	hint_init("Drag mouse to rotate terrain");
 
 	add_callback(mod1_engine_gl::event_type::key_press, general::functor_key, this);
 	callback_rotate_start = add_callback(mod1_engine_gl::event_type::mouse_drag, general::functor_rotate_start, this);
@@ -81,4 +84,15 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Ready")
 {
 	delete MOD1_INTERNAL(terrain);
 	delete MOD1_INTERNAL(water);
+
+	delete hint_label;
+
+	delete callback_rotate_start;
+	delete callback_rotate_finish;
+	delete callback_light_a;
+	delete callback_light_b;
+
+	delete timer_default_render;
+	delete timer_gravity;
+	delete timer_scenario;
 }

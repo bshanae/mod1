@@ -20,6 +20,7 @@ namespace			mod1_gui
 
 	class			font;
 	class			symbol;
+	class 			label;
 	class 			button;
 	class 			layout;
 	class			system;

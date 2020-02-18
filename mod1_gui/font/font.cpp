@@ -7,12 +7,14 @@ MOD1_GENERATE_EXCEPTION_DEFINITION(font, exception_font)
 MOD1_GENERATE_EXCEPTION_DEFINITION(font, exception_symbol_build)
 MOD1_GENERATE_EXCEPTION_DEFINITION(font, exception_symbol_search)
 
+MOD1_GENERATE_INTERNAL_READ_DEFINITION(font, color)
+
 //					PUBLIC
 
 					font::font(const std::string &source, const int &width, const point3<float> &color) :
-					color(color),
 					library(),
-					face()
+					face(),
+					MOD1_INTERNAL(color)(color)
 {
 	if (FT_Init_FreeType(&library))
 		throw (exception_library());

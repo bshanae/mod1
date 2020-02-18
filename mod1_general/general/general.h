@@ -89,8 +89,6 @@ private :
 	void								hint_init(const std::string &text);
 	void								hint_render();
 
-	const point2<int>					hint_center = point2<int>(window_width() / 2, window_height() * 9 / 10);
-	const mod1_gui::font				*hint_font;
 	const double						hint_timeout = 4;
 
 	bool								hint_mod = false;
@@ -98,6 +96,9 @@ private :
 	std::string							hint_text;
 	double								hint_remain;
 	double								hint_last_time;
+
+	mod1_gui::label						*hint_label = nullptr;
+	mod1_gui::layout					hint_layout;
 
 	bool								hint_drag = false;
 	bool								hint_light = false;

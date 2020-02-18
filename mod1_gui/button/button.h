@@ -2,18 +2,17 @@
 
 #include "mod1_gui/namespace.h"
 
-#include "mod1_gui/font/font.h"
+#include "mod1_gui/label/label.h"
 
-class					mod1_gui::button
+class					mod1_gui::button : public mod1_gui::label
 {
 public :
-
 						button(
-							const point2<int> &center,
-							const std::string &text,
-							const font *font,
-							functor_ptr functor,
-							void *ptr);
+						const point2<int> &center,
+						const std::string &text,
+						const class font *font,
+						functor_ptr functor,
+						void *ptr);
 						~button() = default;
 
 	bool				test(const mod1_engine_gl::event &event);
@@ -23,11 +22,7 @@ public :
 
 private :
 
-MOD1_GENERATE_INTERNAL(point2<int>, center)
-MOD1_GENERATE_INTERNAL(point2<int>, size)
-MOD1_GENERATE_INTERNAL(std::string, text)
 MOD1_GENERATE_INTERNAL(callback, callback)
-MOD1_GENERATE_INTERNAL(const font *, font)
 MOD1_GENERATE_INTERNAL_WITH_VALUE(bool, is_active, false)
 
 	point2<int>			min;
@@ -36,11 +31,7 @@ MOD1_GENERATE_INTERNAL_WITH_VALUE(bool, is_active, false)
 
 public :
 
-MOD1_GENERATE_INTERNAL_READ_DECLARATION(center)
-MOD1_GENERATE_INTERNAL_READ_DECLARATION(size)
-MOD1_GENERATE_INTERNAL_READ_DECLARATION(text)
 MOD1_GENERATE_INTERNAL_READ_DECLARATION(callback)
-MOD1_GENERATE_INTERNAL_READ_DECLARATION(font)
 MOD1_GENERATE_INTERNAL_READ_DECLARATION(is_active)
 };
 

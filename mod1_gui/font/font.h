@@ -6,8 +6,6 @@
 
 class									mod1_gui::font
 {
-	friend class						system;
-
 public :
 
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_library, "Mod1 GUI, Font : Can't initialize FreeType library")
@@ -24,12 +22,17 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_symbol_search, "Mod1 GUI, System :
 
 private :
 
-	const point3<float>					color;
 	FT_Library							library;
 	FT_Face								face;
 	std::map<char, mod1_gui::symbol *>	map;
 
+MOD1_GENERATE_INTERNAL(const point3<float>, color)
+
 	symbol								*build_symbol(const char &task);
+
+public :
+
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(color)
 };
 
 

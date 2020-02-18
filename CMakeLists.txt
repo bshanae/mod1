@@ -93,6 +93,8 @@ set(GUI
 
 	mod1_gui/font/font.cpp
 
+	mod1_gui/label/label.cpp
+
 	mod1_gui/button/button.cpp
 
 	mod1_gui/layout/layout.cpp
