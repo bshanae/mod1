@@ -9,7 +9,7 @@ void					terrain::generate_hill_helper(const point2<int> &iter, const float &new
 
 	for (const auto &config : noise_hill)
 		noise += generate_noise(iter, config);
-	noise *= interpolate_cosine(0, 1, new_height / (float)max_prepared.z);
+	noise *= pow(interpolate_cosine(0, 1, new_height / (float)max_prepared.z), 0.8);
 
 	if ((new_height < 0 and old_height > new_height))
 		write_height(iter, new_height + noise);

@@ -151,7 +151,10 @@ void				general::functor_flood(void *ptr)
 	auto 			*water = general->MOD1_INTERNAL(water);
 	point2<int>		iter;
 
-	general->flood_level += 0.1;
+	if (general->flood_level >= water->constant_limit)
+		return ;
+
+	general->flood_level += MOD1_GENERAL_FLOOD_STEP;
 
 	for (iter.y = 0; iter.y < water->size().y; iter.y++)
 		for (iter.x = 0; iter.x < water->size().x; iter.x++)

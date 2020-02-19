@@ -39,6 +39,7 @@ void 				general::script_esc()
 
 		if (timer_scenario)
 			timer_scenario->block(false);
+		timer_gravity->block(false);
 
 		level = gui_level::render;
 		request_render();

@@ -38,8 +38,10 @@
 
 #define MOD1_WATER_RANGE_MULTIPLIER				1.2
 
-#define MOD1_WATER_MINIMUM						0.05
-#define MOD1_WATER_HIDDEN_REAL					-0.01
+#define MOD1_WATER_MINIMUM						0.1
+#define MOD1_WATER_MINIMUM_LOW					0.0001
+
+#define MOD1_WATER_HIDDEN_REAL					-10
 #define MOD1_WATER_HIDDEN_ABSTRACT				10
 
 //												GUI
@@ -77,5 +79,7 @@
 #define MOD1_GENERAL_WELL_VOLUME				10
 
 #define MOD1_GENERAL_RAINDROP_VOLUME			10
+
+#define MOD1_GENERAL_FLOOD_STEP					0.1
 
 #define MOD1_GENERAL_BACKGROUND					mod1_engine_gl::point3<float>(0.8f)

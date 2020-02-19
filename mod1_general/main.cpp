@@ -6,7 +6,6 @@ void				main_unsafe(int argc, char **argv)
 {
 	general			general(argc, argv);
 
-	general.terrain()->add_color(mod1_engine_gl::point3<int>(77, 51, 25), terrain_color_type::negative);
 	general.terrain()->add_color(mod1_engine_gl::point3<int>(101, 67, 33), terrain_color_type::negative);
 	general.terrain()->add_color(mod1_engine_gl::point3<int>(201, 178, 99), terrain_color_type::negative);
 
