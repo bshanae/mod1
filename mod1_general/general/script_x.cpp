@@ -22,6 +22,7 @@ void 				general::script_esc()
 		if (timer_scenario)
 			timer_scenario->block(true);
 		timer_gravity->block(true);
+		gravity_block = true;
 
 		MOD1_INTERNAL(water)->low_volume_optimization = false;
 
@@ -40,6 +41,7 @@ void 				general::script_esc()
 		if (timer_scenario)
 			timer_scenario->block(false);
 		timer_gravity->block(false);
+		gravity_block = false;
 
 		level = gui_level::render;
 		request_render();

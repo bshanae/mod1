@@ -6,10 +6,10 @@ void				general::scenario_rain(void *ptr)
 	auto 			*water = general->MOD1_INTERNAL(water);
 
 	general->remove_timer(general->timer_scenario);
-	general->timer_scenario = general->add_timer(1. / 20., functor_rain, general);
+	general->timer_scenario = general->add_timer(1. / 80., functor_rain, general);
 	water->water_data.set(0);
 
-	water->low_volume_optimization = true;
+	general->rain_double = false;
 
 	water->update_time_constant(0.1);
 	water->update_data();
@@ -27,6 +27,8 @@ void				general::scenario_heavy_rain(void *ptr)
 	general->remove_timer(general->timer_scenario);
 	general->timer_scenario = general->add_timer(1. / 160., functor_rain, general);
 	water->water_data.set(0);
+
+	general->rain_double = true;
 
 	water->update_time_constant(0.15);
 	water->update_data();
@@ -127,6 +129,7 @@ void				general::scenario_flood(void *ptr)
 	general->script_esc();
 
 	general->timer_gravity->block(true);
+	general->gravity_block = true;
 
 	general->hint_launch(general->hint_config_model);
 }

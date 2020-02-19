@@ -142,11 +142,14 @@ private :
 	mod1_engine_gl::timer				*timer_default_render = nullptr;
 	mod1_engine_gl::timer				*timer_gravity = nullptr;
 
+	bool								gravity_block = true;
+
 //										SCENARIOS
 
 	mod1_engine_gl::timer				*timer_scenario = nullptr;
 	std::default_random_engine			generator;
 
+	bool								rain_double = false;
 	std::uniform_int_distribution<int>	rain_distribution_x;
 	std::uniform_int_distribution<int>	rain_distribution_y;
 
