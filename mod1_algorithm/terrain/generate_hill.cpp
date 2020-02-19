@@ -2,16 +2,18 @@
 
 using namespace			mod1_algorithm;
 
+float summit_g;
+
 void					terrain::generate_hill_helper(const point2<int> &iter, const float &new_height)
 {
 	const float			old_height = read_height(iter);
 	float				noise = 0;
 
 	for (const auto &config : noise_hill)
-		noise += generate_noise(iter, config);
-	noise *= pow(interpolate_cosine(0, 1, new_height / (float)max_prepared.z), 0.8);
+		noise += abs(generate_noise(iter, config));
+	noise *= interpolate_cosine(0, 1, new_height / (float)summit_g);
 
-	if ((new_height < 0 and old_height > new_height))
+	if (new_height < 0 and old_height > new_height)
 		write_height(iter, new_height + noise);
 	else if (new_height > 0 and old_height < new_height)
 		write_height(iter,
@@ -37,6 +39,8 @@ void					terrain::generate_hill(const point3<double> &summit)
 	point2<int>			iter;
 	float				height;
 	const int 			step_limit = (int)(fabs((summit).z) / delta());
+
+	summit_g = summit.z;
 
 	generate_hill_helper(iter_const, (float)summit.z);
 	for (int step = 1; step <= step_limit; step++)

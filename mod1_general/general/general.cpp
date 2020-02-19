@@ -30,9 +30,9 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Water is created")
 	first_argument = argv[1];
 	second_argument = argc >= 3 ? argv[2] : nullptr;
 
-	font_main = new mod1_gui::font(MOD1_GENERAL_GILL_SANS, 48, point3<int>(48));
-	font_light = new mod1_gui::font(MOD1_GENERAL_GILL_SANS, 48, point3<int>(110));
-	font_title = new mod1_gui::font(MOD1_GENERAL_GILL_SANS, 110, point3<int>(48));
+	font_main = new mod1_gui::font(MOD1_GENERAL_GILL_SANS, 48, point3<int>(35));
+	font_title = new mod1_gui::font(MOD1_GENERAL_GILL_SANS, 110, point3<int>(35));
+	font_light = new mod1_gui::font(MOD1_GENERAL_GILL_SANS, 48, point3<int>(100));
 	level = gui_level::render;
 
 	hint_label = system.generate_label(window_width() / 2, window_height() * 9 / 10, "", font_light);
