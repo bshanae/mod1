@@ -5,11 +5,9 @@ void				general::functor_key(void *ptr, const mod1_engine_gl::event &event)
 	auto 			*general = (::general *)ptr;
 	const int 		key = event.read_key();
 
-	if (key == GLFW_KEY_ESCAPE && general->gui_level == level::render)
-		general->script_esc(true);
-	else if (key == GLFW_KEY_ESCAPE && general->gui_level == level::menu_a)
-		general->script_esc(false);
-	else if (key == GLFW_KEY_ESCAPE && general->gui_level == level::menu_b)
+	if (key == GLFW_KEY_ESCAPE and (general->level == gui_level::render or general->level == gui_level::menu_a))
+		general->script_esc();
+	else if (key == GLFW_KEY_ESCAPE and general->level == gui_level::menu_b)
 		general->script_gui_front();
 }
 
@@ -53,7 +51,7 @@ void				general::functor_continue(void *ptr)
 {
 	auto 			*general = (::general *)ptr;
 
-	general->script_esc(false);
+	general->script_esc();
 }
 
 void				general::functor_scenarios(void *ptr)
@@ -73,7 +71,7 @@ void				general::functor_light_control(void *ptr)
 
 	general->hint_init("Use W/A/S/D keys to control light direction");
 	general->hint_light = true;
-	general->script_esc(false);
+	general->script_esc();
 }
 
 void				general::functor_exit(void *ptr)

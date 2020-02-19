@@ -1,8 +1,8 @@
 #include "general.h"
 
-void 				general::script_esc(const bool &state)
+void 				general::script_esc()
 {
-	if (state)
+	if (level == gui_level::render)
 	{
 		hint_mod = false;
 		hint_drag = false;
@@ -25,7 +25,7 @@ void 				general::script_esc(const bool &state)
 
 		request_render(false);
 	}
-	else
+	else if (level == gui_level::menu_a or level == gui_level::menu_b)
 	{
 		layout_front.deactivate();
 		layout_scenarios.deactivate();
@@ -38,9 +38,11 @@ void 				general::script_esc(const bool &state)
 		if (timer_scenario)
 			timer_scenario->block(false);
 
-		gui_level = level::render;
+		level = gui_level::render;
 		request_render();
 	}
+	else
+		throw (exception_level());
 }
 
 void				general::script_blur()
@@ -67,7 +69,7 @@ void				general::script_gui_front()
 	layout_scenarios.deactivate();
 	layout_front.activate();
 	system.render(layout_front);
-	gui_level = level::menu_a;
+	level = gui_level::menu_a;
 }
 
 void				general::script_gui_scenarios()
@@ -75,5 +77,5 @@ void				general::script_gui_scenarios()
 	layout_front.deactivate();
 	layout_scenarios.activate();
 	system.render(layout_scenarios);
-	gui_level = level::menu_b;
+	level = gui_level::menu_b;
 }

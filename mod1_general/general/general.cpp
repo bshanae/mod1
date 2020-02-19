@@ -1,6 +1,7 @@
 #include "general.h"
 
 MOD1_GENERATE_EXCEPTION_DEFINITION(general, exception_arguments)
+MOD1_GENERATE_EXCEPTION_DEFINITION(general, exception_level)
 
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(general, terrain)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(general, water)
@@ -32,7 +33,7 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Water is created")
 	font_main = new mod1_gui::font(MOD1_GENERAL_GILL_SANS, 48, point3<int>(48));
 	font_light = new mod1_gui::font(MOD1_GENERAL_GILL_SANS, 48, point3<int>(110));
 	font_title = new mod1_gui::font(MOD1_GENERAL_GILL_SANS, 110, point3<int>(48));
-	gui_level = level::render;
+	level = gui_level::render;
 
 	hint_label = system.generate_label(window_width() / 2, window_height() * 9 / 10, "", font_light);
 	hint_layout.push(hint_label);

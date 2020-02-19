@@ -13,6 +13,7 @@ class									general : public mod1_engine_gl::renderer
 public :
 
 MOD1_GENERATE_EXCEPTION_DECLARATION(exception_arguments, "Mod1 Main : Invalid number of arguments")
+MOD1_GENERATE_EXCEPTION_DECLARATION(exception_level, "Mod1 Main : Unknown GUI level")
 
 										general(int argc, char **argv);
 										~general() final;
@@ -30,7 +31,6 @@ private :
 //										RENDERING
 
 	void								render() final;
-	void								script_esc(const bool &state);
 
 	mod1_engine_cl::core				cl_core;
 	mod1_engine_gl::framebuffer			framebuffer;
@@ -76,16 +76,17 @@ private :
 	mod1_gui::layout					layout_front;
 	mod1_gui::layout					layout_scenarios;
 
-	void								script_blur();
-	void								script_gui_front();
-	void								script_gui_scenarios();
-
-	enum class							level
+	enum class							gui_level
 	{
 		render,
 		menu_a,
 		menu_b
-	}									gui_level;
+	}									level;
+
+	void								script_blur();
+	void								script_gui_front();
+	void								script_gui_scenarios();
+	void								script_esc();
 
 	void								hint_init(const std::string &text);
 	void								hint_render();
