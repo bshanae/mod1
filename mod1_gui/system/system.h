@@ -19,6 +19,16 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_symbol, "Mod1 GUI, System : Symbol
 
 	void					render(const layout &layout, const bool &swap = true);
 
+	label		 			*generate_label(
+							const int &center_x,
+							const int &center_y,
+							const std::string &text,
+							const font *font);
+	label		 			*generate_label(
+							const point2<int> &center,
+							const std::string &text,
+							const font *font);
+
 	button		 			*generate_button(
 							const int &center_x,
 							const int &center_y,
@@ -64,6 +74,7 @@ private :
 	MOD1_GENERATE_UNIFORM(projection, "uniform_projection")
 	}						program;
 
+	std::vector<label *>	label_vector;
 	std::vector<button *>	button_vector;
 
 	void					render(const label &label);

@@ -15,6 +15,8 @@ MOD1_GENERATE_MESSAGE("Mod1 GUI, System : Ready")
 }
 					system::~system()
 {
+	for (label *label : label_vector)
+		delete label;
 	for (button *button : button_vector)
 		delete button;
 }

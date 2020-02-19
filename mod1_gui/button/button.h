@@ -6,21 +6,25 @@
 
 class					mod1_gui::button : public mod1_gui::label
 {
+	friend class		system;
+	friend class		layout;
+
 public :
+						~button() final = default;
+
+private :
+
 						button(
 						const point2<int> &center,
 						const std::string &text,
 						const class font *font,
 						functor_ptr functor,
 						void *ptr);
-						~button() = default;
 
 	bool				test(const mod1_engine_gl::event &event);
 
 	void				activate();
 	void				deactivate();
-
-private :
 
 MOD1_GENERATE_INTERNAL(callback, callback)
 MOD1_GENERATE_INTERNAL_WITH_VALUE(bool, is_active, false)

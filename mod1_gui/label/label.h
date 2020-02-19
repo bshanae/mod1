@@ -6,17 +6,21 @@
 
 class				mod1_gui::label
 {
+	friend class	system;
+
 public :
-					label(
-					const point2<int> &center,
-					const std::string &text,
-					const font *font);
+
 	virtual			~label() = default;
 
 	void 			change_position(const point2<int> &center);
 	void 			change_text(const std::string &text);
 
 protected :
+
+					label(
+					const point2<int> &center,
+					const std::string &text,
+					const font *font);
 
 MOD1_GENERATE_INTERNAL(point2<int>, center)
 MOD1_GENERATE_INTERNAL(point2<int>, size)

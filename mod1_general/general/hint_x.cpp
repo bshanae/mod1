@@ -3,7 +3,6 @@
 void						general::hint_init(const std::string &text)
 {
 	hint_mod = true;
-	hint_text = text;
 
 	hint_last_time = 0;
 	hint_remain = hint_timeout;

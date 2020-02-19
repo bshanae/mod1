@@ -29,11 +29,12 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Water is created")
 	first_argument = argv[1];
 	second_argument = argc >= 3 ? argv[2] : nullptr;
 
-	font_gill_sans = new mod1_gui::font(MOD1_GENERAL_GILL_SANS, 48, point3<int>(48));
-	font_gill_sans_light = new mod1_gui::font(MOD1_GENERAL_GILL_SANS, 48, point3<int>(110));
+	font_main = new mod1_gui::font(MOD1_GENERAL_GILL_SANS, 48, point3<int>(48));
+	font_light = new mod1_gui::font(MOD1_GENERAL_GILL_SANS, 48, point3<int>(110));
+	font_title = new mod1_gui::font(MOD1_GENERAL_GILL_SANS, 110, point3<int>(48));
 	gui_level = level::render;
 
-	hint_label = new mod1_gui::label(point2<int>(window_width() / 2, window_height() * 9 / 10), "", font_gill_sans_light);
+	hint_label = system.generate_label(window_width() / 2, window_height() * 9 / 10, "", font_light);
 	hint_layout.push(hint_label);
 	hint_drag = true;
 	hint_init("Drag mouse to rotate terrain");
@@ -56,23 +57,26 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Callbacks are set")
 
 MOD1_GENERATE_MESSAGE("Mod1 General : Timers are set")
 
+	mod1_gui::label		*name;
 	mod1_gui::button	*button[10];
 
-	button[0] = system.generate_button(window_width() / 2, window_height() * 3 / 9, "Continue", font_gill_sans, functor_continue, this);
-	button[1] = system.generate_button(window_width() / 2, window_height() * 4 / 9, "Scenario", font_gill_sans, functor_scenarios, this);
-	button[2] = system.generate_button(window_width() / 2, window_height() * 5 / 9, "Light control", font_gill_sans, functor_light_control, this);
-	button[3] = system.generate_button(window_width() / 2, window_height() * 6 / 9, "Exit", font_gill_sans, functor_exit, this);
+	name = system.generate_label(window_width() / 2, window_height() * 2 / 10, "mod1", font_title);
 
-	button[4] = system.generate_button(window_width() / 2, window_height() * 2 / 9, "Rain", font_gill_sans, scenario_rain, this);
-	button[5] = system.generate_button(window_width() / 2, window_height() * 3 / 9, "Heavy rain", font_gill_sans, scenario_heavy_rain, this);
-	button[6] = system.generate_button(window_width() / 2, window_height() * 4 / 9, "Well", font_gill_sans, scenario_well, this);
-	button[7] = system.generate_button(window_width() / 2, window_height() * 5 / 9, "Wave", font_gill_sans, scenario_wave, this);
-	button[8] = system.generate_button(window_width() / 2, window_height() * 6 / 9, "4 waves", font_gill_sans, scenario_4_waves, this);
-	button[9] = system.generate_button(window_width() / 2, window_height() * 7 / 9, "Flood", font_gill_sans, scenario_flood, this);
+	button[0] = system.generate_button(window_width() / 2, window_height() * 4 / 9, "Continue", font_main, functor_continue, this);
+	button[1] = system.generate_button(window_width() / 2, window_height() * 5 / 9, "Scenario", font_main, functor_scenarios, this);
+	button[2] = system.generate_button(window_width() / 2, window_height() * 6 / 9, "Light control", font_main, functor_light_control, this);
+	button[3] = system.generate_button(window_width() / 2, window_height() * 7 / 9, "Exit", font_main, functor_exit, this);
 
+	button[4] = system.generate_button(window_width() / 2, window_height() * 2 / 9, "Rain", font_main, scenario_rain, this);
+	button[5] = system.generate_button(window_width() / 2, window_height() * 3 / 9, "Heavy rain", font_main, scenario_heavy_rain, this);
+	button[6] = system.generate_button(window_width() / 2, window_height() * 4 / 9, "Well", font_main, scenario_well, this);
+	button[7] = system.generate_button(window_width() / 2, window_height() * 5 / 9, "Wave", font_main, scenario_wave, this);
+	button[8] = system.generate_button(window_width() / 2, window_height() * 6 / 9, "4 waves", font_main, scenario_4_waves, this);
+	button[9] = system.generate_button(window_width() / 2, window_height() * 7 / 9, "Flood", font_main, scenario_flood, this);
+
+	layout_front.push(name);
 	for (int i = 0; i < 4; i++)
 		layout_front.push(button[i]);
-
 	for (int i = 4; i < 10; i++)
 		layout_scenarios.push(button[i]);
 
@@ -85,7 +89,9 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Ready")
 	delete MOD1_INTERNAL(terrain);
 	delete MOD1_INTERNAL(water);
 
-	delete hint_label;
+	delete font_main;
+	delete font_light;
+	delete font_title;
 
 	delete callback_rotate_start;
 	delete callback_rotate_finish;

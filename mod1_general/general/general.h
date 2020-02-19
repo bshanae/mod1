@@ -69,8 +69,9 @@ private :
 	blur								blur;
 	mod1_gui::system					system;
 
-	mod1_gui::font						*font_gill_sans;
-	mod1_gui::font						*font_gill_sans_light;
+	mod1_gui::font						*font_main;
+	mod1_gui::font						*font_light;
+	mod1_gui::font						*font_title;
 
 	mod1_gui::layout					layout_front;
 	mod1_gui::layout					layout_scenarios;
@@ -92,8 +93,6 @@ private :
 	const double						hint_timeout = 4;
 
 	bool								hint_mod = false;
-	point2<int>							hint_position;
-	std::string							hint_text;
 	double								hint_remain;
 	double								hint_last_time;
 

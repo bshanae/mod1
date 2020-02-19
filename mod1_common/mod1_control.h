@@ -8,7 +8,7 @@
 
 #define MOD1_WINDOW_WIDTH						1028
 #define MOD1_WINDOW_HEIGHT						720
-#define MOD1_WINDOW_NAME						"mod1"
+#define MOD1_WINDOW_NAME						""
 
 //												ENGINE GL
 
@@ -60,6 +60,7 @@
 #define MOD1_GENERAL_PROGRAM_BLUR_FRAGMENT		"source_gl/blur_fragment.glsl"
 
 #define MOD1_GENERAL_GILL_SANS					"source_gui/GillSans.ttc"
+#define MOD1_GENERAL_HELVETICA_NEUE				"source_gui/HelveticaNeue.ttc"
 
 #define MOD1_GENERAL_LIGHT_AMBIENT_INTENSITY	0.2
 #define MOD1_GENERAL_LIGHT_DIRECT_DIRECTION		0, -1, 0
