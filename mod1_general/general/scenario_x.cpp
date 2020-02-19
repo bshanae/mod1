@@ -9,6 +9,8 @@ void				general::scenario_rain(void *ptr)
 	general->timer_scenario = general->add_timer(1. / 20., functor_rain, general);
 	water->water_data.set(0);
 
+	water->low_volume_optimization = true;
+
 	water->update_time_constant(0.1);
 	water->update_data();
 	water->update_model(true);

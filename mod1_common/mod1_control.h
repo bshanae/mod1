@@ -39,7 +39,8 @@
 #define MOD1_WATER_RANGE_MULTIPLIER				1.2
 
 #define MOD1_WATER_MINIMUM						0.05
-#define MOD1_WATER_HIDDEN						-100
+#define MOD1_WATER_HIDDEN_REAL					-0.01
+#define MOD1_WATER_HIDDEN_ABSTRACT				10
 
 //												GUI
 

@@ -27,15 +27,16 @@ void					water::update_color(const bool &save)
 {
 	point2<int>			iter;
 	point3<float>		color;
-	float				total;
+	float				depth;
 
 	for (iter.y = 0; iter.y < size().y - 1; iter.y++)
 		for (iter.x = 0; iter.x < size().x; iter.x++)
 		{
-			total = read_water_depth(iter);
+			if ((depth = read_water_depth(iter)) <= MOD1_WATER_MINIMUM)
+				depth = MOD1_WATER_HIDDEN_ABSTRACT;
+
 			for (int i = 0; i < 3; i++)
-				color[i] = terrain::interpolate_cosine(
-					color_max[i], color_min[i], total / terrain_range);
+				color[i] = terrain::interpolate_linear(color_max[i], color_min[i], depth / terrain_range);
 			write_color(iter, point4<float>(color, color_alpha));
 		}
 

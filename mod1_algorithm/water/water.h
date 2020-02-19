@@ -69,6 +69,8 @@ private :
 
 //									UPDATE
 
+	bool							low_volume_optimization = false;
+
 	void 							update_time_constant(const float &multiplier = 1.f);
 	void 							update_data();
 	void							update_model(const bool &save = false);

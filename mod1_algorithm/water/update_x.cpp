@@ -21,13 +21,10 @@ void					water::update_model(const bool &save)
 	for (iter.y = 0; iter.y < data_size.y; iter.y++)
 		for (iter.x = 0; iter.x < data_size.x; iter.x++)
 		{
-			if ((new_height = read_water_depth(iter)) <= 0)
-				new_height = MOD1_WATER_HIDDEN;
+			if ((new_height = read_water_depth(iter)) <= (low_volume_optimization ? 0.0001 : 0.05))//MOD1_WATER_MINIMUM)
+				new_height = MOD1_WATER_HIDDEN_REAL;
 			else
-			{
-				new_height = new_height < MOD1_WATER_MINIMUM ? 0 : new_height;
 				new_height += read_terrain_height(iter);
-			}
 			write_height(iter, new_height);
 		}
 

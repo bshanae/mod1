@@ -23,6 +23,8 @@ void 				general::script_esc()
 			timer_scenario->block(true);
 		timer_gravity->block(true);
 
+		MOD1_INTERNAL(water)->low_volume_optimization = false;
+
 		request_render(false);
 	}
 	else if (level == gui_level::menu_a or level == gui_level::menu_b)
