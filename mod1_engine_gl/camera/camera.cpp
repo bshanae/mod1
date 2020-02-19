@@ -21,6 +21,32 @@ MOD1_GENERATE_INTERNAL_READ_DEFINITION(camera, view)
 	update_transformation();
 }
 
+void				camera::set_zoom(const float &zoom)
+{
+	orthographic_zoom = zoom;
+	update_orthographic_projection();
+}
+
+void				camera::set_position(const glm::vec3 &position)
+{
+	MOD1_INTERNAL(position) = position;
+	update_transformation();
+}
+
+void				camera::set_direction(const glm::vec3 &direction)
+{
+	angle_x = direction.x;
+	angle_y = direction.y;
+	angle_z = direction.z;
+
+	MOD1_INTERNAL(rotation) = glm::eulerAngleYXZ(angle_y, angle_x, angle_z);
+	axis_x = glm::vec3(MOD1_INTERNAL(rotation) * glm::vec4(axis_x_const, 1.f));
+	axis_y = glm::vec3(MOD1_INTERNAL(rotation) * glm::vec4(axis_y_const, 1.f));
+	axis_z = glm::vec3(MOD1_INTERNAL(rotation) * glm::vec4(axis_z_const, 1.f));
+
+	update_transformation();
+}
+
 void				camera::move(axis axis, sign sign)
 {
 	if (axis == axis::x)

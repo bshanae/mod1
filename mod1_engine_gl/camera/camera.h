@@ -25,6 +25,10 @@ public :
 						const glm::vec3 &position = glm::vec3(0, 0, 0));
 						~camera() = default;
 
+	void				set_zoom(const float &zoom);
+	void				set_position(const glm::vec3 &position);
+	void				set_direction(const glm::vec3 &direction);
+
 	void				move(axis axis, sign sign);
 	void				move(glm::vec3 &target, axis axis, sign sign);
 	void				rotate(axis axis, sign sign);
@@ -84,7 +88,6 @@ MOD1_GENERATE_INTERNAL_READ_DECLARATION(projection_type)
 MOD1_GENERATE_INTERNAL_READ_DECLARATION(position)
 MOD1_GENERATE_INTERNAL_READ_DECLARATION(rotation)
 MOD1_GENERATE_INTERNAL_READ_DECLARATION(view)
-
 };
 
 

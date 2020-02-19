@@ -30,4 +30,15 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Water object is built")
 
 	well_distribution_x = std::uniform_int_distribution<int>(0, spring_range.x);
 	well_distribution_y = std::uniform_int_distribution<int>(0, spring_range.y);
+
+//						CAMERA PREPARATION
+
+	camera.switch_projection();
+	camera.set_zoom(0.72);
+	camera.set_position(glm::vec3(0, 670, 1100));
+	camera.set_direction(glm::vec3(-0.55, 0, 0));
+
+//						ROTATION PREPARATION
+
+	rotation = glm::rotate(rotation, glm::radians(45.f), rotation_axis);
 }
