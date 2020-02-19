@@ -6,13 +6,9 @@ void				renderer::functor_key(void *ptr, const class event &event)
 {
 #if MOD1_ENABLED(MOD1_DEVELOPER_MODE)
 	static bool		line_mod = false;
-#endif
-
 	const int 		key = event.read_key();
-
 	auto			renderer = (mod1_engine_gl::renderer *)ptr;
 
-#if MOD1_ENABLED(MOD1_DEVELOPER_MODE)
 	if (key == GLFW_KEY_A)
 		renderer->camera.move(axis::x, sign::negative);
 	else if (key == GLFW_KEY_D)
@@ -43,10 +39,11 @@ void				renderer::functor_key(void *ptr, const class event &event)
 		else
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	}
-#endif
 	else
 		return ;
+
 	renderer->request_render();
+#endif
 }
 
 void				renderer::functor_render(void *ptr)

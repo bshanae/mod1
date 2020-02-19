@@ -30,15 +30,13 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Water is created")
 	first_argument = argv[1];
 	second_argument = argc >= 3 ? argv[2] : nullptr;
 
-	font_main = new mod1_gui::font(MOD1_GENERAL_GILL_SANS, 48, point3<int>(35));
-	font_title = new mod1_gui::font(MOD1_GENERAL_GILL_SANS, 110, point3<int>(35));
-	font_light = new mod1_gui::font(MOD1_GENERAL_GILL_SANS, 48, point3<int>(100));
+	font_main = new mod1_gui::font(MOD1_GENERAL_GILL_SANS, 48, point3<int>(40));
+	font_title = new mod1_gui::font(MOD1_GENERAL_GILL_SANS, 110, point3<int>(40));
+	font_light = new mod1_gui::font(MOD1_GENERAL_GILL_SANS, 48, point3<int>(80));
 	level = gui_level::render;
 
 	hint_label = system.generate_label(window_width() / 2, window_height() * 9 / 10, "", font_light);
 	hint_layout.push(hint_label);
-	hint_drag = true;
-	hint_init("Drag mouse to rotate terrain");
 
 	add_callback(mod1_engine_gl::event_type::key_press, general::functor_key, this);
 	callback_rotate_start = add_callback(mod1_engine_gl::event_type::mouse_drag, general::functor_rotate_start, this);

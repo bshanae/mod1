@@ -1,13 +1,18 @@
 #include "general.h"
 
-void						general::hint_init(const std::string &text)
+void						general::hint_launch(hint_config &config)
 {
-	hint_mod = true;
+	if (not config.state_ever)
+		config.state_ever = true;
+	else
+		return ;
+	config.state_now = true;
 
+	hint_mod = true;
 	hint_last_time = 0;
 	hint_remain = hint_timeout;
 
-	hint_label->change_text(text);
+	hint_label->change_text(config.text);
 }
 
 void 						general::hint_render()

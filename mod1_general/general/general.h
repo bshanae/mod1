@@ -88,7 +88,14 @@ private :
 	void								script_gui_scenarios();
 	void								script_esc();
 
-	void								hint_init(const std::string &text);
+	typedef struct
+	{
+		bool							state_ever;
+		bool							state_now;
+		std::string						text;
+	}									hint_config;
+
+	void								hint_launch(hint_config &config);
 	void								hint_render();
 
 	const double						hint_timeout = 4;
@@ -100,8 +107,8 @@ private :
 	mod1_gui::label						*hint_label = nullptr;
 	mod1_gui::layout					hint_layout;
 
-	bool								hint_drag = false;
-	bool								hint_light = false;
+	hint_config							hint_config_model = {false, false, "Drag mouse to rotate terrain"};
+	hint_config							hint_config_light = {false, false, "Use W/A/S/D keys to control light direction"};
 
 //										FUNCTORS
 

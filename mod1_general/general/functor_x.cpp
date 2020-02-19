@@ -19,7 +19,7 @@ void				general::functor_rotate_start(void *ptr, const mod1_engine_gl::event &ev
 	angle = -1 * (event.read_diff().x / (float)general->window_width()) * general->rotation_speed;
 	general->rotation = glm::rotate(general->rotation, glm::radians(angle), general->rotation_axis);
 
-	if (general->hint_drag)
+	if (general->hint_config_model.state_now)
 		general->hint_mod = false;
 
 	general->request_render();
@@ -51,6 +51,8 @@ void				general::functor_continue(void *ptr)
 {
 	auto 			*general = (::general *)ptr;
 
+	general->hint_launch(general->hint_config_model);
+
 	general->script_esc();
 }
 
@@ -69,9 +71,11 @@ void				general::functor_light_control(void *ptr)
 	general->callback_light_a->block(false);
 	general->callback_light_b->block(false);
 
-	general->hint_init("Use W/A/S/D keys to control light direction");
-	general->hint_light = true;
+	general->hint_launch(general->hint_config_model);
+	general->hint_launch(general->hint_config_light);
+
 	general->script_esc();
+
 }
 
 void				general::functor_exit(void *ptr)
@@ -88,18 +92,18 @@ void				general::functor_light_rotate(void *ptr, const mod1_engine_gl::event &ev
 	auto 			*general = (::general *)ptr;
 	const int 		key = event.read_key();
 
-	if (key == GLFW_KEY_J)
-		general->camera.rotate(general->light.direct_direction, mod1_engine_gl::axis::y, mod1_engine_gl::sign::positive);
-	else if (key == GLFW_KEY_L)
-		general->camera.rotate(general->light.direct_direction, mod1_engine_gl::axis::y, mod1_engine_gl::sign::negative);
-	else if (key == GLFW_KEY_I)
+	if (key == GLFW_KEY_W)
 		general->camera.rotate(general->light.direct_direction, mod1_engine_gl::axis::x, mod1_engine_gl::sign::positive);
-	else if (key == GLFW_KEY_K)
+	else if (key == GLFW_KEY_S)
 		general->camera.rotate(general->light.direct_direction, mod1_engine_gl::axis::x, mod1_engine_gl::sign::negative);
+	else if (key == GLFW_KEY_A)
+		general->camera.rotate(general->light.direct_direction, mod1_engine_gl::axis::y, mod1_engine_gl::sign::negative);
+	else if (key == GLFW_KEY_D)
+		general->camera.rotate(general->light.direct_direction, mod1_engine_gl::axis::y, mod1_engine_gl::sign::positive);
 	else
 		return ;
 
-	if (general->hint_light)
+	if (general->hint_config_light.state_now)
 		general->hint_mod = false;
 
 	general->request_render();

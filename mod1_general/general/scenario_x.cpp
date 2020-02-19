@@ -15,6 +15,8 @@ void				general::scenario_rain(void *ptr)
 	water->update_data();
 	water->update_model(true);
 	general->script_esc();
+
+	general->hint_launch(general->hint_config_model);
 }
 
 void				general::scenario_heavy_rain(void *ptr)
@@ -30,6 +32,8 @@ void				general::scenario_heavy_rain(void *ptr)
 	water->update_data();
 	water->update_model(true);
 	general->script_esc();
+
+	general->hint_launch(general->hint_config_model);
 }
 
 void				general::scenario_well(void *ptr)
@@ -48,6 +52,8 @@ void				general::scenario_well(void *ptr)
 	water->update_data();
 	water->update_model(true);
 	general->script_esc();
+
+	general->hint_launch(general->hint_config_model);
 }
 
 void				general::scenario_wave(void *ptr)
@@ -68,6 +74,8 @@ void				general::scenario_wave(void *ptr)
 	water->update_data();
 	water->update_model(true);
 	general->script_esc();
+
+	general->hint_launch(general->hint_config_model);
 }
 
 void				general::scenario_4_waves(void *ptr)
@@ -98,6 +106,8 @@ void				general::scenario_4_waves(void *ptr)
 	water->update_data();
 	water->update_model(true);
 	general->script_esc();
+
+	general->hint_launch(general->hint_config_model);
 }
 
 void				general::scenario_flood(void *ptr)
@@ -117,4 +127,6 @@ void				general::scenario_flood(void *ptr)
 	general->script_esc();
 
 	general->timer_gravity->block(true);
+
+	general->hint_launch(general->hint_config_model);
 }

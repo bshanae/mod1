@@ -42,6 +42,9 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Water object is built")
 
 	rotation = glm::rotate(rotation, glm::radians(45.f), rotation_axis);
 
+	for (int i = 0; i < 15; i++)
+		camera.rotate(light.direct_direction, mod1_engine_gl::axis::y, mod1_engine_gl::sign::negative);
+
 //						CALLS ESC MANUALLY
 
 	script_esc();

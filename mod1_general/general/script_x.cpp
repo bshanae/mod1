@@ -5,8 +5,8 @@ void 				general::script_esc()
 	if (level == gui_level::render)
 	{
 		hint_mod = false;
-		hint_drag = false;
-		hint_light = false;
+		hint_config_model.state_now = false;
+		hint_config_light.state_now = false;
 
 		script_blur();
 		script_gui_front();
