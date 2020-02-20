@@ -80,7 +80,7 @@ void				general::scenario_wave(void *ptr)
 	general->hint_launch(general->hint_config_model);
 }
 
-void				general::scenario_4_waves(void *ptr)
+void				general::scenario_four_waves(void *ptr)
 {
 	auto 			*general = (::general *)ptr;
 	auto 			*water = general->MOD1_INTERNAL(water);

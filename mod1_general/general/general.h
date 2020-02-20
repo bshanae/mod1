@@ -163,7 +163,7 @@ private :
 	static void							scenario_heavy_rain(void *ptr);
 	static void							scenario_well(void *ptr);
 	static void							scenario_wave(void *ptr);
-	static void							scenario_4_waves(void *ptr);
+	static void							scenario_four_waves(void *ptr);
 	static void							scenario_flood(void *ptr);
 
 public :
