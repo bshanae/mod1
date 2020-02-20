@@ -154,10 +154,11 @@ void				general::functor_rain(void *ptr)
 void				general::functor_flood(void *ptr)
 {
 	auto 			*general = (::general *)ptr;
+	auto 			*terrain = general->MOD1_INTERNAL(terrain);
 	auto 			*water = general->MOD1_INTERNAL(water);
 	point2<int>		iter;
 
-	if (general->flood_level >= water->constant_limit)
+	if (general->flood_level >= terrain->final_min().z + water->constant_limit)
 		return ;
 
 	general->flood_level += MOD1_GENERAL_FLOOD_STEP;

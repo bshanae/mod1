@@ -8,7 +8,7 @@ void					water::data_prepare()
 
 	constant_flow = MOD1_WATER_CONST_A * MOD1_WATER_CONST_g * (1.f / terrain->delta()) * MOD1_WATER_CONST_dt;
 	constant_depth = MOD1_WATER_CONST_dt / (terrain->delta() * terrain->delta());
-	constant_limit = terrain->final_min().z + terrain_range;
+	constant_limit = terrain_range;
 
 	data_size = terrain->size();
 
