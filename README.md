@@ -34,8 +34,15 @@ Generally every line of configuration file it looks like this :
 
 ## Usage
 
-To compile program :
+Install some packages :
+```
+brew intsall glew
+brew intsall glfw3
+brew intsall glm
+brew intsall freetype
 
+```
+To compile program :
 ```
 python build/script.py
 make -C build

@@ -2,7 +2,16 @@ compiler(clang++)
 project(mod1)
 executable(mod1)
 
-add_flag(-std=c++17)
+add_flag(
+	-std=c++17
+	'`pkg-config --cflags glew`'
+	'`pkg-config --cflags glfw3`'
+	'`pkg-config --cflags glm`'
+	'`pkg-config --cflags freetype2`'
+	'`pkg-config --libs glew`'
+    '`pkg-config --libs glfw3`'
+    '`pkg-config --libs glm`'
+    '`pkg-config --libs freetype2`')
 
 add_source(
 	../mod1_extern/FastNoise/FastNoise.cpp
@@ -99,17 +108,8 @@ add_source(
 	../mod1_general/main.cpp)
 
 include_directory(
-	../mod1_extern/freetype/2.10.1/include/freetype2
-    ../mod1_extern/glew/2.1.0/include/GL
-    ../mod1_extern/glfw/3.3/include/GLFW
-    ../mod1_extern/glm/0.9.9.5/include/glm
     ../mod1_extern/OpenCL
     ../)
-
-link_directory(
-	../mod1_extern/freetype/2.10.1/lib
-	../mod1_extern/glew/2.1.0/lib
-	../mod1_extern/glfw/3.3/lib)
 
 link_library(
 	freetype

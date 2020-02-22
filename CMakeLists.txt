@@ -4,29 +4,6 @@ project(21_mod1)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 
-link_directories(
-#	mod1_extern/freetype/2.10.1/lib
-	/usr/local/Cellar/freetype/2.10.1/lib
-	mod1_extern/glew/2.1.0/lib
-	mod1_extern/glfw/3.3/lib)
-
-link_libraries(
-	"freetype"
-	"-framework OpenGL"
-	"-framework OpenCL"
-	"glfw.3"
-	"glew")
-
-include_directories(
-#	mod1_extern/freetype/2.10.1/include/freetype2
-	/usr/local/Cellar/freetype/2.10.1/include/freetype2
-	mod1_extern/glew/2.1.0/include/GL
-	mod1_extern/glfw/3.3/include/GLFW
-	mod1_extern/glm/0.9.9.5/include/glm
-	mod1_extern/OpenCL
-
-	.)
-
 set(EXTERN
 	mod1_extern/FastNoise/FastNoise.cpp)
 
@@ -155,6 +132,14 @@ set(GENERAL
 
 	mod1_general/main.cpp)
 
+find_package(PkgConfig REQUIRED)
+find_package(OpenGL REQUIRED)
+find_package(OpenCL REQUIRED)
+find_package(glfw3 3.3 REQUIRED)
+find_package(GLM REQUIRED)
+find_package(GLEW REQUIRED STATIC)
+find_package(Freetype REQUIRED)
+
 add_executable(21_mod1
 	${EXTERN}
 	${ENGINE_GL}
@@ -162,3 +147,16 @@ add_executable(21_mod1
 	${GUI}
 	${ALGORITHM}
 	${GENERAL})
+
+target_link_libraries(21_mod1
+	glfw
+	OpenGL::GL
+	OpenCL::OpenCL
+	GLEW::GLEW
+	${FREETYPE_LIBRARIES})
+
+target_include_directories(21_mod1
+	PRIVATE ${GLEW_INCLUDE_DIRS}
+	PRIVATE ${FREETYPE_INCLUDE_DIRS}
+	PRIVATE mod1_extern/OpenCL
+	PRIVATE .)
