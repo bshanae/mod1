@@ -34,16 +34,17 @@ Generally every line of configuration file it looks like this :
 
 ## Usage
 
-To compile program ...
+To compile program :
 
 ```
-?
+python build/script.py
+make -C build
 ```
 
-To run it passed terrain file and noise file (optionally) to mod1 binary :
+To run program pass terrain file and optionally noise file to binary
 
 ```
-./mod1 [map file] (noise file)
+./build/mod1 [map file] (noise file)
 ``` 
 
 ## References

@@ -1,3 +1,6 @@
 /cmake-build-debug/*
 /.idea
 .DS_Store
+build/.object
+build/.depend
+build/mod1
