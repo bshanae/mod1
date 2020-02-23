@@ -3,7 +3,7 @@ project(mod1)
 executable(mod1)
 
 add_flag(
-	-std=c++17
+	-std=c++1z
 	'`pkg-config --cflags glew`'
 	'`pkg-config --cflags glfw3`'
 	'`pkg-config --cflags glm`'

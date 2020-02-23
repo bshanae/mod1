@@ -179,7 +179,7 @@ void				camera::update_perspective_projection()
 void 				camera::update_orthographic_projection()
 {
 	projection_orthographic = glm::ortho(
-		this->screen_width * -1.f * orthographic_zoom, this->screen_width * orthographic_zoom,
-		this->screen_height * -1.f * orthographic_zoom, this->screen_height * orthographic_zoom,
+		this->screen_width * -1.f / orthographic_zoom, this->screen_width / orthographic_zoom,
+		this->screen_height * -1.f / orthographic_zoom, this->screen_height / orthographic_zoom,
 		MOD1_CAMERA_NEAR_PLANE, MOD1_CAMERA_FAR_PLANE);
 }

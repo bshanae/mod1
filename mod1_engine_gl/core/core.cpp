@@ -8,6 +8,7 @@ MOD1_GENERATE_EXCEPTION_DEFINITION(core, exception_GLEW)
 
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(core, window_width)
 MOD1_GENERATE_INTERNAL_READ_DEFINITION(core, window_height)
+MOD1_GENERATE_INTERNAL_READ_DEFINITION(core, window_multiplier)
 
 
 GLFWwindow			*global_window = nullptr;
@@ -32,8 +33,8 @@ MOD1_GENERATE_MESSAGE("")
 MOD1_GENERATE_MESSAGE("Mod1 Engine GL, Core : GLFW Launched")
 
 	window = glfwCreateWindow(
-		MOD1_INTERNAL(window_width),
-		MOD1_INTERNAL(window_height),
+		initial_width,
+		initial_height,
 		window_name.c_str(),
 		nullptr, nullptr);
 	if (!window)
@@ -48,14 +49,12 @@ MOD1_GENERATE_MESSAGE("Mod1 Engine GL, Core : GLFW Launched")
 
 MOD1_GENERATE_MESSAGE("Mod1 Engine GL, Core : GLEW Launched")
 
-	int				width;
-	int 			height;
+	glfwGetFramebufferSize(window, &MOD1_INTERNAL(window_width), &MOD1_INTERNAL(window_height));
+	glViewport(0, 0, MOD1_INTERNAL(window_width), MOD1_INTERNAL(window_height));
 
-	glfwGetFramebufferSize(window, &width, &height);
-	glViewport(0, 0, width, height);
-
-	MOD1_INTERNAL(window_width) = width;
-	MOD1_INTERNAL(window_height) = height;
+	MOD1_INTERNAL(window_multiplier) = MOD1_MIN(
+		(float)MOD1_INTERNAL(window_width) / (float)initial_width,
+		(float)MOD1_INTERNAL(window_height) / (float)initial_height);
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glEnable(GL_BLEND);

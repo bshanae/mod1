@@ -21,7 +21,7 @@ DEPEND = ${DEPEND_FOLDER}/FastNoise.cpp.d ${DEPEND_FOLDER}/core.cpp.d ${DEPEND_F
 LINK_DIRECTORY = 
 LINK_LIBRARY = -l freetype -l glfw.3 -l glew -framework OpenGL -framework OpenCL
 
-FLAG = -std=c++17 `pkg-config --cflags glew` `pkg-config --cflags glfw3` `pkg-config --cflags glm` `pkg-config --cflags freetype2` `pkg-config --libs glew` `pkg-config --libs glfw3` `pkg-config --libs glm` `pkg-config --libs freetype2`
+FLAG = -std=c++1z `pkg-config --cflags glew` `pkg-config --cflags glfw3` `pkg-config --cflags glm` `pkg-config --cflags freetype2` `pkg-config --libs glew` `pkg-config --libs glfw3` `pkg-config --libs glm` `pkg-config --libs freetype2`
 
 #						BASIC RULES	
 

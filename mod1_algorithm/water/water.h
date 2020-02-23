@@ -69,7 +69,7 @@ private :
 
 //									UPDATE
 
-	bool							low_volume_optimization = false;
+	bool							low_volume_optimization = true;
 
 	void 							update_time_constant(const float &multiplier = 1.f);
 	void 							update_data();

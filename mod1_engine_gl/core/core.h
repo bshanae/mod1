@@ -47,8 +47,12 @@ private :
 	static void 		glfw_callback_mouse_movement(GLFWwindow* window, double x, double y);
 	static void 		glfw_callback_mouse_key(GLFWwindow* window, int key, int action, int mode);
 
-MOD1_GENERATE_INTERNAL_WITH_VALUE(int, window_width, MOD1_WINDOW_WIDTH)
-MOD1_GENERATE_INTERNAL_WITH_VALUE(int, window_height, MOD1_WINDOW_HEIGHT)
+	const int			initial_width = MOD1_WINDOW_WIDTH;
+	const int			initial_height = MOD1_WINDOW_HEIGHT;
+
+MOD1_GENERATE_INTERNAL_WITH_VALUE(int, window_width, 0)
+MOD1_GENERATE_INTERNAL_WITH_VALUE(int, window_height, 0)
+MOD1_GENERATE_INTERNAL_WITH_VALUE(float, window_multiplier, 0)
 
 	event				event;
 
@@ -66,4 +70,5 @@ public :
 
 MOD1_GENERATE_INTERNAL_READ_DECLARATION(window_width)
 MOD1_GENERATE_INTERNAL_READ_DECLARATION(window_height)
+MOD1_GENERATE_INTERNAL_READ_DECLARATION(window_multiplier)
 };

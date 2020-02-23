@@ -26,9 +26,15 @@ void				core::glfw_callback_mouse_movement(GLFWwindow* window, double x, double 
 	auto			*core = (mod1_engine_gl::core *)glfwGetWindowUserPointer(window);
 	auto			old = core->event.mouse;
 
+	point2<float>	mouse;
+
+	mouse = point2<float>(x, y);
+	mouse /= point2<float>(core->initial_width, core->initial_height);
+	mouse *= point2<float>(core->MOD1_INTERNAL(window_width), core->MOD1_INTERNAL(window_height));
+	core->event.mouse = point2<int>(mouse);
+
 	core->event.reset();
 	core->event.type = core->event.mouse_hold ? event_type::mouse_drag : event_type::mouse_move;
-	core->event.mouse = point2<int>((int)x, (int)y);
 	core->event.mouse_diff = old - core->event.mouse;
 }
 

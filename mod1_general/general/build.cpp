@@ -34,7 +34,7 @@ MOD1_GENERATE_MESSAGE("Mod1 General : Water object is built")
 //						CAMERA PREPARATION
 
 	camera.switch_projection();
-	camera.set_zoom(0.72);
+	camera.set_zoom(1.35f * window_multiplier());
 	camera.set_position(glm::vec3(0, 700, 1100));
 	camera.set_direction(glm::vec3(-0.55, 0, 0));
 
