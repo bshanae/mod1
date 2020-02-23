@@ -3,7 +3,6 @@ import re
 import argparse
 import shlex
 
-
 '''
 					+++ READ +++				
 '''
@@ -11,7 +10,9 @@ import shlex
 compiler = None
 project = None
 executable = None
-flag = None
+flag_object = None
+flag_executable = None
+flag_common = None
 source = None
 target = None
 include = None
@@ -19,12 +20,13 @@ link_directory = None
 link_library = None
 
 
-def extract_command(string, command):
-	pattern = re.compile(command + '\(([^)]+)\)')
+def extract_command(string, command, option = ''):
+	pattern = re.compile(command + '\(' + option + '([^)]+)\)')
 	result = pattern.findall(string)
+	string = re.sub(pattern, '', string)
 	result = [shlex.split(element) for element in result]
 	result = [y for x in result for y in x]
-	return result
+	return string, result
 
 
 def work_configuration(path):
@@ -35,20 +37,26 @@ def work_configuration(path):
 	global compiler
 	global project
 	global executable
-	global flag
+	global flag_object
+	global flag_executable
+	global flag_common
 	global source
 	global include
 	global link_directory
 	global link_library
 
-	compiler = extract_command(content, 'compiler')
-	project = extract_command(content, 'project')
-	executable = extract_command(content, 'executable')
-	flag = extract_command(content, 'add_flag')
-	source = extract_command(content, 'add_source')
-	include = extract_command(content, 'include_directory')
-	link_directory = extract_command(content, 'link_directory')
-	link_library = extract_command(content, 'link_library')
+	content, compiler = extract_command(content, 'compiler')
+	content, project = extract_command(content, 'project')
+	content, executable = extract_command(content, 'executable')
+	content, flag_object = extract_command(content, 'add_flag', 'OBJECT')
+	content, flag_executable = extract_command(content, 'add_flag', 'EXECUTABLE')
+	content, flag_common = extract_command(content, 'add_flag', 'COMMON')
+	content, temp = extract_command(content, 'add_flag')
+	flag_common += temp
+	content, source = extract_command(content, 'add_source')
+	content, include = extract_command(content, 'include_directory')
+	content, link_directory = extract_command(content, 'link_directory')
+	content, link_library = extract_command(content, 'link_library')
 
 	if not compiler:
 		compiler = 'gcc'
@@ -96,7 +104,6 @@ def work_link_x():
 	link_library = ['-l ' + element if element[0] != '-' else element for element in link_library]
 
 
-
 '''
 					+++ WRITE +++				
 '''
@@ -121,7 +128,7 @@ def generate_object_rule(source_name, target_name, percent):
 	object_name = generate_object(target_name)
 	depend_name = generate_depend(target_name)
 	depend = '{depend} | ${{OBJECT_FOLDER}} ${{DEPEND_FOLDER}}'.format(depend = depend_name)
-	compile = '@${{COMPILER}} ${{INCLUDE}} ${{FLAG}} -MMD -MP -MT {object} -MF {depend} -c {source} -o {object}'.format(
+	compile = '@${{COMPILER}} ${{INCLUDE}} ${{FLAG_OBJECT}} ${{FLAG_COMMON}} -MMD -MP -MT {object} -MF {depend} -c {source} -o {object}'.format(
 		source = source_name,
 		object = object_name,
 		depend = depend_name)
@@ -157,7 +164,9 @@ DEPEND = {template_depend}
 LINK_DIRECTORY = {template_link_directory}
 LINK_LIBRARY = {template_link_library}
 
-FLAG = {template_flag}
+FLAG_OBJECT = {template_flag_object}
+FLAG_EXECUTABLE = {template_flag_executable}
+FLAG_COMMON = {template_flag_common}
 
 #						BASIC RULES	
 
@@ -165,7 +174,7 @@ all : ${{EXECUTABLE}}
 
 ${{EXECUTABLE}} : ${{OBJECT}}
 	${{call INFO,Linking in executable ${{EXECUTABLE}}}}
-	@${{COMPILER}} ${{FLAG}} ${{LINK_DIRECTORY}} ${{LINK_LIBRARY}} ${{OBJECT}} -o ${{EXECUTABLE}}
+	@${{COMPILER}} ${{FLAG_EXECUTABLE}} ${{FLAG_COMMON}} ${{LINK_DIRECTORY}} ${{LINK_LIBRARY}} ${{OBJECT}} -o ${{EXECUTABLE}}
 
 clean :
 	${{call INFO,Deleting objects' folder}}
@@ -216,7 +225,9 @@ include ${{wildcard ${{DEPEND}}}}
 		template_compiler = compiler,
 		template_project = project,
 		template_executable = executable,
-		template_flag = concat(flag),
+		template_flag_object = concat(flag_object),
+		template_flag_executable = concat(flag_executable),
+		template_flag_common = concat(flag_common),
 		template_include = concat(include),
 		template_link_directory = concat(link_directory),
 		template_link_library = concat(link_library),
@@ -249,12 +260,14 @@ def main():
 		print(os.path.basename(__file__) + ' : compiler = ' + str(compiler))
 		print(os.path.basename(__file__) + ' : project = ' + str(project))
 		print(os.path.basename(__file__) + ' : executable = ' + str(executable))
-		print(os.path.basename(__file__) + ' : flag = ' + str(flag))
-		print(os.path.basename(__file__) + ' : source = ' + str(source))
+		print(os.path.basename(__file__) + ' : flags for object = ' + str(flag_object))
+		print(os.path.basename(__file__) + ' : flags for executable = ' + str(flag_executable))
+		print(os.path.basename(__file__) + ' : common flags = ' + str(flag_common))
+		print(os.path.basename(__file__) + ' : sources = ' + str(source))
 		print(os.path.basename(__file__) + ' : target = ' + str(target))
-		print(os.path.basename(__file__) + ' : include = ' + str(include))
-		print(os.path.basename(__file__) + ' : link directory = ' + str(link_directory))
-		print(os.path.basename(__file__) + ' : link library = ' + str(link_library))
+		print(os.path.basename(__file__) + ' : includes = ' + str(include))
+		print(os.path.basename(__file__) + ' : link directories = ' + str(link_directory))
+		print(os.path.basename(__file__) + ' : link libraries = ' + str(link_library))
 
 	work_makefile(args.output)
 

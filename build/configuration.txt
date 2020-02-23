@@ -2,16 +2,19 @@ compiler(clang++)
 project(mod1)
 executable(mod1)
 
-add_flag(
-	-std=c++1z
+add_flag(OBJECT
 	'`pkg-config --cflags glew`'
 	'`pkg-config --cflags glfw3`'
 	'`pkg-config --cflags glm`'
-	'`pkg-config --cflags freetype2`'
+	'`pkg-config --cflags freetype2`')
+
+add_flag(EXECUTABLE
 	'`pkg-config --libs glew`'
     '`pkg-config --libs glfw3`'
     '`pkg-config --libs glm`'
     '`pkg-config --libs freetype2`')
+
+add_flag(COMMON -std=c++1z)
 
 add_source(
 	../mod1_extern/FastNoise/FastNoise.cpp

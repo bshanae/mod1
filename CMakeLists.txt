@@ -139,8 +139,10 @@ find_package(glfw3 3.3 REQUIRED)
 find_package(GLM REQUIRED)
 find_package(GLEW REQUIRED STATIC)
 
-include_directories(/Users/bshanae/.brew/Cellar/freetype/2.10.1/include/freetype2)
-link_directories(/Users/bshanae/.brew/Cellar/freetype/2.10.1/lib/)
+set(BREW_CELLAR /usr/local/Cellar)
+
+include_directories(${BREW_CELLAR}/freetype/2.10.1/include/freetype2)
+link_directories(${BREW_CELLAR}/freetype/2.10.1/lib/)
 link_libraries("freetype")
 
 add_executable(21_mod1
@@ -155,8 +157,7 @@ target_link_libraries(21_mod1
 	glfw
 	OpenGL::GL
 	OpenCL::OpenCL
-	GLEW::GLEW
-	)
+	GLEW::GLEW)
 
 target_include_directories(21_mod1
 	PRIVATE ${GLEW_INCLUDE_DIRS}

@@ -44,8 +44,10 @@ brew intsall freetype
 ```
 To compile program :
 ```
-python build/script.py
-make -C build
+cd build
+python script.py
+make
+cd ..
 ```
 
 To run program pass terrain file and optionally noise file to binary
