@@ -2,7 +2,7 @@
 
 Water simulation using Pipe-method
 
-![](github_pabe/b.png)
+![](icon.png)
 
 ## About this project
 
