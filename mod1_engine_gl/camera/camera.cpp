@@ -60,7 +60,7 @@ void				camera::move(axis axis, sign sign)
 				MOD1_INTERNAL(position) += axis_z * movement_speed * (float)sign;
 				break;
 			case projection_type::orthographic :
-				orthographic_zoom += orthographic_zoom_speed * (float)sign;
+				orthographic_zoom -= orthographic_zoom_speed * (float)sign;
 				update_orthographic_projection();
 				break;
 		}

@@ -61,8 +61,9 @@ MOD1_GENERATE_MESSAGE("Mod1 Engine GL, Core : GLEW Launched")
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glProvokingVertex(GL_FIRST_VERTEX_CONVENTION);
 	glEnable(GL_DEPTH_TEST);
+	glfwWindowHint(GLFW_SAMPLES, 4);
 
-MOD1_GENERATE_MESSAGE("Mod1 Engine GL, Core : OpenGL is set")
+	MOD1_GENERATE_MESSAGE("Mod1 Engine GL, Core : OpenGL is set")
 
 #if MOD1_ENABLED(MOD1_SRGB)
 	glEnable(GL_FRAMEBUFFER_SRGB);
