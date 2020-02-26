@@ -40,7 +40,6 @@ brew intsall glew
 brew intsall glfw
 brew intsall glm
 brew intsall freetype
-
 ```
 To compile program :
 ```
