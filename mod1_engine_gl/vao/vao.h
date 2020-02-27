@@ -24,7 +24,7 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_template, "Mod1 Engine GL, VAO : T
 	{
 		attribute_vector.push_back(new vbo);
 
-		vbo				*vbo = attribute_vector.back(); MOD1_GENERATE_GL_TEST
+		vbo				*vbo = attribute_vector.back();
 		GLenum			data_type;
 
 		if (std::is_same<type, unsigned int>::value)
@@ -36,18 +36,18 @@ MOD1_GENERATE_EXCEPTION_DECLARATION(exception_template, "Mod1 Engine GL, VAO : T
 
 		bind();
 
-		vbo->buffer(buffer, is_dynamic); MOD1_GENERATE_GL_TEST
-		vbo->bind(); MOD1_GENERATE_GL_TEST
+		vbo->buffer(buffer, is_dynamic);
+		vbo->bind();
 		glVertexAttribPointer(
 			attribute_count,
 			element_size,
 			data_type,
 			GL_FALSE,
 			element_size * sizeof(type),
-			nullptr); MOD1_GENERATE_GL_TEST
-		glEnableVertexAttribArray(attribute_count++); MOD1_GENERATE_GL_TEST
-		vbo::unbind(); MOD1_GENERATE_GL_TEST
-		unbind(); MOD1_GENERATE_GL_TEST
+			nullptr);
+		glEnableVertexAttribArray(attribute_count++);
+		vbo::unbind();
+		unbind();
 
 		return (vbo);
 	}
