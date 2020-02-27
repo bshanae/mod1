@@ -36,11 +36,10 @@ Generally every line of configuration file it looks like this :
 
 Install some packages :
 ```
-brew intsall glew
-brew intsall glfw
-brew intsall glm
-brew intsall freetype
-
+brew install glew
+brew install glfw
+brew install glm
+brew install freetype
 ```
 To compile program :
 ```
