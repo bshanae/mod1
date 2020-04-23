@@ -1,8 +1,8 @@
+![](project_additional/icon.png)
+
 # mod1
 
 Water simulation using Pipe-method
-
-![](project_additional/icon.png)
 
 ## About this project
 
