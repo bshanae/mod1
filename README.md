@@ -41,7 +41,6 @@ To compile program :
 ```
 cd build
 make
-cd ..
 ```
 
 To run program pass terrain file and optionally noise file to binary
