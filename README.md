@@ -2,10 +2,6 @@
 
 # mod1
 
-Water simulation using Pipe-method
-
-## About this project
-
 The idea of this of the projection is simulate water movement on terrain, defined by a given file. \
 I used an algorithm, called Pipe-method, it is used along with height-field model. It works like this : 
 one creates a 2D array for storing water depth values, along with array for storing flow values.
@@ -44,7 +40,6 @@ brew install freetype
 To compile program :
 ```
 cd build
-python script.py
 make
 cd ..
 ```
