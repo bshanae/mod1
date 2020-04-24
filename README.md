@@ -1,4 +1,4 @@
-![](project_additional/icon.png)
+![](project_additional/wallpaper.png)
 
 # mod1
 
